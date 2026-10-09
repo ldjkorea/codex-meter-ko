@@ -1,0 +1,7 @@
+{
+  "git_arguments": [
+    "show",
+    "e775fd9:android/wear/src/main/res/color/wear_switch_thumb.xml"
+  ],
+  "sha256": "214c91a94b5361709696e0d83fd0e70c9b01b8bc55966479ccbd35aca45469c9"
+}

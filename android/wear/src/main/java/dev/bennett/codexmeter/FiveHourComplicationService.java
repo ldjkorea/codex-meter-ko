@@ -1,0 +1,30 @@
+package dev.bennett.codexmeter;
+
+import android.os.Build;
+import androidx.wear.watchface.complications.data.ComplicationData;
+import androidx.wear.watchface.complications.data.ComplicationType;
+
+public final class FiveHourComplicationService extends CodexComplicationService {
+    @Override
+    protected ComplicationData dataForType(ComplicationType type, boolean preview) {
+        if(!WearPreferences.showFiveHourDisplay(this))return null;
+        UsageSnapshot current=snapshot(preview);
+        if(!preview && (current==null||current.fiveHour==null))return null;
+        UsageWindow window = WearGlanceFormat.currentFiveHour(snapshot(preview));
+        String percent = surfaceText(preview, WearGlanceFormat.remainingPercentText(window));
+        if (type == ComplicationType.RANGED_VALUE) {
+            return rangedValue(WearGlanceFormat.remainingPercentOrZero(window), percent, FiveHourComplicationService.this.getString(R.string.ui_5h_798876),
+                    FiveHourComplicationService.this.getString(R.string.ui_5_hour_codex_usage_remaining_db2f40));
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU
+                && type == ComplicationType.GOAL_PROGRESS) {
+            return goalProgress(WearGlanceFormat.remainingPercentOrZero(window), percent, FiveHourComplicationService.this.getString(R.string.ui_5h_798876),
+                    FiveHourComplicationService.this.getString(R.string.ui_5_hour_codex_usage_remaining_db2f40));
+        } else if (type == ComplicationType.SHORT_TEXT) {
+            return shortText(percent, FiveHourComplicationService.this.getString(R.string.ui_5h_798876), FiveHourComplicationService.this.getString(R.string.ui_5_hour_codex_usage_remaining_db2f40));
+        } else if (type == ComplicationType.LONG_TEXT) {
+            return longText(FiveHourComplicationService.this.getString(R.string.ui_5_hour_823cea) + percent + FiveHourComplicationService.this.getString(R.string.ui_left_305935),
+                    FiveHourComplicationService.this.getString(R.string.ui_5_hour_codex_usage_remaining_db2f40));
+        }
+        return imageForType(type, FiveHourComplicationService.this.getString(R.string.ui_5_hour_codex_usage_e03e1f));
+    }
+}

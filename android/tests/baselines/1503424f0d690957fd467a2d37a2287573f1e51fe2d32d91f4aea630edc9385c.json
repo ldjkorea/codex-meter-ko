@@ -1,0 +1,7 @@
+{
+  "git_arguments": [
+    "show",
+    "e775fd9:android/wear/src/main/res/values/colors.xml"
+  ],
+  "sha256": "0935a39bd961ce117ac7991b49831255d68fe124ced6472c5f43336806c7d6a7"
+}

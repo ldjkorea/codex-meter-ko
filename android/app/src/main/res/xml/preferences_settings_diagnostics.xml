@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory android:title="@string/ui_log_tracing_4d0315">
+        <SwitchPreferenceCompat
+            android:key="diagnostic_logging_enabled"
+            android:summary="@string/ui_record_detailed_app_refresh_scheduler_wear_and_network__31f167"
+            android:title="@string/ui_save_diagnostic_logs_6f1fed"
+            app:iconSpaceReserved="false" />
+        <Preference
+            android:key="diagnostic_log_status"
+            android:title="@string/ui_saved_logs_fe8fe5"
+            app:iconSpaceReserved="false"
+            app:selectable="false" />
+        <Preference
+            android:key="export_diagnostic_logs"
+            android:summary="@string/ui_save_a_structured_json_lines_file_229566"
+            android:title="@string/ui_export_logs_5fd44f"
+            app:iconSpaceReserved="false" />
+        <Preference
+            android:key="clear_diagnostic_logs"
+            android:summary="@string/ui_permanently_delete_saved_diagnostic_events_6d2ee2"
+            android:title="@string/ui_clear_logs_532ffc"
+            app:iconSpaceReserved="false" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/ui_privacy_cf0148">
+        <Preference
+            android:summary="@string/ui_logs_stay_in_private_app_storage_until_you_export_or_cl_a0db35"
+            android:title="@string/ui_sensitive_data_protection_09de4d"
+            app:iconSpaceReserved="false"
+            app:selectable="false" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

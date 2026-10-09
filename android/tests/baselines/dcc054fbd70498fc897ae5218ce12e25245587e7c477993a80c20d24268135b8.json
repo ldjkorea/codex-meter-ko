@@ -1,0 +1,7 @@
+{
+  "git_arguments": [
+    "show",
+    "e86c69c:android/shared/src/main/java/dev/bennett/codexmeter/HistorySections.java"
+  ],
+  "sha256": "44065bdd61638677f2f468efe1de7a113da92609b6ad76981d173866cfd9efca"
+}

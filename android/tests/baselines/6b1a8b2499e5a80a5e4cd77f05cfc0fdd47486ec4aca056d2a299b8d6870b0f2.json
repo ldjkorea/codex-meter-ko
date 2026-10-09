@@ -1,0 +1,7 @@
+{
+  "git_arguments": [
+    "show",
+    "e86c69c:android/app/src/main/java/dev/bennett/codexmeter/AccountSession.java"
+  ],
+  "sha256": "9bbd28c88db9ff54d2702a108b1d47eada5128e5130550d815d543f0a39508a4"
+}

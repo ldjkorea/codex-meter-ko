@@ -1,0 +1,42 @@
+package dev.bennett.codexmeter;
+
+import android.content.Context;
+
+/** Localized presentation of the unchanged shared Wear formatter results. */
+final class WearDisplayText {
+    private WearDisplayText() {}
+
+    static String localize(Context context, String text) {
+        if (text == null) return null;
+        switch (text) {
+            case "Month": return context.getString(R.string.ui_month_082bc3);
+            case "Week": return context.getString(R.string.ui_week_f82be6);
+            case "Monthly": return context.getString(R.string.ui_monthly_d31edb);
+            case "Weekly": return context.getString(R.string.ui_weekly_158f3d);
+            case "5h": return context.getString(R.string.ui_5h_798876);
+            case "Next reset": return context.getString(R.string.ui_next_reset_d8c7dd);
+            case "5h reset": return context.getString(R.string.ui_5h_reset_d873e1);
+            case "Week reset": return context.getString(R.string.ui_week_reset_5596c6);
+            case "Month reset": return context.getString(R.string.ui_month_reset_539f10);
+            case "Live monitor active": return context.getString(R.string.ui_live_monitor_active_d68de4);
+            case "Live monitor off": return context.getString(R.string.ui_live_monitor_off_936c94);
+            case "Waiting for usage": return context.getString(R.string.ui_waiting_for_usage_f46e76);
+            case "Usage access unavailable": return context.getString(R.string.ui_usage_access_unavailable_2098c3);
+            case "Limit reached": return context.getString(R.string.ui_limit_reached_068bb7);
+            case "Codex usage": return context.getString(R.string.ui_codex_usage_c9b58b);
+            case "Fast 5-hour usage": return context.getString(R.string.ui_fast_5_hour_usage_ea7ed8);
+            case "Fast weekly usage": return context.getString(R.string.ui_fast_weekly_usage_093d7f);
+            case "Fast monthly usage": return context.getString(R.string.ui_fast_monthly_usage_908742);
+            case "No usage yet": return context.getString(R.string.ui_no_usage_yet_8fe950);
+            case "No reset yet": return context.getString(R.string.ui_no_reset_yet_27911d);
+            default: break;
+        }
+        if (text.endsWith(" plan")) return context.getString(R.string.ui_1_s_plan_49e89e, text.substring(0, text.length() - 5));
+        if (text.matches("\\d+ reset credit")) return context.getString(R.string.ui_1_s_reset_credit_e58218, text.substring(0, text.indexOf(' ')));
+        if (text.matches("\\d+ reset credits")) return context.getString(R.string.ui_1_s_reset_credits_e4dc1c, text.substring(0, text.indexOf(' ')));
+        if (text.startsWith("Resets in ")) return context.getString(R.string.ui_resets_in_1_s_5ee3f2, NowBarText.duration(context, text.substring(10)));
+        if (text.startsWith("5h ")) return text.replace("5h ", context.getString(R.string.ui_5h_8d1321))
+                .replace("Week", context.getString(R.string.ui_week_f82be6)).replace("Month", context.getString(R.string.ui_month_082bc3));
+        return NowBarText.duration(context, text);
+    }
+}

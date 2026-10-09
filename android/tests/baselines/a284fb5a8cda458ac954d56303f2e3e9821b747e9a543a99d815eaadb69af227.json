@@ -1,0 +1,7 @@
+{
+  "git_arguments": [
+    "show",
+    "e775fd9:android/wear/src/main/res/values/arrays.xml"
+  ],
+  "sha256": "7f94434f9299d2993dd71e65718e4605958ce3db0e7aaab3d06d9d6feead0174"
+}

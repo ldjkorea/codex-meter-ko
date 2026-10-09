@@ -1,0 +1,7 @@
+{
+  "git_arguments": [
+    "show",
+    "e86c69c:android/wear/src/main/java/dev/bennett/codexmeter/WearPreferences.java"
+  ],
+  "sha256": "5aa1acbf341b7fa3d3c723903af53599935f10079be26a198770563f71e96232"
+}

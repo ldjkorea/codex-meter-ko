@@ -1,0 +1,7 @@
+{
+  "git_arguments": [
+    "show",
+    "e86c69c:android/shared/src/main/java/dev/bennett/codexmeter/WidgetVisibility.java"
+  ],
+  "sha256": "acb1429250e337214b9c1d0139483b8bf372c8d4b0513dfc57f70cf1f11ccbc1"
+}

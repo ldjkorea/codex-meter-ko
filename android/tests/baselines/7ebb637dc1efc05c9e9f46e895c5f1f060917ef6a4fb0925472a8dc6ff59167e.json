@@ -1,0 +1,7 @@
+{
+  "git_arguments": [
+    "show",
+    "e775fd9:android/wear/src/main/res/drawable/ic_refresh.xml"
+  ],
+  "sha256": "dfd9c93f18f38e7726251978ada9696dabe4c235edafe420f300124dab5eab31"
+}

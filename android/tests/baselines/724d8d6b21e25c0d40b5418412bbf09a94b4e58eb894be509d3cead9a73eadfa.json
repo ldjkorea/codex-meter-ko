@@ -1,0 +1,7 @@
+{
+  "git_arguments": [
+    "show",
+    "e775fd9:android/wear/src/main/res/color/wear_button_primary_fill.xml"
+  ],
+  "sha256": "30991ce2a44d260cc4498d35daccfc1a600324677be1c7d2802efa5a817f3985"
+}

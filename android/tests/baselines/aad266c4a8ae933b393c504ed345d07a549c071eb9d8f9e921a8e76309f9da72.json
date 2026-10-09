@@ -1,0 +1,7 @@
+{
+  "git_arguments": [
+    "show",
+    "e775fd9:android/wear/src/main/res/xml/data_extraction_rules.xml"
+  ],
+  "sha256": "d9064a7ac7e7df1d200997e35e4be275bd54f9f7c074d497dbb31405b573a82d"
+}

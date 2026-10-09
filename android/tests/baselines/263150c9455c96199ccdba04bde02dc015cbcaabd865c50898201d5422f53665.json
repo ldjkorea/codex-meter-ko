@@ -1,0 +1,7 @@
+{
+  "git_arguments": [
+    "show",
+    "9de3b6c:android/app/src/main/java/dev/bennett/codexmeter/MeterVisibility.java"
+  ],
+  "sha256": "853c30c09101c62e3d30cafe858bf174c93aa06ed45b34eda96c99a62e146097"
+}

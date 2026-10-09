@@ -1,0 +1,7 @@
+{
+  "git_arguments": [
+    "show",
+    "e775fd9:android/wear/src/main/java/dev/bennett/codexmeter/FiveHourComplicationService.java"
+  ],
+  "sha256": "5326821f83ff11ce1026f8283fdcd1a6d8c0c5eb99b2770e34e14304adebd3c4"
+}

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory android:title="@string/ui_your_data_48cd18">
+        <Preference
+            android:icon="@drawable/ic_oui_privacy"
+            android:summary="@string/ui_oauth_tokens_are_encrypted_with_android_keystore_and_re_da09ff"
+            android:title="@string/ui_encrypted_local_storage_e0ef7f"
+            app:iconSpaceReserved="false"
+            app:selectable="false" />
+        <Preference
+            android:summary="@string/ui_codex_meter_connects_directly_to_openai_for_authenticat_a20574"
+            android:title="@string/ui_direct_network_access_47d847"
+            app:iconSpaceReserved="false"
+            app:selectable="false" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

@@ -1,0 +1,7 @@
+{
+  "git_arguments": [
+    "show",
+    "e86c69c:android/shared/src/main/java/dev/bennett/codexmeter/AdaptiveRefreshPolicy.java"
+  ],
+  "sha256": "ab26c90feec3790c9432a9daf8b351638c5798a573da3ac9b47bfd18db325334"
+}

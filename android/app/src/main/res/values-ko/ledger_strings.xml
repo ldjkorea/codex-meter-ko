@@ -1,0 +1,27 @@
+<resources>
+    <string name="ledger_title">사용량 원장과 분석</string>
+    <string name="ledger_note">이번 업데이트 이후의 API 관측값을 기기에 기록합니다. 변화량은 한도의 퍼센트포인트이며 토큰 수나 메시지 수가 아닙니다. 한도 증가의 원인은 단정하지 않습니다.</string>
+    <string name="ledger_empty">다음 사용량 새로고침이 성공하면 원장 기록을 시작합니다. 기존 차트와 이벤트 기록은 그대로 볼 수 있습니다.</string>
+    <string name="ledger_unreadable">원장 데이터를 읽을 수 없어 예측을 표시하지 않습니다. 저장된 데이터는 보존했습니다.</string>
+    <string name="ledger_retained">관측값 %1$d개 보관 중 (최대 2,048개 또는 90일). 최근 12개를 표시합니다.</string>
+    <string name="ledger_row">%1$s · %2$s · %3$d%% 사용\n%4$s</string>
+    <string name="ledger_delta">%1$s (%2$+d pp)</string>
+    <string name="ledger_segment">%2$s 동안 %1$d회 관측 · 사용량 %3$d pp 증가</string>
+    <string name="ledger_budget">최근 관측 시점 기준: 하루 여유량 %1$s pp · 최근 속도 %2$s pp/일</string>
+    <string name="ledger_stale">예측 보류: 새로고침 데이터가 오래됐거나 기기 시간이 변경됐습니다.</string>
+    <string name="ledger_missing_reset">예측 보류: 현재 API 초기화 일정이 없습니다.</string>
+    <string name="ledger_mismatch">예측 보류: 원장과 최신 사용량 응답이 일치하지 않습니다.</string>
+    <string name="ledger_warmup">예측 보류: 최근 24시간 내 초기화나 한도 변화 이후 관측값이 3개 이상 필요합니다. 5시간 한도는 10분, 주간·월간 한도는 6시간 이상 기록을 모읍니다.</string>
+    <string name="ledger_low_change">예측 보류: 관측된 변화량이 2퍼센트포인트 미만입니다.</string>
+    <string name="ledger_gap">예측 보류: 관측 공백이 길어 새 구간의 기록을 모으고 있습니다.</string>
+    <string name="ledger_large_jump">예측 보류: 큰 폭의 변화가 관측돼 새 구간의 기록을 모으고 있습니다.</string>
+    <string name="ledger_change_baseline">보관 중인 첫 관측값</string>
+    <string name="ledger_change_none">관측된 변화 없음</string>
+    <string name="ledger_change_usage">사용량 증가 관측</string>
+    <string name="ledger_change_allowance">한도 증가 관측 · 원인 확인 불가</string>
+    <string name="ledger_change_reset">초기화 경계 관측</string>
+    <string name="ledger_change_window">초기화 일정 또는 한도 기간 변경</string>
+    <string name="ledger_change_plan">API에 표시된 플랜 변경</string>
+    <string name="ledger_change_gap">관측 공백 · 변화 원인 확인 불가</string>
+    <string name="ledger_change_unknown">초기화 일정 없음</string>
+</resources>

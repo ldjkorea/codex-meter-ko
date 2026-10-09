@@ -1,0 +1,7 @@
+{
+  "git_arguments": [
+    "show",
+    "e86c69c:android/shared/src/main/java/dev/bennett/codexmeter/TestNote.java"
+  ],
+  "sha256": "fe9ab818b31fffced172319a9ee0cec779e8d175b169157165f2c60a0d3e8f09"
+}

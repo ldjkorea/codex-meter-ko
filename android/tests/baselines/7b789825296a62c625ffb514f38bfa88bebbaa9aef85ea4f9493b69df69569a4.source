@@ -1,0 +1,39 @@
+package dev.bennett.codexmeter;
+
+import android.os.Build;
+import androidx.wear.watchface.complications.data.ComplicationData;
+import androidx.wear.watchface.complications.data.ComplicationType;
+
+public final class DualUsageComplicationService extends CodexComplicationService {
+    @Override
+    protected ComplicationData dataForType(ComplicationType type, boolean preview) {
+        UsageSnapshot snapshot = snapshot(preview);
+        UsageWindow fiveHour = WearGlanceFormat.currentFiveHour(snapshot);
+        UsageWindow weekly = WearGlanceFormat.currentLongWindow(snapshot);
+        String shortValue = surfaceText(preview, fiveHour == null
+                ? WearGlanceFormat.remainingPercentText(weekly) : WearGlanceFormat.dualShortText(snapshot));
+        float constrained = constrainedRemaining(fiveHour, weekly);
+        if (type == ComplicationType.RANGED_VALUE) {
+            return rangedValue(constrained, shortValue, "Codex",
+                    DualUsageComplicationService.this.getString(R.string.ui_codex_usage_c9b58b));
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU
+                && type == ComplicationType.GOAL_PROGRESS) {
+            return goalProgress(constrained, shortValue, "Codex",
+                    DualUsageComplicationService.this.getString(R.string.ui_codex_usage_c9b58b));
+        } else if (type == ComplicationType.SHORT_TEXT) {
+            return shortText(shortValue, "Codex",
+                    DualUsageComplicationService.this.getString(R.string.ui_codex_usage_c9b58b));
+        } else if (type == ComplicationType.LONG_TEXT) {
+            return longText(surfaceText(preview, WearDisplayText.localize(DualUsageComplicationService.this,
+                    fiveHour == null ? WearGlanceFormat.longWindowShortLabel(snapshot) + " " + WearGlanceFormat.remainingPercentText(weekly)
+                    : WearGlanceFormat.dualLongText(snapshot))), getString(R.string.ui_codex_usage_c9b58b));
+        }
+        return imageForType(type, DualUsageComplicationService.this.getString(R.string.ui_codex_usage_c9b58b));
+    }
+
+    private static float constrainedRemaining(UsageWindow first, UsageWindow second) {
+        if (first == null) return WearGlanceFormat.remainingPercentOrZero(second);
+        if (second == null) return WearGlanceFormat.remainingPercentOrZero(first);
+        return Math.min(first.remainingPercent(), second.remainingPercent());
+    }
+}

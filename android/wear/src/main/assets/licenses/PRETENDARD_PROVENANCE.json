@@ -1,0 +1,59 @@
+{
+  "upstream": "orioncactus/pretendard",
+  "version": "1.3.9",
+  "font_bytes_modified": false,
+  "fonts": [
+    {
+      "weight": "Regular",
+      "path": "android/app/src/main/res/font/pretendard_regular.otf",
+      "source": "https://raw.githubusercontent.com/orioncactus/pretendard/v1.3.9/packages/pretendard/dist/public/static/Pretendard-Regular.otf",
+      "sha256": "3ffbacde6ab8411f1d2db54bb9b1f0b3ee2a738932033722cf0388c06aed1c93"
+    },
+    {
+      "weight": "Medium",
+      "path": "android/app/src/main/res/font/pretendard_medium.otf",
+      "source": "https://raw.githubusercontent.com/orioncactus/pretendard/v1.3.9/packages/pretendard/dist/public/static/Pretendard-Medium.otf",
+      "sha256": "d39e50e4bb52b4993b6a4eeb821a171254745bd824446af01e1f616b89fface0"
+    },
+    {
+      "weight": "SemiBold",
+      "path": "android/app/src/main/res/font/pretendard_semibold.otf",
+      "source": "https://raw.githubusercontent.com/orioncactus/pretendard/v1.3.9/packages/pretendard/dist/public/static/Pretendard-SemiBold.otf",
+      "sha256": "c89bc43027dc7cde5726e96223376f8eec09302b2fc1f8147fd5b57cfc376118"
+    },
+    {
+      "weight": "Bold",
+      "path": "android/app/src/main/res/font/pretendard_bold.otf",
+      "source": "https://raw.githubusercontent.com/orioncactus/pretendard/v1.3.9/packages/pretendard/dist/public/static/Pretendard-Bold.otf",
+      "sha256": "2e91915fab54df71cc9598ebf608b2bdb54c6fe3c066ac61dff0bc44fca71cc7"
+    }
+  ],
+  "license": {
+    "source": "https://raw.githubusercontent.com/orioncactus/pretendard/v1.3.9/LICENSE",
+    "sha256": "d31ddd9f2bed32fd7e302a205cf2380ba0de6529152d239ef99cfb6f261bfc04"
+  },
+  "patched_dependencies": [
+    {
+      "path": "android/vendor/m2/io/github/tribalfs/oneui-design/0.9.14+oneui8/oneui-design-0.9.14+oneui8.aar",
+      "replaced_entry": "res/font/samsungsharpsans_bold.otf",
+      "original_font_sha256": "6037c4a44962d949985241482e095191541a87039023e6b7393fc3a82aa3bbb5",
+      "replacement_sha256": "2e91915fab54df71cc9598ebf608b2bdb54c6fe3c066ac61dff0bc44fca71cc7",
+      "original_aar_sha256": "c8937f1aede8c8ccf1b9652db3f42e61a65d5aebeaf6ca6001d238e01f8c697a",
+      "patched_aar_sha256": "b9631f10769a184c80f4e95860830e730c79a7a11d61e52cb2c6a34c5418bb4f",
+      "unchanged_entries_verified": true,
+      "asset_loader_classes": []
+    },
+    {
+      "path": "android/vendor/m2/sesl/androidx/indexscroll/indexscroll/1.0.0+1.0.0-sesl8+rev0/indexscroll-1.0.0+1.0.0-sesl8+rev0.aar",
+      "replaced_entry": "assets/sesl_indexscroll_group_font.ttf",
+      "original_font_sha256": "7aa26be1613a39a70c7a27f38af93519614ca2cd10fff25560cee3a99011199d",
+      "replacement_sha256": "3ffbacde6ab8411f1d2db54bb9b1f0b3ee2a738932033722cf0388c06aed1c93",
+      "original_aar_sha256": "809c35297f32a7ede9fe7ee6b0e4fbeba834febffc4cdfe3ea7646379e9e23f1",
+      "patched_aar_sha256": "da9e939478e6be817f52bab6cdfe266390e9205783bde1340bc1f820286a2fae",
+      "unchanged_entries_verified": true,
+      "asset_loader_classes": [
+        "androidx/indexscroll/widget/SeslIndexScrollView$IndexScroll.class"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,73 @@
+# Operating-system files
+.DS_Store
+Thumbs.db
+
+# Editors
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Environment files and secrets
+.env
+.env.*
+!.env.example
+
+# Android / Gradle build output
+build/
+**/build/
+android/dist/
+android/.gradle/
+android/.local-signing/
+android/local.properties
+local.properties
+.gradle/
+.local-signing/
+dist/
+out/
+
+# Temporary files and local tooling
+.cache/
+.tmp/
+*.tmp
+*.temp
+*.bak
+*.orig
+*.rej
+*.log
+
+# iOS / Xcode (ios/ package also has its own .gitignore)
+ios/**/DerivedData/
+ios/**/xcuserdata/
+ios/**/*.xcuserstate
+ios/**/.build/
+ios/**/.swiftpm/
+
+# Local final APK delivery and Python test caches
+delivery/
+__pycache__/
+
+# Publication: credentials, runtime data and release binaries stay local
+*.jks
+*.keystore
+*.p12
+*.pfx
+*.pem
+*.key
+*.enc
+*.enc.hmac
+**/.local-signing/
+**/password
+**/gradle.properties.local
+*.apk
+*.aab
+*.sqlite
+*.sqlite3
+*.db
+*.db-wal
+*.db-shm
+**/diagnostic-logs/
+**/exports/
+__pycache__/
+*.pyc

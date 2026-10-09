@@ -1,0 +1,7 @@
+{
+  "git_arguments": [
+    "show",
+    "7de3b0cf103f7bfba8464eeb4bd97557c4454c99:android/wear/build.gradle.kts"
+  ],
+  "sha256": "c24f3d9cd3770840e553ced7537e941ea5837ca568c58325765ae69f881b746b"
+}

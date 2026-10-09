@@ -1,0 +1,7 @@
+{
+  "git_arguments": [
+    "show",
+    "e86c69c:android/shared/src/main/java/dev/bennett/codexmeter/SubscriptionCost.java"
+  ],
+  "sha256": "01a471839d750a66601aa1a9169edf4301839943d38149204a2c78884a3a7661"
+}

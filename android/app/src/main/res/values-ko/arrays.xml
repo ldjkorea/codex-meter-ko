@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+  <string-array name="now_bar_display_mode_entries">
+    <item>자동(권장)</item>
+    <item>Android Live Update</item>
+    <item>Samsung 호환 모드</item>
+  </string-array>
+  <string-array name="now_bar_percent_mode_entries">
+    <item>자동</item>
+    <item>5시간 사용량</item>
+    <item>주간 사용량</item>
+  </string-array>
+</resources>

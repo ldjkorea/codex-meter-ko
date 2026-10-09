@@ -1,0 +1,7 @@
+{
+  "git_arguments": [
+    "show",
+    "e86c69c:android/wear/src/main/java/dev/bennett/codexmeter/WearBootReceiver.java"
+  ],
+  "sha256": "83d178c1370e291a00674aaa2dc4887aff2d3babc8412057792dce873f94c028"
+}

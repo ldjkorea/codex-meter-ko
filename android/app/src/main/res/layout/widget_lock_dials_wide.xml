@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/lock_graphic_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ImageView
+        android:id="@+id/lock_graphic_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitCenter"
+        android:contentDescription="@string/lock_widget_graphic_preview_description" />
+    <LinearLayout
+        android:id="@+id/lock_graphic_overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingStart="5dp"
+        android:paddingEnd="5dp">
+        <FrameLayout
+            android:id="@+id/lock_graphic_primary_group"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+            <ProgressBar android:id="@+id/lock_graphic_primary_progress" android:visibility="gone" android:layout_width="0dp" android:layout_height="0dp" />
+            <ImageView android:id="@+id/lock_graphic_primary_icon" android:visibility="gone" android:layout_width="0dp" android:layout_height="0dp" android:contentDescription="@null" />
+            <TextView
+                android:id="@+id/lock_graphic_primary_value"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/pretendard_family"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:text="@string/widget_sample_primary_value"
+                android:textColor="@android:color/black"
+                android:textStyle="bold"
+                android:textSize="11sp" />
+            <TextView android:id="@+id/lock_graphic_primary_label" android:visibility="gone" android:layout_width="0dp" android:layout_height="0dp" 
+        android:fontFamily="@font/pretendard_family"/>
+            <Chronometer android:id="@+id/lock_primary_countdown" android:visibility="gone" android:layout_width="0dp" android:layout_height="0dp" />
+        </FrameLayout>
+        <FrameLayout
+            android:id="@+id/lock_graphic_secondary_group"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+            <ProgressBar android:id="@+id/lock_graphic_secondary_progress" android:visibility="gone" android:layout_width="0dp" android:layout_height="0dp" />
+            <ImageView android:id="@+id/lock_graphic_secondary_icon" android:visibility="gone" android:layout_width="0dp" android:layout_height="0dp" android:contentDescription="@null" />
+            <TextView
+                android:id="@+id/lock_graphic_secondary_value"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/pretendard_family"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:text="@string/widget_sample_secondary_value"
+                android:textColor="@android:color/black"
+                android:textStyle="bold"
+                android:textSize="11sp" />
+            <TextView android:id="@+id/lock_graphic_secondary_label" android:visibility="gone" android:layout_width="0dp" android:layout_height="0dp" 
+        android:fontFamily="@font/pretendard_family"/>
+            <Chronometer android:id="@+id/lock_secondary_countdown" android:visibility="gone" android:layout_width="0dp" android:layout_height="0dp" />
+        </FrameLayout>
+    </LinearLayout>
+</FrameLayout>

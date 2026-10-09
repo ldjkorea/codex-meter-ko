@@ -1,0 +1,7 @@
+{
+  "git_arguments": [
+    "show",
+    "e775fd9:android/wear/src/main/java/dev/bennett/codexmeter/DualUsageComplicationService.java"
+  ],
+  "sha256": "40c1a7e37446022a7cc04d63f18fa3834bf66ea340a746e6ec624e5d8697901e"
+}

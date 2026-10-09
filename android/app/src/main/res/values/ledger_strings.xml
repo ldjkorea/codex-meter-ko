@@ -1,0 +1,27 @@
+<resources>
+    <string name="ledger_title">Usage ledger and insights</string>
+    <string name="ledger_note">Local API observations from this update onward. Changes are quota percentage points, not tokens or messages. An allowance increase does not identify its cause.</string>
+    <string name="ledger_empty">The ledger starts with the next successful usage refresh. Existing charts and event history remain available.</string>
+    <string name="ledger_unreadable">Ledger data could not be read. It has been preserved; forecasts are unavailable.</string>
+    <string name="ledger_retained">Retained observations: %1$d (up to 2,048 or 90 days). Showing the latest 12.</string>
+    <string name="ledger_row">%1$s · %2$s · %3$d%% used\n%4$s</string>
+    <string name="ledger_delta">%1$s (%2$+d pp)</string>
+    <string name="ledger_segment">Observations: %1$d · span: %2$s · %3$d pp observed increase</string>
+    <string name="ledger_budget">At the latest observation: daily budget %1$s pp · recent pace %2$s pp/day</string>
+    <string name="ledger_stale">Forecast withheld: refresh data is stale or the device clock has changed.</string>
+    <string name="ledger_missing_reset">Forecast withheld: no current API reset timeline.</string>
+    <string name="ledger_mismatch">Forecast withheld: the ledger and latest usage response do not match.</string>
+    <string name="ledger_warmup">Forecast withheld: at least 3 observations spanning 10 minutes (5-hour) or 6 hours (weekly/monthly) are needed within the latest 24 hours, after any reset or allowance change.</string>
+    <string name="ledger_low_change">Forecast withheld: less than 2 percentage points observed change.</string>
+    <string name="ledger_gap">Forecast withheld: an observation gap is too long. A new segment is collecting.</string>
+    <string name="ledger_large_jump">Forecast withheld: an unusually large change was observed. A new segment is collecting.</string>
+    <string name="ledger_change_baseline">First retained observation</string>
+    <string name="ledger_change_none">No observed change</string>
+    <string name="ledger_change_usage">Observed usage increase</string>
+    <string name="ledger_change_allowance">Observed allowance increase; cause unknown</string>
+    <string name="ledger_change_reset">Observed reset boundary</string>
+    <string name="ledger_change_window">Reset timeline or window changed</string>
+    <string name="ledger_change_plan">Reported plan changed</string>
+    <string name="ledger_change_gap">Observation gap; change not attributed</string>
+    <string name="ledger_change_unknown">Reset timeline unavailable</string>
+</resources>

@@ -1,0 +1,7 @@
+{
+  "git_arguments": [
+    "show",
+    "e86c69c:android/shared/src/main/java/dev/bennett/codexmeter/UsageLedger.java"
+  ],
+  "sha256": "2cb2d604ad11d810f140d045734f1950fd888bdaa1e30d5c14b54a89fa26b9fc"
+}

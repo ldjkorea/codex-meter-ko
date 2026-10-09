@@ -1,0 +1,7 @@
+{
+  "git_arguments": [
+    "show",
+    "e86c69c:android/wear/src/main/res/layout/wear_spinner_item.xml"
+  ],
+  "sha256": "edf88cb3886ba293813ddfd58be24845ef709d79c693f98ebf5e817dbfe779a3"
+}

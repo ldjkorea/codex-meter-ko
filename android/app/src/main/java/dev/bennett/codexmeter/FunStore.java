@@ -1,0 +1,81 @@
+package dev.bennett.codexmeter;
+
+import android.content.Context;
+import java.util.List;
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+/** Account/plan-scoped play history. Immutable settlements, independently versioned preferences. */
+// commit() is intentional: report durable write failures instead of claiming apply() succeeded.
+@android.annotation.SuppressLint("ApplySharedPref")
+final class FunStore {
+    private static final String PREFS="codex_fun_v1";
+    private FunStore(){}
+    static JSONObject load(Context c,String key)throws Exception{
+        if(key==null)throw new IllegalStateException("Account unavailable");
+        String raw=c.getSharedPreferences(PREFS,0).getString(key,"");
+        if(!raw.isEmpty()){JSONObject doc=new JSONObject(raw);if(doc.getInt("schema")!=1)throw new IllegalStateException("Unsupported schema");return doc;}
+        return new JSONObject().put("schema",1).put("rules",new JSONArray().put(ruleJson(new FunInsights.Rule("100000","KRW",FunInsights.WEEK,System.currentTimeMillis()))))
+            .put("settlements",new JSONArray()).put("achievements",new JSONArray());
+    }
+    static FunInsights.Rule rule(JSONObject doc,long seconds,long at)throws Exception{
+        JSONArray rules=doc.getJSONArray("rules");FunInsights.Rule best=null;
+        for(int i=0;i<rules.length();i++){JSONObject r=rules.getJSONObject(i);if(r.getLong("seconds")==seconds&&r.getLong("at")<=at&&(best==null||r.getLong("at")>=best.at))best=fromRule(r);}return best;
+    }
+    private static FunInsights.Rule fromRule(JSONObject r)throws Exception{return new FunInsights.Rule(r.getString("value"),r.getString("currency"),r.getLong("seconds"),r.getLong("at"));}
+    private static JSONObject ruleJson(FunInsights.Rule r)throws Exception{return new JSONObject().put("value",r.fullValue.toPlainString()).put("currency",r.currency).put("seconds",r.seconds).put("at",r.at).put("version",FunInsights.RULE_VERSION);}
+    private static boolean current(Context c,String key){return key!=null&&key.equals(SubscriptionStore.key(c,AppPreferences.loadSnapshot(c)));}
+    private static boolean commit(Context c,String key,JSONObject doc){android.content.SharedPreferences prefs=c.getSharedPreferences(PREFS,0);String previous=prefs.getString(key,"");boolean saved=prefs.edit().putString(key,doc.toString()).commit();if(!saved)prefs.edit().putString(key,previous).commit();return saved;}
+    static boolean saveRule(Context c,String key,FunInsights.Rule rule){synchronized(UsageApi.NETWORK_LOCK){try{if(!current(c,key))return false;JSONObject doc=load(c,key);doc.getJSONArray("rules").put(ruleJson(rule));return commit(c,key,doc);}catch(Exception ignored){return false;}}}
+    static boolean tone(Context c,String value){if(!value.matches("calm|playful|spicy|off"))return false;android.content.SharedPreferences prefs=c.getSharedPreferences("codex_fun_settings",0);String before=prefs.getString("tone","playful");boolean saved=prefs.edit().putString("tone",value).commit();if(!saved)prefs.edit().putString("tone",before).commit();return saved;}
+    static String tone(Context c){return c.getSharedPreferences("codex_fun_settings",0).getString("tone","playful");}
+    static boolean settle(Context c,String key,List<FunInsights.Window> windows)throws Exception{
+        return settle(c,key,windows,(tier,tone,variant)->"Recorded utilization tier "+tier);
+    }
+    interface CoachResolver {String text(int tier,String tone,int variant);}
+    static boolean settle(Context c,String key,List<FunInsights.Window> windows,CoachResolver coach)throws Exception{
+        synchronized(UsageApi.NETWORK_LOCK){if(!current(c,key))return false;JSONObject doc=load(c,key);JSONArray settlements=doc.getJSONArray("settlements"),achievements=doc.getJSONArray("achievements");
+            boolean changed=c.getSharedPreferences(PREFS,0).getString(key,"").isEmpty();
+            // Retain the last evidence-backed rating when the ledger prunes old raw observations.
+            if(!windows.isEmpty()){
+                FunInsights.Window last=windows.get(windows.size()-1);JSONObject saved=doc.optJSONObject("rating");
+                if(saved==null||last.span.end>saved.optLong("end",0)){
+                    FunInsights.Rating rating=FunInsights.rating(windows,null);
+                    doc.put("rating",new JSONObject().put("policy",last.policy).put("end",last.span.end).put("tier",rating.tier)
+                        .put("count",rating.count).put("average",rating.average).put("version",FunInsights.TIER_VERSION));changed=true;
+                }
+                double best=doc.optDouble("best",0);for(FunInsights.Window window:windows)best=Math.max(best,window.used.doubleValue());
+                if(!doc.has("best")||best>doc.optDouble("best",0)){doc.put("best",best);changed=true;}
+            }
+            for(FunInsights.Window w:windows){boolean found=false;for(int i=0;i<settlements.length();i++)if(settlements.getJSONObject(i).getString("id").equals(w.id()))found=true;
+                FunInsights.Rule r=rule(doc,w.span.end-w.span.start==FunInsights.WEEK*1000?FunInsights.WEEK:0,w.span.end);
+                // No backfill using a rule introduced after a historical window ended.
+                if(found||r==null)continue;
+                JSONObject bill=null;
+                JSONArray bills=SubscriptionStore.history(c,AppPreferences.loadSnapshot(c));
+                for(int i=0;i<bills.length();i++){JSONObject b=bills.getJSONObject(i);long saved=b.optLong("saved_at",0);if(saved<=w.span.end){SubscriptionCost cost=cost(b);
+                    if(FunInsights.index(r,w.used,w.span,cost,true).state==FunInsights.IndexState.OK)bill=b;}}
+                int previous=settlements.length()==0?-1:settlements.getJSONObject(settlements.length()-1).getInt("tier");
+                int position=windows.indexOf(w);int tier=FunInsights.rating(windows.subList(0,position+1),null).tier;
+                FunInsights.Window prior=position>0?windows.get(position-1):null;
+                settlements.put(new JSONObject().put("id",w.id()).put("start",w.span.start).put("end",w.span.end).put("used",w.used.toPlainString())
+                    .put("previous_used",prior==null?JSONObject.NULL:prior.used.toPlainString()).put("previous_end",prior==null?0:prior.span.end)
+                    .put("tier",tier).put("tier_version",FunInsights.TIER_VERSION).put("rule",ruleJson(r)).put("value",FunInsights.value(r,w.used).toPlainString())
+                    .put("billing",bill==null?JSONObject.NULL:bill).put("observations",w.observations).put("quality","near_boundary_observations_no_interpolation")
+                    .put("coach_state",FunInsights.Situation.TIER.name()).put("coach_variant",FunInsights.variant(w.id(),tier,FunInsights.Situation.TIER,w.span.end)).put("coach_tone",tone(c))
+                    .put("coach_text",coach.text(tier,tone(c),FunInsights.variant(w.id(),tier,FunInsights.Situation.TIER,w.span.end))));
+                addAchievement(achievements,"first_settlement");if(previous>=0&&tier>previous)addAchievement(achievements,"first_rise");changed=true;
+            }
+            return !changed||commit(c,key,doc);
+        }
+    }
+    static FunInsights.Rating rating(JSONObject doc,String policy,List<FunInsights.Window> windows,java.math.BigDecimal current)throws Exception{
+        if(!windows.isEmpty())return FunInsights.rating(windows,current);
+        JSONObject saved=doc.optJSONObject("rating");
+        if(saved!=null&&policy.equals(saved.getString("policy"))&&saved.getInt("version")==FunInsights.TIER_VERSION)
+            return new FunInsights.Rating(saved.getInt("tier"),saved.getInt("count"),saved.getDouble("average"),false);
+        return FunInsights.rating(windows,current);
+    }
+    private static void addAchievement(JSONArray rows,String id){for(int i=0;i<rows.length();i++)if(id.equals(rows.optString(i)))return;rows.put(id);}
+    static SubscriptionCost cost(JSONObject b)throws Exception{return new SubscriptionCost(b.getString("amount"),b.getString("currency"),java.time.LocalDate.parse(b.getString("start")),java.time.LocalDate.parse(b.getString("end")));}
+}

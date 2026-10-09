@@ -1,0 +1,7 @@
+{
+  "git_arguments": [
+    "show",
+    "e775fd9:android/wear/src/main/java/dev/bennett/codexmeter/WearOngoingMonitor.java"
+  ],
+  "sha256": "411550d5b3b77aefd05a0ec81417b6ae339fe3357bf273f82354313de4cd77d9"
+}

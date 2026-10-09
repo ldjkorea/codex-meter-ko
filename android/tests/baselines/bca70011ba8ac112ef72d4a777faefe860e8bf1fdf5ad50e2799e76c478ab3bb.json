@@ -1,0 +1,7 @@
+{
+  "git_arguments": [
+    "show",
+    "e86c69c:android/wear/src/main/java/dev/bennett/codexmeter/WeeklyTileService.java"
+  ],
+  "sha256": "0ab26d380bf9df35fc3435ad64da60ef5f2aed1030bd7f22b31b8e1533c5b738"
+}

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="widget_theme_labels">
+        <item>Follow system</item>
+        <item>Dark</item>
+        <item>Light</item>
+    </string-array>
+    <string-array name="widget_surface_labels">
+        <item>One UI</item>
+    </string-array>
+    <string-array name="widget_style_labels">
+        <item>Adaptive by size</item>
+        <item>Dials</item>
+        <item>Progress bars</item>
+    </string-array>
+    <string-array name="widget_density_labels">
+        <item>Auto</item>
+        <item>Compact</item>
+        <item>Comfortable</item>
+    </string-array>
+    <string-array name="widget_graphic_labels">
+        <item>Fit automatically</item>
+        <item>Large</item>
+        <item>Maximum</item>
+    </string-array>
+    <string-array name="widget_accent_labels">
+        <item>Mint</item>
+        <item>Blue</item>
+        <item>Amber</item>
+        <item>Violet</item>
+        <item>Rose</item>
+        <item>Cyan</item>
+        <item>Lime</item>
+        <item>Monochrome</item>
+    </string-array>
+    <string-array name="widget_opacity_labels">
+        <item>56%</item>
+        <item>88%</item>
+        <item>100%</item>
+    </string-array>
+    <string-array name="widget_reset_labels">
+        <item>Absolute time</item>
+        <item>Relative time</item>
+        <item>Both</item>
+        <item>Hide reset time</item>
+    </string-array>
+    <string-array name="widget_metric_labels">
+        <item>Both windows</item>
+        <item>5-hour only</item>
+        <item>Weekly only</item>
+    </string-array>
+    <string-array name="widget_display_labels">
+        <item>Percent remaining</item>
+        <item>Percent used</item>
+    </string-array>
+</resources>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory android:title="@string/ui_transfer_cbb4cc">
+        <Preference
+            android:key="export_settings_transfer"
+            android:summary="@string/ui_save_selected_settings_and_optional_sign_in_data_9a09ac"
+            android:title="@string/ui_export_settings_d18ef7"
+            app:iconSpaceReserved="false" />
+        <Preference
+            android:key="import_settings_transfer"
+            android:summary="@string/ui_restore_selected_sections_from_a_transfer_file_6ba711"
+            android:title="@string/ui_import_settings_a04343"
+            app:iconSpaceReserved="false" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/ui_security_f25ce1">
+        <Preference
+            android:key="transfer_security_notice"
+            android:summary="@string/ui_authentication_exports_include_chatgpt_tokens_anyone_wi_ffe89e"
+            android:title="@string/ui_protect_authentication_exports_efc81c"
+            app:iconSpaceReserved="false"
+            app:selectable="false" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

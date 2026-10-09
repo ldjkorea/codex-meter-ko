@@ -1,0 +1,7 @@
+{
+  "git_arguments": [
+    "show",
+    "e775fd9:android/wear/src/main/java/dev/bennett/codexmeter/WearSurfaceUpdater.java"
+  ],
+  "sha256": "a14e424a1eb80a71edb22c3348867f7949f662ac90c270956432ca1c739b9f7f"
+}

@@ -1,0 +1,7 @@
+{
+  "git_arguments": [
+    "show",
+    "e86c69c:android/wear/src/main/res/drawable/ic_notification.xml"
+  ],
+  "sha256": "0baedbba5afa7e14106d0198138d596a806be260aeadb6911ffc60db54340172"
+}

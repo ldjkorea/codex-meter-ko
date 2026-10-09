@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <dev.oneuiproject.oneui.preference.LayoutPreference
+        android:key="account_card"
+        android:layout="@layout/preference_account_card"
+        app:allowDividerAbove="false"
+        app:allowDividerBelow="false" />
+
+    <PreferenceCategory android:title="@string/ui_general_9239ee">
+        <Preference
+            android:key="settings_appearance"
+            android:title="@string/ui_appearance_41def7"
+            app:iconSpaceReserved="false" />
+        <Preference
+            android:key="settings_refresh_usage"
+            android:title="@string/ui_refresh_usage_903040"
+            app:iconSpaceReserved="false" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/ui_features_fc338f">
+        <Preference android:key="settings_fun" android:title="@string/fun_settings" app:iconSpaceReserved="false" />
+        <Preference
+            android:key="settings_notifications"
+            android:title="@string/ui_notifications_753a22"
+            app:iconSpaceReserved="false" />
+        <Preference
+            android:key="settings_now_bar"
+            android:title="@string/ui_now_bar_a96362"
+            app:iconSpaceReserved="false" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/ui_app_data_4d9bf9">
+        <Preference
+            android:key="settings_updates"
+            android:title="@string/ui_updates_c76d18"
+            app:iconSpaceReserved="false" />
+        <Preference
+            android:key="settings_transfer"
+            android:summary="@string/ui_move_settings_between_devices_042d72"
+            android:title="@string/ui_backup_transfer_84bb29"
+            app:iconSpaceReserved="false" />
+        <Preference
+            android:key="settings_privacy"
+            android:summary="@string/ui_local_storage_encryption_and_network_access_8f0f75"
+            android:title="@string/ui_privacy_cf0148"
+            app:iconSpaceReserved="false" />
+    </PreferenceCategory>
+
+    <dev.oneuiproject.oneui.preference.InsetPreferenceCategory app:height="20dp" />
+
+    <Preference
+        android:key="about_codex_meter"
+        android:title="@string/ui_about_codex_meter_a3cb5c"
+        app:iconSpaceReserved="false" />
+
+    <dev.oneuiproject.oneui.preference.InsetPreferenceCategory app:height="28dp" />
+</PreferenceScreen>

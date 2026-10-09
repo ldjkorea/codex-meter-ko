@@ -1,0 +1,7 @@
+{
+  "git_arguments": [
+    "show",
+    "e86c69c:android/wear/src/main/res/values/dimens.xml"
+  ],
+  "sha256": "89db70481e05b40d66d2dcdeac212505f04c4395fa78609f0c9c061ce0bf5a2f"
+}

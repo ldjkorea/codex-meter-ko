@@ -1,0 +1,7 @@
+{
+  "git_arguments": [
+    "show",
+    "e86c69c:android/shared/src/main/java/dev/bennett/codexmeter/wear/WearSyncPaths.java"
+  ],
+  "sha256": "8a2e8dffa7e24834082dd32f4e35d2a41272ccaef27fdd1033bfa82e7c66454a"
+}

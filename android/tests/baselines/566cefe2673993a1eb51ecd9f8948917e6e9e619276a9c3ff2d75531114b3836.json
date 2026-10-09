@@ -1,0 +1,7 @@
+{
+  "git_arguments": [
+    "show",
+    "e775fd9:android/app/src/main/java/dev/bennett/codexmeter/SecureTokenStore.java"
+  ],
+  "sha256": "e66c136e928ed04918386e79d56feb58a71eb1371c877e7359ec9c1e1f088a4f"
+}

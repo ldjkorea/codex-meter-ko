@@ -1,0 +1,7 @@
+{
+  "git_arguments": [
+    "show",
+    "e86c69c:android/wear/src/main/res/drawable/ic_launcher_monochrome.xml"
+  ],
+  "sha256": "9eb426a4ba03af0cbfef942d05187b1f5677d3aa01f7fd90d7c46108f5b502ca"
+}

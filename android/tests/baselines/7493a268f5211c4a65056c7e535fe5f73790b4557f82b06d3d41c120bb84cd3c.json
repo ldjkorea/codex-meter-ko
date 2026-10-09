@@ -1,0 +1,7 @@
+{
+  "git_arguments": [
+    "show",
+    "e775fd9:android/wear/src/main/java/dev/bennett/codexmeter/UsageOverviewTileService.java"
+  ],
+  "sha256": "47cbbc2551a501c4975788bbb240ffb1c8f18425b2c94b8c542f319a874c0c72"
+}

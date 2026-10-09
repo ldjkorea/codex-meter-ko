@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory android:title="@string/ui_refresh_56e3ba">
+        <SwitchPreferenceCompat
+            android:key="refresh_on_launch"
+            android:title="@string/ui_refresh_on_launch_449c72" />
+        <ListPreference
+            android:entries="@array/settings_refresh_mode_entries"
+            android:entryValues="@array/settings_refresh_mode_values"
+            android:key="refresh_mode_ui"
+            android:summary="@string/ui_adapts_to_remaining_usage_app_attention_reset_timing_an_2537b3"
+            android:title="@string/ui_refresh_mode_e32b3e" />
+        <ListPreference
+            android:entries="@array/settings_refresh_entries"
+            android:entryValues="@array/settings_refresh_values"
+            android:key="refresh_interval_ui"
+            android:title="@string/ui_manual_interval_c22769"
+            app:useSimpleSummaryProvider="true" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/ui_dashboard_d87f47">
+        <Preference
+            android:key="dashboard_reorder_ui"
+            android:summary="@string/ui_arrange_usage_cards_and_choose_which_ones_appear_79fd4a"
+            android:title="@string/ui_edit_dashboard_fbfce4" />
+        <SwitchPreferenceCompat
+            android:defaultValue="true"
+            android:key="dashboard_five_hour"
+            android:summary="@string/ui_shown_only_when_openai_returns_this_window_2664a2"
+            android:title="@string/ui_5_hour_limit_7f5675" />
+        <SwitchPreferenceCompat
+            android:defaultValue="true"
+            android:key="dashboard_weekly"
+            android:summary="@string/ui_shown_only_when_openai_returns_this_window_2664a2"
+            android:title="@string/ui_weekly_limit_7aaf67" />
+        <SwitchPreferenceCompat
+            android:defaultValue="true"
+            android:key="dashboard_additional_limits"
+            android:summary="@string/ui_model_specific_limits_such_as_gpt_5_3_codex_spark_5e67d3"
+            android:title="@string/ui_additional_limits_e3392e" />
+        <SwitchPreferenceCompat
+            android:defaultValue="true"
+            android:key="dashboard_usage_credits"
+            android:summary="@string/ui_hidden_automatically_at_a_zero_or_negative_balance_cc7822"
+            android:title="@string/ui_usage_credit_balance_60e2c3" />
+        <SwitchPreferenceCompat
+            android:defaultValue="true"
+            android:key="dashboard_usage_history"
+            android:summary="@string/ui_shown_only_when_a_5_hour_or_weekly_window_is_available_d2bccf"
+            android:title="@string/ui_usage_history_b2a357" />
+        <SwitchPreferenceCompat
+            android:defaultValue="true"
+            android:key="dashboard_reset_credits"
+            android:summary="@string/ui_hidden_automatically_when_no_resets_are_available_9c7f76"
+            android:title="@string/ui_reset_credits_ef7c08" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/ui_usage_estimates_9486f7">
+        <SwitchPreferenceCompat
+            android:key="usage_pace_enabled_ui"
+            android:summary="@string/ui_project_how_long_the_current_allowance_may_last_e8d6a2"
+            android:title="@string/ui_estimated_usage_time_05db09" />
+        <ListPreference
+            android:entries="@array/usage_pace_sensitivity_entries"
+            android:entryValues="@array/usage_pace_sensitivity_values"
+            android:key="usage_pace_sensitivity_ui"
+            android:title="@string/ui_warning_sensitivity_07e989"
+            app:useSimpleSummaryProvider="true" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

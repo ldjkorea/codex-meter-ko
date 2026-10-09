@@ -1,0 +1,7 @@
+{
+  "git_arguments": [
+    "show",
+    "7de3b0cf103f7bfba8464eeb4bd97557c4454c99:android/app/src/main/res/values/strings.xml"
+  ],
+  "sha256": "e87cdd64ff7cbffc0e261564eb20c765bcae29837274c1f902d995af471aced5"
+}

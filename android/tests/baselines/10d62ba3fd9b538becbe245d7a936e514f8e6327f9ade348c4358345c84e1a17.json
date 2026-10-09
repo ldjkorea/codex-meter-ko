@@ -1,0 +1,7 @@
+{
+  "git_arguments": [
+    "show",
+    "e86c69c:android/shared/src/main/java/dev/bennett/codexmeter/NowBarAutoStart.java"
+  ],
+  "sha256": "84dca3554a2844de0debfbfc7f7b1c9e7d16ff9647bdc11ad5d182771aa2baa0"
+}

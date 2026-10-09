@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory android:title="@string/ui_release_channel_e06560">
+        <ListPreference
+            android:entries="@array/settings_update_channel_entries"
+            android:entryValues="@array/settings_update_channel_values"
+            android:key="update_channel_ui"
+            android:title="@string/ui_update_channel_ae939b"
+            app:useSimpleSummaryProvider="true" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/ui_automatic_updates_1e138b">
+        <SwitchPreferenceCompat
+            android:key="automatic_update_checks_ui"
+            android:summary="@string/ui_check_signed_github_releases_on_a_schedule_9c4477"
+            android:title="@string/ui_check_automatically_7cd229" />
+        <ListPreference
+            android:entries="@array/settings_update_interval_entries"
+            android:entryValues="@array/settings_update_interval_values"
+            android:key="update_check_interval_ui"
+            android:title="@string/ui_check_frequency_7e6ebc"
+            app:useSimpleSummaryProvider="true" />
+        <SwitchPreferenceCompat
+            android:key="notify_update_available_ui"
+            android:summary="@string/ui_show_a_notification_with_open_and_update_actions_2cccd4"
+            android:title="@string/ui_notify_when_an_update_is_available_d59712" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/ui_more_options_86c0a3">
+        <Preference
+            android:key="check_for_updates"
+            android:summary="@string/ui_check_github_now_5218af"
+            android:title="@string/ui_check_for_updates_736b90"
+            app:iconSpaceReserved="false" />
+        <Preference
+            android:key="release_history"
+            android:summary="@string/ui_available_versions_and_downgrade_requirements_492f59"
+            android:title="@string/ui_release_history_5044ba"
+            app:iconSpaceReserved="false" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

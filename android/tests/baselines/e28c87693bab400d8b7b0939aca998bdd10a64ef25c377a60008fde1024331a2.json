@@ -1,0 +1,7 @@
+{
+  "git_arguments": [
+    "show",
+    "e775fd9:android/wear/src/main/res/drawable/bg_wear_row.xml"
+  ],
+  "sha256": "03f58698cd7f6834d9d9aab025489cbb2b4256813010f4817f2688a74785e5d6"
+}

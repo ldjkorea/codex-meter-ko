@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="pub_five_hour_countdown">5-hour limit resets in %1$s</string>
+    <string name="pub_five_hour_reset_unknown">5-hour reset time unavailable · refresh to check</string>
+    <string name="pub_five_hour_reset_stale">Last observation · refresh to check</string>
+    <string name="pub_five_no_window">5-hour usage data unavailable</string>
+    <string name="pub_five_no_window_short">No 5h data</string>
+    <string name="pub_five_no_reset_short">Reset unknown</string>
+    <string name="pub_five_expired">5-hour reset time passed · refresh to confirm</string>
+    <string name="pub_five_expired_short">Refresh needed</string>
+    <string name="pub_five_error">Refresh failed · last observation</string>
+    <string name="pub_five_error_short">Refresh failed</string>
+    <string name="pub_five_stale_short">Cached</string>
+</resources>

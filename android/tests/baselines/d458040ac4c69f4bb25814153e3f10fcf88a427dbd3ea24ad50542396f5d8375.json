@@ -1,0 +1,7 @@
+{
+  "git_arguments": [
+    "show",
+    "e86c69c:android/wear/src/main/res/drawable-nodpi/tile_icon_time.png"
+  ],
+  "sha256": "f2b8dbf7e0414617d7e446aa2023ef51252935d8557b52c635f7a316819475b4"
+}

@@ -1,0 +1,7 @@
+{
+  "git_arguments": [
+    "show",
+    "e86c69c:android/wear/src/main/res/drawable/bg_wear_button_primary.xml"
+  ],
+  "sha256": "8f84dbb91c60bef042a8387340dd815d3aef87de886722e1111e0177ed123888"
+}

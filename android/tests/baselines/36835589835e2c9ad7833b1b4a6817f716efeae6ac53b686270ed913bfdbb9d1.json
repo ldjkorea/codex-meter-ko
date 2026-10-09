@@ -1,0 +1,7 @@
+{
+  "git_arguments": [
+    "show",
+    "e86c69c:android/wear/src/main/res/drawable/preview_tile_five_hour.xml"
+  ],
+  "sha256": "a685c177c6c41cefaf32493fffe3c5379c0c63bb39a05792f0a67cc450b7aa6b"
+}

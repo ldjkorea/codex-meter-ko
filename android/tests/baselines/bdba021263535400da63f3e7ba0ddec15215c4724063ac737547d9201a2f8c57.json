@@ -1,0 +1,7 @@
+{
+  "git_arguments": [
+    "show",
+    "e775fd9:android/wear/src/main/res/drawable-nodpi/tile_icon_weekly.png"
+  ],
+  "sha256": "c6cf60455fef314787fc8b856100408db360224c6745bc0d16510630bb577abd"
+}

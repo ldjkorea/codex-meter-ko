@@ -1,0 +1,7 @@
+{
+  "git_arguments": [
+    "show",
+    "e775fd9:android/wear/src/main/java/dev/bennett/codexmeter/CodexTileLayouts.java"
+  ],
+  "sha256": "544a30451b8f5ec7d9f409fef80accaa2d5e07cdd8dc697811bbea7bacffb0de"
+}

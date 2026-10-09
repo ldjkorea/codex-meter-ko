@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="matte_analysis">Analysis</string>
+    <string name="matte_home">Home</string>
+    <string name="matte_records">Records</string>
+    <string name="matte_settings">Settings</string>
+    <string name="matte_display">Screen and display</string>
+    <string name="matte_five_hour">Show 5-hour limit</string>
+    <string name="matte_primary_policy">Main limit: weekly first, then monthly. Hidden limits stay hidden.</string>
+    <string name="matte_limits">Limit visibility and order</string>
+    <string name="matte_widgets">Widgets and Galaxy setup</string>
+    <string name="matte_fun">Subscription and fun</string>
+    <string name="matte_rule_history">Conversion rules and change history</string>
+    <string name="matte_recaps">Recaps, achievements and details</string>
+    <string name="matte_notify">Notifications and refresh</string>
+    <string name="matte_now_bar">Now Bar and Live Update</string>
+    <string name="matte_notes_manage">Manage notes and export</string>
+    <string name="matte_data">Data management</string>
+    <string name="matte_retention">Raw observations: %1$s · Daily summaries: %2$s. Cleanup preserves daily totals.</string>
+    <string name="matte_danger">Data removal requires confirmation</string>
+    <string name="matte_account">Account and app</string>
+    <string name="matte_account_manage">Login status and sign out</string>
+    <string name="matte_about">About and licenses</string>
+    <string name="matte_expanded">Expanded</string>
+    <string name="matte_collapsed">Collapsed</string>
+    <string name="matte_selected">Selected tab</string>
+    <string name="matte_value_labels">Used / Full limit · Same period, same rule\nPlayful conversion, not API cost or savings</string>
+    <string name="matte_group">%1$s  %2$s</string>
+    <plurals name="matte_days"><item quantity="one">%d day</item><item quantity="other">%d days</item></plurals>
+</resources>

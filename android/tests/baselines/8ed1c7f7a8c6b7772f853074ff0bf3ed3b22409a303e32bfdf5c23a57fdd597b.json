@@ -1,0 +1,7 @@
+{
+  "git_arguments": [
+    "show",
+    "e775fd9:android/wear/src/main/java/dev/bennett/codexmeter/WearPhoneSync.java"
+  ],
+  "sha256": "42abdd337144190b270095173f2c190ae4137d3bd4cb3e25305df46eaad917eb"
+}

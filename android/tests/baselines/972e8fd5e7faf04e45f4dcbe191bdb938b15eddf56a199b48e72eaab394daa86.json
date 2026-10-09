@@ -1,0 +1,7 @@
+{
+  "git_arguments": [
+    "show",
+    "e86c69c:android/shared/src/main/java/dev/bennett/codexmeter/WearGlanceFormat.java"
+  ],
+  "sha256": "554f75dac724ceb8ddc5f473186c8d23ba85c3d0e10a936b6f94c95473bd264a"
+}

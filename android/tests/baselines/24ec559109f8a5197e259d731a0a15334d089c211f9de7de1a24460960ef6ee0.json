@@ -1,0 +1,7 @@
+{
+  "git_arguments": [
+    "show",
+    "e86c69c:android/app/src/main/java/dev/bennett/codexmeter/NowBarManager.java"
+  ],
+  "sha256": "b5de0ee9693c6caf23edfadd707e3ea8e3fc22a264e635b489ec7f7e016b8b1c"
+}

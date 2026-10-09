@@ -1,0 +1,7 @@
+{
+  "git_arguments": [
+    "show",
+    "e775fd9:android/wear/src/main/res/drawable/preview_tile_weekly.xml"
+  ],
+  "sha256": "13f903013f2b47ae529860544fb1c9ec233bf2872b69816ea02c73425d94cacb"
+}

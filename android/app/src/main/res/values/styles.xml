@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Official One UI Primary (#0381FE), not the lighter SESL sample blue (#387AFF). -->
+    <style name="AppTheme" parent="OneUITheme">
+        <item name="colorPrimary">@color/matte_primary</item>
+        <item name="colorPrimaryDark">@color/matte_primary</item>
+        <item name="colorControlActivated">@color/matte_primary</item>
+        <item name="android:fontFamily">@font/pretendard_family</item>
+        <item name="android:windowActionModeOverlay">true</item>
+        <item name="android:windowBackground">@color/matte_background</item>
+        <item name="android:navigationBarColor">@color/matte_background</item>
+        <item name="android:statusBarColor">@color/matte_background</item>
+        <item name="buttonCornerRadius">999dp</item>
+    </style>
+
+    <!-- Same One UI blues as fallback when Material You system colors are unavailable. -->
+    <style name="AppTheme.MaterialYou" parent="AppTheme" />
+
+    <style name="App.ContainedPrimaryColorButtonTheme" parent="OneUI.ContainedPrimaryColorButtonTheme">
+        <item name="buttonCornerRadius">999dp</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">@font/pretendard_family</item>
+    </style>
+
+    <style name="AppThemeDark" parent="AppTheme" />
+    <style name="AppThemeLight" parent="AppTheme" />
+</resources>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory>
+        <SwitchPreferenceCompat
+            android:key="notifications_allowed_ui"
+            android:summary="@string/ui_usage_and_account_activity_alerts_44374f"
+            android:title="@string/ui_allow_notifications_3ad3c4" />
+        <ListPreference
+            android:entries="@array/settings_alert_style_entries"
+            android:entryValues="@array/settings_alert_style_values"
+            android:key="notification_style_ui"
+            android:title="@string/ui_delivery_style_3bb1ba"
+            app:useSimpleSummaryProvider="true" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="notification_low_usage_category"
+        android:title="@string/ui_low_usage_d16a0b">
+        <ListPreference
+            android:entries="@array/settings_metric_entries"
+            android:entryValues="@array/settings_metric_values"
+            android:key="notification_metric_ui"
+            android:title="@string/ui_alert_for_eefc71"
+            app:useSimpleSummaryProvider="true" />
+        <ListPreference
+            android:entries="@array/settings_threshold_entries"
+            android:entryValues="@array/settings_threshold_values"
+            android:key="notification_threshold_ui"
+            android:title="@string/ui_alert_when_remaining_reaches_d6fe4f"
+            app:useSimpleSummaryProvider="true" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="notification_reset_credit_category"
+        android:title="@string/ui_account_activity_e8cdf8">
+        <SwitchPreferenceCompat
+            android:key="unexpected_refills_ui"
+            android:summary="@string/ui_an_allowance_reaches_100_before_its_scheduled_reset_798075"
+            android:title="@string/ui_surprise_limit_refills_2cd72f" />
+        <SwitchPreferenceCompat
+            android:key="reset_credit_increases_ui"
+            android:summary="@string/ui_the_available_reset_credit_count_increases_d2f61f"
+            android:title="@string/ui_new_reset_credits_e81499" />
+        <SwitchPreferenceCompat
+            android:key="reset_credit_expiry_ui"
+            android:summary="@string/ui_remind_me_before_an_available_reset_credit_expires_e8e0bd"
+            android:title="@string/ui_expiring_reset_credits_4850b2" />
+        <Preference
+            android:key="reset_credit_expiry_times_ui"
+            android:title="@string/ui_reminder_times_ff2ab9"
+            app:iconSpaceReserved="false" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="notification_troubleshooting_category"
+        android:title="@string/ui_troubleshooting_285ec8">
+        <Preference
+            android:key="notification_permission"
+            android:title="@string/ui_system_notification_access_9a5dc5"
+            app:iconSpaceReserved="false" />
+        <Preference
+            android:key="notification_test"
+            android:summary="@string/ui_verify_alert_delivery_now_a92812"
+            android:title="@string/ui_send_test_notification_258d3d"
+            app:iconSpaceReserved="false" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

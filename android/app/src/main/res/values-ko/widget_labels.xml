@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="widget_theme_labels">
+        <item>시스템 설정 따름</item>
+        <item>다크</item>
+        <item>라이트</item>
+    </string-array>
+    <string-array name="widget_surface_labels">
+        <item>One UI</item>
+    </string-array>
+    <string-array name="widget_style_labels">
+        <item>크기에 맞게 자동 조정</item>
+        <item>다이얼</item>
+        <item>진행 막대</item>
+    </string-array>
+    <string-array name="widget_density_labels">
+        <item>자동</item>
+        <item>촘촘하게</item>
+        <item>여유 있게</item>
+    </string-array>
+    <string-array name="widget_graphic_labels">
+        <item>자동으로 맞추기</item>
+        <item>크게</item>
+        <item>최대</item>
+    </string-array>
+    <string-array name="widget_accent_labels">
+        <item>민트</item>
+        <item>파랑</item>
+        <item>호박색</item>
+        <item>보라</item>
+        <item>장미색</item>
+        <item>청록</item>
+        <item>라임</item>
+        <item>단색</item>
+    </string-array>
+    <string-array name="widget_opacity_labels">
+        <item>56%</item>
+        <item>88%</item>
+        <item>100%</item>
+    </string-array>
+    <string-array name="widget_reset_labels">
+        <item>날짜 및 시각</item>
+        <item>남은 시간</item>
+        <item>둘 다</item>
+        <item>초기화 시각 숨기기</item>
+    </string-array>
+    <string-array name="widget_metric_labels">
+        <item>두 기간 모두</item>
+        <item>5시간만</item>
+        <item>주간만</item>
+    </string-array>
+    <string-array name="widget_display_labels">
+        <item>남은 비율</item>
+        <item>사용한 비율</item>
+    </string-array>
+</resources>

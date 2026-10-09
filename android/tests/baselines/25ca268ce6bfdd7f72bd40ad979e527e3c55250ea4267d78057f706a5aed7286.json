@@ -1,0 +1,7 @@
+{
+  "git_arguments": [
+    "show",
+    "e775fd9:android/wear/src/main/res/layout/activity_wear_settings.xml"
+  ],
+  "sha256": "ee072e13cc503ea335029e60c74a4171131ab323f2444ff437d7c9c55e6d5b58"
+}

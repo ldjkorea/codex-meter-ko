@@ -1,0 +1,7 @@
+{
+  "git_arguments": [
+    "show",
+    "e775fd9:android/wear/src/main/res/mipmap-anydpi/ic_launcher.xml"
+  ],
+  "sha256": "0e3337e0e38d8e10d3346b166cab119038240321c7559bf9939371ceb602e6bd"
+}

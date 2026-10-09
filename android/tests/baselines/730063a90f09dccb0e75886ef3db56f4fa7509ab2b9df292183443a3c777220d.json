@@ -1,0 +1,7 @@
+{
+  "git_arguments": [
+    "show",
+    "e775fd9:android/wear/src/main/java/dev/bennett/codexmeter/ResetCountdownTileService.java"
+  ],
+  "sha256": "e88776d3ec85992ecf56a38cc8a046501608e803efc5fdbb8aa5dc061862e40c"
+}

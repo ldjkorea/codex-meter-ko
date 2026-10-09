@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="matte_analysis">분석</string>
+    <string name="matte_home">홈</string>
+    <string name="matte_records">기록</string>
+    <string name="matte_settings">설정</string>
+    <string name="matte_display">화면 및 표시</string>
+    <string name="matte_five_hour">5시간 한도 표시</string>
+    <string name="matte_primary_policy">주요 한도는 주간, 월간 순으로 표시합니다. 숨긴 한도는 제외합니다.</string>
+    <string name="matte_limits">한도 표시와 순서</string>
+    <string name="matte_widgets">위젯 및 갤럭시 설정</string>
+    <string name="matte_fun">가성비 및 재미</string>
+    <string name="matte_rule_history">환산 기준과 변경 이력</string>
+    <string name="matte_recaps">주간 결산·업적·상세</string>
+    <string name="matte_notify">알림 및 갱신</string>
+    <string name="matte_now_bar">Now Bar 및 Live Update</string>
+    <string name="matte_notes_manage">메모 관리 및 내보내기</string>
+    <string name="matte_data">데이터 관리</string>
+    <string name="matte_retention">원시 관측 %1$s · 일별 집계 %2$s 보존\n오래된 관측을 정리해도 일별 집계는 유지합니다.</string>
+    <string name="matte_danger">기록 삭제는 별도 확인 후 실행합니다</string>
+    <string name="matte_account">계정 및 앱 정보</string>
+    <string name="matte_account_manage">로그인 상태 및 로그아웃</string>
+    <string name="matte_about">앱 정보 및 라이선스</string>
+    <string name="matte_expanded">펼침</string>
+    <string name="matte_collapsed">접힘</string>
+    <string name="matte_selected">선택한 탭</string>
+    <string name="matte_value_labels">사용한 가치 / 전체 한도 가치 · 같은 구간·같은 기준\n놀이용 환산이며 API 비용이나 절약액이 아닙니다</string>
+    <string name="matte_group">%1$s  %2$s</string>
+    <plurals name="matte_days"><item quantity="other">%d일</item></plurals>
+</resources>

@@ -1,0 +1,7 @@
+{
+  "git_arguments": [
+    "show",
+    "e775fd9:android/wear/src/main/java/dev/bennett/codexmeter/TileImageResources.java"
+  ],
+  "sha256": "2a30a0761e2fe0641325e8c7135e64c48500468d9d0bfcc5fe7df94297485e12"
+}

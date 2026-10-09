@@ -1,0 +1,7 @@
+{
+  "git_arguments": [
+    "show",
+    "e775fd91654a091b68b176a929ff399de2d1cf64:android/app/src/main/AndroidManifest.xml"
+  ],
+  "sha256": "e9452be39d1f1c1b07df470db3552c677a1f8340a91a4e212f31183cf9273cde"
+}

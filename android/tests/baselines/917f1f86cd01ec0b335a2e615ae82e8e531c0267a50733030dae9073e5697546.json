@@ -1,0 +1,10 @@
+{
+  "git_arguments": [
+    "ls-tree",
+    "-r",
+    "--name-only",
+    "e775fd9",
+    "android/wear/src"
+  ],
+  "sha256": "bad2ad5c2eb8703947493d2bb20ebff80c6b1155e34d348bfb9ba84bae09e788"
+}

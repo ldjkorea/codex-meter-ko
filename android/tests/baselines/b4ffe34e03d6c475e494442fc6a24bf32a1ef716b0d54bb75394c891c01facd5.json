@@ -1,0 +1,7 @@
+{
+  "git_arguments": [
+    "show",
+    "e775fd9:android/wear/src/main/res/drawable-xhdpi/codex_meter_adaptive_fg.png"
+  ],
+  "sha256": "c65d75465239795e1d62df243ccf1d0fca997af6b4912cba69d8d2d130cd28e5"
+}

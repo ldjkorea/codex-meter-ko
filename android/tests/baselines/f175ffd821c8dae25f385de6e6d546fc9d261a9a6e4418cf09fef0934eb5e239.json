@@ -1,0 +1,7 @@
+{
+  "git_arguments": [
+    "show",
+    "e86c69c:android/shared/src/main/java/dev/bennett/codexmeter/LedgerPeriods.java"
+  ],
+  "sha256": "34ad3a3492dfb09db4c7758284f2e4860fb6855899ff1e4fdcde532529ce7911"
+}

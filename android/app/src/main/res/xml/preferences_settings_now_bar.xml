@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory android:title="@string/ui_live_monitor_2a8837">
+        <SwitchPreferenceCompat
+            android:key="now_bar_monitor_ui"
+            android:summary="@string/ui_show_remaining_codex_allowance_until_the_next_usage_res_4fb891"
+            android:title="@string/ui_live_monitor_2a8837" />
+        <Preference
+            android:key="now_bar_permission"
+            android:title="@string/ui_live_notification_access_f1e6fb"
+            app:iconSpaceReserved="false" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/ui_display_574ff9">
+        <ListPreference
+            android:entries="@array/now_bar_display_mode_entries"
+            android:entryValues="@array/now_bar_display_mode_values"
+            android:key="now_bar_display_mode_ui"
+            android:title="@string/ui_live_display_mode_b53294"
+            app:useSimpleSummaryProvider="true" />
+        <ListPreference
+            android:entries="@array/now_bar_percent_mode_entries"
+            android:entryValues="@array/now_bar_percent_mode_values"
+            android:key="now_bar_percent_mode_ui"
+            android:title="@string/ui_percentage_shown_254f90"
+            app:useSimpleSummaryProvider="true" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/ui_automatic_start_b7348b">
+        <SwitchPreferenceCompat
+            android:key="now_bar_auto_start_ui"
+            android:summary="@string/ui_start_the_monitor_when_remaining_allowance_is_low_b48c22"
+            android:title="@string/ui_start_when_allowance_is_low_26611f" />
+        <ListPreference
+            android:entries="@array/settings_metric_entries"
+            android:entryValues="@array/settings_metric_values"
+            android:key="now_bar_metric_ui"
+            android:title="@string/ui_monitor_ec0f10"
+            app:useSimpleSummaryProvider="true" />
+        <ListPreference
+            android:entries="@array/settings_threshold_entries"
+            android:entryValues="@array/settings_threshold_values"
+            android:key="now_bar_threshold_ui"
+            android:title="@string/ui_start_when_remaining_reaches_388fc3"
+            app:useSimpleSummaryProvider="true" />
+        <SwitchPreferenceCompat
+            android:key="now_bar_accelerated_ui"
+            android:summary="@string/ui_start_while_usage_is_projected_to_run_out_early_f471dd"
+            android:title="@string/ui_start_for_accelerated_usage_71c25f" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/ui_troubleshooting_285ec8">
+        <Preference
+            android:key="now_bar_setup_help"
+            android:summary="@string/ui_samsung_firmware_and_developer_option_guidance_0d7024"
+            android:title="@string/ui_samsung_setup_help_d9419d"
+            app:iconSpaceReserved="false" />
+        <Preference
+            android:key="now_bar_preview"
+            android:summary="@string/ui_show_a_20_minute_sample_activity_for_device_testing_be65a4"
+            android:title="@string/ui_start_sample_preview_91fb5a"
+            app:iconSpaceReserved="false" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

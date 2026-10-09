@@ -1,0 +1,7 @@
+{
+  "git_arguments": [
+    "show",
+    "e775fd9:android/wear/src/main/java/dev/bennett/codexmeter/MonitorStatusTileService.java"
+  ],
+  "sha256": "45eb755933518debb2af212fb5e0c4bc68f87c8a59c0090af035462d5f4a7ecc"
+}

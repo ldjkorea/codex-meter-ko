@@ -1,0 +1,7 @@
+{
+  "git_arguments": [
+    "show",
+    "e86c69c:android/shared/src/main/java/dev/bennett/codexmeter/LedgerAggregation.java"
+  ],
+  "sha256": "e0a10b6e10018820f1bf5cca9e40ecc17cafaee16ceae24077fd6108f0756f83"
+}

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="pub_five_hour_countdown">5시간 한도 초기화까지 %1$s</string>
+    <string name="pub_five_hour_reset_unknown">5시간 초기화 시각 미제공 · 새로고침으로 확인</string>
+    <string name="pub_five_hour_reset_stale">마지막 관측 기준 · 새로고침으로 확인</string>
+    <string name="pub_five_no_window">5시간 사용량 데이터 미제공</string>
+    <string name="pub_five_no_window_short">5시간 정보 없음</string>
+    <string name="pub_five_no_reset_short">초기화 시각 미제공</string>
+    <string name="pub_five_expired">5시간 초기화 시각 경과 · 새로고침으로 확인</string>
+    <string name="pub_five_expired_short">새로고침 필요</string>
+    <string name="pub_five_error">조회 실패 · 마지막 관측 기준</string>
+    <string name="pub_five_error_short">조회 실패</string>
+    <string name="pub_five_stale_short">마지막 관측</string>
+</resources>

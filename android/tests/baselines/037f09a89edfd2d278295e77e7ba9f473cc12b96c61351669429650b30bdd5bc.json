@@ -1,0 +1,7 @@
+{
+  "git_arguments": [
+    "show",
+    "e775fd9:android/wear/src/main/java/dev/bennett/codexmeter/NextResetComplicationService.java"
+  ],
+  "sha256": "edf1b28e1a2e854daf0b5e0bc0f1769dbe53f0f1cfab1ee01a150ed322ecc971"
+}

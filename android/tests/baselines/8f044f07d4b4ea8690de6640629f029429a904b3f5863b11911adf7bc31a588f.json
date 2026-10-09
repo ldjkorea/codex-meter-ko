@@ -1,0 +1,7 @@
+{
+  "git_arguments": [
+    "show",
+    "e775fd9:android/wear/src/main/res/values/styles.xml"
+  ],
+  "sha256": "af4e4eb8aa7e48847066c032fd1f435aa78fab3fee779fee639d2cbeab26d397"
+}

@@ -1,0 +1,7 @@
+{
+  "git_arguments": [
+    "show",
+    "e775fd9:android/wear/src/main/res/layout/wear_spinner_dropdown_item.xml"
+  ],
+  "sha256": "a3049f7c2bec61313f0c0418808acdeb25359d84ba1db9f909cebcc24b57d885"
+}

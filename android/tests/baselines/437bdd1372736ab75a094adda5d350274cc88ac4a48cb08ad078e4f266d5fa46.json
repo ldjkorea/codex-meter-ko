@@ -1,0 +1,7 @@
+{
+  "git_arguments": [
+    "show",
+    "e86c69c:android/wear/src/main/res/values/strings.xml"
+  ],
+  "sha256": "1754244b5e25b98855f5142040b2ab5349c1cd07420f8038311d4c66d85c8869"
+}

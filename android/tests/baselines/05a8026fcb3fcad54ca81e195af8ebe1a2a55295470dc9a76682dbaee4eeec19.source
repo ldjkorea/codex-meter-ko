@@ -1,0 +1,118 @@
+package dev.bennett.codexmeter;
+
+import android.content.Context;
+
+/**
+ * Glanceable Now Bar / Live Update copy. When a usage window is fully exhausted
+ * (0% remaining), percentage text is replaced with how long until that window's
+ * natural reset, using days and/or hours (and minutes under an hour).
+ */
+public final class NowBarText {
+    private NowBarText() {
+    }
+
+    /**
+     * Compact critical / chip percentage for the focused window. Exhausted windows
+     * show a compact reset countdown instead of {@code 0%}. {@code prefix} is a short
+     * window marker such as {@code "W "} (weekly), {@code "M "} (monthly), or {@code ""}.
+     */
+    public static String focusCriticalText(Context context, String prefix, UsageWindow window,
+            long observedAtMillis, long nowMillis) {
+        if (prefix == null) {
+            prefix = "";
+        }
+        if (window == null) {
+            return prefix + "—";
+        }
+        int remaining = window.remainingPercent();
+        if (remaining > 0) {
+            return prefix + remaining + "%";
+        }
+        String duration = resetDurationText(context, window, observedAtMillis, nowMillis);
+        return duration == null ? prefix + "0%" : prefix + duration;
+    }
+
+    /**
+     * Samsung expanded-chip label: {@code Codex · 5-hour 12%} or, when exhausted,
+     * {@code Codex · Weekly 2d 4h}. {@code windowLabel} names the focused window
+     * ({@code "5-hour"}, {@code "Weekly"}, or {@code "Monthly"}).
+     */
+    public static String chipExpandedText(Context context, String windowLabel, UsageWindow window,
+            long observedAtMillis, long nowMillis) {
+        String focusLabel = (windowLabel == null || windowLabel.isEmpty()
+                ? context.getString(R.string.ui_5_hour_bc4288) : windowLabel) + " ";
+        if (window == null) {
+            return context.getString(R.string.ui_codex_1_sunavailable_05d3db, focusLabel);
+        }
+        int remaining = window.remainingPercent();
+        if (remaining > 0) {
+            return "Codex · " + focusLabel + remaining + "%";
+        }
+        String duration = resetDurationText(context, window, observedAtMillis, nowMillis);
+        return duration == null
+                ? "Codex · " + focusLabel + "0%"
+                : "Codex · " + focusLabel + duration;
+    }
+
+    /**
+     * Notification body line for one window: {@code 5-hour: 12% left} or, when
+     * exhausted, {@code Weekly: resets in 2d 4h}.
+     */
+    public static String limitText(Context context, String label, UsageWindow window, long observedAtMillis,
+            long nowMillis) {
+        if (window == null) {
+            return context.getString(R.string.ui_1_s_unavailable_673d68, label);
+        }
+        int remaining = window.remainingPercent();
+        if (remaining > 0) {
+            return context.getString(R.string.ui_1_s_2_d_left_fd08fa, label, remaining);
+        }
+        String duration = resetDurationText(context, window, observedAtMillis, nowMillis);
+        return duration == null
+                ? context.getString(R.string.ui_1_s_0_left_1cae13, label)
+                : context.getString(R.string.ui_1_s_resets_in_2_s_67d43f, label, duration);
+    }
+
+    /**
+     * Compact Wear body fragment: {@code 5h 12%} or {@code Week resets 2d 4h}.
+     */
+    public static String wearLimitText(Context context, String label, UsageWindow window, long observedAtMillis,
+            long nowMillis) {
+        if (window == null) {
+            return label + " --";
+        }
+        int remaining = window.remainingPercent();
+        if (remaining > 0) {
+            return label + " " + remaining + "%";
+        }
+        String duration = resetDurationText(context, window, observedAtMillis, nowMillis);
+        return duration == null
+                ? label + " 0%"
+                : context.getString(R.string.ui_1_s_resets_2_s_081814, label, duration);
+    }
+
+    /**
+     * Days and/or hours until {@code window}'s natural reset. Returns null when the
+     * reset time is unknown or not in the future.
+     */
+    public static String resetDurationText(Context context, UsageWindow window,
+            long observedAtMillis, long nowMillis) {
+        return duration(context, NowBarCopy.resetDurationText( window, observedAtMillis, nowMillis));
+    }
+
+    static String duration(Context context, String original) {
+        if (original == null) return null;
+        java.util.regex.Matcher matcher = java.util.regex.Pattern.compile("(\\d+)([dhm])").matcher(original);
+        StringBuffer result = new StringBuffer();
+        while (matcher.find()) {
+            long value = Long.parseLong(matcher.group(1));
+            String unit = matcher.group(2);
+            String text = "d".equals(unit) ? context.getString(R.string.ui_1_dd_663037, value)
+                    : "h".equals(unit) ? context.getString(R.string.ui_1_dh_dc101a, value)
+                    : context.getString(R.string.ui_1_dm_2be7be, value);
+            matcher.appendReplacement(result, java.util.regex.Matcher.quoteReplacement(text));
+        }
+        matcher.appendTail(result);
+        return result.toString();
+    }
+}
