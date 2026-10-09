@@ -1,5 +1,5 @@
 <resources>
-    <string name="ui_ledger_home">내 사용량 한눈에</string>
+    <string name="ui_ledger_home">이번 주간 사용량</string>
     <string name="ui_ledger_remaining">%1$s 남은 한도</string>
     <string name="ui_ledger_last_value">마지막 관측값</string>
     <string name="ui_ledger_today_usage">오늘 확인한 사용량</string>

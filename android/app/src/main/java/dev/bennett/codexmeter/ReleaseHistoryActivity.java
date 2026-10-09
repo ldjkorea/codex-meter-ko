@@ -18,12 +18,15 @@ public final class ReleaseHistoryActivity extends AppCompatActivity {
     private final ExecutorService executor = Executors.newSingleThreadExecutor();
     private LinearLayout content;
     private boolean dark;
+    private final java.util.Set<String> expanded=new java.util.HashSet<>();
 
     @Override
     protected void onCreate(Bundle bundle) {
         Ui.applySelectedTheme(this);
         super.onCreate(bundle);
         dark = Ui.isDark(this);
+        if(bundle!=null&&bundle.getStringArrayList("expanded_versions")!=null)expanded.addAll(bundle.getStringArrayList("expanded_versions"));
+        else expanded.add(AppConstants.VERSION_NAME);
         getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
             @Override
             public void handleOnBackPressed() {
@@ -32,11 +35,7 @@ public final class ReleaseHistoryActivity extends AppCompatActivity {
         });
         content = Ui.installPage(this, ReleaseHistoryActivity.this.getString(R.string.ui_release_history_5044ba), true).content;
         List<GitHubRelease> cached = UpdatePreferences.releases(this);
-        if (cached.isEmpty()) {
-            showLoading();
-        } else {
-            render(cached, false);
-        }
+        render(cached, false);
         refresh();
     }
 
@@ -69,52 +68,57 @@ public final class ReleaseHistoryActivity extends AppCompatActivity {
         });
     }
 
+    @Override protected void onSaveInstanceState(Bundle state) {
+        super.onSaveInstanceState(state);
+        state.putStringArrayList("expanded_versions",new java.util.ArrayList<>(expanded));
+    }
+
     private void render(List<GitHubRelease> releases, boolean failed) {
+        if(isDestroyed()||isFinishing())return;
         content.removeAllViews();
-        LinearLayout notice = Ui.card(this, dark);
-        TextView current = Ui.text(this, ReleaseHistoryActivity.this.getString(R.string.ui_installed_version_baa271)
-                + UpdatePreferences.installedVersion(this), 18,
-                Ui.mainText(dark));
-        current.setTypeface(Ui.mediumTypeface(this));
-        notice.addView(current);
-        String note = this.getString(R.string.evo_update_policy);
-        TextView detail = Ui.text(this, note, 13, Ui.secondaryText(dark));
-        LinearLayout.LayoutParams detailParams = new LinearLayout.LayoutParams(-1, -2);
-        detailParams.setMargins(0, Ui.dp(this, 8), 0, 0);
-        notice.addView(detail, detailParams);
-        content.addView(notice);
-
-        if (failed) {
-            TextView warning = Ui.text(this,
-                    UpdatePreferences.lastError(this), 13, Ui.danger(dark));
-            LinearLayout.LayoutParams warningParams = new LinearLayout.LayoutParams(-1, -2);
-            warningParams.setMargins(Ui.dp(this, 4), Ui.dp(this, 16), 0, 0);
-            content.addView(warning, warningParams);
+        LinearLayout notice=Ui.card(this,dark);
+        notice.addView(LedgerUi.heading(this,getString(R.string.ui_installed_version_baa271)+UpdatePreferences.installedVersion(this),dark));
+        Ui.addSpacer(notice,8);
+        notice.addView(LedgerUi.caption(this,getString(R.string.polish_history_intro),dark));
+        if(failed){Ui.addSpacer(notice,8);notice.addView(LedgerUi.caption(this,getString(R.string.polish_history_offline),dark));}
+        content.addView(notice);Ui.addSpacer(content,16);
+        List<ReleaseCatalog.Entry> archive=ReleaseCatalog.all(this);
+        java.util.Set<String> known=new java.util.HashSet<>();
+        for(ReleaseCatalog.Entry entry:archive)known.add(entry.version);
+        // Future verified releases retain the existing secure update flow.
+        for(GitHubRelease release:releases){
+            String base=release.version.replaceFirst("^v","").replaceFirst("[-+].*$","");
+            if(!known.contains(base))addRelease(release);
         }
-        if (releases == null || releases.isEmpty()) {
-            LinearLayout empty = Ui.card(this, dark);
-            TextView title = Ui.text(this, ReleaseHistoryActivity.this.getString(R.string.ui_no_installable_releases_yet_ec6ca4), 18,
-                    Ui.mainText(dark));
-            title.setTypeface(Ui.mediumTypeface(this));
-            empty.addView(title);
-            TextView detailEmpty = Ui.text(this,
-                    ReleaseHistoryActivity.this.getString(R.string.ui_github_currently_has_no_published_release_containing_bo_b6552e), 14, Ui.secondaryText(dark));
-            LinearLayout.LayoutParams emptyParams = new LinearLayout.LayoutParams(-1, -2);
-            emptyParams.setMargins(0, Ui.dp(this, 8), 0, 0);
-            empty.addView(detailEmpty, emptyParams);
-            LinearLayout.LayoutParams cardParams = new LinearLayout.LayoutParams(-1, -2);
-            cardParams.setMargins(0, Ui.dp(this, 20), 0, 0);
-            content.addView(empty, cardParams);
-            return;
-        }
-
-        TextView heading = Ui.text(this, ReleaseHistoryActivity.this.getString(R.string.ui_published_versions_bed379), 15, Ui.secondaryText(dark));
-        heading.setTypeface(Ui.mediumTypeface(this));
-        LinearLayout.LayoutParams headingParams = new LinearLayout.LayoutParams(-1, -2);
-        headingParams.setMargins(Ui.dp(this, 4), Ui.dp(this, 24), 0, Ui.dp(this, 10));
-        content.addView(heading, headingParams);
-        for (GitHubRelease release : releases) {
-            addRelease(release);
+        for(ReleaseCatalog.Entry entry:archive){
+            LinearLayout card=Ui.card(this,dark);
+            Button header=LedgerUi.action(this,"v"+entry.version+" · "+entry.title,false,dark,()->{});
+            header.setGravity(android.view.Gravity.START|android.view.Gravity.CENTER_VERTICAL);
+            header.setTextSize(17);header.setMinHeight(Ui.dp(this,56));
+            card.addView(header);
+            TextView origin=LedgerUi.caption(this,getString(entry.origin.equals("upstream")?R.string.polish_history_upstream:R.string.polish_history_korean),dark);
+            card.addView(origin);
+            LinearLayout body=new LinearLayout(this);body.setOrientation(LinearLayout.VERTICAL);Ui.addSpacer(body,14);
+            body.addView(ReleaseNotesUi.create(this,entry.notes,dark));
+            if(!entry.original.isEmpty()){
+                TextView original=ReleaseNotesUi.create(this,entry.original,dark);original.setVisibility(android.view.View.GONE);
+                body.addView(LedgerUi.action(this,getString(R.string.polish_original_notes),false,dark,()->original.setVisibility(original.getVisibility()==android.view.View.VISIBLE?android.view.View.GONE:android.view.View.VISIBLE)));
+                body.addView(original);
+            }
+            for(GitHubRelease release:releases){
+                if(release.version.replaceFirst("^v","").replaceFirst("[-+].*$","").equals(entry.version)
+                        &&ReleaseVersion.compare(release.version,UpdatePreferences.installedVersion(this))>0){
+                    Ui.addSpacer(body,14);
+                    body.addView(LedgerUi.action(this,getString(R.string.ui_view_update_6fcad3),true,dark,()->startActivity(new Intent(this,UpdateActivity.class).putExtra(UpdateActivity.EXTRA_VERSION,release.version))));
+                    break;
+                }
+            }
+            body.setVisibility(expanded.contains(entry.version)?android.view.View.VISIBLE:android.view.View.GONE);
+            header.setContentDescription(header.getText()+" · "+getString(expanded.contains(entry.version)?R.string.polish_collapse:R.string.polish_expand));
+            header.setOnClickListener(v->{boolean open=!expanded.contains(entry.version);if(open)expanded.add(entry.version);else expanded.remove(entry.version);
+                body.setVisibility(open?android.view.View.VISIBLE:android.view.View.GONE);
+                header.setContentDescription(header.getText()+" · "+getString(open?R.string.polish_collapse:R.string.polish_expand));});
+            card.addView(body);content.addView(card);Ui.addSpacer(content,12);
         }
     }
 

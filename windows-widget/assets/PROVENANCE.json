@@ -4,83 +4,82 @@
     {
       "tier": 0,
       "path": "windows-widget/assets/prestige_0.png",
-      "sha256": "92ad472efa48bff0fd4954fcc1747a385bb3659547ec1a438cdcef558cb4e47b",
+      "sha256": "c8d1272fa353b974e77d384bcb0e983a690ec0f9ef5b45bbc3cf0b9e16f15c5a",
       "sourcePath": "android/app/src/main/res/drawable-nodpi/prestige_0.webp",
-      "sourceSha256": "6ab029fd8a857763a529ad505f2a53cc4be9096f1599436522aba4713e1c3ee0",
-      "conversion": "Existing approved 512px WebP decoded to RGBA PNG for System.Drawing; artwork unchanged"
+      "sourceSha256": "0fa42e2d6a04fa62b85c4083c197657271f0b885562c45dd980c12f899b7b3fc",
+      "conversion": "Same Samjoko 512px transparent production crest decoded to RGBA PNG for System.Drawing"
     },
     {
       "tier": 1,
       "path": "windows-widget/assets/prestige_1.png",
-      "sha256": "cc44da273a7bc41d5972a61a5f322cc1f1d1967f69644f3af9f96c98a2832e64",
+      "sha256": "28763b489b02a58f3cb7b7df7a6b7734c06cfa002cd35960f33fdd71f3c81b11",
       "sourcePath": "android/app/src/main/res/drawable-nodpi/prestige_1.webp",
-      "sourceSha256": "28d69dbd9819f27aa1e84a502bef1d428607aecf27e9c69b44f6ee030c9a09e2",
-      "conversion": "Existing approved 512px WebP decoded to RGBA PNG for System.Drawing; artwork unchanged"
+      "sourceSha256": "20f13c9e88c917182da0e249ec71de46b06407a5f56610634a6b87eec5fadf46",
+      "conversion": "Same Samjoko 512px transparent production crest decoded to RGBA PNG for System.Drawing"
     },
     {
       "tier": 2,
       "path": "windows-widget/assets/prestige_2.png",
-      "sha256": "daa8fd9f865be5b9325c973c4a31a008bf2189538a1ad5b4bcafe613a2f000d3",
+      "sha256": "9a571c74556f2445b401a9c79dbf7fef0858ba4f4fd553244cef78e883708fa3",
       "sourcePath": "android/app/src/main/res/drawable-nodpi/prestige_2.webp",
-      "sourceSha256": "8a91d92ca4a5ca477c25e931806638e4a1b141644c02990c0d311f8f70404799",
-      "conversion": "Existing approved 512px WebP decoded to RGBA PNG for System.Drawing; artwork unchanged"
+      "sourceSha256": "9058a828294f46db59b2f52ca96c0f09cffebb88cd908b16687288a5064dda33",
+      "conversion": "Same Samjoko 512px transparent production crest decoded to RGBA PNG for System.Drawing"
     },
     {
       "tier": 3,
       "path": "windows-widget/assets/prestige_3.png",
-      "sha256": "e20bbda1c9dc4a0e6690c03275d78af4e906df07ac6d1fdf373e0d4dd635c68f",
+      "sha256": "5f21dc909d582da8b06fbab246a5791326840978752a0d0f87f2d20ca9119f29",
       "sourcePath": "android/app/src/main/res/drawable-nodpi/prestige_3.webp",
-      "sourceSha256": "811f9a4ccee88a111f25a800093d3c7ad6d1b58e8d15276b3aaac43f4478b408",
-      "conversion": "Existing approved 512px WebP decoded to RGBA PNG for System.Drawing; artwork unchanged"
+      "sourceSha256": "713505cd73244ef77151bde6b8654e5d9b134ca361252812a7909bfe9f8fa66c",
+      "conversion": "Same Samjoko 512px transparent production crest decoded to RGBA PNG for System.Drawing"
     },
     {
       "tier": 4,
       "path": "windows-widget/assets/prestige_4.png",
-      "sha256": "be1c4243b51b9f27cb90b68319b668ab47d6365cde8f4109da876b56782a2695",
+      "sha256": "7c27ac7aa356b4c61e3237c48fa4111d54b2c998910ef67db37c72f9f65ed087",
       "sourcePath": "android/app/src/main/res/drawable-nodpi/prestige_4.webp",
-      "sourceSha256": "5663e945f9984ae4d99b7d38e4e4dde6fdda00a3fb3fa215f66e5bdb4d3db3ee",
-      "conversion": "Existing approved 512px WebP decoded to RGBA PNG for System.Drawing; artwork unchanged"
+      "sourceSha256": "d6c2cfec72e50881de0c0a64830c43674c6584baf36ffafb8ffc84b09b7d3ff4",
+      "conversion": "Same Samjoko 512px transparent production crest decoded to RGBA PNG for System.Drawing"
     },
     {
       "tier": 5,
       "path": "windows-widget/assets/prestige_5.png",
-      "sha256": "b179f2b57fd9a3b40404f38b017a03374523236b7293de60bfd505fd2cebf51d",
+      "sha256": "11efa2cb980143df5fe4d5733d758cf3b8afbe351e40c2a9a5c16e150bd2fd26",
       "sourcePath": "android/app/src/main/res/drawable-nodpi/prestige_5.webp",
-      "sourceSha256": "146e4dd327c856dae6eb05b83d61d7c762733d722de8734a319b1f35690a2812",
-      "conversion": "Existing approved 512px WebP decoded to RGBA PNG for System.Drawing; artwork unchanged"
+      "sourceSha256": "94da1f323b3c067bb849a4e26a78b4f5d3e5be50640d42ea58a290804feaa610",
+      "conversion": "Same Samjoko 512px transparent production crest decoded to RGBA PNG for System.Drawing"
     },
     {
       "tier": 6,
       "path": "windows-widget/assets/prestige_6.png",
-      "sha256": "ba65b0e05b9527919252c28c4d29638ef0bffd4de031c6c653fce82dbe68bbe7",
+      "sha256": "c7fd44e8b599ee56a6ebba8c4f2a733765e2e96134be04c9efbcdbe77bf4a761",
       "sourcePath": "android/app/src/main/res/drawable-nodpi/prestige_6.webp",
-      "sourceSha256": "ac7597d14bdc1b534396ae038100b53a004763c77ed8fa49e11ed72b67c2207b",
-      "conversion": "Existing approved 512px WebP decoded to RGBA PNG for System.Drawing; artwork unchanged"
+      "sourceSha256": "bcdb48b5e6833473f53c34eb6d96cfd8c293e050ddc956acc855d57f92cf3244",
+      "conversion": "Same Samjoko 512px transparent production crest decoded to RGBA PNG for System.Drawing"
     },
     {
       "tier": 7,
       "path": "windows-widget/assets/prestige_7.png",
-      "sha256": "4dcefe1dc7f4e18368b6d0910c3608f748677e367f68a7f9ce4ddbf518cd9af2",
+      "sha256": "633888608e04e32b0dfbad973b199d3f6ee0ba6dfbf39e0edb887b6ff8228cba",
       "sourcePath": "android/app/src/main/res/drawable-nodpi/prestige_7.webp",
-      "sourceSha256": "c84e448203ba9c474d6f4f8264ad019399e795fc4730a14601204c81b476f5d7",
-      "conversion": "Existing approved 512px WebP decoded to RGBA PNG for System.Drawing; artwork unchanged"
+      "sourceSha256": "017ad91c981b1fabf3dee7593dc4e1ab5159b2450734c48db9f4ea50a1e6e61a",
+      "conversion": "Same Samjoko 512px transparent production crest decoded to RGBA PNG for System.Drawing"
     },
     {
       "tier": 8,
       "path": "windows-widget/assets/prestige_8.png",
-      "sha256": "b408d3fbb6ff9d1ec9903aee531dc85d4c83597303c2470e3ba2744a00f9d4ee",
+      "sha256": "75a9a935d50813abf5933ea13d59ec836035836307824c63befd82315f4a3ae2",
       "sourcePath": "android/app/src/main/res/drawable-nodpi/prestige_8.webp",
-      "sourceSha256": "b31da35660d4da3d3542178a4398924add58fdd6999536ec3be372708d9ca0d7",
-      "conversion": "Existing approved 512px WebP decoded to RGBA PNG for System.Drawing; artwork unchanged"
+      "sourceSha256": "eadd526d4ee2dadc9f877fc03254f1e69dd279d12a42ef1feeb0b5d13607c540",
+      "conversion": "Same Samjoko 512px transparent production crest decoded to RGBA PNG for System.Drawing"
     },
     {
       "tier": 9,
       "path": "windows-widget/assets/prestige_9.png",
-      "sha256": "982ae20b38f39ceb2f0666d18bef039050afbb97fd4421ac0a61ecaf66be33e6",
+      "sha256": "e384cedbd3600259231dd440c0c9a6ab14c8af634919bf2a28ce1975c8e6c20e",
       "sourcePath": "android/app/src/main/res/drawable-nodpi/prestige_9.webp",
-      "sourceSha256": "4601eb66221a1086ac32c9fa8308ebf3ebfca67db9265936a3b535e15dfa0e16",
-      "conversion": "Existing approved 512px WebP decoded to RGBA PNG for System.Drawing; artwork unchanged"
+      "sourceSha256": "bb086925f162af0cfc34645e0c4373c66ea9086e02d915a8028df645ba24a2a4",
+      "conversion": "Same Samjoko 512px transparent production crest decoded to RGBA PNG for System.Drawing"
     }
-  ],
-  "icon": "widget.ico is a 256px conversion of prestige_0, not a new emblem"
+  ]
 }

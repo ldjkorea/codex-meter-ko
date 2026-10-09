@@ -13,6 +13,7 @@ public final class CodexMeterApplication extends Application
         super.onCreate();
         DiagnosticLog.install(this);
         registerActivityLifecycleCallbacks(this);
+        LanWifiScheduler.install(this);
         DiagnosticLog.info(this, "process", "application_started");
     }
 

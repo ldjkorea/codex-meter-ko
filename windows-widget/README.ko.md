@@ -1,10 +1,10 @@
-# Codex Meter Windows Widget 0.1.1 beta
+# Codex Meter Windows Widget 0.1.2 beta
 
 Windows 바탕화면에서 원하는 위치로 옮기고 크기를 조절하는 작은 사용량 위젯입니다. Windows의 Win+W 패널에 등록하는 방식은 아닙니다. OpenAI가 제공하는 공식 제품이 아니며 Windows 10/11과 .NET Framework 4.8 환경을 대상으로 합니다.
 
 ## 실행
 
-1. `CodexMeter-WindowsWidget-0.1.1-beta.zip`을 내려받고 **모두 압축 풀기**를 누릅니다.
+1. `CodexMeter-WindowsWidget-0.1.2-beta.zip`을 내려받고 **모두 압축 풀기**를 누릅니다.
 2. 압축을 푼 폴더의 `CodexMeterWidget.exe`를 실행합니다. ZIP 안에서 바로 실행하지 마세요.
 3. **로그인**을 누르고 열린 브라우저에서 직접 ChatGPT 계정에 로그인합니다.
 4. 위젯 상단을 끌면 이동하고 가장자리를 끌면 크기를 조절합니다.

@@ -12,10 +12,12 @@ final class LiveCards {
     static LinearLayout crest(AppCompatActivity a,boolean dark,LiveUtilization.Result live,boolean fresh){
         int rank=live.valid&&fresh?live.tier:-1;
         LinearLayout card=Ui.card(a,dark);TierTheme.frame(card,rank,dark);
-        boolean stacked=LedgerUi.stacked(a)||a.getResources().getConfiguration().screenWidthDp<420;
+        boolean stacked=LedgerUi.stacked(a);
         LinearLayout row=new LinearLayout(a);row.setOrientation(stacked?LinearLayout.VERTICAL:LinearLayout.HORIZONTAL);row.setGravity(Gravity.CENTER_VERTICAL);
         TierCompanionView badge=new TierCompanionView(a,rank);badge.setAlpha(rank<0?.45f:1f);badge.setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO);
-        LinearLayout.LayoutParams bp=new LinearLayout.LayoutParams(Ui.dp(a,160),Ui.dp(a,160));
+        int crestSize=stacked?120:112;
+        card.setPadding(Ui.dp(a,16),Ui.dp(a,14),Ui.dp(a,16),Ui.dp(a,14));
+        LinearLayout.LayoutParams bp=new LinearLayout.LayoutParams(Ui.dp(a,crestSize),Ui.dp(a,crestSize));
         if(stacked)bp.gravity=Gravity.CENTER_HORIZONTAL;else bp.setMarginEnd(Ui.dp(a,16));row.addView(TierTheme.companion(badge,rank),bp);
         LinearLayout copy=new LinearLayout(a);copy.setOrientation(LinearLayout.VERTICAL);
         copy.addView(LedgerUi.amount(a,a.getString(rank<0?R.string.fun_placing:TierPresentation.NAMES[rank]),dark,27));

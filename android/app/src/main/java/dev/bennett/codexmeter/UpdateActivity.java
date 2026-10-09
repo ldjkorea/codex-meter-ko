@@ -209,7 +209,7 @@ public final class UpdateActivity extends AppCompatActivity {
             headingParams.setMargins(Ui.dp(this, 4), Ui.dp(this, 24), 0, Ui.dp(this, 10));
             content.addView(heading, headingParams);
             LinearLayout notesCard = Ui.card(this, dark);
-            notesCard.addView(ReleaseNotesUi.create(this, release.notes, dark));
+            notesCard.addView(ReleaseNotesUi.create(this, ReleaseCatalog.notes(this,release.version,release.notes), dark));
             content.addView(notesCard);
         }
 

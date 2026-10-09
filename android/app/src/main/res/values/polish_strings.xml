@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="polish_local_only">Share history and tier with your PC over the same Wi-Fi.</string>
+    <string name="polish_history_intro">Tap a version to read its changes. The full archive is bundled offline.</string>
+    <string name="polish_history_offline">Update checking is unavailable. The bundled history is still readable.</string>
+    <string name="polish_history_upstream">Original app history · before the Korean edition</string>
+    <string name="polish_history_korean">Korean edition update</string>
+    <string name="polish_expand">Expand changes</string>
+    <string name="polish_collapse">Collapse changes</string>
+    <string name="polish_tibo_quote">We are barely getting started with Codex.</string>
+    <string name="polish_tibo_source">Tibo · 2026.04.18 · X excerpt ↗</string>
+    <string name="polish_open_source_failed">Cannot open the original post on this device.</string>
+    <string name="polish_original_notes">Read the original changes too</string>
+</resources>

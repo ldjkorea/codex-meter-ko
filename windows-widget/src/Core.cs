@@ -83,7 +83,7 @@ namespace CodexMeterWidget {
     }
     public sealed class MeterApi:IDisposable {
         private readonly HttpClient client;public const string ClientId="app_EMoamEEZ73f0CkXaXp7hrann";
-        public MeterApi(HttpMessageHandler handler=null) {client=new HttpClient(handler??new HttpClientHandler {AllowAutoRedirect=false});client.Timeout=TimeSpan.FromSeconds(30);client.DefaultRequestHeaders.UserAgent.ParseAdd("codex-meter-windows/0.1.1");}
+        public MeterApi(HttpMessageHandler handler=null) {client=new HttpClient(handler??new HttpClientHandler {AllowAutoRedirect=false});client.Timeout=TimeSpan.FromSeconds(30);client.DefaultRequestHeaders.UserAgent.ParseAdd("codex-meter-windows/0.1.2");}
         private async Task<string> Send(HttpRequestMessage request,CancellationToken cancel) {
             using(var timeout=CancellationTokenSource.CreateLinkedTokenSource(cancel)){timeout.CancelAfter(30000);cancel=timeout.Token;
             using(request)using(var response=await client.SendAsync(request,HttpCompletionOption.ResponseHeadersRead,cancel).ConfigureAwait(false)) {

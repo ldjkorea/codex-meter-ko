@@ -27,11 +27,12 @@ final class RecordSettings {
         LinearLayout account=card(a,parent,dark,R.string.ux_account_subscription);
         LinearLayout row=new LinearLayout(a);row.setGravity(android.view.Gravity.CENTER_VERTICAL);
         LinearLayout copy=new LinearLayout(a);copy.setOrientation(LinearLayout.VERTICAL);
-        copy.addView(LedgerUi.caption(a,snapshot==null?a.getString(R.string.ui_not_connected_8b02f3):snapshot.planType,dark));
+        copy.addView(LedgerUi.heading(a,snapshot==null?a.getString(R.string.ui_not_connected_8b02f3):PlanArtwork.label(snapshot.planType),dark));
         copy.addView(LedgerUi.amount(a,bill==null?"—":FunActivity.money(bill.currency,bill.amount),dark,27));
         copy.addView(LedgerUi.caption(a,bill==null?a.getString(R.string.ux_tax_amount):a.getString(R.string.ux_bill_dates,bill.start.toString(),bill.end.toString()),dark));
         row.addView(copy,new LinearLayout.LayoutParams(0,-2,1));
         android.widget.ImageView artwork=new android.widget.ImageView(a);artwork.setImageResource(PlanArtwork.image(snapshot==null?null:snapshot.planType));artwork.setScaleType(android.widget.ImageView.ScaleType.FIT_CENTER);artwork.setImportantForAccessibility(android.view.View.IMPORTANT_FOR_ACCESSIBILITY_NO);
+        if(PlanArtwork.image(snapshot==null?null:snapshot.planType)==0)artwork.setVisibility(android.view.View.GONE);
         int size=Ui.dp(a,LedgerUi.stacked(a)?72:96);row.addView(artwork,new LinearLayout.LayoutParams(size,size));account.addView(row);
         Button edit=action(a,account,dark,bill==null?R.string.ux_register:R.string.v3_payment_edit,()->SubscriptionUi.edit(a,AppPreferences.loadSnapshot(a),dark,a::recreate));
         edit.setEnabled(SubscriptionStore.key(a,snapshot)!=null);
@@ -52,20 +53,15 @@ final class RecordSettings {
         page(a,display,dark,R.string.ui_appearance_41def7,"appearance");
         action(a,display,dark,R.string.matte_limits,()->a.startActivity(new Intent(a,DashboardReorderActivity.class)));
 
-        LinearLayout data=card(a,parent,dark,R.string.matte_data);
+        LinearLayout data=card(a,parent,dark,R.string.lan_sync_title);
         action(a,data,dark,R.string.lan_sync_title,()->LanSyncUi.show(a,dark));
-        action(a,data,dark,R.string.next_export_csv,()->export.accept(false));
-        action(a,data,dark,R.string.next_export_json,()->export.accept(true));
-        action(a,data,dark,R.string.ux_data_details,details);
-        page(a,data,dark,R.string.ui_backup_transfer_84bb29,"transfer");
-        page(a,data,dark,R.string.ui_privacy_cf0148,"privacy");
-        page(a,data,dark,R.string.ui_diagnostics_3af227,"diagnostics");
-        data.addView(LedgerUi.caption(a,a.getString(R.string.matte_retention,a.getResources().getQuantityString(R.plurals.matte_days,UsageLedgerDatabase.RAW_DAYS,UsageLedgerDatabase.RAW_DAYS),a.getResources().getQuantityString(R.plurals.matte_days,UsageLedgerDatabase.DAILY_DAYS,UsageLedgerDatabase.DAILY_DAYS)),dark));
-        action(a,data,dark,R.string.ui_clear_local_history_ab1b10,clear);
+        data.addView(LedgerUi.caption(a,a.getString(R.string.polish_local_only),dark));
 
         LinearLayout info=card(a,parent,dark,R.string.matte_about);
         info.addView(LedgerUi.caption(a,"Codex Meter "+AppConstants.VERSION_NAME,dark));
+        action(a,info,dark,R.string.ui_what_s_new_369702,()->a.startActivity(new Intent(a,WhatsNewActivity.class)));
         page(a,info,dark,R.string.ui_updates_c76d18,"updates");
+        action(a,info,dark,R.string.ui_release_history_5044ba,()->a.startActivity(new Intent(a,ReleaseHistoryActivity.class)));
         action(a,info,dark,R.string.ux_licenses,()->a.startActivity(new Intent(a,AboutActivity.class)));
     }
     private static void billingHistory(AppCompatActivity a,boolean dark) {

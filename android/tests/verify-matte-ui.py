@@ -45,12 +45,16 @@ records=settings.split('static void add(',1)[1].split('static void hub(',1)[0]
 assert records.count('toggle(a,')==3
 assert 'MeterSettingsActivity.class' in records and '=group(' not in settings
 assert 'TestNotesStore' not in settings and 'TestNotesActivity.class' not in settings
-for page in ['appearance','refresh_usage','notifications','now_bar','updates','transfer','privacy','diagnostics']:
+for page in ['appearance','refresh_usage','notifications','now_bar','updates']:
     assert '"'+page+'"' in settings,page
 for setter in ['setShowDashboardFiveHour','setShowDashboardWeekly','setShowUsageOverview']:
     assert 'AppPreferences.'+setter+'(a,on)' in settings
 assert 'SubscriptionUi.edit' in settings and 'R.string.ux_payment_history' in settings
-assert 'clear);' in settings and 'details);' in settings
+for page in ['transfer','privacy','diagnostics']:
+    assert '"'+page+'"' not in settings, page
+for hidden in ['R.string.next_export_csv','R.string.next_export_json','R.string.ui_clear_local_history_ab1b10','R.string.ux_data_details']:
+    assert hidden not in settings, hidden
+assert 'LanSyncUi.show' in settings and 'ReleaseHistoryActivity.class' in settings
 assert not any(x in home+settings+nav for x in ['HttpURLConnection','OkHttpClient','consumeBestAvailable(','new URL('])
 layout=ET.parse(root/'app/src/main/res/layout/activity_oneui_dashboard.xml').getroot()
 assert layout.tag=='LinearLayout' and layout.get(a+'orientation')=='vertical'

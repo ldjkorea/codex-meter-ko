@@ -1,5 +1,5 @@
 <resources>
-    <string name="ui_ledger_home">Your usage at a glance</string>
+    <string name="ui_ledger_home">This weekly allowance</string>
     <string name="ui_ledger_remaining">%1$s allowance remaining</string>
     <string name="ui_ledger_last_value">Latest observation</string>
     <string name="ui_ledger_today_usage">Observed today</string>

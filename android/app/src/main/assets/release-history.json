@@ -1,0 +1,1140 @@
+[
+  {
+    "version": "2.8.15",
+    "origin": "korean",
+    "ko": {
+      "title": "삼족오와 함께, 더 읽기 좋은 Meter",
+      "changes": [
+        "삼족오 휘장 10종을 홈·분석·휴대폰 위젯·Windows 위젯에 적용했습니다.",
+        "휘장과 이번 주간 사용량을 함께 보기 쉽도록 홈 높이와 여백을 줄였습니다.",
+        "Free·Go·Plus·Pro Lite·Pro를 구분하고 요금제 그림을 새로 만들었습니다.",
+        "1.0.0부터의 전체 업데이트 이력을 기기에 담았습니다. 버전을 눌러 펼쳐 읽을 수 있습니다.",
+        "진단·개인정보 안내·백업·내보내기·기록 삭제 메뉴를 일반 설정에서 숨겼습니다. 기존 데이터는 보존합니다.",
+        "연결한 PC와 Wi-Fi 재접속 때 자동 공유를 시도합니다. 백그라운드 실행은 절전 정책에 따라 늦어질 수 있습니다.",
+        "구독 가성비 아래에 Tibo의 짧은 문장을 날짜·출처와 함께 표시합니다. 저장된 인용이며 최신 글 자동 수집은 아닙니다."
+      ]
+    },
+    "en": {
+      "title": "Samjoko, compact home and full history",
+      "changes": [
+        "Ten regal Samjoko crests across mobile and desktop widgets.",
+        "Compact home and five distinct subscription illustrations, including Go and Pro Lite.",
+        "Complete offline release history with aligned expandable notes.",
+        "Hide advanced settings without deleting data.",
+        "Best-effort paired-PC sharing on Wi-Fi reconnect and periodic background retries.",
+        "A dated verified Tibo excerpt below subscription value, bundled offline."
+      ]
+    },
+    "source": "- 삼족오 휘장 10종을 홈·분석·휴대폰 홈 위젯·Windows 위젯에 같은 투명 이미지로 적용합니다.\n- 홈에서 휘장과 ‘이번 주간 사용량’을 함께 보기 쉽도록 높이·여백을 줄이고, 큰 글꼴에는 세로 배치를 유지합니다.\n- Free·Go·Plus·Pro Lite·Pro 요금제 그림을 새로 만들고 Pro Lite/Pro 5x 별칭을 안전하게 구분합니다.\n- 1.0.0부터 2.8.15까지 44개 버전의 한국어 설명과 기존 원문을 오프라인으로 보관합니다. 접히는 버전 카드와 줄맞춤된 목록, 설치 버전의 ‘새로운 기능’ 진입점을 제공합니다.\n- 진단·개인정보 안내·백업/이전·CSV/JSON·기록 삭제를 일반 설정에서 숨깁니다. 저장소와 기록, 기존 도구 코드는 삭제하지 않습니다.\n- Wi-Fi 재접속 시 기존 자동 조회 정책과 마지막 관측 시각을 존중해 화면·위젯을 갱신합니다. 연결된 PC와 공유를 시도하고, 백그라운드 공유는 Android의 네트워크·절전 정책에 따라 주기적으로 재시도합니다.\n- 구독 가성비 아래에 X 공식 임베드로 확인한 Tibo의 짧은 문장을 출처·날짜와 함께 표시합니다. 실시간 SNS 수집이나 초기화 판정에는 사용하지 않습니다.\n- 인증·사용량 API·원장·구독료·승급 기준·위젯 옵션·기존 서명을 유지합니다. Samsung 실기기 검증은 별도입니다."
+  },
+  {
+    "version": "2.8.14",
+    "origin": "korean",
+    "ko": {
+      "title": "PC와 휴대폰, 같은 기록으로",
+      "changes": [
+        "같은 Wi-Fi에서 PC·휴대폰의 최근 관측 기록을 자동으로 합칩니다.",
+        "휴대폰의 과거 일별 집계와 현재 티어를 Windows 위젯에 전달합니다.",
+        "처음 한 번 PC 연결 코드를 등록합니다. 두 기기는 같은 ChatGPT 계정으로 로그인해야 합니다.",
+        "클라우드 없이 암호화된 로컬 연결을 사용하며 로그인 토큰은 공유하지 않습니다.",
+        "PC가 꺼져 있거나 연결이 안 되면 기존 기록을 보존하고 다음 실행·조회 때 다시 시도합니다."
+      ]
+    },
+    "en": {
+      "title": "What changed",
+      "changes": [
+        "Optional pinned-TLS sharing on the same LAN. Merge recent observations and mirror mobile daily archives/tier to the Windows widget.",
+        "Existing OAuth, quota API, widgets and data retained. No cloud service."
+      ]
+    },
+    "source": "- Optional pinned-TLS sharing on the same LAN. Merge recent observations and mirror mobile daily archives/tier to the Windows widget.\n- Existing OAuth, quota API, widgets and data retained. No cloud service."
+  },
+  {
+    "version": "2.8.13",
+    "origin": "korean",
+    "ko": {
+      "title": "위젯 한가운데, 제대로 된 휘장",
+      "changes": [
+        "사용량과 초기화 게이지 사이에 티어 휘장을 크게 배치했습니다.",
+        "티어에 맞는 어두운 금속색 배경·테두리·강조색을 적용했습니다.",
+        "좁은 위젯에서도 휘장과 게이지가 겹치지 않도록 크기를 조절합니다.",
+        "미리보기와 실제 위젯이 같은 표시 설정을 사용합니다.",
+        "휘장 OFF·투명 배경·기존 한도 선택과 순서를 유지합니다. 휴대폰 바탕화면 자체는 바꾸지 않습니다."
+      ]
+    },
+    "en": {
+      "title": "What changed",
+      "changes": [
+        "사용량·초기화 게이지 사이에 티어 휘장을 크게 배치합니다. 모서리 20dp 장식에서 가운데의 주 요소로 바꿉니다.",
+        "아이언·브론즈·실버·골드·플래티넘·에메랄드·다이아몬드·마스터·그랜드마스터·챌린저별 어두운 금속색 배경과 얇은 테두리를 적용합니다.",
+        "배경과 게이지 강조색은 현재 확인된 티어를 따릅니다. 배치 중·로그아웃·오래된 데이터에는 확정된 티어 배경을 만들지 않습니다.",
+        "좁은 위젯은 게이지도 함께 축소해 중앙 휘장과 겹치지 않도록 합니다. 원래 선택한 항목 수와 순서를 유지합니다.",
+        "미리보기와 홈 위젯에 같은 배경 리소스와 표시 설정을 적용합니다. 휘장 OFF는 원래 테마·강조색, 배경 OFF는 투명입니다.",
+        "원본 휘장 10종과 로그인·API·SQLite·사용자 기록·서명키를 그대로 유지합니다. 배경 변경은 위젯 내부에 적용하며 휴대폰 바탕화면 배경을 변경하지 않습니다."
+      ]
+    },
+    "source": "- 사용량·초기화 게이지 사이에 티어 휘장을 크게 배치합니다. 모서리 20dp 장식에서 가운데의 주 요소로 바꿉니다.\n- 아이언·브론즈·실버·골드·플래티넘·에메랄드·다이아몬드·마스터·그랜드마스터·챌린저별 어두운 금속색 배경과 얇은 테두리를 적용합니다.\n- 배경과 게이지 강조색은 현재 확인된 티어를 따릅니다. 배치 중·로그아웃·오래된 데이터에는 확정된 티어 배경을 만들지 않습니다.\n- 좁은 위젯은 게이지도 함께 축소해 중앙 휘장과 겹치지 않도록 합니다. 원래 선택한 항목 수와 순서를 유지합니다.\n- 미리보기와 홈 위젯에 같은 배경 리소스와 표시 설정을 적용합니다. 휘장 OFF는 원래 테마·강조색, 배경 OFF는 투명입니다.\n- 원본 휘장 10종과 로그인·API·SQLite·사용자 기록·서명키를 그대로 유지합니다. 배경 변경은 위젯 내부에 적용하며 휴대폰 바탕화면 배경을 변경하지 않습니다.\n\nAndroid 2.8.13 / versionCode 43 베타. 실제 삼성 기기의 화면·업데이트 설치는 미검증입니다. 기존 앱을 삭제하지 않고 업데이트하세요.\n\n---"
+  },
+  {
+    "version": "2.8.12",
+    "origin": "korean",
+    "ko": {
+      "title": "지금 쓴 만큼, 바로 달라지는 티어",
+      "changes": [
+        "메인 맨 위에 휘장, 그 아래에 사용량 요약을 배치했습니다.",
+        "주간 마감까지 기다리지 않고 관측된 누적 활용을 티어에 바로 반영합니다.",
+        "AI의 한마디를 일간·주간 사용 패턴에 맞춘 매운맛으로 통일했습니다.",
+        "중복 제목과 평가·계산 설명 버튼, 말투 선택을 정리했습니다.",
+        "가성비는 직접 등록한 결제액과 같은 결제 기간의 관측 활용 비율을 사용합니다. 실제 절약액이나 API 비용은 아닙니다.",
+        "서버 초기화 시각과 한도 길이로 실제 한도 구간을 표시합니다.",
+        "계정 및 구독에 요금제 그림을 추가하고 기존 홈 위젯에도 현재 티어를 연결했습니다."
+      ]
+    },
+    "en": {
+      "title": "What changed",
+      "changes": [
+        "메인 화면 최상단에 티어 휘장, 아래에 내 사용량 한눈에를 배치했습니다.",
+        "플랜 활용 티어라는 중복 제목, 평가 이유·금액 계산 설명 버튼, 말투 선택을 제거했습니다.",
+        "AI의 한마디는 일간 관측 변화·주간 사용률에 맞춘 한 가지 매운맛입니다. 기록이 없으면 없는 소비를 지어내지 않습니다.",
+        "현재 관측을 즉시 누적 활용률에 반영합니다. 주간 마감이나 배치 완료를 기다리지 않습니다.",
+        "구독 가성비는 직접 등록한 결제액 × 해당 결제 기간의 관측 활용 비율입니다. 실제 절약액·API 비용이 아닙니다.",
+        "서버 초기화 시각부터 정확한 한도 길이를 사용해 이번 구간을 표시합니다. 누적 소비와 관측한 변화량을 구분합니다.",
+        "계정 및 구독 오른쪽에 Free·Plus·Pro·Business·Enterprise용 독립적인 로컬 이미지를 추가했습니다.",
+        "기존 홈 위젯과 티어 진화형 위젯에도 즉시 계산한 티어를 연결했습니다. 숨긴 5시간 한도와 위젯 디자인 설정을 유지합니다.",
+        "로그인·사용량 API·SQLite·기존 기록·서명키를 보존합니다. Windows Widget 0.1.0은 기존 별도 베타를 사용합니다."
+      ]
+    },
+    "source": "- 메인 화면 최상단에 티어 휘장, 아래에 내 사용량 한눈에를 배치했습니다.\n- 플랜 활용 티어라는 중복 제목, 평가 이유·금액 계산 설명 버튼, 말투 선택을 제거했습니다.\n- AI의 한마디는 일간 관측 변화·주간 사용률에 맞춘 한 가지 매운맛입니다. 기록이 없으면 없는 소비를 지어내지 않습니다.\n- 현재 관측을 즉시 누적 활용률에 반영합니다. 주간 마감이나 배치 완료를 기다리지 않습니다.\n- 구독 가성비는 직접 등록한 결제액 × 해당 결제 기간의 관측 활용 비율입니다. 실제 절약액·API 비용이 아닙니다.\n- 서버 초기화 시각부터 정확한 한도 길이를 사용해 이번 구간을 표시합니다. 누적 소비와 관측한 변화량을 구분합니다.\n- 계정 및 구독 오른쪽에 Free·Plus·Pro·Business·Enterprise용 독립적인 로컬 이미지를 추가했습니다.\n- 기존 홈 위젯과 티어 진화형 위젯에도 즉시 계산한 티어를 연결했습니다. 숨긴 5시간 한도와 위젯 디자인 설정을 유지합니다.\n- 로그인·사용량 API·SQLite·기존 기록·서명키를 보존합니다. Windows Widget 0.1.0은 기존 별도 베타를 사용합니다.\n\n이 릴리스는 Android 2.8.12 / versionCode 42 베타입니다. 실제 삼성 기기 설치·화면·OAuth/API 성공은 검증하지 못했습니다. 기존 한국어판 앱을 삭제하지 않고 업데이트하세요.\n\n---"
+  },
+  {
+    "version": "2.8.11",
+    "origin": "korean",
+    "ko": {
+      "title": "바탕화면까지 따라오는 Meter",
+      "changes": [
+        "기존 11종 휴대폰 홈 위젯에 티어 휘장을 연결했습니다.",
+        "위젯 설정에서 휘장 표시를 켜고 끌 수 있습니다. 기존 색상·순서·투명도·5시간 숨김 설정은 유지합니다.",
+        "Windows 바탕화면 위젯 베타를 추가했습니다. 이동·크기 조절·항상 위·투명도·글자 크기를 설정할 수 있습니다.",
+        "PC 위젯은 수동 조회와 5분 간격 조회, 선택적 시작 시 실행을 지원합니다.",
+        "이 버전에서는 PC 기록이 독립적이었습니다. 자동 공유는 2.8.14에서 추가했습니다.",
+        "Windows 실행 파일은 코드 서명이 없는 별도 베타입니다."
+      ]
+    },
+    "en": {
+      "title": "What changed",
+      "changes": [
+        "기존 11종 홈 위젯에도 현재 티어 휘장을 표시합니다. 앱을 삭제하거나 위젯을 다시 추가할 필요 없이 갱신 경로에 연결했습니다.",
+        "위젯 설정의 '티어 휘장 표시'를 제공하고 기존 디자인·색상·순서·투명도·5시간 숨김 설정을 보존합니다. 표시 전에는 흐린 배치 중 휘장으로 구분합니다.",
+        "별도 Windows 0.1.0 베타 위젯: 이동·크기·항상 위·투명도·글자 크기·선택적 시작 시 실행, 수동/5분 조회.",
+        "PC와 휴대폰의 기록은 자동 동기화되지 않습니다. Windows 실행 파일은 코드 서명이 없고 실계정 로그인·조회는 미검증입니다.",
+        "기존 Android 로그인·원장·구독료·캘린더·티어 계산·서명키·업데이트 경로는 유지합니다. Samsung/Wear 실기기 검증은 미완료입니다."
+      ]
+    },
+    "source": "- 기존 11종 홈 위젯에도 현재 티어 휘장을 표시합니다. 앱을 삭제하거나 위젯을 다시 추가할 필요 없이 갱신 경로에 연결했습니다.\n- 위젯 설정의 '티어 휘장 표시'를 제공하고 기존 디자인·색상·순서·투명도·5시간 숨김 설정을 보존합니다. 표시 전에는 흐린 배치 중 휘장으로 구분합니다.\n- 별도 Windows 0.1.0 베타 위젯: 이동·크기·항상 위·투명도·글자 크기·선택적 시작 시 실행, 수동/5분 조회.\n- PC와 휴대폰의 기록은 자동 동기화되지 않습니다. Windows 실행 파일은 코드 서명이 없고 실계정 로그인·조회는 미검증입니다.\n- 기존 Android 로그인·원장·구독료·캘린더·티어 계산·서명키·업데이트 경로는 유지합니다. Samsung/Wear 실기기 검증은 미완료입니다."
+  },
+  {
+    "version": "2.8.10",
+    "origin": "korean",
+    "ko": {
+      "title": "달력에도 사용한 흔적을",
+      "changes": [
+        "관측 활동이 두드러진 날짜를 달력에서 에메랄드빛으로 강조했습니다.",
+        "오늘 표시·날짜 선택·상세 기록·측정 공백을 구분합니다.",
+        "구독료 저장·수정·재실행 후 복원과 가성비 반영을 재검증했습니다.",
+        "사용량 변화가 없는 날과 관측 정보가 없는 날을 혼동하지 않도록 유지합니다."
+      ]
+    },
+    "en": {
+      "title": "What changed",
+      "changes": [
+        "기록 캘린더에서 활동이 두드러진 날짜를 에메랄드빛으로 강조합니다.",
+        "날짜 선택·오늘 표시·상세 관측 기록·측정 공백 구분을 유지합니다.",
+        "등록 구독료의 저장·수정·재실행 후 복원과 가성비 계산 반영을 추가 회귀 검사로 확인했습니다.",
+        "실제 결제액을 한도 기간에 배분한 참고 금액이며, 실제 절약액이나 API 비용을 뜻하지 않습니다.",
+        "기존 데이터·로그인·서명과 자동 업데이트 경로를 유지합니다.",
+        "Android 실기기 화면 및 설치 검증은 미완료입니다."
+      ]
+    },
+    "source": "- 기록 캘린더에서 활동이 두드러진 날짜를 에메랄드빛으로 강조합니다.\n- 날짜 선택·오늘 표시·상세 관측 기록·측정 공백 구분을 유지합니다.\n- 등록 구독료의 저장·수정·재실행 후 복원과 가성비 계산 반영을 추가 회귀 검사로 확인했습니다.\n- 실제 결제액을 한도 기간에 배분한 참고 금액이며, 실제 절약액이나 API 비용을 뜻하지 않습니다.\n- 기존 데이터·로그인·서명과 자동 업데이트 경로를 유지합니다.\n- Android 실기기 화면 및 설치 검증은 미완료입니다."
+  },
+  {
+    "version": "2.8.9",
+    "origin": "korean",
+    "ko": {
+      "title": "작은 장식에서 프리미엄 휘장으로",
+      "changes": [
+        "홈·분석·티어 위젯에 입체적인 금속 휘장 10종을 적용했습니다.",
+        "투명 배경 이미지와 제한된 디코딩 크기로 위젯 메모리 사용을 관리합니다.",
+        "홈에서 새 버전 안내가 사라지던 문제를 고쳤습니다.",
+        "업데이트 확인·다운로드·서명 검증·사용자 설치 승인 흐름을 유지했습니다."
+      ]
+    },
+    "en": {
+      "title": "What changed",
+      "changes": [
+        "Replace the active robot/corner-badge presentation with ten bundled transparent, dimensional metal and compute-core emblems on home, analysis and the evolution widget.",
+        "Use 512px WebP assets with verified alpha and bounded decode size; preserve English tier names, evaluation rules, history, account and widget preferences.",
+        "Restore the cached new-release card on home and include updater state in its render signature; retain automatic checks, explicit download/install approval and existing security gates.",
+        "Phone/Wear 2.8.9 / versionCode 39, existing Korean signer. Device/OEM execution remains unverified; distributed as beta."
+      ]
+    },
+    "source": "- Replace the active robot/corner-badge presentation with ten bundled transparent, dimensional metal and compute-core emblems on home, analysis and the evolution widget.\n- Use 512px WebP assets with verified alpha and bounded decode size; preserve English tier names, evaluation rules, history, account and widget preferences.\n- Restore the cached new-release card on home and include updater state in its render signature; retain automatic checks, explicit download/install approval and existing security gates.\n- Phone/Wear 2.8.9 / versionCode 39, existing Korean signer. Device/OEM execution remains unverified; distributed as beta."
+  },
+  {
+    "version": "2.8.8",
+    "origin": "korean",
+    "ko": {
+      "title": "티어 진화, 한국어판 업데이트 시작",
+      "changes": [
+        "장기 주간 기록 기반 티어 평가와 10단계 성장 체계를 추가했습니다.",
+        "1~5개 요소를 선택하는 별도 티어 홈 위젯을 추가했습니다.",
+        "한국어판 전용 GitHub 업데이트 경로와 서명 인증서 검증을 연결했습니다.",
+        "앱에 새 버전이 나타나는 흐름과 안전한 버전 비교를 개선했습니다.",
+        "이전 기록·구독료·코치·Pretendard 글꼴·5시간 숨김 설정을 보존했습니다."
+      ]
+    },
+    "en": {
+      "title": "What changed",
+      "changes": [
+        "장기 주간 티어 평가와 10단계 Meter Scout, 앱 티어 포인트, 별도 1~5요소 홈 위젯.",
+        "한국어 GitHub 업데이트 저장소·서명 인증서 고정과 높은 versionCode 확인.",
+        "기존 원장/결제/코치 기록·Pretendard·5시간 숨김·2.8.7 초기화 표시 보존."
+      ]
+    },
+    "source": "- 장기 주간 티어 평가와 10단계 Meter Scout, 앱 티어 포인트, 별도 1~5요소 홈 위젯.\n- 한국어 GitHub 업데이트 저장소·서명 인증서 고정과 높은 versionCode 확인.\n- 기존 원장/결제/코치 기록·Pretendard·5시간 숨김·2.8.7 초기화 표시 보존."
+  },
+  {
+    "version": "2.8.7",
+    "origin": "korean",
+    "ko": {
+      "title": "공개 베타를 위한 기초 정리",
+      "changes": [
+        "공개 배포 가능한 Pretendard 글꼴과 라이선스 안내를 적용했습니다.",
+        "5시간 한도의 초기화 시간을 주간 한도와 독립적으로 표시합니다.",
+        "조회 실패·오래된 데이터·만료된 구간·초기화 정보 없음 상태를 구분했습니다.",
+        "추가 서버 조회 없이 기존 시계와 갱신 구조를 재사용합니다.",
+        "한국어판 공개 소스와 검증용 빌드 경로를 정리했습니다."
+      ]
+    },
+    "en": {
+      "title": "What changed",
+      "changes": [
+        "Replace redistributed proprietary font entries with unmodified Pretendard 1.3.9 under SIL OFL 1.1, with verified provenance and complete notices.",
+        "Show the independent 5-hour server reset countdown on home, details and existing widget reset fields; distinguish unavailable, expired, cached and failed refresh states.",
+        "Reuse the minute clock and preserve package/signing/storage/settings contracts; no additional API polling.",
+        "Prepare a separate public snapshot and unsigned, secret-free verification workflow. Device/OEM execution remains unverified."
+      ]
+    },
+    "source": "- Replace redistributed proprietary font entries with unmodified Pretendard 1.3.9 under SIL OFL 1.1, with verified provenance and complete notices.\n- Show the independent 5-hour server reset countdown on home, details and existing widget reset fields; distinguish unavailable, expired, cached and failed refresh states.\n- Reuse the minute clock and preserve package/signing/storage/settings contracts; no additional API polling.\n- Prepare a separate public snapshot and unsigned, secret-free verification workflow. Device/OEM execution remains unverified."
+  },
+  {
+    "version": "2.8.6",
+    "origin": "korean",
+    "ko": {
+      "title": "코치·가성비·설정을 한 번 더 정리",
+      "changes": [
+        "코치 반응을 말투와 사용 패턴별로 구분했습니다. 이후 2.8.12에서 AI의 한마디로 통일했습니다.",
+        "직접 등록한 세금 포함 결제액을 해당 한도 기간에 배분하도록 가성비를 정리했습니다.",
+        "기간 불일치와 오래된 데이터에서는 참고 금액을 보류합니다.",
+        "기록 화면에는 달력·선택 날짜·이벤트·표시 설정을 남기고 나머지는 설정 허브로 옮겼습니다.",
+        "일반 화면의 테스트 메모 진입점을 제거하되 기존 메모와 결제·주간 리포트 기록은 보존했습니다."
+      ]
+    },
+    "en": {
+      "title": "What changed",
+      "changes": [
+        "Coach tones now have distinct local reactions, including short insufficient-data messages and conservative matched-window comparisons.",
+        "Subscription value uses the user-entered tax-inclusive payment allocated to the current quota window; stale or mismatched periods suspend the amount. Arbitrary value rules remain archived and are no longer used by current screens.",
+        "Records now contains calendar, selected-day details, events, three display switches and one Settings entry. Payment, coach and advanced data tools live in a separate settings hub.",
+        "Removed all normal test-note entry points while preserving stored notes, payment history and immutable recaps.",
+        "Existing authentication, ledger, visibility filters, widgets and Wear behavior retained. Phone and Wear version 2.8.6 / 36; physical-device checks remain required."
+      ]
+    },
+    "source": "- Coach tones now have distinct local reactions, including short insufficient-data messages and conservative matched-window comparisons.\n- Subscription value uses the user-entered tax-inclusive payment allocated to the current quota window; stale or mismatched periods suspend the amount. Arbitrary value rules remain archived and are no longer used by current screens.\n- Records now contains calendar, selected-day details, events, three display switches and one Settings entry. Payment, coach and advanced data tools live in a separate settings hub.\n- Removed all normal test-note entry points while preserving stored notes, payment history and immutable recaps.\n- Existing authentication, ledger, visibility filters, widgets and Wear behavior retained. Phone and Wear version 2.8.6 / 36; physical-device checks remain required."
+  },
+  {
+    "version": "2.8.5",
+    "origin": "korean",
+    "ko": {
+      "title": "Matte Black Edition",
+      "changes": [
+        "분석·홈·기록의 고정 하단 탐색을 도입하고 홈을 기본 화면으로 만들었습니다.",
+        "차콜색과 흰색 중심 디자인을 적용했습니다. 기존 라이트·시스템 테마와 위젯 디자인은 유지합니다.",
+        "홈에 사용량·휘장·코치·구독 활용 정보를 묶었습니다.",
+        "기록 화면에 달력과 날짜별 상세를 모으고 설정을 접히는 그룹으로 정리했습니다.",
+        "계정 변경 중 비동기 화면 표시와 조회 실패 후 새로고침 복구를 보강했습니다."
+      ]
+    },
+    "en": {
+      "title": "What changed",
+      "changes": [
+        "Introduce a fixed Analysis / Home / Records navigation with Home as the default and retained tab state.",
+        "Apply matte charcoal and white to phone UI while preserving explicit light/system theme choices and saved widget designs.",
+        "Present overview, vector tier emblem, standalone coach quote and same-period used/full play value in the Home scroll.",
+        "Move calendar/date details to Records and organize all settings into six collapsed groups with existing forms and safety confirmations.",
+        "Preserve 2.8.4 billing, tier, coach, notes, immutable recaps, OAuth, ledger and widget/Wear engines.",
+        "Guard asynchronous tab loading against account changes and restore refresh controls after failed unchanged observations.",
+        "Phone and Wear version 2.8.5 / 35; native Galaxy UI and installation checks remain required."
+      ]
+    },
+    "source": "- Introduce a fixed Analysis / Home / Records navigation with Home as the default and retained tab state.\n- Apply matte charcoal and white to phone UI while preserving explicit light/system theme choices and saved widget designs.\n- Present overview, vector tier emblem, standalone coach quote and same-period used/full play value in the Home scroll.\n- Move calendar/date details to Records and organize all settings into six collapsed groups with existing forms and safety confirmations.\n- Preserve 2.8.4 billing, tier, coach, notes, immutable recaps, OAuth, ledger and widget/Wear engines.\n- Guard asynchronous tab loading against account changes and restore refresh controls after failed unchanged observations.\n- Phone and Wear version 2.8.5 / 35; native Galaxy UI and installation checks remain required."
+  },
+  {
+    "version": "2.8.4",
+    "origin": "korean",
+    "ko": {
+      "title": "개인 사용 리포트에 재미를",
+      "changes": [
+        "직접 등록하는 결제 정보, 참고용 활용 가치, 10단계 휘장과 로컬 코치를 추가했습니다.",
+        "비슷한 완료 구간의 활용도를 비교하는 주간 리포트를 만들었습니다.",
+        "결제 수정 이력과 중복되지 않는 주간 회고를 사용량 원장과 별도로 보관합니다.",
+        "개인 테스트 메모와 초안 저장·복사·내보내기를 추가했습니다. 이후 일반 탐색에서는 숨겼습니다.",
+        "가상의 놀이 가치 규칙은 이후 실제 결제액 중심 방식으로 교체했습니다.",
+        "로그인·사용량 원장·위젯·Reset Credit 정보 조회를 유지했습니다."
+      ]
+    },
+    "en": {
+      "title": "What changed",
+      "changes": [
+        "Keep the concise dashboard; move Value to an independent playground with safe legacy links.",
+        "Add device-local quick test notes, durable drafts, status filters and explicit copy/SAF export.",
+        "Add arbitrary play-value rules and full-window subscription allocation with currency/boundary guards.",
+        "Rate utilization from up to four comparable completed windows, with provisional placement for sparse data.",
+        "Include ten original local vector emblems and deterministic local coaches with tone and off settings.",
+        "Preserve payment revisions, play-rule revisions and immutable deduplicated weekly recaps separately from the usage ledger.",
+        "Preserve authentication, API, ledger, widget visibility and reset-credit read-only behavior; no Wear feature expansion.",
+        "Prepare Korean signer-compatible phone/Wear 2.8.4/34; native device verification remains outstanding."
+      ]
+    },
+    "source": "- Keep the concise dashboard; move Value to an independent playground with safe legacy links.\n- Add device-local quick test notes, durable drafts, status filters and explicit copy/SAF export.\n- Add arbitrary play-value rules and full-window subscription allocation with currency/boundary guards.\n- Rate utilization from up to four comparable completed windows, with provisional placement for sparse data.\n- Include ten original local vector emblems and deterministic local coaches with tone and off settings.\n- Preserve payment revisions, play-rule revisions and immutable deduplicated weekly recaps separately from the usage ledger.\n- Preserve authentication, API, ledger, widget visibility and reset-credit read-only behavior; no Wear feature expansion.\n- Prepare Korean signer-compatible phone/Wear 2.8.4/34; native device verification remains outstanding."
+  },
+  {
+    "version": "2.8.3",
+    "origin": "korean",
+    "ko": {
+      "title": "중복을 덜어낸 사용량 화면",
+      "changes": [
+        "메인은 사용량 요약과 구독 카드로 간결하게 만들고 한도 상세는 필요할 때 펼치도록 했습니다.",
+        "메인 새로고침이 화면을 떠나지 않고 조회·기록을 완료합니다. 중복 요청을 막습니다.",
+        "요약·추세·기록·가성비로 분석 탐색을 정리하고 기존 고급 차트 진입을 유지했습니다.",
+        "결제액·통화·결제 기간을 직접 등록할 수 있습니다. 근거 없는 한도→금액 추정은 보류합니다.",
+        "숨긴 5시간 한도가 홈·잠금 위젯과 미리보기에 다시 나타나지 않도록 고쳤습니다.",
+        "Reset Credit 실행 버튼은 제거하고 잔여 횟수·만료·알림·변동 기록은 유지했습니다."
+      ]
+    },
+    "en": {
+      "title": "What changed",
+      "changes": [
+        "Simplify the dashboard to a usage overview and subscription card, with quota details on demand.",
+        "Refresh on the dashboard with process-wide request deduplication and the existing ledger.",
+        "Unify analytics navigation with Overview, Trends, Records and Value; keep advanced window charts accessible.",
+        "Derive allowance periods from server reset times, compare matching elapsed observations conservatively, and distinguish billing periods.",
+        "Store user-entered subscription amount, currency and billing dates locally; suppress unsupported quota-to-money estimates.",
+        "Honor disabled or unavailable five-hour meters across home/lock widget renders and previews without resetting saved designs.",
+        "Remove Reset Credit execution controls and notification actions while retaining balances, expiry information and alerts.",
+        "Preserve the application ID and Korean signer; phone and Wear versionCode 33. Device verification remains required."
+      ]
+    },
+    "source": "- Simplify the dashboard to a usage overview and subscription card, with quota details on demand.\n- Refresh on the dashboard with process-wide request deduplication and the existing ledger.\n- Unify analytics navigation with Overview, Trends, Records and Value; keep advanced window charts accessible.\n- Derive allowance periods from server reset times, compare matching elapsed observations conservatively, and distinguish billing periods.\n- Store user-entered subscription amount, currency and billing dates locally; suppress unsupported quota-to-money estimates.\n- Honor disabled or unavailable five-hour meters across home/lock widget renders and previews without resetting saved designs.\n- Remove Reset Credit execution controls and notification actions while retaining balances, expiry information and alerts.\n- Preserve the application ID and Korean signer; phone and Wear versionCode 33. Device verification remains required."
+  },
+  {
+    "version": "2.8.2",
+    "origin": "korean",
+    "ko": {
+      "title": "Usage Ledger와 Insights",
+      "changes": [
+        "SQLite 원장에 실제 관측값과 초기화 이벤트를 보관합니다.",
+        "오늘·어제·7일·30일 분석, 추세 차트, 달력과 날짜별 상세를 추가했습니다.",
+        "기존 Preference 기록은 삭제 없이 중복되지 않게 이관합니다.",
+        "관측한 사용 변화와 예측을 구분하고 날짜 경계·공백·초기화 전후의 불확실성을 표시합니다.",
+        "계정 변경·로그아웃·기록 삭제와 진행 중 조회를 안전하게 조율합니다.",
+        "수동 저장·내보내기와 화면 재생성 후 상태 복구, 삭제 기록의 재이관 방지를 보강했습니다."
+      ]
+    },
+    "en": {
+      "title": "What changed",
+      "changes": [
+        "Put remaining allowance, observed daily usage, analytics and manual recording in a prominent dashboard summary.",
+        "Organize analytics into Overview, Trends and Records; improve chart scales, calendar guidance and direct export access.",
+        "Display missing comparison data as unavailable rather than zero; retain observed zero intervals and separate forecast labels.",
+        "Ship the existing local SQLite Usage Ledger and Usage Insights in the Korean update APK.",
+        "Serialize account changes, sign-out and history deletion with in-flight usage requests without blocking the UI.",
+        "Preserve accepted manual saves and exports across activity recreation; isolate stopped maintenance job callbacks.",
+        "Prevent deleted reset-credit events from reimporting and cleared ledgers from rescheduling maintenance.",
+        "Keep the existing application ID and Korean release signing key; versionCode 32 on phone and Wear.",
+        "Local release only. Physical device verification remains required."
+      ]
+    },
+    "source": "- Put remaining allowance, observed daily usage, analytics and manual recording in a prominent dashboard summary.\n- Organize analytics into Overview, Trends and Records; improve chart scales, calendar guidance and direct export access.\n- Display missing comparison data as unavailable rather than zero; retain observed zero intervals and separate forecast labels.\n- Ship the existing local SQLite Usage Ledger and Usage Insights in the Korean update APK.\n- Serialize account changes, sign-out and history deletion with in-flight usage requests without blocking the UI.\n- Preserve accepted manual saves and exports across activity recreation; isolate stopped maintenance job callbacks.\n- Prevent deleted reset-credit events from reimporting and cleared ledgers from rescheduling maintenance.\n- Keep the existing application ID and Korean release signing key; versionCode 32 on phone and Wear.\n- Local release only. Physical device verification remains required."
+  },
+  {
+    "version": "2.8.1",
+    "origin": "korean",
+    "ko": {
+      "title": "한국어판 사용량 인사이트",
+      "changes": [
+        "한국어·영어 UI와 기존 인증·사용량 조회를 보존했습니다.",
+        "주간 사용 속도·기록 기반 소진 예상·초기화 및 크레딧 변화·데이터 최신성을 표시합니다.",
+        "고정된 Pro 메시지 추정치와 불필요한 기록 요청을 제거했습니다.",
+        "한국어판 업데이트 경로를 검증하기 전까지 앱 내 업데이트 다운로드를 비활성화했습니다."
+      ]
+    },
+    "en": {
+      "title": "What changed",
+      "changes": [
+        "Remove the fixed ChatGPT Pro message estimate and history requests.",
+        "Add weekly pace, history-based depletion estimates, observed reset/credit events and data freshness.",
+        "Preserve Korean/English resources, Codex authentication and authoritative usage values.",
+        "Disable in-app release checks and downloads until a Korean release repository is verified."
+      ]
+    },
+    "source": "- Remove the fixed ChatGPT Pro message estimate and history requests.\n- Add weekly pace, history-based depletion estimates, observed reset/credit events and data freshness.\n- Preserve Korean/English resources, Codex authentication and authoritative usage values.\n- Disable in-app release checks and downloads until a Korean release repository is verified.\n\n# Changelog"
+  },
+  {
+    "version": "2.8.0",
+    "origin": "upstream",
+    "ko": {
+      "title": "Free 월간 한도와 분석 설정",
+      "changes": [
+        "Free 전환 계정의 월간 한도를 대시보드·기록·위젯·Wear·Now Bar에서 처리합니다.",
+        "사용 기록의 차트 안내·이전 구간·인사이트·가치 표시를 개별 설정할 수 있습니다.",
+        "선택적 진단 로그를 도입하고 인증 정보가 노출되지 않도록 필터를 적용했습니다."
+      ]
+    },
+    "en": {
+      "title": "What changed",
+      "changes": [
+        "Free-tier monthly Codex window support: when a paid plan expires to Free, OpenAI's ~30-day monthly limit is parsed and shown across the dashboard, usage history, widgets, Wear, Now Bar, alerts, and adaptive refresh instead of failing with \"no recognizable Codex usage data\" and leaving a stale Pro badge.",
+        "Opt-in diagnostic log tracing and export (unlock via About header taps) with sanitized JSONL logs for process lifecycle, refresh, OAuth, updates, widgets, Now Bar, and Wear sync.",
+        "Usage-history Customize checklist so chart guide, previous-window list, insight rows, and value estimates can be shown or hidden individually; defaults are decluttered.",
+        "Monthly-window self-tests cover free-tier parsing, 28/31-day drift, long-window fallbacks, and the downgrade→resubscribe flow; diagnostic sanitizer coverage redacts credentials, emails, JWTs, and OAuth query params.",
+        "Removed the one-time alpha bootstrap workflow now that the `alpha` branch exists, and documented release-channel etiquette for agents.",
+        "Previously shipped to the alpha channel as 2.8.0-alpha.1."
+      ]
+    },
+    "source": "### Added\n\n- Free-tier monthly Codex window support: when a paid plan expires to Free, OpenAI's ~30-day monthly limit is parsed and shown across the dashboard, usage history, widgets, Wear, Now Bar, alerts, and adaptive refresh instead of failing with \"no recognizable Codex usage data\" and leaving a stale Pro badge (#92).\n- Opt-in diagnostic log tracing and export (unlock via About header taps) with sanitized JSONL logs for process lifecycle, refresh, OAuth, updates, widgets, Now Bar, and Wear sync (#91).\n- Usage-history Customize checklist so chart guide, previous-window list, insight rows, and value estimates can be shown or hidden individually; defaults are decluttered (#89).\n\n### Development\n\n- Monthly-window self-tests cover free-tier parsing, 28/31-day drift, long-window fallbacks, and the downgrade→resubscribe flow; diagnostic sanitizer coverage redacts credentials, emails, JWTs, and OAuth query params (#91, #92).\n- Removed the one-time alpha bootstrap workflow now that the `alpha` branch exists, and documented release-channel etiquette for agents (#90).\n- Previously shipped to the alpha channel as 2.8.0-alpha.1.\n\n**Full Changelog**: https://github.com/BenItBuhner/Codex-Meter/compare/v2.7.0...v2.8.0 <!-- pragma: allowlist secret -->"
+  },
+  {
+    "version": "2.7.0",
+    "origin": "upstream",
+    "ko": {
+      "title": "구간을 살펴보는 차트",
+      "changes": [
+        "차트를 움직이며 한도 구간별 기록과 사용 흐름을 살펴보는 분석을 추가했습니다.",
+        "원본 앱의 Alpha 업데이트 채널과 같은 서명을 사용하는 채널 전환을 도입했습니다."
+      ]
+    },
+    "en": {
+      "title": "What changed",
+      "changes": [
+        "Alpha release channel with one-tap in-place switching: Settings → Updates → Update channel opts into signed alpha builds, and returning to stable installs in place with no uninstall or data loss because alpha builds share the stable signing key and version code.",
+        "Scrubbable usage-history analytics with per-window insights and plan value estimates.",
+        "New `alpha` branch (auto-created by CI after merge) feeds `v*-alpha.N` tags; release CI publishes them as GitHub prereleases, never marks them latest, and enforces the shared-versionCode invariant that keeps channel switching downgrade-free.",
+        "Channel-selection self-tests and source guards cover stable/alpha update picks, alpha-to-alpha upgrades, stable promotions, and the return-to-stable flow."
+      ]
+    },
+    "source": "### Added\n\n- Alpha release channel with one-tap in-place switching: Settings → Updates → Update channel opts into signed alpha builds, and returning to stable installs in place with no uninstall or data loss because alpha builds share the stable signing key and version code (#88).\n- Scrubbable usage-history analytics with per-window insights and plan value estimates (#87).\n\n### Development\n\n- New `alpha` branch (auto-created by CI after merge) feeds `v*-alpha.N` tags; release CI publishes them as GitHub prereleases, never marks them latest, and enforces the shared-versionCode invariant that keeps channel switching downgrade-free (#88).\n- Channel-selection self-tests and source guards cover stable/alpha update picks, alpha-to-alpha upgrades, stable promotions, and the return-to-stable flow (#88).\n\n**Full Changelog**: https://github.com/BenItBuhner/Codex-Meter/compare/v2.6.10...v2.7.0 <!-- pragma: allowlist secret -->"
+  },
+  {
+    "version": "2.6.10",
+    "origin": "upstream",
+    "ko": {
+      "title": "빈 카드와 위젯 크기 보정",
+      "changes": [
+        "데이터가 없는 한도·크레딧 카드는 홈에서 다시 자동으로 숨깁니다.",
+        "추가 한도를 제외한 뒤 위젯의 자동 레이아웃이 과하게 큰 게이지로 변하는 문제를 고쳤습니다."
+      ]
+    },
+    "en": {
+      "title": "What changed",
+      "changes": [
+        "Restored dashboard auto-hide for empty usage-credit, reset-credit, and missing-window cards. The 2.6.9 blank-placeholder behavior was intended for widgets only, not the home-screen dashboard.",
+        "Adaptive widget layouts no longer flip to two oversized dials after Spark/additional-limit meters are stripped from saved configs; multi-usage selections migrate to Codex 5-hour + weekly so tall Adaptive sizing keeps progress bars.",
+        "Shared `resolveVisibleForWidget` / `resolvedSingleUsageMetric` migration helpers cover layout, slot selection, config load, and lock widgets."
+      ]
+    },
+    "source": "### Fixed\n\n- Restored dashboard auto-hide for empty usage-credit, reset-credit, and missing-window cards. The 2.6.9 blank-placeholder behavior was intended for widgets only, not the home-screen dashboard (#85).\n- Adaptive widget layouts no longer flip to two oversized dials after Spark/additional-limit meters are stripped from saved configs; multi-usage selections migrate to Codex 5-hour + weekly so tall Adaptive sizing keeps progress bars (#85).\n\n### Development\n\n- Shared `resolveVisibleForWidget` / `resolvedSingleUsageMetric` migration helpers cover layout, slot selection, config load, and lock widgets (#85).\n\n**Full Changelog**: https://github.com/BenItBuhner/Codex-Meter/compare/v2.6.9...v2.6.10 <!-- pragma: allowlist secret -->"
+  },
+  {
+    "version": "2.6.9",
+    "origin": "upstream",
+    "ko": {
+      "title": "위젯 항목을 더 단순하게",
+      "changes": [
+        "홈·잠금 위젯은 기본 사용 한도·초기화·Reset Credit 중심으로 정리했습니다.",
+        "위젯 표시 항목을 길게 눌러 순서를 바꿀 수 있습니다.",
+        "당시 위젯의 데이터 없는 항목은 빈 슬롯을 유지했습니다. 한국어판 2.8.3에서 표시 정책을 개선했습니다."
+      ]
+    },
+    "en": {
+      "title": "What changed",
+      "changes": [
+        "Home and lock widgets no longer offer GPT-5.3-Codex-Spark or other model-specific additional limits; those stay on the in-app dashboard while widgets stick to Codex 5-hour/weekly, next-reset, and reset-credit meters.",
+        "Customize widget meters can be drag-reordered (handle or long-press) so slot priority matches the user’s order, matching Edit dashboard.",
+        "Edit dashboard / Settings visibility switches keep toggled-on sections on screen with a blank dash placeholder when OpenAI has not reported data yet, instead of auto-hiding empty cards inconsistently.",
+        "Selected widget meters that fail to resolve no longer collapse away; they keep a reserved blank dash slot.",
+        "Regression coverage and static checks updated for the Spark-free widget catalog, dashboard placeholder visibility, and widget meter drag reorder."
+      ]
+    },
+    "source": "### Changed\n\n- Home and lock widgets no longer offer GPT-5.3-Codex-Spark or other model-specific additional limits; those stay on the in-app dashboard while widgets stick to Codex 5-hour/weekly, next-reset, and reset-credit meters (#84).\n- Customize widget meters can be drag-reordered (handle or long-press) so slot priority matches the user’s order, matching Edit dashboard (#84).\n- Edit dashboard / Settings visibility switches keep toggled-on sections on screen with a blank dash placeholder when OpenAI has not reported data yet, instead of auto-hiding empty cards inconsistently (#84).\n\n### Fixed\n\n- Selected widget meters that fail to resolve no longer collapse away; they keep a reserved blank dash slot (#84).\n\n### Development\n\n- Regression coverage and static checks updated for the Spark-free widget catalog, dashboard placeholder visibility, and widget meter drag reorder (#84).\n\n**Full Changelog**: https://github.com/BenItBuhner/Codex-Meter/compare/v2.6.8...v2.6.9 <!-- pragma: allowlist secret -->"
+  },
+  {
+    "version": "2.6.8",
+    "origin": "upstream",
+    "ko": {
+      "title": "위젯을 내 방식대로",
+      "changes": [
+        "홈·삼성 잠금 위젯에서 자동·게이지·막대 레이아웃과 표시 항목을 선택할 수 있습니다.",
+        "잔여 Reset Credit이 없거나 불명확하면 관련 카드를 숨깁니다.",
+        "관측 한도가 없으면 홈 사용 기록을 숨깁니다.",
+        "초기화 시각의 작은 차이로 부족 알림이 반복되는 문제를 고쳤습니다."
+      ]
+    },
+    "en": {
+      "title": "What changed",
+      "changes": [
+        "Home and Samsung lock widget layout and meter customization: choose Adaptive by size, Dials, or Progress bars, and pick which Codex 5-hour/weekly, Spark (and other additional limits), next-reset, and reset-credits meters fill the available slots.",
+        "Reset-credit cards auto-hide when no resets are available (or inventory is unknown), even if the Edit dashboard / Settings toggle is on.",
+        "Usage history stays off the Android dashboard until OpenAI reports a 5-hour or weekly window that can feed a burn chart.",
+        "Usage-credit balances on iOS now hide when zero, near-zero, or negative, matching Android.",
+        "Low-usage alerts no longer re-fire every adaptive refresh when OpenAI's reset timestamp drifts slightly within the same usage window; dedupe uses the same reset-time tolerance as local usage history.",
+        "Expanded regression coverage for widget meter catalogs, capacity/layout preferences, stale meter fallbacks, reset-credit auto-hide, and low-usage alert dedupe."
+      ]
+    },
+    "source": "### Added\n\n- Home and Samsung lock widget layout and meter customization: choose Adaptive by size, Dials, or Progress bars, and pick which Codex 5-hour/weekly, Spark (and other additional limits), next-reset, and reset-credits meters fill the available slots (#81).\n\n### Changed\n\n- Reset-credit cards auto-hide when no resets are available (or inventory is unknown), even if the Edit dashboard / Settings toggle is on (#80).\n- Usage history stays off the Android dashboard until OpenAI reports a 5-hour or weekly window that can feed a burn chart (#80).\n- Usage-credit balances on iOS now hide when zero, near-zero, or negative, matching Android (#80).\n\n### Fixed\n\n- Low-usage alerts no longer re-fire every adaptive refresh when OpenAI's reset timestamp drifts slightly within the same usage window; dedupe uses the same reset-time tolerance as local usage history (#82).\n\n### Development\n\n- Expanded regression coverage for widget meter catalogs, capacity/layout preferences, stale meter fallbacks, reset-credit auto-hide, and low-usage alert dedupe (#80, #81, #82).\n\n**Full Changelog**: https://github.com/BenItBuhner/Codex-Meter/compare/v2.6.7...v2.6.8 <!-- pragma: allowlist secret -->"
+  },
+  {
+    "version": "2.6.7",
+    "origin": "upstream",
+    "ko": {
+      "title": "카드 순서와 디자인 통일",
+      "changes": [
+        "Reset Credit을 다른 카드와 함께 순서 변경·숨김 가능한 항목으로 만들었습니다.",
+        "크레딧 카드의 제목·아이콘·정렬을 사용량 카드와 맞췄습니다."
+      ]
+    },
+    "en": {
+      "title": "What changed",
+      "changes": [
+        "Reset credits is now a real dashboard section that reorders and hides with the rest of the cards, so the usage-history chart (or any other card) can be placed below it instead of the reset-credit card being pinned to the bottom of the page.",
+        "Reset-credit and usage-credit cards use bold in-card titles with left-aligned icon rows, matching the 5-hour, weekly, and usage-history cards, instead of external One UI section separators that looked inconsistent."
+      ]
+    },
+    "source": "### Fixed\n\n- Reset credits is now a real dashboard section that reorders and hides with the rest of the cards, so the usage-history chart (or any other card) can be placed below it instead of the reset-credit card being pinned to the bottom of the page.\n- Reset-credit and usage-credit cards use bold in-card titles with left-aligned icon rows, matching the 5-hour, weekly, and usage-history cards, instead of external One UI section separators that looked inconsistent.\n\n**Full Changelog**: https://github.com/BenItBuhner/Codex-Meter/compare/v2.6.6...v2.6.7 <!-- pragma: allowlist secret -->"
+  },
+  {
+    "version": "2.6.6",
+    "origin": "upstream",
+    "ko": {
+      "title": "보여줄 정보만 고르기",
+      "changes": [
+        "대시보드 순서 변경 화면에서 각 한도와 카드의 표시 여부를 고를 수 있습니다.",
+        "관측되지 않은 한도는 빈 차트를 보여주지 않습니다.",
+        "한도 숨김 설정을 설정 이전에 포함했습니다.",
+        "크레딧 카드의 One UI 표시를 복구했습니다."
+      ]
+    },
+    "en": {
+      "title": "What changed",
+      "changes": [
+        "Visibility switches on every row of the Edit dashboard screen so usage cards can be hidden or shown while rearranging them, including per-limit control over model-specific limits.",
+        "Usage history is now its own dashboard section that can be reordered and hidden like the other usage cards, on the dashboard, in the edit screen, and in Settings → Refresh & usage.",
+        "5-hour and weekly burn charts hide from the usage-history card and the full history screen while OpenAI has not yet reported those windows, replacing blank \"Waiting for usage data\" graphs with a short hint.",
+        "Dashboard visibility and hidden-section choices are included in settings transfer exports.",
+        "Restored the One UI design for the reset-credit and usage-credit sections (left-aligned Separator + CardItemView rows with icons) that regressed when the dashboard-reordering branch superseded the earlier cleanup.",
+        "Expanded dashboard-section regression coverage for the usage-history key and hidden-section CSV round-trips."
+      ]
+    },
+    "source": "### Added\n\n- Visibility switches on every row of the Edit dashboard screen so usage cards can be hidden or shown while rearranging them, including per-limit control over model-specific limits.\n- Usage history is now its own dashboard section that can be reordered and hidden like the other usage cards, on the dashboard, in the edit screen, and in Settings → Refresh & usage.\n\n### Changed\n\n- 5-hour and weekly burn charts hide from the usage-history card and the full history screen while OpenAI has not yet reported those windows, replacing blank \"Waiting for usage data\" graphs with a short hint.\n- Dashboard visibility and hidden-section choices are included in settings transfer exports.\n\n### Fixed\n\n- Restored the One UI design for the reset-credit and usage-credit sections (left-aligned Separator + CardItemView rows with icons) that regressed when the dashboard-reordering branch superseded the earlier cleanup.\n\n### Development\n\n- Expanded dashboard-section regression coverage for the usage-history key and hidden-section CSV round-trips.\n\n**Full Changelog**: https://github.com/BenItBuhner/Codex-Meter/compare/v2.6.5...v2.6.6 <!-- pragma: allowlist secret -->"
+  },
+  {
+    "version": "2.6.5",
+    "origin": "upstream",
+    "ko": {
+      "title": "로컬 기록과 반응형 위젯",
+      "changes": [
+        "로컬 사용 기록·소비 차트·추세 기반 속도 추정을 추가했습니다.",
+        "홈·잠금 위젯의 단일 게이지가 크기에 맞춰 조절됩니다.",
+        "Wear의 타일·컴플리케이션 표시와 휴대폰 대시보드 순서 변경을 개선했습니다."
+      ]
+    },
+    "en": {
+      "title": "What changed",
+      "changes": [
+        "Local usage history with burn charts and trend-aware pace estimates on Android.",
+        "Responsive single-dial home and lock widgets that adapt to available size, with clarified Both windows / 5-hour only / Weekly only allowance labels.",
+        "Samsung One UI Watch modular tile metadata (2×2 overview and 2×1 focused tiles), redesigned Wear tiles with One UI Sans and battery-style dials, and adaptive complications across short/long text, ranged/goal progress, and image slots.",
+        "Drag-to-reorder dashboard sections for the 5-hour limit, weekly limit, additional model limits, and usage-credit balance, with a One UI edit screen and Settings entry.",
+        "Usage-credit balance cards auto-hide when the balance is empty, effectively zero, negative, or absent.",
+        "Widget allowance configuration uses shared One UI choice dialogs on phone and lock widgets.",
+        "Expanded regression coverage for usage-credit auto-hide, dashboard section order merging, Wear modular tile metadata, and widget configuration wiring."
+      ]
+    },
+    "source": "### Added\n\n- Local usage history with burn charts and trend-aware pace estimates on Android (#68).\n- Responsive single-dial home and lock widgets that adapt to available size, with clarified Both windows / 5-hour only / Weekly only allowance labels (#68).\n- Samsung One UI Watch modular tile metadata (2×2 overview and 2×1 focused tiles), redesigned Wear tiles with One UI Sans and battery-style dials, and adaptive complications across short/long text, ranged/goal progress, and image slots (#67).\n- Drag-to-reorder dashboard sections for the 5-hour limit, weekly limit, additional model limits, and usage-credit balance, with a One UI edit screen and Settings entry (#75).\n\n### Changed\n\n- Usage-credit balance cards auto-hide when the balance is empty, effectively zero, negative, or absent (#75).\n- Widget allowance configuration uses shared One UI choice dialogs on phone and lock widgets (#68).\n\n### Development\n\n- Expanded regression coverage for usage-credit auto-hide, dashboard section order merging, Wear modular tile metadata, and widget configuration wiring (#67, #68, #75).\n\n**Full Changelog**: https://github.com/BenItBuhner/Codex-Meter/compare/v2.6.0...v2.6.5 <!-- pragma: allowlist secret -->"
+  },
+  {
+    "version": "2.6.0",
+    "origin": "upstream",
+    "ko": {
+      "title": "상황에 맞는 자동 새로고침",
+      "changes": [
+        "잔여량·초기화·최근 사용·조용한 시간·실패에 맞춰 조회 간격을 조절합니다.",
+        "추가 모델 한도와 구매한 사용 크레딧을 별도로 표시합니다.",
+        "대시보드 항목별 표시 설정과 안전한 기본값 이관을 추가했습니다.",
+        "One UI 디자인 라이브러리와 Wear 최신성 표시를 개선했습니다."
+      ]
+    },
+    "en": {
+      "title": "What changed",
+      "changes": [
+        "Adaptive Automatic refresh mode (now the default) on Android and iOS that adjusts cadence from remaining quota, reset proximity, recent engagement, quiet hours, accelerated usage, and failure backoff.",
+        "Adaptive usage dashboard sections that preserve and render named additional rate limits such as GPT-5.3-Codex-Spark, hide missing standard windows instead of empty cards, and show purchased usage-credit balances separately from reset credits.",
+        "Dashboard visibility controls on Android and iOS so users choose which usage sections appear, with safe migration defaults.",
+        "Bumped the phone app One UI design library to `0.9.14+oneui8` and refreshed `android/vendor/m2` so offline and release builds resolve the new AAR without GitHub Packages auth.",
+        "Wear freshness now follows the phone's effective adaptive refresh cadence.",
+        "One UI `CardItemView` / `SwitchItemView` RTL summary `ViewStub` inflation via the design-library update.",
+        "Expanded regression coverage for adaptive refresh policy and settings migration, plus adaptive usage parsing for partial, additional-only, and credit-only responses."
+      ]
+    },
+    "source": "### Added\n\n- Adaptive Automatic refresh mode (now the default) on Android and iOS that adjusts cadence from remaining quota, reset proximity, recent engagement, quiet hours, accelerated usage, and failure backoff (#71).\n- Adaptive usage dashboard sections that preserve and render named additional rate limits such as GPT-5.3-Codex-Spark, hide missing standard windows instead of empty cards, and show purchased usage-credit balances separately from reset credits (#70).\n- Dashboard visibility controls on Android and iOS so users choose which usage sections appear, with safe migration defaults (#70).\n\n### Changed\n\n- Bumped the phone app One UI design library to `0.9.14+oneui8` and refreshed `android/vendor/m2` so offline and release builds resolve the new AAR without GitHub Packages auth (#69).\n- Wear freshness now follows the phone's effective adaptive refresh cadence (#71).\n\n### Fixed\n\n- One UI `CardItemView` / `SwitchItemView` RTL summary `ViewStub` inflation via the design-library update (#69).\n\n### Development\n\n- Expanded regression coverage for adaptive refresh policy and settings migration, plus adaptive usage parsing for partial, additional-only, and credit-only responses (#70, #71).\n\n**Full Changelog**: https://github.com/BenItBuhner/Codex-Meter/compare/v2.5.0...v2.6.0 <!-- pragma: allowlist secret -->"
+  },
+  {
+    "version": "2.5.0",
+    "origin": "upstream",
+    "ko": {
+      "title": "손목에서 확인하는 사용량",
+      "changes": [
+        "Wear OS 동반 앱 APK, 사용량·설정 동기화 상태를 정리했습니다.",
+        "5시간·주간·초기화·모니터 타일과 컴플리케이션을 제공했습니다.",
+        "Wear의 다크 디자인·버튼·아이콘을 휴대폰과 맞췄습니다.",
+        "로그아웃 시 워치의 캐시와 모니터도 정리하고 조회 오류를 알립니다.",
+        "소진된 Now Bar와 워치 모니터에는 다음 초기화 시간을 표시합니다."
+      ]
+    },
+    "en": {
+      "title": "What changed",
+      "changes": [
+        "Fully supported Wear OS companion distribution with a signed `CodexMeter-Wear-2.5.0.apk` attached directly to tagged GitHub Releases alongside the phone APK and shared SHA-256 checksums.",
+        "Phone-owned Wear sync status for sign-in, refresh progress and errors, initial state hydration, plan and limit state, reset credits, stale data, and accelerated-usage settings.",
+        "Wear-native overview, five-hour, weekly, reset, and monitor Tiles; five-hour, weekly, dual-usage, and next-reset Complications; and promoted Ongoing Activity / Live Update monitoring.",
+        "Rebuilt the Wear application and settings around the Android app's One UI dark design system, including matching typography and colors, 28dp cards, true pill controls, stateful touch feedback, One UI settings rows, rounded popup surfaces, and explicitly styled switches.",
+        "Replaced the generated Wear launcher artwork with the canonical Android adaptive icon layers and official Codex notification mark.",
+        "Updated the Wear dependency stack and compile platform for current Wear OS releases while retaining the Android 16 target behavior.",
+        "Exhausted Now Bar and Wear monitor windows show their reset countdown instead of an unhelpful `0%`.",
+        "Signing out now clears cached usage and active monitor state from the watch instead of leaving sensitive stale data visible.",
+        "Wear refresh requests return useful progress and failure state, and opening the app hydrates existing Data Layer items instead of waiting indefinitely for another phone update.",
+        "Removed release-accessible fake demo usage that could be mistaken for real synchronized account data.",
+        "Tagged GitHub Releases now publish the Wear APK that CI already built and verified, rather than listing it only inside `SHA256SUMS.txt`.",
+        "Added regression coverage for Wear sync clear/status payloads, pace settings, stale/account formatting, canonical icon parity, and public Wear release-asset publication.",
+        "Validated the signed app, all five Tiles, all four Complications, One UI controls, and promoted ongoing notification on a Wear OS 6.1 large-round emulator."
+      ]
+    },
+    "source": "### Added\n\n- Fully supported Wear OS companion distribution with a signed `CodexMeter-Wear-2.5.0.apk` attached directly to tagged GitHub Releases alongside the phone APK and shared SHA-256 checksums.\n- Phone-owned Wear sync status for sign-in, refresh progress and errors, initial state hydration, plan and limit state, reset credits, stale data, and accelerated-usage settings.\n- Wear-native overview, five-hour, weekly, reset, and monitor Tiles; five-hour, weekly, dual-usage, and next-reset Complications; and promoted Ongoing Activity / Live Update monitoring.\n\n### Changed\n\n- Rebuilt the Wear application and settings around the Android app's One UI dark design system, including matching typography and colors, 28dp cards, true pill controls, stateful touch feedback, One UI settings rows, rounded popup surfaces, and explicitly styled switches.\n- Replaced the generated Wear launcher artwork with the canonical Android adaptive icon layers and official Codex notification mark.\n- Updated the Wear dependency stack and compile platform for current Wear OS releases while retaining the Android 16 target behavior.\n- Exhausted Now Bar and Wear monitor windows show their reset countdown instead of an unhelpful `0%`.\n\n### Fixed\n\n- Signing out now clears cached usage and active monitor state from the watch instead of leaving sensitive stale data visible.\n- Wear refresh requests return useful progress and failure state, and opening the app hydrates existing Data Layer items instead of waiting indefinitely for another phone update.\n- Removed release-accessible fake demo usage that could be mistaken for real synchronized account data.\n- Tagged GitHub Releases now publish the Wear APK that CI already built and verified, rather than listing it only inside `SHA256SUMS.txt`.\n\n### Development\n\n- Added regression coverage for Wear sync clear/status payloads, pace settings, stale/account formatting, canonical icon parity, and public Wear release-asset publication.\n- Validated the signed app, all five Tiles, all four Complications, One UI controls, and promoted ongoing notification on a Wear OS 6.1 large-round emulator.\n\n**Full Changelog**: https://github.com/BenItBuhner/Codex-Meter/compare/v2.4.3...v2.5.0 <!-- pragma: allowlist secret -->"
+  },
+  {
+    "version": "2.4.3",
+    "origin": "upstream",
+    "ko": {
+      "title": "테마 선택 화면 복구",
+      "changes": [
+        "밝게·어둡게 테마의 미리보기를 나란히 표시하고 시스템 테마 선택을 유지했습니다."
+      ]
+    },
+    "en": {
+      "title": "What changed",
+      "changes": [
+        "Android Appearance settings once again show the illustrated Light and Dark theme options side by side, while preserving System default behavior in the redesigned settings navigation."
+      ]
+    },
+    "source": "### Fixed\n\n- Android Appearance settings once again show the illustrated Light and Dark theme options side by side, while preserving System default behavior in the redesigned settings navigation.\n\n**Full Changelog**: https://github.com/BenItBuhner/Codex-Meter/compare/v2.4.2...v2.4.3 <!-- pragma: allowlist secret -->"
+  },
+  {
+    "version": "2.4.2",
+    "origin": "upstream",
+    "ko": {
+      "title": "필요한 설정을 찾기 쉽게",
+      "changes": [
+        "집중 사용 경고를 끄고 속도 표시만 유지할 수 있습니다.",
+        "Reset Credit 만료 상세를 표시했습니다.",
+        "설정 허브를 외형·조회·알림·Now Bar·업데이트·이전·개인정보로 정리했습니다.",
+        "첫 실행과 설정 화면의 여백을 보정했습니다."
+      ]
+    },
+    "en": {
+      "title": "What changed",
+      "changes": [
+        "Off option for accelerated-usage warning sensitivity so pace estimates can stay on without orange warnings or matching Now Bar auto-start triggers.",
+        "Reset-credit expiration details on the dashboard and inventory, with soonest-expiring credit selection when redeeming.",
+        "Android Settings now uses a compact hub with focused destinations for appearance, refresh and usage, notifications, Now Bar, updates, transfer, and privacy, revealing nested options only when their parent feature is enabled.",
+        "Onboarding card spacing and Settings bottom padding no longer collapse against adjacent cards or the screen edge."
+      ]
+    },
+    "source": "### Added\n\n- Off option for accelerated-usage warning sensitivity so pace estimates can stay on without orange warnings or matching Now Bar auto-start triggers (#57).\n- Reset-credit expiration details on the dashboard and inventory, with soonest-expiring credit selection when redeeming (#56).\n\n### Changed\n\n- Android Settings now uses a compact hub with focused destinations for appearance, refresh and usage, notifications, Now Bar, updates, transfer, and privacy, revealing nested options only when their parent feature is enabled (#54).\n\n### Fixed\n\n- Onboarding card spacing and Settings bottom padding no longer collapse against adjacent cards or the screen edge (#52).\n\n**Full Changelog**: https://github.com/BenItBuhner/Codex-Meter/compare/v2.4.1...v2.4.2 <!-- pragma: allowlist secret -->"
+  },
+  {
+    "version": "2.4.1",
+    "origin": "upstream",
+    "ko": {
+      "title": "Live Update 권한 반영",
+      "changes": [
+        "실시간 알림 권한이 바뀌면 활성 모니터에 즉시 반영합니다.",
+        "Android 16 버전에 따른 Live Update 조건과 시스템 아이콘 표시를 보정했습니다."
+      ]
+    },
+    "en": {
+      "title": "What changed",
+      "changes": [
+        "Active Android Live Updates now rebuild immediately after promoted-notification access changes, allowing automatic Samsung fallback and explicit Android modes to adopt the newly available notification contract without waiting for another usage refresh.",
+        "Live Update construction now adapts to both early Android 16's required colorization and newer uncolorized promotion rules, while notification and Now Bar Codex icons use SystemUI-compatible vector syntax."
+      ]
+    },
+    "source": "### Fixed\n\n- Active Android Live Updates now rebuild immediately after promoted-notification access changes, allowing automatic Samsung fallback and explicit Android modes to adopt the newly available notification contract without waiting for another usage refresh.\n- Live Update construction now adapts to both early Android 16's required colorization and newer uncolorized promotion rules, while notification and Now Bar Codex icons use SystemUI-compatible vector syntax.\n\n**Full Changelog**: https://github.com/BenItBuhner/Codex-Meter/compare/v2.4.0...v2.4.1 <!-- pragma: allowlist secret -->"
+  },
+  {
+    "version": "2.4.0",
+    "origin": "upstream",
+    "ko": {
+      "title": "Wear·새로고침·화면 옵션 확장",
+      "changes": [
+        "Wear OS 동반 앱과 휴대폰↔워치 사용량·설정 동기화를 추가했습니다.",
+        "업데이트 확인 간격과 새 버전 알림, 사용 속도 예상과 경고를 설정할 수 있습니다.",
+        "위젯 배경을 완전히 끄거나 불투명도를 선택할 수 있습니다.",
+        "Material You 강조색과 한도 관측 시각 기반 초기화 표시를 정리했습니다.",
+        "원본 프로젝트에 iOS 클라이언트도 추가되었습니다. 한국어판 배포 대상은 Android·Wear입니다."
+      ]
+    },
+    "en": {
+      "title": "What changed",
+      "changes": [
+        "Wear OS companion app with phone↔watch usage and settings sync, plus tiles, complications, and Ongoing Activity monitoring.",
+        "Native iOS / iPadOS SwiftUI + WidgetKit client under `ios/`, with portable meters, reset credits, notifications, widgets, and Keychain-backed auth.",
+        "Android settings transfer: export and import selected sections (app settings, notifications, Now Bar, and ChatGPT authentication) from Settings, with explicit warnings when authentication tokens are included.",
+        "Configurable automatic update-check frequency (hourly through weekly) and optional notifications when a newer signed GitHub release is available.",
+        "Estimated usage-pace projections on dashboard cards, with One UI functional-orange accelerated-usage warnings and matching Now Bar auto-start / regress triggers.",
+        "Widget Background toggle in customize settings so the fill can be turned off entirely, matching official One UI widgets.",
+        "Optional Material You accent switch under Settings → Appearance so app accents can follow the system palette on Android 12+.",
+        "Default theme primary now uses Samsung's official One UI Primary (`#0381FE`) instead of the lighter SESL sample blue.",
+        "Widget opacity control now uses three discrete fill strengths (56% / 88% / 100%) instead of four, aligning with current Samsung One UI widget transparency steps.",
+        "Centralized observation-based reset fallback timing across the dashboard, widgets, Now Bar, and Wear surfaces.",
+        "App update and release-history loading now use a centered One UI spinner instead of clipped status text, and idle update cards no longer reserve empty status-line height.",
+        "Live usage monitor progress uses a plain progress dot, and Now Bar / notification Codex logos adapt to light, dark, and accent surfaces without a baked white square.",
+        "Restructured the repository into `android/` and `ios/` project roots with thin root wrappers and CI paths pointed at the Android Gradle tree.",
+        "Fixed Cloud Agent setup to invoke `android/gradlew` after the monorepo move.",
+        "Expanded regression coverage for settings transfer, update-check frequency, usage-pace estimates, widget fill controls, Material You preferences, and Wear sync contracts."
+      ]
+    },
+    "source": "### Added\n\n- Wear OS companion app with phone↔watch usage and settings sync, plus tiles, complications, and Ongoing Activity monitoring (#37).\n- Native iOS / iPadOS SwiftUI + WidgetKit client under `ios/`, with portable meters, reset credits, notifications, widgets, and Keychain-backed auth (#22).\n- Android settings transfer: export and import selected sections (app settings, notifications, Now Bar, and ChatGPT authentication) from Settings, with explicit warnings when authentication tokens are included (#42).\n- Configurable automatic update-check frequency (hourly through weekly) and optional notifications when a newer signed GitHub release is available (#38).\n- Estimated usage-pace projections on dashboard cards, with One UI functional-orange accelerated-usage warnings and matching Now Bar auto-start / regress triggers (#47).\n- Widget Background toggle in customize settings so the fill can be turned off entirely, matching official One UI widgets (#45).\n- Optional Material You accent switch under Settings → Appearance so app accents can follow the system palette on Android 12+ (#44).\n\n### Changed\n\n- Default theme primary now uses Samsung's official One UI Primary (`#0381FE`) instead of the lighter SESL sample blue (#44).\n- Widget opacity control now uses three discrete fill strengths (56% / 88% / 100%) instead of four, aligning with current Samsung One UI widget transparency steps (#45).\n- Centralized observation-based reset fallback timing across the dashboard, widgets, Now Bar, and Wear surfaces (#47).\n\n### Fixed\n\n- App update and release-history loading now use a centered One UI spinner instead of clipped status text, and idle update cards no longer reserve empty status-line height (#35).\n- Live usage monitor progress uses a plain progress dot, and Now Bar / notification Codex logos adapt to light, dark, and accent surfaces without a baked white square (#36).\n\n### Development\n\n- Restructured the repository into `android/` and `ios/` project roots with thin root wrappers and CI paths pointed at the Android Gradle tree (#40).\n- Fixed Cloud Agent setup to invoke `android/gradlew` after the monorepo move (#43).\n- Expanded regression coverage for settings transfer, update-check frequency, usage-pace estimates, widget fill controls, Material You preferences, and Wear sync contracts (#37, #38, #42, #44, #45, #47).\n\n**Full Changelog**: https://github.com/BenItBuhner/Codex-Meter/compare/v2.3.3...v2.4.0 <!-- pragma: allowlist secret -->"
+  },
+  {
+    "version": "2.3.3",
+    "origin": "upstream",
+    "ko": {
+      "title": "Now Bar 비율을 선택",
+      "changes": [
+        "Now Bar에 표시할 잔여율을 자동·5시간·주간 중 선택할 수 있습니다.",
+        "주간 중심 표시는 W 표시로 구분합니다.",
+        "버튼 모서리와 글자 스타일을 통일하고 설정 변경 시 모니터 상태를 보정했습니다."
+      ]
+    },
+    "en": {
+      "title": "What changed",
+      "changes": [
+        "Now Bar percentage-mode setting (Auto / 5-hour / Weekly) so users choose which remaining percentage drives the live-monitor progress pill, with Auto locking to the auto-start trigger window.",
+        "A `W` prefix on weekly-focused Live Update critical percentage text so compact Now Bar labels stay unambiguous.",
+        "Normalized app, widget, and OAuth action buttons to a full-pill corner radius with consistent 18sp bold labels.",
+        "Changing the percentage mode safely re-posts an active monitor, stops the session if posting fails, and restores Auto to the original auto-start lock instead of recomputing lower-remaining.",
+        "Expanded regression coverage for Now Bar percent-mode selection, settings-change focus resolution, and failed applyPercentModeChange cleanup."
+      ]
+    },
+    "source": "### Added\n\n- Now Bar percentage-mode setting (Auto / 5-hour / Weekly) so users choose which remaining percentage drives the live-monitor progress pill, with Auto locking to the auto-start trigger window (#33).\n- A `W` prefix on weekly-focused Live Update critical percentage text so compact Now Bar labels stay unambiguous (#33).\n\n### Changed\n\n- Normalized app, widget, and OAuth action buttons to a full-pill corner radius with consistent 18sp bold labels (#32).\n- Changing the percentage mode safely re-posts an active monitor, stops the session if posting fails, and restores Auto to the original auto-start lock instead of recomputing lower-remaining (#33).\n\n### Development\n\n- Expanded regression coverage for Now Bar percent-mode selection, settings-change focus resolution, and failed applyPercentModeChange cleanup (#33).\n\n**Full Changelog**: https://github.com/BenItBuhner/Codex-Meter/compare/v2.3.2...v2.3.3 <!-- pragma: allowlist secret -->"
+  },
+  {
+    "version": "2.3.2",
+    "origin": "upstream",
+    "ko": {
+      "title": "삼성 Now Bar 호환성",
+      "changes": [
+        "자동·Android Live Update·삼성 호환 모드를 선택할 수 있습니다.",
+        "갤럭시 펌웨어가 실시간 알림 승격을 허용하지 않을 때 호환 경로로 표시합니다.",
+        "모드 변경 시 오래된 모니터 상태가 남지 않도록 고쳤습니다."
+      ]
+    },
+    "en": {
+      "title": "What changed",
+      "changes": [
+        "Automatic, Android Live Update, and Samsung compatibility display modes for the live usage monitor, including manual overrides for firmware that reports promotion support incorrectly.",
+        "In-app diagnostics for blocked app or live-monitor notifications, plus Samsung developer-option and firmware troubleshooting guidance.",
+        "Automatic mode now keeps Android 16 Live Update promotion and Samsung's private ongoing-activity payload mutually exclusive, selecting the Samsung-compatible path when Galaxy firmware denies platform promotion.",
+        "Changing display modes safely re-posts an active monitor, while failed updates clear stale active state instead of leaving the monitor stuck.",
+        "Restored Now Bar presentation on compatible Samsung firmware where third-party Android Live Updates remain ordinary notifications, while retaining the standard notification fallback on unsupported firmware.",
+        "Added regression coverage for display-mode normalization and firmware-dependent mode resolution."
+      ]
+    },
+    "source": "### Added\n\n- Automatic, Android Live Update, and Samsung compatibility display modes for the live usage monitor, including manual overrides for firmware that reports promotion support incorrectly (#29).\n- In-app diagnostics for blocked app or live-monitor notifications, plus Samsung developer-option and firmware troubleshooting guidance (#29).\n\n### Changed\n\n- Automatic mode now keeps Android 16 Live Update promotion and Samsung's private ongoing-activity payload mutually exclusive, selecting the Samsung-compatible path when Galaxy firmware denies platform promotion (#29).\n- Changing display modes safely re-posts an active monitor, while failed updates clear stale active state instead of leaving the monitor stuck (#29).\n\n### Fixed\n\n- Restored Now Bar presentation on compatible Samsung firmware where third-party Android Live Updates remain ordinary notifications, while retaining the standard notification fallback on unsupported firmware (#29).\n\n### Development\n\n- Added regression coverage for display-mode normalization and firmware-dependent mode resolution (#29).\n\n**Full Changelog**: https://github.com/BenItBuhner/Codex-Meter/compare/v2.3.1...v2.3.2 <!-- pragma: allowlist secret -->"
+  },
+  {
+    "version": "2.3.1",
+    "origin": "upstream",
+    "ko": {
+      "title": "릴리스 글도 읽기 좋게",
+      "changes": [
+        "새로운 기능과 릴리스 기록에 제목·목록·강조·링크가 있는 Markdown 표시를 추가했습니다.",
+        "잔여량이 기준에 도달하면 Now Bar를 자동으로 시작할 수 있습니다.",
+        "앱 내 업데이트가 동작하지 않는 오래된 버전에는 수동 안내를 제공합니다."
+      ]
+    },
+    "en": {
+      "title": "What changed",
+      "changes": [
+        "Configurable Now Bar auto-start when remaining allowance reaches a selected threshold for five-hour, weekly, or both windows, with dismiss suppression for the remainder of that monitor window.",
+        "Rendered GitHub release-note Markdown (headings, lists, emphasis, and links) in the App update What's new section and on each Release history card.",
+        "Treats every release before 2.3.0 as irreversible for in-app installs and sends users to the GitHub release page instead, because those builds lacked a working updater against the canonical repository.",
+        "Expanded regression coverage for Now Bar auto-start thresholds and release-note Markdown / irreversible-update policy."
+      ]
+    },
+    "source": "### Added\n\n- Configurable Now Bar auto-start when remaining allowance reaches a selected threshold for five-hour, weekly, or both windows, with dismiss suppression for the remainder of that monitor window (#26).\n- Rendered GitHub release-note Markdown (headings, lists, emphasis, and links) in the App update What's new section and on each Release history card (#25).\n\n### Changed\n\n- Treats every release before 2.3.0 as irreversible for in-app installs and sends users to the GitHub release page instead, because those builds lacked a working updater against the canonical repository (#25).\n\n### Development\n\n- Expanded regression coverage for Now Bar auto-start thresholds and release-note Markdown / irreversible-update policy (#25, #26).\n\n**Full Changelog**: https://github.com/BenItBuhner/Codex-Meter/compare/v2.3.0...v2.3.1 <!-- pragma: allowlist secret -->"
+  },
+  {
+    "version": "2.3.0",
+    "origin": "upstream",
+    "ko": {
+      "title": "실시간 알림과 업데이트 복구",
+      "changes": [
+        "Android 16 실시간 사용 알림을 재구성하고 Now Bar 승격 상태를 표시했습니다.",
+        "초기화 시간의 대비와 완전히 미사용인 한도의 표시를 정리했습니다.",
+        "원본 앱의 올바른 업데이트 저장소 주소로 연결을 복구했습니다."
+      ]
+    },
+    "en": {
+      "title": "What changed",
+      "changes": [
+        "Rebuilt the Android 16 live usage notification on a dedicated default-importance channel, removed conflicting legacy Samsung metadata, and exposed actual Live Update promotion state for compatible Samsung Now Bar surfaces.",
+        "Improved reset-duration contrast on dashboard usage cards and hid misleading reset countdowns while a usage window remains completely unused, including home and lock-screen widgets.",
+        "Restored in-app update discovery and project links by pointing them at the canonical repository instead of a stale fork.",
+        "Centralized production GitHub release URLs and added regression guards that prevent the stale update source from being reintroduced."
+      ]
+    },
+    "source": "### Fixed\n\n- Rebuilt the Android 16 live usage notification on a dedicated default-importance channel, removed conflicting legacy Samsung metadata, and exposed actual Live Update promotion state for compatible Samsung Now Bar surfaces (#21).\n- Improved reset-duration contrast on dashboard usage cards and hid misleading reset countdowns while a usage window remains completely unused, including home and lock-screen widgets (#23).\n- Restored in-app update discovery and project links by pointing them at the canonical repository instead of a stale fork (#24).\n\n### Development\n\n- Centralized production GitHub release URLs and added regression guards that prevent the stale update source from being reintroduced (#24).\n\n**Full Changelog**: https://github.com/BenItBuhner/Codex-Meter/compare/v2.2.0...v2.3.0 <!-- pragma: allowlist secret -->"
+  },
+  {
+    "version": "2.2.0",
+    "origin": "upstream",
+    "ko": {
+      "title": "업데이트와 실시간 모니터",
+      "changes": [
+        "Reset Credit 만료 알림과 재부팅 후 복구를 추가했습니다.",
+        "일일 업데이트 확인·홈 새 버전 카드·릴리스 기록을 도입했습니다.",
+        "다운로드 파일의 크기·해시·패키지·버전·서명 확인 후 설치 화면을 엽니다.",
+        "업데이트 후 기존 위젯과 설정을 복구합니다.",
+        "Android Live Update와 삼성 Now Bar에서 실제 잔여량을 모니터링합니다.",
+        "다크모드 가독성과 초기화·로그아웃 후 모니터 종료를 개선했습니다."
+      ]
+    },
+    "en": {
+      "title": "What changed",
+      "changes": [
+        "Configurable reset-credit expiry reminders with multiple custom lead times, per-credit scheduling, reboot restoration, and automatic cancellation after sign-out or redemption.",
+        "A reminder action that opens the existing in-app confirmation before redeeming an expiring reset credit.",
+        "Secure in-app update discovery with daily checks, a dashboard update card, manual checks, and release history.",
+        "Verified APK installation that checks HTTPS trust, file size, SHA-256 integrity, package identity, version code, and signing certificate before handing an update to Android.",
+        "Upgrade recovery that preserves widget providers and options, then repairs existing widgets asynchronously after package replacement.",
+        "An optional live usage monitor showing real five-hour and weekly allowance values in Android 16 Live Updates and compatible Samsung Now Bar surfaces, with a standard notification fallback on earlier Android versions.",
+        "The live usage monitor refreshes from new usage snapshots, restores after reboot or app replacement, marks unavailable windows clearly, and stops at the next valid reset or when dismissed, stopped, or signed out.",
+        "Reset-credit expiry reminders revalidate credit state immediately before notifying and coalesce duplicate scheduling state.",
+        "Dashboard usage-card labels now use theme-aware foreground colors and remain readable in dark mode.",
+        "Release-history toolbar and Android back navigation now return through the update flow correctly.",
+        "Expired five-hour usage windows no longer prevent the live monitor from falling back to a future weekly reset.",
+        "Added a debug-only local release fixture for end-to-end updater testing without weakening production update trust.",
+        "Expanded regression coverage for expiry-reminder planning, release parsing and integrity checks, widget upgrade repair, live-monitor lifecycle, and dark-mode usage labels."
+      ]
+    },
+    "source": "### Added\n\n- Configurable reset-credit expiry reminders with multiple custom lead times, per-credit scheduling, reboot restoration, and automatic cancellation after sign-out or redemption (#15).\n- A reminder action that opens the existing in-app confirmation before redeeming an expiring reset credit (#15).\n- Secure in-app update discovery with daily checks, a dashboard update card, manual checks, and release history (#16).\n- Verified APK installation that checks HTTPS trust, file size, SHA-256 integrity, package identity, version code, and signing certificate before handing an update to Android (#16).\n- Upgrade recovery that preserves widget providers and options, then repairs existing widgets asynchronously after package replacement (#16).\n- An optional live usage monitor showing real five-hour and weekly allowance values in Android 16 Live Updates and compatible Samsung Now Bar surfaces, with a standard notification fallback on earlier Android versions (#18).\n\n### Changed\n\n- The live usage monitor refreshes from new usage snapshots, restores after reboot or app replacement, marks unavailable windows clearly, and stops at the next valid reset or when dismissed, stopped, or signed out (#18).\n- Reset-credit expiry reminders revalidate credit state immediately before notifying and coalesce duplicate scheduling state (#15).\n\n### Fixed\n\n- Dashboard usage-card labels now use theme-aware foreground colors and remain readable in dark mode (#19).\n- Release-history toolbar and Android back navigation now return through the update flow correctly (#16).\n- Expired five-hour usage windows no longer prevent the live monitor from falling back to a future weekly reset (#18).\n\n### Development\n\n- Added a debug-only local release fixture for end-to-end updater testing without weakening production update trust (#16).\n- Expanded regression coverage for expiry-reminder planning, release parsing and integrity checks, widget upgrade repair, live-monitor lifecycle, and dark-mode usage labels (#15, #16, #18, #19).\n\n### New Contributors\n\n- @Robertg761 made their first contribution in https://github.com/BenItBuhner/Codex-Meter/pull/18. <!-- pragma: allowlist secret -->\n\n**Full Changelog**: https://github.com/BenItBuhner/Codex-Meter/compare/v2.1.0...v2.2.0 <!-- pragma: allowlist secret -->"
+  },
+  {
+    "version": "2.1.0",
+    "origin": "upstream",
+    "ko": {
+      "title": "첫 실행과 알림 다듬기",
+      "changes": [
+        "단계별 첫 실행 안내와 브라우저 로그인 완료 화면을 추가했습니다.",
+        "예정보다 빨리 잔여량이 늘거나 Reset Credit이 증가하면 선택적으로 알립니다.",
+        "설정 도구 모음과 개인정보 안내를 정리했습니다.",
+        "로그인 중단 처리와 중복·잘못된 회복 알림을 보정했습니다."
+      ]
+    },
+    "en": {
+      "title": "What changed",
+      "changes": [
+        "A resumable four-step One UI onboarding flow for first launch, including sign-in, skip, upgrade, and predictive-back handling.",
+        "A responsive light/dark OAuth completion page that returns users to the app after browser sign-in.",
+        "Optional notifications when five-hour or weekly allowances unexpectedly refill before their scheduled reset.",
+        "An independent notification preference for increases in available reset credits.",
+        "Settings now uses an expanded, collapsible One UI toolbar that keeps primary controls within one-hand reach.",
+        "Local-data and privacy details now live in a dedicated Settings section instead of the dashboard.",
+        "Reset-credit observations are coalesced across usage and detail responses to prevent duplicate increase notifications.",
+        "Suppressed false refill celebrations after reset-credit redemption, including delayed backend propagation.",
+        "Retried credit notifications when Android previously blocked application- or channel-level delivery.",
+        "Cleaned up abandoned OAuth services when onboarding is skipped and hardened callback handling across Android versions.",
+        "Removed obsolete release binaries, recovery documents, generated caches, and superseded direct-build tools.",
+        "Documented the Android toolchain, package-authentication requirements, and release validation path for cloud builds."
+      ]
+    },
+    "source": "### Added\n\n- A resumable four-step One UI onboarding flow for first launch, including sign-in, skip, upgrade, and predictive-back handling (#13).\n- A responsive light/dark OAuth completion page that returns users to the app after browser sign-in (#13).\n- Optional notifications when five-hour or weekly allowances unexpectedly refill before their scheduled reset (#12).\n- An independent notification preference for increases in available reset credits (#12).\n\n### Changed\n\n- Settings now uses an expanded, collapsible One UI toolbar that keeps primary controls within one-hand reach (#9).\n- Local-data and privacy details now live in a dedicated Settings section instead of the dashboard (#10).\n- Reset-credit observations are coalesced across usage and detail responses to prevent duplicate increase notifications (#12).\n\n### Fixed\n\n- Suppressed false refill celebrations after reset-credit redemption, including delayed backend propagation (#12).\n- Retried credit notifications when Android previously blocked application- or channel-level delivery (#12).\n- Cleaned up abandoned OAuth services when onboarding is skipped and hardened callback handling across Android versions (#13).\n\n### Development\n\n- Removed obsolete release binaries, recovery documents, generated caches, and superseded direct-build tools (#11).\n- Documented the Android toolchain, package-authentication requirements, and release validation path for cloud builds (#8)."
+  },
+  {
+    "version": "2.0.0",
+    "origin": "upstream",
+    "ko": {
+      "title": "One UI와 다양한 위젯",
+      "changes": [
+        "대시보드·설정·위젯 설정을 삼성 One UI 디자인으로 개편했습니다.",
+        "반응형 링·4개 게이지·배터리 목록 홈 위젯을 추가했습니다.",
+        "5시간·주간 전용 삼성 잠금 위젯을 제공했습니다.",
+        "위젯 크기·미리보기·투명도·앱 아이콘을 정리했습니다.",
+        "부족·초기화·Reset Credit 증가 알림과 안정적인 빌드 구성을 개선했습니다."
+      ]
+    },
+    "en": {
+      "title": "What changed",
+      "changes": [
+        "Samsung One UI-native dashboard, settings, widget configuration, and About surfaces.",
+        "Responsive ring, four-dial, and battery-list home-screen widget layouts.",
+        "Dedicated five-hour and weekly Samsung lock-screen widget providers.",
+        "Updated adaptive icons, theme assets, previews, opacity controls, and usage wave presentation.",
+        "Gradle wrapper and reproducible Android build configuration with vendored OneUI-Design metadata.",
+        "Reworked navigation, account controls, refresh preferences, and notification settings around SESL components.",
+        "Updated widget rendering and sizing to follow the dimensions supplied by Android and One UI hosts.",
+        "Simplified the release build script to use the Gradle Android plugin.",
+        "Prevented the One UI pull-to-refresh indicator from crashing when its four-dot drawable starts.",
+        "Added deduplicated low-usage alerts for both usage windows and notifications when reset-credit inventory increases.",
+        "Decoupled reset-time reminders from the low-usage threshold and added an immediate notification test action."
+      ]
+    },
+    "source": "### Added\n\n- Samsung One UI-native dashboard, settings, widget configuration, and About surfaces.\n- Responsive ring, four-dial, and battery-list home-screen widget layouts.\n- Dedicated five-hour and weekly Samsung lock-screen widget providers.\n- Updated adaptive icons, theme assets, previews, opacity controls, and usage wave presentation.\n- Gradle wrapper and reproducible Android build configuration with vendored OneUI-Design metadata.\n\n### Changed\n\n- Reworked navigation, account controls, refresh preferences, and notification settings around SESL components.\n- Updated widget rendering and sizing to follow the dimensions supplied by Android and One UI hosts.\n- Simplified the release build script to use the Gradle Android plugin.\n\n### Fixed\n\n- Prevented the One UI pull-to-refresh indicator from crashing when its four-dot drawable starts.\n- Added deduplicated low-usage alerts for both usage windows and notifications when reset-credit inventory increases.\n- Decoupled reset-time reminders from the low-usage threshold and added an immediate notification test action."
+  },
+  {
+    "version": "1.7.0",
+    "origin": "upstream",
+    "ko": {
+      "title": "잠금 화면 초기화 카운트다운",
+      "changes": [
+        "5시간·주간 초기화까지 남은 시간을 잠금 화면에 표시합니다.",
+        "추가 서버 요청 없이 카운트다운을 갱신합니다.",
+        "초기화 알림 소리·기준·한도를 설정하고 재부팅 후 복구합니다.",
+        "예정 초기화 이후 조회와 위젯 갱신을 연결했습니다."
+      ]
+    },
+    "en": {
+      "title": "What changed",
+      "changes": [
+        "Native lock-screen countdowns for the five-hour and weekly reset timestamps.",
+        "Local countdown updates that do not require additional server requests.",
+        "Reset-alert preferences for silent, notification-sound, and alarm-sound delivery.",
+        "Per-limit alert selection and remaining-percentage thresholds.",
+        "Alarm restoration after reboot and application replacement.",
+        "Revised Samsung-style lock-screen gauge geometry with a heavier stroke, smaller diameter, lower visual center, and more deliberate bottom gap.",
+        "Reset alerts now trigger a background usage refresh and update all widget surfaces after the scheduled reset time.",
+        "Notification permission is requested only when alerts are enabled on Android 13 or later.",
+        "Exact-alarm capability is checked on supported Android versions; the scheduler falls back to an inexact idle-aware alarm when unavailable.",
+        "Signing out cancels pending reset alerts."
+      ]
+    },
+    "source": "### Added\n\n- Native lock-screen countdowns for the five-hour and weekly reset timestamps.\n- Local countdown updates that do not require additional server requests.\n- Reset-alert preferences for silent, notification-sound, and alarm-sound delivery.\n- Per-limit alert selection and remaining-percentage thresholds.\n- Alarm restoration after reboot and application replacement.\n\n### Changed\n\n- Revised Samsung-style lock-screen gauge geometry with a heavier stroke, smaller diameter, lower visual center, and more deliberate bottom gap.\n- Reset alerts now trigger a background usage refresh and update all widget surfaces after the scheduled reset time.\n\n### Security and behavior\n\n- Notification permission is requested only when alerts are enabled on Android 13 or later.\n- Exact-alarm capability is checked on supported Android versions; the scheduler falls back to an inexact idle-aware alarm when unavailable.\n- Signing out cancels pending reset alerts."
+  },
+  {
+    "version": "1.6.0",
+    "origin": "upstream",
+    "ko": {
+      "title": "Reset Credit 상세와 위젯 항목",
+      "changes": [
+        "Reset Credit 재고·만료 상세와 당시의 실행 확인 기능을 추가했습니다. 실행 기능은 한국어판 2.8.3에서 제거했습니다.",
+        "실행 후 사용량·크레딧 재조회를 연결했습니다.",
+        "양쪽 한도·5시간만·주간만 위젯 선택과 크레딧 수·만료 표시를 제공했습니다.",
+        "잠금 화면의 게이지·막대·글자 표시와 단일 항목 공간 활용을 개선했습니다."
+      ]
+    },
+    "en": {
+      "title": "What changed",
+      "changes": [
+        "Detailed Codex reset-credit inventory, expiration display, confirmation, and redemption.",
+        "Automatic usage and reset-credit refresh after a successful redemption.",
+        "Both-window, five-hour-only, and weekly-only widget configurations.",
+        "Optional reset-credit count, expiration, and reset action on widgets.",
+        "Supersampled lock-screen ring and gauge geometry.",
+        "Native Android text overlays and native bar progress elements for sharper Samsung lock-screen rendering.",
+        "Single-measurement layouts now reclaim unused space."
+      ]
+    },
+    "source": "### Added\n\n- Detailed Codex reset-credit inventory, expiration display, confirmation, and redemption.\n- Automatic usage and reset-credit refresh after a successful redemption.\n- Both-window, five-hour-only, and weekly-only widget configurations.\n- Optional reset-credit count, expiration, and reset action on widgets.\n\n### Changed\n\n- Supersampled lock-screen ring and gauge geometry.\n- Native Android text overlays and native bar progress elements for sharper Samsung lock-screen rendering.\n- Single-measurement layouts now reclaim unused space."
+  },
+  {
+    "version": "1.5.0",
+    "origin": "upstream",
+    "ko": {
+      "title": "잠금 화면과 AOD, 8가지 표시",
+      "changes": [
+        "삼성 잠금 화면·AOD에서 숫자·링·게이지·막대의 정사각형·가로형 8개 항목을 선택할 수 있습니다.",
+        "런처가 전달하는 크기에 맞춰 그래픽을 렌더링합니다.",
+        "기존 숫자 위젯의 식별자를 유지해 업데이트 후에도 사용할 수 있습니다.",
+        "삼성 호환 메타데이터와 ServiceBox 표시 경로를 정리했습니다."
+      ]
+    },
+    "en": {
+      "title": "What changed",
+      "changes": [
+        "Eight Samsung lock-screen/AOD picker entries: Numbers, Rings, Gauges, and Bars, each in Square (1×1) and Wide (2×1) sizes.",
+        "Dedicated monochrome preview artwork and runtime renderers for every graphic lock-screen style.",
+        "Size-aware lock-screen bitmap rendering using Samsung/Android host-provided `OPTION_APPWIDGET_SIZES` when available.",
+        "Preserved the existing square and wide numeric provider component names so installed 1.4.0 tiles remain valid after upgrading.",
+        "Exposed graphic choices as separate provider components rather than relying on a lock-screen host configuration activity that One UI does not consistently surface.",
+        "Extended the optional Samsung ServiceBox compatibility response to all eight style/size combinations.",
+        "Compiled and decoded all eight provider and companion metadata resources.",
+        "Restricted lock-screen layouts to RemoteViews-safe `FrameLayout`, `TextView`, and `ImageView` classes.",
+        "Signed with the same certificate as 1.2.0–1.4.0 for direct installation over the previous release."
+      ]
+    },
+    "source": "### Added\n\n- Eight Samsung lock-screen/AOD picker entries: Numbers, Rings, Gauges, and Bars, each in Square (1×1) and Wide (2×1) sizes.\n- Dedicated monochrome preview artwork and runtime renderers for every graphic lock-screen style.\n- Size-aware lock-screen bitmap rendering using Samsung/Android host-provided `OPTION_APPWIDGET_SIZES` when available.\n\n### Changed\n\n- Preserved the existing square and wide numeric provider component names so installed 1.4.0 tiles remain valid after upgrading.\n- Exposed graphic choices as separate provider components rather than relying on a lock-screen host configuration activity that One UI does not consistently surface.\n- Extended the optional Samsung ServiceBox compatibility response to all eight style/size combinations.\n\n### Verified\n\n- Compiled and decoded all eight provider and companion metadata resources.\n- Restricted lock-screen layouts to RemoteViews-safe `FrameLayout`, `TextView`, and `ImageView` classes.\n- Signed with the same certificate as 1.2.0–1.4.0 for direct installation over the previous release."
+  },
+  {
+    "version": "1.4.0",
+    "origin": "upstream",
+    "ko": {
+      "title": "삼성 잠금 위젯 호환성",
+      "changes": [
+        "One UI의 단색 AppWidget 메타데이터와 위젯 분류에 맞춰 잠금 위젯을 바꿨습니다.",
+        "정사각형·가로형 잠금/AOD 제공자를 분리했습니다.",
+        "삼성 SystemUI가 위젯 갱신을 전달할 수 있도록 보정했습니다.",
+        "잠금 화면에 허용되는 레이아웃과 삼성 호환 응답을 적용했습니다."
+      ]
+    },
+    "en": {
+      "title": "What changed",
+      "changes": [
+        "Replaced the legacy complication-marker provider with current One UI monotone AppWidget metadata and category routing.",
+        "Added distinct 1x1 square and 2x1 wide lock-screen/AOD providers.",
+        "Exported the compact providers so Samsung SystemUI can deliver update broadcasts.",
+        "Reduced lock-screen layouts to RemoteViews-safe FrameLayout/TextView trees.",
+        "Added Samsung companion metadata, the private 0x2000 widget category, and an optional ServiceBox RemoteViews response path."
+      ]
+    },
+    "source": "- Replaced the legacy complication-marker provider with current One UI monotone AppWidget metadata and category routing.\n- Added distinct 1x1 square and 2x1 wide lock-screen/AOD providers.\n- Exported the compact providers so Samsung SystemUI can deliver update broadcasts.\n- Reduced lock-screen layouts to RemoteViews-safe FrameLayout/TextView trees.\n- Added Samsung companion metadata, the private 0x2000 widget category, and an optional ServiceBox RemoteViews response path."
+  },
+  {
+    "version": "1.3.0",
+    "origin": "upstream",
+    "ko": {
+      "title": "One UI Home과 잠금 화면",
+      "changes": [
+        "위젯 제목을 켜고 끌 수 있게 했습니다. 기본값은 숨김입니다.",
+        "삼성 One UI 잠금 컴플리케이션과 일반 잠금 화면 호환 경로를 추가했습니다.",
+        "삼성 홈의 프레임·블러·셀 크기·미리보기를 연결했습니다.",
+        "One UI 8 화면 여백과 제목 영역, 버튼 배치를 개선했습니다.",
+        "관측값 저장과 오류 해제를 묶고 최신 데이터에서 잘못된 조회 경고가 뜨지 않도록 고쳤습니다.",
+        "기존 서명을 유지하는 업데이트 설치를 지원했습니다."
+      ]
+    },
+    "en": {
+      "title": "What changed",
+      "changes": [
+        "Toggleable widget title, disabled by default for new and existing widget configurations.",
+        "Samsung One UI compact lock-screen complication provider with standard keyguard fallback.",
+        "Samsung One UI Home native frame/blur metadata, supported cell-size metadata, and size-specific picker previews.",
+        "Samsung integration status and lock-screen setup guidance in Settings.",
+        "Reworked One UI 8+ app mode with a larger viewing-area header, Samsung-blue section labels, flat grouped cards, Galaxy-style spacing, and compact toolbar controls.",
+        "Removed app-drawn corner rounding from Samsung One UI widget surfaces so the launcher can own the frame.",
+        "Switched widget text to Samsung's `sec` family when available, with normal platform fallback elsewhere.",
+        "Version 1.3.0 reuses the 1.2.0 signing certificate and supports in-place installation.",
+        "Removed the default `CODEX` text from picker previews and initial widget layouts.",
+        "Made successful snapshot persistence and refresh-error clearing atomic.",
+        "Suppressed misleading red refresh warnings while a newly fetched snapshot is still current.",
+        "Removed clipped toolbar buttons and inconsistent control minimum heights."
+      ]
+    },
+    "source": "### Added\n\n- Toggleable widget title, disabled by default for new and existing widget configurations.\n- Samsung One UI compact lock-screen complication provider with standard keyguard fallback.\n- Samsung One UI Home native frame/blur metadata, supported cell-size metadata, and size-specific picker previews.\n- Samsung integration status and lock-screen setup guidance in Settings.\n\n### Changed\n\n- Reworked One UI 8+ app mode with a larger viewing-area header, Samsung-blue section labels, flat grouped cards, Galaxy-style spacing, and compact toolbar controls.\n- Removed app-drawn corner rounding from Samsung One UI widget surfaces so the launcher can own the frame.\n- Switched widget text to Samsung's `sec` family when available, with normal platform fallback elsewhere.\n- Version 1.3.0 reuses the 1.2.0 signing certificate and supports in-place installation.\n\n### Fixed\n\n- Removed the default `CODEX` text from picker previews and initial widget layouts.\n- Made successful snapshot persistence and refresh-error clearing atomic.\n- Suppressed misleading red refresh warnings while a newly fetched snapshot is still current.\n- Removed clipped toolbar buttons and inconsistent control minimum heights."
+  },
+  {
+    "version": "1.2.0",
+    "origin": "upstream",
+    "ko": {
+      "title": "위젯 크기와 디자인 선택",
+      "changes": [
+        "링·게이지에 자동·크게·최대 크기 선택을 추가했습니다.",
+        "위젯 배경을 완전히 투명하게 만들 수 있습니다.",
+        "최선 노력 방식의 5분·10분 갱신과 앱·위젯의 디자인 선택을 제공합니다.",
+        "가로·세로 크기에 따른 레이아웃, 새 적응형·단색 아이콘을 추가했습니다.",
+        "그림 밀도·확대 크기와 Binder 전송 크기를 보정해 작은 그래픽과 과도한 메모리 전송을 개선했습니다."
+      ]
+    },
+    "en": {
+      "title": "What changed",
+      "changes": [
+        "Automatic, Large, and Maximum ring/gauge sizing policies.",
+        "Fully transparent widget backgrounds.",
+        "Five- and ten-minute best-effort refresh choices using chained one-shot jobs.",
+        "Separate Material expressive and One UI visual-language choices for the app and each widget.",
+        "Large and maximum ring/dial layouts with orientation-aware launcher sizing.",
+        "New progress-terminal adaptive icon and monochrome themed icon.",
+        "Reworked app cards, buttons, dropdowns, spacing, and corner radii into consistent shadow-free surface systems.",
+        "Normalized widget bitmap density so graphics fill high-density screens correctly.",
+        "Ring and dial resize updates now render one bitmap tier at a time to avoid Binder transaction overflows.",
+        "Increased the widget provider's supported maximum dimensions.",
+        "Undersized circular graphics on high-density devices.",
+        "Graphic-tier selection that previously underestimated the widget's current portrait or landscape dimensions.",
+        "Inconsistent overlapping shadows and radii in the application UI."
+      ]
+    },
+    "source": "### Added\n\n- Automatic, Large, and Maximum ring/gauge sizing policies.\n- Fully transparent widget backgrounds.\n- Five- and ten-minute best-effort refresh choices using chained one-shot jobs.\n- Separate Material expressive and One UI visual-language choices for the app and each widget.\n- Large and maximum ring/dial layouts with orientation-aware launcher sizing.\n- New progress-terminal adaptive icon and monochrome themed icon.\n\n### Changed\n\n- Reworked app cards, buttons, dropdowns, spacing, and corner radii into consistent shadow-free surface systems.\n- Normalized widget bitmap density so graphics fill high-density screens correctly.\n- Ring and dial resize updates now render one bitmap tier at a time to avoid Binder transaction overflows.\n- Increased the widget provider's supported maximum dimensions.\n\n### Fixed\n\n- Undersized circular graphics on high-density devices.\n- Graphic-tier selection that previously underestimated the widget's current portrait or landscape dimensions.\n- Inconsistent overlapping shadows and radii in the application UI."
+  },
+  {
+    "version": "1.1.0",
+    "origin": "upstream",
+    "ko": {
+      "title": "로그인 복귀와 다양한 홈 위젯",
+      "changes": [
+        "네트워크 상태 권한과 백그라운드 예약 오류로 로그인 흐름이 실패하던 문제를 고쳤습니다.",
+        "토큰 저장 후 브라우저에 성공을 반환하고 앱으로 돌아오는 버튼을 제공했습니다.",
+        "첫 사용량 조회가 실패해도 로그인 상태를 유지합니다.",
+        "자동·막대·링·다이얼·미니멀 위젯과 크기별 레이아웃을 추가했습니다.",
+        "밀도·색상·투명도·초기화·플랜·갱신 시각·새로고침 버튼과 앱 안 미리보기를 설정할 수 있습니다.",
+        "사용률을 표시할 때 막대 방향을 바로잡았습니다."
+      ]
+    },
+    "en": {
+      "title": "What changed",
+      "changes": [
+        "Added the missing `ACCESS_NETWORK_STATE` permission required by connectivity-constrained `JobScheduler` jobs.",
+        "Prevented background scheduling errors from crashing OAuth completion, later launches, boot handling, or widget refreshes.",
+        "Returned a successful browser callback immediately after encrypted credentials are committed.",
+        "Preserved authenticated state when the initial usage request or post-login scheduling fails.",
+        "Added a deep link and explicit browser button for returning to the application.",
+        "Cleared stale OAuth state and hardened repeated-launch behavior.",
+        "Corrected bar progress direction when displaying percentage used.",
+        "Adaptive, bars, rings, dials, and minimal widget styles.",
+        "Responsive Android 12+ `RemoteViews` layouts for multiple launcher sizes.",
+        "Compact and comfortable density choices.",
+        "Four additional accents and a monochrome option.",
+        "Additional background transparency, reset-label, plan-label, updated-time, and refresh-button controls.",
+        "In-application live widget previews.",
+        "Original progress-knot adaptive and monochrome application icon."
+      ]
+    },
+    "source": "### Fixed\n\n- Added the missing `ACCESS_NETWORK_STATE` permission required by connectivity-constrained `JobScheduler` jobs.\n- Prevented background scheduling errors from crashing OAuth completion, later launches, boot handling, or widget refreshes.\n- Returned a successful browser callback immediately after encrypted credentials are committed.\n- Preserved authenticated state when the initial usage request or post-login scheduling fails.\n- Added a deep link and explicit browser button for returning to the application.\n- Cleared stale OAuth state and hardened repeated-launch behavior.\n- Corrected bar progress direction when displaying percentage used.\n\n### Added\n\n- Adaptive, bars, rings, dials, and minimal widget styles.\n- Responsive Android 12+ `RemoteViews` layouts for multiple launcher sizes.\n- Compact and comfortable density choices.\n- Four additional accents and a monochrome option.\n- Additional background transparency, reset-label, plan-label, updated-time, and refresh-button controls.\n- In-application live widget previews.\n- Original progress-knot adaptive and monochrome application icon."
+  },
+  {
+    "version": "1.0.0",
+    "origin": "upstream",
+    "ko": {
+      "title": "Codex Meter의 시작",
+      "changes": [
+        "ChatGPT 로그인으로 Codex 사용 한도와 초기화 정보를 확인하는 앱을 공개했습니다."
+      ]
+    },
+    "en": {
+      "title": "What changed",
+      "changes": [
+        "Initial native Android application, OAuth login, Codex usage retrieval, and home-screen widget release."
+      ]
+    },
+    "source": "- Initial native Android application, OAuth login, Codex usage retrieval, and home-screen widget release."
+  }
+]

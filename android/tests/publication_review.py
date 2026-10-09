@@ -23,6 +23,12 @@ def reviewed_evolution(path,raw):
 
 def strip_evolution_manifest(text):
     import re
+    service='        <service android:name="dev.bennett.codexmeter.LanWifiJobService"\n            android:permission="android.permission.BIND_JOB_SERVICE" android:exported="false"/>\n'
+    assert text.count(service)==1,'Wi-Fi job must remain private and require BIND_JOB_SERVICE'
+    text=text.replace(service,'')
+    activity='        <activity android:name="dev.bennett.codexmeter.WhatsNewActivity" android:exported="false"/>\n'
+    assert text.count(activity)==1,'Installed-version notes must stay private'
+    text=text.replace(activity,'')
     pattern=r'<activity android:name="dev.bennett.codexmeter.EvolutionWidgetConfigActivity"[\s\S]*?</receiver>\n    '
     assert len(re.findall(pattern,text))==1,'Additive evolution manifest registration missing'
     return re.sub(pattern,'',text)

@@ -1,0 +1,67 @@
+{
+  "tool": "image_gen.imagegen",
+  "transparent_background": true,
+  "packaging": "256px contain WebP, each subscription generated separately; alpha retained",
+  "assets": [
+    {
+      "path": "android/app/src/main/res/drawable-nodpi/subscription_free.webp",
+      "resource": "subscription_free",
+      "sha256": "84964c329c84833ff8f48a136e6a90443dac01f14e45a01d46b9e3096b690094",
+      "bytes": 18514,
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "generatedOriginal": "exec-cf767854-15ac-4708-928c-8710afe502a8.png",
+      "generatedOriginalSha256": "13d43681a08383252acb5de9c35f93d04e66938616690354c3499487f137e1dd",
+      "plan": "free"
+    },
+    {
+      "path": "android/app/src/main/res/drawable-nodpi/subscription_go.webp",
+      "resource": "subscription_go",
+      "sha256": "4aba002de8d544da4767977770d431b15201f8be8ee7934fecd8781596bf1df8",
+      "bytes": 26976,
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "generatedOriginal": "exec-b18b8751-f4c4-4405-9b6d-5de13c169643.png",
+      "generatedOriginalSha256": "bfdacc886103d438145333e07d8ac765a781af320eba851bef2c0ccef61b4435",
+      "plan": "go"
+    },
+    {
+      "path": "android/app/src/main/res/drawable-nodpi/subscription_plus.webp",
+      "resource": "subscription_plus",
+      "sha256": "2ef9ce91d2ed45224d59e09837de78a7618827d2a08bc9b8b3ae352856834785",
+      "bytes": 20076,
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "generatedOriginal": "exec-17ebece7-63b9-47e4-9b93-cfe628dd7cc5.png",
+      "generatedOriginalSha256": "1b9dede5a31df2007cc736c886aeb57c1b4e767ea2da8d9ed9bfbb5fa33a70b2",
+      "plan": "plus"
+    },
+    {
+      "path": "android/app/src/main/res/drawable-nodpi/subscription_prolite.webp",
+      "resource": "subscription_prolite",
+      "sha256": "3d649a3722cef3ca41b260bf41ba1d1612c7fa83cd92c839fe231787ff96ff0f",
+      "bytes": 25710,
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "generatedOriginal": "exec-bddc64a7-72d6-4944-bf03-4d2b77296311.png",
+      "generatedOriginalSha256": "1db80014f0bc4ef8c79748e4e6669f92b6b4dc02bb4f0bc12c0cefaa906111ff",
+      "plan": "prolite"
+    },
+    {
+      "path": "android/app/src/main/res/drawable-nodpi/subscription_pro.webp",
+      "resource": "subscription_pro",
+      "sha256": "37528adbe0994c9e75ab1551b203b3a4356191f7519269d90c5bfe82262ce09b",
+      "bytes": 27372,
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "generatedOriginal": "exec-5fe1c119-87e4-4275-9694-f1ae125e206b.png",
+      "generatedOriginalSha256": "c60209e752ac91cd89be745a703b8052dfad9522903d9fdd9f6e20d8ea8c96a1",
+      "plan": "pro"
+    }
+  ]
+}

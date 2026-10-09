@@ -48,10 +48,10 @@ final class FunHome {
         target.removeAllViews();if(crestTarget!=null)crestTarget.removeAllViews();long now=System.currentTimeMillis();
         boolean fresh=window!=null&&now<window.effectiveResetAtMillis(snapshot.fetchedAtMillis)&&UsageInsights.freshness(snapshot.fetchedAtMillis,now,RefreshScheduler.effectiveRefreshMinutes(activity))==UsageInsights.Freshness.FRESH;
         LinearLayout tier=LiveCards.crest(activity,dark,live,fresh);
-        if(crestTarget!=null){crestTarget.addView(tier);Ui.addSpacer(crestTarget,16);}else target.addView(tier);
+        if(crestTarget!=null){crestTarget.addView(tier);Ui.addSpacer(crestTarget,10);}else target.addView(tier);
         LinearLayout quotation=LiveCards.ai(activity,dark,live,snapshot,fresh,daily,now);
         LinearLayout value=SubscriptionValueUi.card(activity,dark,snapshot,live,fresh);
-        target.addView(quotation);target.addView(value);Ui.addSpacer(target,16);finished.run();
+        target.addView(quotation);target.addView(value);TiboQuote.add(activity,target,dark);Ui.addSpacer(target,16);finished.run();
     }
     private boolean stacked(){return LedgerUi.stacked(activity)||activity.getResources().getConfiguration().screenWidthDp<420;}
     private static String num(double value){return LedgerUi.number(value);}
