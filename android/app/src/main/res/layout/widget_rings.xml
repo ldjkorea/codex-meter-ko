@@ -56,7 +56,8 @@
         android:fontFamily="@font/pretendard_family"/>
         </FrameLayout>
 
-        <FrameLayout
+        <ImageView android:id="@+id/widget_tier_emblem" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1.2" android:layout_gravity="center" android:visibility="gone" android:scaleType="fitCenter" android:contentDescription="@string/fun_tier" />
+    <FrameLayout
             android:id="@+id/secondary_section"
             android:layout_width="0dp"
             android:layout_height="58dp"
@@ -98,7 +99,6 @@
         </FrameLayout>
     </LinearLayout>
 
-    <ImageView android:id="@+id/widget_tier_emblem" android:layout_width="20dp" android:layout_height="20dp" android:visibility="gone" android:scaleType="fitCenter" android:contentDescription="@string/fun_tier" android:layout_gravity="top|start" android:layout_marginStart="3dp" android:layout_marginTop="3dp" />
     <TextView android:id="@+id/widget_title" android:visibility="gone" android:layout_width="0dp" android:layout_height="0dp" 
         android:fontFamily="@font/pretendard_family"/>
     <TextView android:id="@+id/plan_label" android:visibility="gone" android:layout_width="0dp" android:layout_height="0dp" 

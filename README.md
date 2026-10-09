@@ -1,14 +1,22 @@
-> 최신 한국어 베타: **2.8.12 / versionCode 42**. 즉시 활용 티어, AI의 한마디, 구독료 비례 환산과 요금제 그림을 반영했습니다. 별도 Windows 위젯 베타는 기존 0.1.0을 사용합니다. [다운로드](https://github.com/ldjkorea/codex-meter-ko/releases/tag/v2.8.12-beta). 기존 앱을 삭제하지 않고 업데이트하세요.
+> 최신 한국어 베타: **2.8.13 / versionCode 43**. 게이지 사이의 대형 휘장과 티어별 위젯 배경을 반영했습니다. 별도 Windows 위젯 베타는 기존 0.1.0을 사용합니다. [다운로드](https://github.com/ldjkorea/codex-meter-ko/releases/tag/v2.8.13-beta). 기존 앱을 삭제하지 않고 업데이트하세요.
 
 # Codex Meter 한국어판
 
-Codex 사용량을 확인하는 **비공식 Android 앱**입니다. 한국어 화면, 사용 기록, 티어 배지, 코치 말투, 직접 입력한 구독료에 따른 활용도 참고값을 제공합니다. 매트 블랙 디자인과 삼성 위젯을 유지한 무료 Android APK입니다.
+Codex 사용량을 확인하는 **비공식 Android 앱**입니다. 한국어 화면, 사용 기록, 티어 휘장, AI의 한마디, 직접 입력한 구독료에 따른 활용도 참고값을 제공합니다. 매트 블랙 디자인과 삼성 위젯을 유지한 무료 Android APK입니다.
 
 원작은 [BenItBuhner/Codex-Meter](https://github.com/BenItBuhner/Codex-Meter)이며, Bennett의 MIT 라이선스와 저작권 고지를 유지합니다. 이 수정본은 OpenAI·Samsung·원작자가 제공하거나 보증하는 공식 앱이 아닙니다. 한국어 수정·배포 준비: [ldjkorea](https://github.com/ldjkorea).
 
-**현재 베타: 2.8.12 / versionCode 42, `v2.8.12-beta`.** 이전 공개 APK는 보존합니다. 실제 Android 기기 검증은 아직 수행하지 않은 베타입니다.
+**현재 베타: 2.8.13 / versionCode 43, `v2.8.13-beta`.** 이전 공개 APK는 보존합니다. 실제 삼성 기기 검증은 아직 수행하지 않은 베타입니다.
 
-[릴리스와 한국어 설치 안내](https://github.com/ldjkorea/codex-meter-ko/releases/tag/v2.8.12-beta) · [휴대폰 APK 다운로드](https://github.com/ldjkorea/codex-meter-ko/releases/download/v2.8.12-beta/CodexMeter-2.8.12-ko.apk)
+[릴리스와 한국어 설치 안내](https://github.com/ldjkorea/codex-meter-ko/releases/tag/v2.8.13-beta) · [휴대폰 APK 다운로드](https://github.com/ldjkorea/codex-meter-ko/releases/download/v2.8.13-beta/CodexMeter-2.8.13-ko.apk)
+
+## 중앙 휘장·티어 배경
+
+두 게이지 사이에 큰 휘장을 표시하고, 현재 티어에 맞는 어두운 배경과 테두리를 적용합니다. 휘장 OFF는 기존 테마로 돌아가고 배경 OFF는 투명입니다. 기존 순서·색상·5시간 숨김 설정을 보존합니다.
+
+![에메랄드 위젯 렌더링](docs/widget-tier-2.8.13/tier-5-250.png)
+
+Android 15 에뮬레이터의 native RemoteViews 렌더링입니다. 표시 수치는 합성 테스트 값이며 삼성 런처·실계정 검증 화면이 아닙니다. [검증 보고서](docs/WIDGET_TIER_CENTER_2.8.13.ko.md).
 
 ## Windows 바탕화면 위젯
 

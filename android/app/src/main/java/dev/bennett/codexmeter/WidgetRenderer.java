@@ -112,15 +112,14 @@ public final class WidgetRenderer {
 
     static RemoteViews buildPreview(Context context, int appWidgetId, WidgetOptions widgetOptions,
             Bundle appWidgetOptions) {
-        RemoteViews preview = buildViews(context, appWidgetId, widgetOptions,
-                styleForSize(context, appWidgetOptions, widgetOptions), appWidgetOptions);
-        preview.setInt(android.R.id.background, "setBackgroundColor", Color.TRANSPARENT);
-        return preview;
+        return buildPreview(context, appWidgetId, widgetOptions, appWidgetOptions,
+                WidgetCrest.enabled(context, appWidgetId));
     }
 
     static RemoteViews buildPreview(Context context,int id,WidgetOptions options,Bundle size,boolean crest) {
-        RemoteViews view=buildPreview(context,id,options,size);
-        WidgetCrest.bind(context,view,crest);
+        RemoteViews view=buildViews(context,id,options,styleForSize(context,size,options),size,
+                resolveGraphicTier(context,options,size),crest);
+        view.setInt(android.R.id.background,"setBackgroundColor",Color.TRANSPARENT);
         return view;
     }
 
@@ -161,33 +160,48 @@ public final class WidgetRenderer {
     }
 
     private static RemoteViews buildViews(Context context, int i, WidgetOptions widgetOptions, String str, Bundle bundle, int i2) {
-        RemoteViews remoteViews = new RemoteViews(context.getPackageName(), layoutForStyle(str, i2));
-        boolean zChooseDark = chooseDark(context, widgetOptions);
+        return buildViews(context,i,widgetOptions,str,bundle,i2,WidgetCrest.enabled(context,i));
+    }
+
+    private static RemoteViews buildViews(Context context,int i,WidgetOptions widgetOptions,
+            String str,Bundle bundle,int i2,boolean crest) {
+        // Retain the original slot capacity; only the rendering changes in narrow hosts.
+        boolean scalable = WidgetOptions.STYLE_RINGS.equals(str)
+                && WidgetTierPalette.scalableRings(crest);
+        String renderedStyle = scalable ? STYLE_FOUR_DIALS : str;
+        RemoteViews remoteViews = new RemoteViews(context.getPackageName(), layoutForStyle(renderedStyle, i2));
+        int tier=crest?TierTheme.tier(context):-1;
+        boolean tierSurface=WidgetTierPalette.active(crest,tier,widgetOptions.opacity);
+        boolean zChooseDark = tierSurface || chooseDark(context, widgetOptions);
         WidgetState widgetStateFrom = WidgetState.from(context, widgetOptions);
         List<MeterSlot> slots = resolveSlots(context, widgetOptions, widgetStateFrom, str, bundle);
         applyRootAndHeader(context, remoteViews, i, widgetOptions, zChooseDark, widgetStateFrom);
-        if (STYLE_MICRO.equals(str)) {
+        if(tierSurface)remoteViews.setInt(android.R.id.background,"setBackgroundResource",
+                WidgetTierSurface.resource(tier,widgetOptions.opacity));
+        if (scalable) {
+            renderFourDials(context,remoteViews,widgetOptions,zChooseDark,slots,tierSurface?tier:-1);
+        } else if (STYLE_MICRO.equals(str)) {
             renderMicro(remoteViews, widgetOptions, zChooseDark, widgetStateFrom, slots);
         } else if (WidgetOptions.STYLE_RINGS.equals(str)) {
-            renderGraphic(context, remoteViews, widgetOptions, zChooseDark, widgetStateFrom, true, i2, slots);
+            renderGraphic(context, remoteViews, widgetOptions, zChooseDark, widgetStateFrom, true, i2, slots,tierSurface?tier:-1);
         } else if (STYLE_FOUR_DIALS.equals(str)) {
-            renderFourDials(context, remoteViews, widgetOptions, zChooseDark, slots);
+            renderFourDials(context, remoteViews, widgetOptions, zChooseDark, slots,tierSurface?tier:-1);
         } else if (STYLE_BATTERY_LIST.equals(str)) {
             renderBatteryList(context, remoteViews, widgetOptions, zChooseDark, slots);
         } else if (WidgetOptions.STYLE_DIALS.equals(str)) {
-            renderGraphic(context, remoteViews, widgetOptions, zChooseDark, widgetStateFrom, false, i2, slots);
+            renderGraphic(context, remoteViews, widgetOptions, zChooseDark, widgetStateFrom, false, i2, slots,tierSurface?tier:-1);
         } else if (WidgetOptions.STYLE_MINIMAL.equals(str)) {
             renderMinimal(context, remoteViews, widgetOptions, zChooseDark, widgetStateFrom, slots);
         } else {
             renderBars(context, remoteViews, widgetOptions, zChooseDark, widgetStateFrom, bundle, slots);
         }
-        applySlotVisibility(remoteViews, str, slots);
+        applySlotVisibility(remoteViews, renderedStyle, slots);
         applyResetCreditRow(context, remoteViews, i, widgetOptions, zChooseDark, str);
         UsageSnapshot observed=AppPreferences.loadSnapshot(context);
         boolean stale=observed!=null&&UsageInsights.freshness(observed.fetchedAtMillis,System.currentTimeMillis(),RefreshScheduler.effectiveRefreshMinutes(context))!=UsageInsights.Freshness.FRESH;
         if(stale){remoteViews.setTextViewText(R.id.updated_label,context.getString(R.string.ui_ledger_refresh)+" · "+widgetStateFrom.updated);remoteViews.setViewVisibility(R.id.updated_label,View.VISIBLE);}
         if(slots.isEmpty()){remoteViews.setTextViewText(R.id.widget_title,context.getString(R.string.v3_hidden));remoteViews.setViewVisibility(R.id.widget_title,View.VISIBLE);}
-        WidgetCrest.bind(context,remoteViews,i);
+        WidgetCrest.bind(context,remoteViews,crest);
         return remoteViews;
     }
 
@@ -443,13 +457,14 @@ public final class WidgetRenderer {
         applyUpdated(remoteViews, widgetOptions, widgetState, iFaintColor);
     }
 
-    private static void renderGraphic(Context context, RemoteViews remoteViews, WidgetOptions widgetOptions, boolean z, WidgetState widgetState, boolean z2, int i, List<MeterSlot> slots) {
+    private static void renderGraphic(Context context, RemoteViews remoteViews, WidgetOptions widgetOptions, boolean z, WidgetState widgetState, boolean z2, int i, List<MeterSlot> slots,int tier) {
         float f;
         int iMainTextColor = WidgetGraphics.mainTextColor(z);
         int iSecondaryColor = secondaryColor(z);
         int iMutedColor = mutedColor(z);
         int iFaintColor = faintColor(z);
-        int iAccentColor = WidgetGraphics.accentColor(context, widgetOptions.accent, z);
+        int iAccentColor = tier>=0?WidgetTierPalette.accent(tier)
+                :WidgetGraphics.accentColor(context, widgetOptions.accent, z);
         int iTrackColor = WidgetGraphics.trackColor(z);
         String str = WidgetOptions.DISPLAY_USED.equals(widgetOptions.displayMode) ? WidgetOptions.DISPLAY_USED : context.getString(R.string.ui_left_12c0f1);
         if (i == GRAPHIC_MAX) {
@@ -512,8 +527,9 @@ public final class WidgetRenderer {
     }
 
     private static void renderFourDials(Context context, RemoteViews remoteViews,
-            WidgetOptions options, boolean dark, List<MeterSlot> slots) {
-        int accent = WidgetGraphics.accentColor(context, options.accent, dark);
+            WidgetOptions options, boolean dark, List<MeterSlot> slots,int tier) {
+        int accent = tier>=0?WidgetTierPalette.accent(tier)
+                :WidgetGraphics.accentColor(context, options.accent, dark);
         int track = WidgetGraphics.trackColor(dark);
         int text = WidgetGraphics.mainTextColor(dark);
         int[] graphicIds = {
@@ -536,6 +552,7 @@ public final class WidgetRenderer {
             if (sectionIds[index] != 0) {
                 remoteViews.setViewVisibility(sectionIds[index], View.VISIBLE);
             }
+            remoteViews.setContentDescription(graphicIds[index],slot.label+": "+slot.valueText);
             remoteViews.setImageViewBitmap(graphicIds[index],
                     WidgetGraphics.compactDial(context, slot.progress, slot.iconRes,
                             accent, track, text, slot.valueText, 1.0f));

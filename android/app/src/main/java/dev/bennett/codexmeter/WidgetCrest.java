@@ -29,9 +29,9 @@ final class WidgetCrest {
         if(!show)return;
         int tier=TierTheme.tier(c);
         if(cached==null||cachedTier!=tier) {
-            Bitmap image=Bitmap.createBitmap(96,96,Bitmap.Config.ARGB_8888);
+            Bitmap image=Bitmap.createBitmap(256,256,Bitmap.Config.ARGB_8888);
             Drawable d=androidx.appcompat.content.res.AppCompatResources.getDrawable(c,TierTheme.EMBLEMS[Math.max(0,tier)]);
-            d.setBounds(0,0,96,96);d.setAlpha(tier<0?100:255);d.draw(new Canvas(image));
+            d.setBounds(0,0,256,256);d.setAlpha(tier<0?100:255);d.draw(new Canvas(image));
             // RemoteViews can still reference the previous bitmap; do not recycle it here.
             cached=image;cachedTier=tier;
         }

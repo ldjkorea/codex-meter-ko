@@ -98,7 +98,7 @@ protected = [
 ]
 paths = ["android/app/src/main/java/dev/bennett/codexmeter/" + name for name in protected]
 paths += [str(p.relative_to(REPO)).replace("\\", "/") for p in (ROOT / "shared/src").rglob("*.java")
-          if p.name not in ("UsageInsights.java", "UsageEventDetector.java", "UsageLedger.java", "UsageLedgerInsights.java", "LedgerRecord.java", "LedgerAggregation.java", "LedgerForecast.java", "LedgerExport.java", "LedgerPresentation.java", "LedgerCalendar.java", "FunInsights.java", "TestNote.java", "LedgerPeriods.java", "SubscriptionCost.java", "SubscriptionValue.java", "CoachMoment.java", "WidgetVisibility.java", "WearUsageState.java", "TierEvolution.java", "EvolutionElements.java", "KoreanUpdateTrust.java", "LiveUtilization.java", "SpicyAi.java")]
+          if p.name not in ("UsageInsights.java", "UsageEventDetector.java", "UsageLedger.java", "UsageLedgerInsights.java", "LedgerRecord.java", "LedgerAggregation.java", "LedgerForecast.java", "LedgerExport.java", "LedgerPresentation.java", "LedgerCalendar.java", "FunInsights.java", "TestNote.java", "LedgerPeriods.java", "SubscriptionCost.java", "SubscriptionValue.java", "CoachMoment.java", "WidgetVisibility.java", "WearUsageState.java", "TierEvolution.java", "EvolutionElements.java", "KoreanUpdateTrust.java", "LiveUtilization.java", "SpicyAi.java", "WidgetTierPalette.java")]
 paths += ["android/settings.gradle.kts",
           "android/wear/src/main/AndroidManifest.xml"]
 for path in paths:
@@ -137,7 +137,7 @@ reviewed_change(APP_JAVA + "AppPreferences.java", lambda s: s.replace(
     "            return prefs(context).edit().putString(KEY_RESET_CREDITS, resetCreditsSnapshot.toJson().toString()).remove(KEY_RESET_ERROR).remove(KEY_RESET_ERROR_AT).commit();",
     "            boolean saved = prefs(context).edit().putString(KEY_RESET_CREDITS, resetCreditsSnapshot.toJson().toString()).remove(KEY_RESET_ERROR).remove(KEY_RESET_ERROR_AT).commit();\n            if (saved) UsageEventStore.recordCredits(context, resetCreditsSnapshot);\n            return saved;").replace(
     "        UsageEventStore.clear(context);\n", "        UsageEventStore.clear(context);\n        UsageLedgerStore.clear(context);\n        UsageLedgerDatabase.clear(context);\n"))
-version_change = lambda s: s.replace("2.8.0", "2.8.12").replace("versionCode = 30", "versionCode = 42").replace("VERSION_CODE = 30", "VERSION_CODE = 42")
+version_change = lambda s: s.replace("2.8.0", "2.8.13").replace("versionCode = 30", "versionCode = 43").replace("VERSION_CODE = 30", "VERSION_CODE = 43")
 reviewed_change(APP_JAVA + "AppConstants.java", version_change)
 reviewed_change("android/wear/build.gradle.kts", version_change)
 reviewed_change("android/app/build.gradle.kts", lambda s: version_change(s).replace(

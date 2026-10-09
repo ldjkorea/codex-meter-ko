@@ -14,7 +14,7 @@ public class Context {public final Path dir;public Context(Path p){dir=p;}public
 static class Pref implements SharedPreferences {final Path p;final Properties values=new Properties();Pref(Path f){p=f;try{if(Files.exists(p))values.load(Files.newInputStream(p));}catch(Exception e){throw new RuntimeException(e);}}public boolean getBoolean(String k,boolean d){return Boolean.parseBoolean(values.getProperty(k,""+d));}public String getString(String k,String d){return values.getProperty(k,d);}public Editor edit(){return new Editor(){public Editor putBoolean(String k,boolean v){values.setProperty(k,""+v);return this;}public Editor remove(String k){values.remove(k);return this;}public boolean commit(){try{Files.createDirectories(p.getParent());try(var s=Files.newOutputStream(p)){values.store(s,"");}return true;}catch(Exception e){return false;}}public void apply(){commit();}};}}}''',
 'android/content/ComponentName.java':'package android.content;public class ComponentName {public ComponentName(Context c,Class<?> t){}}',
 'android/appwidget/AppWidgetManager.java':'''package android.appwidget;public class AppWidgetManager {static final AppWidgetManager m=new AppWidgetManager();public static AppWidgetManager getInstance(android.content.Context c){return m;}public int[] getAppWidgetIds(android.content.ComponentName n){return new int[]{10,11};}}''',
-'android/graphics/Bitmap.java':'package android.graphics;public class Bitmap {public int alpha,resource;public enum Config {ARGB_8888}public static Bitmap createBitmap(int w,int h,Config c){if(w!=96||h!=96)throw new AssertionError();return new Bitmap();}}',
+'android/graphics/Bitmap.java':'package android.graphics;public class Bitmap {public int alpha,resource;public enum Config {ARGB_8888}public static Bitmap createBitmap(int w,int h,Config c){if(w!=256||h!=256)throw new AssertionError();return new Bitmap();}}',
 'android/graphics/Canvas.java':'package android.graphics;public class Canvas {public Bitmap image;public Canvas(Bitmap b){image=b;}}',
 'android/graphics/drawable/Drawable.java':'package android.graphics.drawable;public class Drawable {int resource,alpha;public Drawable(int id){resource=id;}public void setBounds(int a,int b,int c,int d){}public void setAlpha(int v){alpha=v;}public void draw(android.graphics.Canvas c){c.image.alpha=alpha;c.image.resource=resource;}}',
 'android/view/View.java':'package android.view;public class View {public static final int VISIBLE=0,GONE=8;}',
@@ -50,7 +50,7 @@ for name in layouts:
     original=subprocess.check_output(['git','show','d10688f:'+path],cwd=repo).decode('utf-8').replace('\r\n','\n')
     assert stripped==original,(name,'Existing layout changed beyond the additive crest')
 renderer=(app/'WidgetRenderer.java').read_text(encoding='utf-8');config=(app/'WidgetConfigActivity.java').read_text(encoding='utf-8')
-assert 'WidgetCrest.bind(context,remoteViews,i);' in renderer
+assert 'WidgetCrest.bind(context,remoteViews,crest);' in renderer
 assert 'this.widgetSize,crestSwitch.isChecked()' in config
 assert 'crestDraft' in config and 'WidgetCrest.save(this,appWidgetId,crestSwitch.isChecked())' in config
 assert 'WidgetCrest.updateExistingIfChanged(c)' in (app/'EvolutionWidget.java').read_text(encoding='utf-8')

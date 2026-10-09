@@ -97,6 +97,62 @@
     [
       "if(context!=null){EvolutionWidget.updateAll(context);TierEvaluationScheduler.afterRefresh(context);}",
       "if(context!=null){LiveUsageStore.schedule(context);EvolutionWidget.updateAll(context);TierEvaluationScheduler.afterRefresh(context);}"
+    ],
+    [
+      "        RemoteViews preview = buildViews(context, appWidgetId, widgetOptions,\n                styleForSize(context, appWidgetOptions, widgetOptions), appWidgetOptions);\n        preview.setInt(android.R.id.background, \"setBackgroundColor\", Color.TRANSPARENT);\n        return preview;",
+      "        return buildPreview(context, appWidgetId, widgetOptions, appWidgetOptions,\n                WidgetCrest.enabled(context, appWidgetId));"
+    ],
+    [
+      "        RemoteViews view=buildPreview(context,id,options,size);\n        WidgetCrest.bind(context,view,crest);\n        return view;",
+      "        RemoteViews view=buildViews(context,id,options,styleForSize(context,size,options),size,\n                resolveGraphicTier(context,options,size),crest);\n        view.setInt(android.R.id.background,\"setBackgroundColor\",Color.TRANSPARENT);\n        return view;"
+    ],
+    [
+      "        RemoteViews remoteViews = new RemoteViews(context.getPackageName(), layoutForStyle(str, i2));\n        boolean zChooseDark = chooseDark(context, widgetOptions);",
+      "        return buildViews(context,i,widgetOptions,str,bundle,i2,WidgetCrest.enabled(context,i));\n    }\n\n    private static RemoteViews buildViews(Context context,int i,WidgetOptions widgetOptions,\n            String str,Bundle bundle,int i2,boolean crest) {\n        // Retain the original slot capacity; only the rendering changes in narrow hosts.\n        boolean scalable = WidgetOptions.STYLE_RINGS.equals(str)\n                && WidgetTierPalette.scalableRings(crest,currentWidth(context,bundle));\n        String renderedStyle = scalable ? STYLE_FOUR_DIALS : str;\n        RemoteViews remoteViews = new RemoteViews(context.getPackageName(), layoutForStyle(renderedStyle, i2));\n        int tier=crest?TierTheme.tier(context):-1;\n        boolean tierSurface=WidgetTierPalette.active(crest,tier,widgetOptions.opacity);\n        boolean zChooseDark = tierSurface || chooseDark(context, widgetOptions);"
+    ],
+    [
+      "        applyRootAndHeader(context, remoteViews, i, widgetOptions, zChooseDark, widgetStateFrom);\n        if (STYLE_MICRO.equals(str)) {",
+      "        applyRootAndHeader(context, remoteViews, i, widgetOptions, zChooseDark, widgetStateFrom);\n        if(tierSurface)remoteViews.setInt(android.R.id.background,\"setBackgroundResource\",\n                WidgetTierSurface.resource(tier,widgetOptions.opacity));\n        if (scalable) {\n            renderFourDials(context,remoteViews,widgetOptions,zChooseDark,slots,tierSurface?tier:-1);\n        } else if (STYLE_MICRO.equals(str)) {"
+    ],
+    [
+      "renderGraphic(context, remoteViews, widgetOptions, zChooseDark, widgetStateFrom, true, i2, slots);",
+      "renderGraphic(context, remoteViews, widgetOptions, zChooseDark, widgetStateFrom, true, i2, slots,tierSurface?tier:-1);"
+    ],
+    [
+      "renderGraphic(context, remoteViews, widgetOptions, zChooseDark, widgetStateFrom, false, i2, slots);",
+      "renderGraphic(context, remoteViews, widgetOptions, zChooseDark, widgetStateFrom, false, i2, slots,tierSurface?tier:-1);"
+    ],
+    [
+      "renderFourDials(context, remoteViews, widgetOptions, zChooseDark, slots);",
+      "renderFourDials(context, remoteViews, widgetOptions, zChooseDark, slots,tierSurface?tier:-1);"
+    ],
+    [
+      "        applySlotVisibility(remoteViews, str, slots);",
+      "        applySlotVisibility(remoteViews, renderedStyle, slots);"
+    ],
+    [
+      "        WidgetCrest.bind(context,remoteViews,i);",
+      "        WidgetCrest.bind(context,remoteViews,crest);"
+    ],
+    [
+      "boolean z2, int i, List<MeterSlot> slots) {\n        float f;",
+      "boolean z2, int i, List<MeterSlot> slots,int tier) {\n        float f;"
+    ],
+    [
+      "        int iAccentColor = WidgetGraphics.accentColor(context, widgetOptions.accent, z);",
+      "        int iAccentColor = tier>=0?WidgetTierPalette.accent(tier)\n                :WidgetGraphics.accentColor(context, widgetOptions.accent, z);"
+    ],
+    [
+      "            WidgetOptions options, boolean dark, List<MeterSlot> slots) {\n        int accent = WidgetGraphics.accentColor(context, options.accent, dark);",
+      "            WidgetOptions options, boolean dark, List<MeterSlot> slots,int tier) {\n        int accent = tier>=0?WidgetTierPalette.accent(tier)\n                :WidgetGraphics.accentColor(context, options.accent, dark);"
+    ],
+    [
+      "            remoteViews.setImageViewBitmap(graphicIds[index],\n                    WidgetGraphics.compactDial(context, slot.progress, slot.iconRes,",
+      "            remoteViews.setContentDescription(graphicIds[index],slot.label+\": \"+slot.valueText);\n            remoteViews.setImageViewBitmap(graphicIds[index],\n                    WidgetGraphics.compactDial(context, slot.progress, slot.iconRes,"
+    ],
+    [
+      "WidgetTierPalette.scalableRings(crest,currentWidth(context,bundle))",
+      "WidgetTierPalette.scalableRings(crest)"
     ]
   ],
   "android/app/src/main/java/dev/bennett/codexmeter/RecordSettings.java": [
@@ -189,6 +245,14 @@
     [
       "    private void save() {\n",
       "    private void save() {\n        if(!WidgetCrest.save(this,appWidgetId,crestSwitch.isChecked())) {\n            Toast.makeText(this,R.string.widget_crest_save_failed,Toast.LENGTH_LONG).show();return;\n        }\n"
+    ],
+    [
+      "                surface.setBackground(background);",
+      "                int tier=crestSwitch.isChecked()?TierTheme.tier(this):-1;\n                surface.setBackground(WidgetTierPalette.active(crestSwitch.isChecked(),tier,options.opacity)\n                        ?getDrawable(WidgetTierSurface.resource(tier,options.opacity)):background);"
+    ],
+    [
+      "?getDrawable(WidgetTierSurface.resource(tier,options.opacity)):background);",
+      "?androidx.appcompat.content.res.AppCompatResources.getDrawable(this,WidgetTierSurface.resource(tier,options.opacity)):background);"
     ]
   ],
   "android/app/src/main/java/dev/bennett/codexmeter/CodexUsageWidget.java": [

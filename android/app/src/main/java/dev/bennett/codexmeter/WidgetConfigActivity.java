@@ -627,7 +627,9 @@ public final class WidgetConfigActivity extends AppCompatActivity {
                 background.setColor(previewDark ? Color.argb(alpha, 0, 0, 0)
                         : Color.argb(alpha, 255, 255, 255));
                 background.setCornerRadius(Ui.dp(this, 28.0f));
-                surface.setBackground(background);
+                int tier=crestSwitch.isChecked()?TierTheme.tier(this):-1;
+                surface.setBackground(WidgetTierPalette.active(crestSwitch.isChecked(),tier,options.opacity)
+                        ?androidx.appcompat.content.res.AppCompatResources.getDrawable(this,WidgetTierSurface.resource(tier,options.opacity)):background);
                 // Use the application inflater so AppCompat does not substitute its ImageView;
                 // RemoteViews reflection is intentionally restricted to framework widgets.
                 View widget = remote.apply(getApplicationContext(), surface);
