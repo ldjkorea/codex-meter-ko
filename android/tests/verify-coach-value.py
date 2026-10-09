@@ -1,4 +1,4 @@
-from publication_review import reviewed_widget_reset
+from publication_review import reviewed_widget_reset, reviewed_evolution
 """Production money/coach tests with only resource/context fixtures, plus navigation safety checks."""
 from pathlib import Path
 import os, json
@@ -43,6 +43,6 @@ assert 'restorePosition();return;' in analytics
 for n in ['SubscriptionStore','TestNotesStore','FunStore','MeterVisibility','WidgetRenderer','AccountSession','SecureTokenStore']:
  relative='android/app/src/main/java/dev/bennett/codexmeter/'+n+'.java'
  baseline=subprocess.check_output(['git','show','9de3b6c:'+relative],cwd=root.parent).replace(b'\r\n',b'\n')
- baseline=reviewed_widget_reset(relative,baseline)
+ baseline=reviewed_evolution(relative,reviewed_widget_reset(relative,baseline))
  assert (root.parent/relative).read_bytes().replace(b'\r\n',b'\n')==baseline,n
 print('Settings/records/data wiring, removal of test entry points and byte-preserved account/payment/note stores passed (source checks).')

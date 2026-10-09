@@ -1,0 +1,28 @@
+<resources>
+<string name="evo_resize">Resize this widget taller (about %1$d dp) or choose fewer elements.</string>
+<string name="evo_history">Recent weekly tier evaluations</string>
+<string name="evo_legacy_history">Archived recaps · previous evaluation rules</string>
+<string name="evo_placing">Placing · waiting for complete weeks</string>
+<string name="evo_stable">Weekly evaluation complete</string>
+<string name="evo_result">Previous: %1$s · %2$s</string>
+<string name="evo_promoted">Promoted</string>
+<string name="evo_demoted">Adjusted down</string>
+<string name="evo_held">Tier held</string>
+<string name="evo_next">Next evaluation · %1$s closes</string>
+<string name="evo_effects">Short promotion effects</string>
+<string name="evo_widget">Codex Meter · Evolution</string>
+<string name="evo_widget_help">Choose 1–5 elements. Use ↑ to reorder. Hidden limits return when enabled. Resize taller for four or five elements. Existing widgets keep their own advanced settings.</string>
+<string name="evo_select_one">Select at least one element</string>
+<string name="evo_theme">Use tier accents</string>
+<string name="evo_opacity">Background opacity</string>
+<string name="evo_five_usage">5-hour remaining</string>
+<string name="evo_week_usage">Weekly remaining</string>
+<string name="evo_five_reset">5-hour countdown</string>
+<string name="evo_week_reset">Weekly countdown</string>
+<string name="evo_reset">Reset</string>
+<string name="evo_stale">Old observation</string>
+<string name="evo_unknown_reset">No reset time</string>
+<string name="evo_refresh_needed">Refresh needed</string>
+<string name="evo_edit">Edit</string>
+<string name="evo_empty">No visible elements. Enable a limit or edit this widget.</string>
+</resources>

@@ -46,6 +46,7 @@ public final class FunActivity extends AppCompatActivity {
             String policy=window==null?"":meter+"|"+LedgerRecord.cleanPlan(snapshot.planType)+"|"+window.windowSeconds;
             List<FunInsights.Window> completed=FunInsights.completed(data.records,policy,System.currentTimeMillis());
             if(!FunStore.settle(getApplicationContext(),key,completed,(tier,tone,variant)->FunCoach.text(getApplicationContext(),tone,tier,FunInsights.Situation.TIER,variant)))throw new IllegalStateException("Save failed");
+            TierStore.evaluate(getApplicationContext(),key,policy,completed);
             JSONObject doc=FunStore.load(getApplicationContext(),key);
             runOnUiThread(()->{if(isDestroyed()||isFinishing()||request!=generation)return;if(!key.equals(SubscriptionStore.key(this,AppPreferences.loadSnapshot(this)))){reload();return;}
                 try{render(snapshot,window,policy,data.records,completed,doc);}catch(Exception ignored){error();}});
@@ -60,20 +61,22 @@ public final class FunActivity extends AppCompatActivity {
         LedgerPeriods.Span span=window==null?null:LedgerPeriods.span(window.effectiveResetAtMillis(snapshot.fetchedAtMillis),window.windowSeconds,snapshot.fetchedAtMillis);
         boolean fresh=span!=null&&now<span.end&&UsageInsights.freshness(snapshot.fetchedAtMillis,now,RefreshScheduler.effectiveRefreshMinutes(this))==UsageInsights.Freshness.FRESH;
         content.addView(SubscriptionValueUi.card(this,dark,snapshot,current,span,fresh,FunInsights.safeCurrent(records,policy,span)));Ui.addSpacer(content,16);
-        FunInsights.Rating rating=FunStore.rating(doc,policy,completed,current);
-        LinearLayout tier=Ui.card(this,dark);tier.addView(LedgerUi.heading(this,getString(R.string.fun_tier),dark));Ui.addSpacer(tier,12);
+        FunInsights.Rating rating=TierStore.rating(this,policy);
+        LinearLayout tier=Ui.card(this,dark);TierTheme.frame(tier,rating.tier,dark);tier.addView(LedgerUi.heading(this,getString(R.string.fun_tier),dark));Ui.addSpacer(tier,12);
         LinearLayout row=new LinearLayout(this);row.setOrientation(LedgerUi.stacked(this)?LinearLayout.VERTICAL:LinearLayout.HORIZONTAL);row.setGravity(Gravity.CENTER_VERTICAL);
-        ImageView badge=new ImageView(this);badge.setImageResource(rating.tier<0?R.drawable.badge_iron:BADGES[rating.tier]);badge.setAlpha(rating.tier<0?.45f:1f);badge.setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO);
-        LinearLayout.LayoutParams bp=new LinearLayout.LayoutParams(Ui.dp(this,112),Ui.dp(this,112));if(LedgerUi.stacked(this))bp.gravity=Gravity.CENTER_HORIZONTAL;else bp.setMarginEnd(Ui.dp(this,16));row.addView(badge,bp);
+        TierCompanionView badge=new TierCompanionView(this,rating.tier);badge.setAlpha(rating.tier<0?.45f:1f);badge.setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO);
+        LinearLayout.LayoutParams bp=new LinearLayout.LayoutParams(Ui.dp(this,112),Ui.dp(this,112));if(LedgerUi.stacked(this))bp.gravity=Gravity.CENTER_HORIZONTAL;else bp.setMarginEnd(Ui.dp(this,16));row.addView(TierTheme.companion(badge,rating.tier),bp);
         LinearLayout copy=new LinearLayout(this);copy.setOrientation(LinearLayout.VERTICAL);copy.addView(LedgerUi.amount(this,rating.tier<0?getString(R.string.fun_placing):getString(TIERS[rating.tier]),dark,27));
-        copy.addView(LedgerUi.caption(this,rating.tier<0?getString(R.string.fun_placing):rating.provisional?getString(R.string.fun_provisional):getString(R.string.fun_recorded,rating.count,num(rating.average)),dark));
+        copy.addView(LedgerUi.caption(this,rating.tier<0?getString(R.string.fun_placing):rating.provisional?getString(R.string.fun_provisional):TierPresentation.note(this,policy),dark));
         if(current!=null)copy.addView(LedgerUi.caption(this,getString(R.string.fun_challenge,num(current.doubleValue())),dark));
         if(!completed.isEmpty()){FunInsights.Window last=completed.get(completed.size()-1);FunInsights.Style style=FunInsights.style(records,policy,last.span,last.span.end);if(style!=FunInsights.Style.UNKNOWN)copy.addView(LedgerUi.caption(this,getString(R.string.fun_style_period,getString(styleId(style))),dark));}
+        TierPresentation.details(this,copy,policy,span,dark);
         row.addView(copy,new LinearLayout.LayoutParams(LedgerUi.stacked(this)?-1:0,-2,LedgerUi.stacked(this)?0:1));tier.addView(row);
         String tone=FunStore.tone(this);boolean rapid=false;
         if(precise!=null){LedgerForecast.Result forecast=LedgerForecast.analyze(records,policy,now,RefreshScheduler.effectiveRefreshMinutes(this));rapid=forecast.spike;}
         FunInsights.Situation situation=FunInsights.situation(rating,current,span==null?0:span.end-now,fresh,rapid);
-        if(fresh&&completed.size()>1&&completed.get(completed.size()-1).span.end>=now-86400000L&&rating.tier>FunInsights.rating(completed.subList(0,completed.size()-1),null).tier)situation=FunInsights.Situation.PROMOTED;
+        TierEvolution.State evaluated=TierStore.read(this,policy);
+        if(fresh&&evaluated.previous>=0&&evaluated.tier>evaluated.previous&&now-evaluated.end<86400000L){situation=FunInsights.Situation.PROMOTED;badge.post(badge::promote);}
         if(!tone.equals("off")){Ui.addSpacer(tier,16);tier.addView(LedgerUi.caption(this,getString(R.string.fun_coach),dark));tier.addView(LedgerUi.heading(this,FunCoach.current(this,tone,rating.tier,situation,CoachMoment.choose(records,policy,span,current,fresh,now),span==null?policy:policy+span.end,now),dark));}
         Ui.addSpacer(tier,12);tier.addView(LedgerUi.action(this,getString(R.string.fun_why),false,dark,()->new AlertDialog.Builder(this).setTitle(R.string.fun_why).setMessage(getString(R.string.fun_tier_help)+"\n\n"+getString(R.string.fun_coach_help)).setPositiveButton(R.string.ui_done_e9b450,null).show()));content.addView(tier);
         if(span!=null){LedgerPeriods.Measurement[] match=LedgerPeriods.matched(records,policy,span,now);
@@ -82,12 +85,12 @@ public final class FunActivity extends AppCompatActivity {
         LinearLayout settings=Ui.card(this,dark);settings.addView(LedgerUi.caption(this,bill==null?getString(R.string.v3_payment_missing):getString(R.string.v3_user_payment,money(bill.currency,bill.amount)),dark));
 
         settings.addView(LedgerUi.action(this,getString(R.string.fun_settings),false,dark,()->startActivity(new Intent(this,FunSettingsActivity.class))));content.addView(settings);
-        addRecaps(doc,completed);((NestedScrollView)findViewById(R.id.dashboard_scroll)).post(()->((NestedScrollView)findViewById(R.id.dashboard_scroll)).scrollTo(0,scroll));
+        TierPresentation.history(this,content,policy,dark);addRecaps(doc,completed);((NestedScrollView)findViewById(R.id.dashboard_scroll)).post(()->((NestedScrollView)findViewById(R.id.dashboard_scroll)).scrollTo(0,scroll));
     }
     private void addRecaps(JSONObject doc,List<FunInsights.Window> completed)throws Exception{
-        LedgerUi.section(content,getString(R.string.fun_last_recaps),dark);JSONArray rows=doc.getJSONArray("settlements");
+        LedgerUi.section(content,getString(R.string.evo_legacy_history),dark);JSONArray rows=doc.getJSONArray("settlements");
         if(rows.length()==0)content.addView(LedgerUi.caption(this,getString(R.string.fun_no_recaps),dark));
-        for(int i=rows.length()-1;i>=Math.max(0,rows.length()-3);i--){JSONObject row=rows.getJSONObject(i);LinearLayout card=Ui.card(this,dark);
+        for(int i=rows.length()-1;i>=Math.max(0,rows.length()-3);i--){JSONObject row=rows.getJSONObject(i);LinearLayout card=Ui.card(this,dark);TierTheme.frame(card,row.getInt("tier"),dark);
             card.addView(LedgerUi.heading(this,V3Display.range(row.getLong("start"),row.getLong("end")),dark));card.addView(LedgerUi.amount(this,row.getString("used")+"% · "+getString(TIERS[row.getInt("tier")]),dark,23));
             card.addView(LedgerUi.caption(this,getString(R.string.fun_recap_quality),dark));
             if(!row.isNull("previous_used")&&row.has("previous_used"))card.addView(LedgerUi.caption(this,getString(R.string.fun_recap_change,num(new BigDecimal(row.getString("used")).subtract(new BigDecimal(row.getString("previous_used"))).doubleValue())),dark));

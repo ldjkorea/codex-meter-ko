@@ -113,6 +113,7 @@ public final class UpdateInstaller {
     }
 
     public static int commit(Context context, PreparedUpdate update) throws Exception {
+        if(Thread.currentThread().isInterrupted())throw new java.io.InterruptedIOException("Update cancelled");
         if (!BuildConfig.KOREAN_UPDATES_ENABLED) {
             throw new IllegalStateException(context.getString(R.string.ko_updates_unavailable));
         }
@@ -140,6 +141,7 @@ public final class UpdateInstaller {
                 byte[] buffer = new byte[64 * 1024];
                 int read;
                 while ((read = input.read(buffer)) != -1) {
+                    if (Thread.currentThread().isInterrupted()) throw new java.io.InterruptedIOException("Update cancelled");
                     output.write(buffer, 0, read);
                 }
                 session.fsync(output);
@@ -150,6 +152,7 @@ public final class UpdateInstaller {
             PendingIntent callback = PendingIntent.getBroadcast(context, sessionId, result,
                     PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_MUTABLE);
             IntentSender sender = callback.getIntentSender();
+            if (Thread.currentThread().isInterrupted()) throw new java.io.InterruptedIOException("Update cancelled");
             session.commit(sender);
             DiagnosticLog.info(context, "update", "installer_session_committed",
                     "session_id", sessionId,
@@ -197,11 +200,19 @@ public final class UpdateInstaller {
                 ? installed.getLongVersionCode() : installed.versionCode;
         long archiveCode = Build.VERSION.SDK_INT >= 28
                 ? archive.getLongVersionCode() : archive.versionCode;
-        if (archiveCode < installedCode) {
+        if (archiveCode <= installedCode) {
             throw new DowngradeNotSupportedException(
                     "Android cannot install an older version over the current app.");
         }
+        Signature[] signers=currentSigners(archive);
+        if(signers.length!=1 || !KoreanUpdateTrust.compatible(archive.packageName,hexCertificate(signers[0]),installedCode,archiveCode))
+            throw new SecurityException("The APK is not signed by the Korean release key.");
         return new PreparedUpdate(apk, archive.versionName, archiveCode);
+    }
+
+    private static String hexCertificate(Signature signer)throws Exception {
+        byte[] hash=java.security.MessageDigest.getInstance("SHA-256").digest(signer.toByteArray());StringBuilder s=new StringBuilder();
+        for(byte b:hash)s.append(String.format(Locale.US,"%02x",b&255));return s.toString();
     }
 
     private static Signature[] currentSigners(PackageInfo info) {

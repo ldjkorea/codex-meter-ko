@@ -1,0 +1,136 @@
+{
+  "android/app/src/main/java/dev/bennett/codexmeter/FunHome.java": [
+    [
+      "JSONObject doc=FunStore.load(activity.getApplicationContext(),key);",
+      "TierStore.evaluate(activity.getApplicationContext(),key,policy,completed);\n            JSONObject doc=FunStore.load(activity.getApplicationContext(),key);"
+    ],
+    [
+      "FunInsights.Rating rating=FunStore.rating(doc,policy,completed,current);",
+      "FunInsights.Rating rating=TierStore.rating(activity,policy);"
+    ],
+    [
+      "getString(R.string.fun_recorded,rating.count,num(rating.average))",
+      "TierPresentation.note(activity,policy)"
+    ],
+    [
+      "ImageView badge=new ImageView(activity);badge.setImageResource(rating.tier<0?R.drawable.badge_iron:BADGES[rating.tier]);",
+      "TierCompanionView badge=new TierCompanionView(activity,rating.tier);"
+    ],
+    [
+      "row.addView(copy,new LinearLayout.LayoutParams(",
+      "TierPresentation.details(activity,copy,policy,span,dark);\n        row.addView(copy,new LinearLayout.LayoutParams("
+    ],
+    [
+      "LinearLayout tier=Ui.card(activity,dark);",
+      "LinearLayout tier=Ui.card(activity,dark);TierTheme.frame(tier,rating.tier,dark);"
+    ],
+    [
+      "if(fresh&&completed.size()>1&&completed.get(completed.size()-1).span.end>=now-86400000L&&rating.tier>FunInsights.rating(completed.subList(0,completed.size()-1),null).tier)situation=FunInsights.Situation.PROMOTED;",
+      "TierEvolution.State evaluated=TierStore.read(activity,policy);\n        if(fresh&&evaluated.previous>=0&&evaluated.tier>evaluated.previous&&now-evaluated.end<86400000L){situation=FunInsights.Situation.PROMOTED;badge.post(badge::promote);}"
+    ],
+    [
+      "if(!tone.equals(\"off\"))target.addView(quotation);target.addView(value);",
+      "TierTheme.frame(quotation,rating.tier,dark);\n        if(!tone.equals(\"off\"))target.addView(quotation);target.addView(value);"
+    ]
+  ],
+  "android/app/src/main/java/dev/bennett/codexmeter/FunActivity.java": [
+    [
+      "JSONObject doc=FunStore.load(getApplicationContext(),key);",
+      "TierStore.evaluate(getApplicationContext(),key,policy,completed);\n            JSONObject doc=FunStore.load(getApplicationContext(),key);"
+    ],
+    [
+      "FunInsights.Rating rating=FunStore.rating(doc,policy,completed,current);",
+      "FunInsights.Rating rating=TierStore.rating(this,policy);"
+    ],
+    [
+      "getString(R.string.fun_recorded,rating.count,num(rating.average))",
+      "TierPresentation.note(this,policy)"
+    ],
+    [
+      "ImageView badge=new ImageView(this);badge.setImageResource(rating.tier<0?R.drawable.badge_iron:BADGES[rating.tier]);",
+      "TierCompanionView badge=new TierCompanionView(this,rating.tier);"
+    ],
+    [
+      "row.addView(copy,new LinearLayout.LayoutParams(",
+      "TierPresentation.details(this,copy,policy,span,dark);\n        row.addView(copy,new LinearLayout.LayoutParams("
+    ],
+    [
+      "LinearLayout tier=Ui.card(this,dark);",
+      "LinearLayout tier=Ui.card(this,dark);TierTheme.frame(tier,rating.tier,dark);"
+    ],
+    [
+      "if(fresh&&completed.size()>1&&completed.get(completed.size()-1).span.end>=now-86400000L&&rating.tier>FunInsights.rating(completed.subList(0,completed.size()-1),null).tier)situation=FunInsights.Situation.PROMOTED;",
+      "TierEvolution.State evaluated=TierStore.read(this,policy);\n        if(fresh&&evaluated.previous>=0&&evaluated.tier>evaluated.previous&&now-evaluated.end<86400000L){situation=FunInsights.Situation.PROMOTED;badge.post(badge::promote);}"
+    ]
+  ],
+  "android/app/src/main/java/dev/bennett/codexmeter/Ui.java": [
+    [
+      "if(phoneSurface(context))return z?Color.rgb(245,245,245):Color.rgb(25,27,30);",
+      "if(phoneSurface(context))return TierTheme.accent(context,z);"
+    ]
+  ],
+  "android/app/src/main/java/dev/bennett/codexmeter/WidgetRenderer.java": [
+    [
+      "public static void updateAll(Context context) {",
+      "public static void updateAll(Context context) {\n        if(context!=null)EvolutionWidget.updateAll(context);"
+    ],
+    [
+      "if(context!=null)EvolutionWidget.updateAll(context);",
+      "if(context!=null){EvolutionWidget.updateAll(context);TierEvaluationScheduler.afterRefresh(context);}"
+    ]
+  ],
+  "android/app/src/main/java/dev/bennett/codexmeter/RecordSettings.java": [
+    [
+      "action(a,fun,dark,R.string.fun_tone,()->tone(a));",
+      "toggle(a,fun,dark,R.string.evo_effects,TierTheme.effects(a),on->a.getSharedPreferences(\"codex_tier_effects\",0).edit().putBoolean(\"enabled\",on).apply());\n        action(a,fun,dark,R.string.fun_tone,()->tone(a));"
+    ]
+  ],
+  "android/app/build.gradle.kts": [
+    [
+      "BenItBuhner/Codex-Meter",
+      "ldjkorea/codex-meter-ko"
+    ],
+    [
+      "\"KOREAN_UPDATES_ENABLED\", \"false\"",
+      "\"KOREAN_UPDATES_ENABLED\", \"true\""
+    ]
+  ],
+  "android/app/src/main/java/dev/bennett/codexmeter/GitHubReleaseParser.java": [
+    [
+      "ReleaseVersion version = ReleaseVersion.parse(tag);",
+      "ReleaseVersion version = ReleaseVersion.parse(tag.replaceFirst(\"-beta(?:\\\\.\\\\d+)?$\", \"\"));"
+    ],
+    [
+      "String expectedApk = \"CodexMeter-\" + version.normalized() + \".apk\";",
+      "String expectedApk = \"CodexMeter-\" + version.normalized() + \"-ko.apk\";"
+    ],
+    [
+      "boolean github = \"https\".equalsIgnoreCase(uri.getScheme())\n                    && host != null\n                    && (\"github.com\".equalsIgnoreCase(host)\n                    || host.toLowerCase(java.util.Locale.US).endsWith(\".github.com\"));",
+      "boolean github = KoreanUpdateTrust.official(value);"
+    ],
+    [
+      "long apkSize = apk.optLong(\"size\", -1L);",
+      "if (!allowLocalDebugServer && (!apkUrl.equals(GitHubReleaseSource.REPOSITORY_URL+\"/releases/download/\"+tag+\"/\"+expectedApk)\n                    || !checksumUrl.equals(GitHubReleaseSource.REPOSITORY_URL+\"/releases/download/\"+tag+\"/SHA256SUMS.txt\")\n                    || !pageUrl.equals(GitHubReleaseSource.REPOSITORY_URL+\"/releases/tag/\"+tag)))continue;\n            long apkSize = apk.optLong(\"size\", -1L);"
+    ]
+  ],
+  "android/app/src/main/java/dev/bennett/codexmeter/UpdateInstaller.java": [
+    [
+      "if (archiveCode < installedCode) {",
+      "if (archiveCode <= installedCode) {"
+    ],
+    [
+      "return new PreparedUpdate(apk, archive.versionName, archiveCode);",
+      "Signature[] signers=currentSigners(archive);\n        if(signers.length!=1 || !KoreanUpdateTrust.compatible(archive.packageName,hexCertificate(signers[0]),installedCode,archiveCode))\n            throw new SecurityException(\"The APK is not signed by the Korean release key.\");\n        return new PreparedUpdate(apk, archive.versionName, archiveCode);"
+    ],
+    [
+      "private static Signature[] currentSigners(PackageInfo info) {",
+      "private static String hexCertificate(Signature signer)throws Exception {\n        byte[] hash=java.security.MessageDigest.getInstance(\"SHA-256\").digest(signer.toByteArray());StringBuilder s=new StringBuilder();\n        for(byte b:hash)s.append(String.format(Locale.US,\"%02x\",b&255));return s.toString();\n    }\n\n    private static Signature[] currentSigners(PackageInfo info) {"
+    ]
+  ],
+  "android/app/src/main/java/dev/bennett/codexmeter/UpdatePreferences.java": [
+    [
+      "prefs(context).getString(KEY_CHANNEL, UpdateChannel.STABLE)",
+      "prefs(context).getString(KEY_CHANNEL, UpdateChannel.ALPHA)"
+    ]
+  ]
+}

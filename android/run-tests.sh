@@ -77,26 +77,27 @@ javac -encoding UTF-8 -cp "$JSON_JAR" -d "$OUT" \
   "$ROOT/app/src/main/java/dev/bennett/codexmeter/UpdateCheckFrequency.java" \
   "$ROOT/app/src/main/java/dev/bennett/codexmeter/DiagnosticSanitizer.java" \
   "$ROOT/app/src/main/java/dev/bennett/codexmeter/SettingsTransfer.java" \
+  "$ROOT/shared/src/main/java/dev/bennett/codexmeter/KoreanUpdateTrust.java" \
   "$ROOT/tests/ParserSelfTest.java"
 
 java -ea -cp "$OUT:$JSON_JAR" dev.bennett.codexmeter.ParserSelfTest
 
 # Source-level release checks.
-grep -q 'VERSION_NAME = "2.8.7"' "$ROOT/app/src/main/java/dev/bennett/codexmeter/AppConstants.java"
-grep -q 'VERSION_CODE = 37' "$ROOT/app/src/main/java/dev/bennett/codexmeter/AppConstants.java"
-grep -q 'versionName = "2.8.7"' "$ROOT/app/build.gradle.kts"
-grep -q 'versionCode = 37' "$ROOT/app/build.gradle.kts"
-grep -q 'versionName = "2.8.7"' "$ROOT/wear/build.gradle.kts"
-grep -q 'versionCode = 37' "$ROOT/wear/build.gradle.kts"
-grep -q 'codex-meter-android/2.8.7' "$ROOT/app/src/main/java/dev/bennett/codexmeter/AppConstants.java"
-grep -q 'VERSION_NAME="2.8.7"' "$ROOT/build.sh"
+grep -q 'VERSION_NAME = "2.8.8"' "$ROOT/app/src/main/java/dev/bennett/codexmeter/AppConstants.java"
+grep -q 'VERSION_CODE = 38' "$ROOT/app/src/main/java/dev/bennett/codexmeter/AppConstants.java"
+grep -q 'versionName = "2.8.8"' "$ROOT/app/build.gradle.kts"
+grep -q 'versionCode = 38' "$ROOT/app/build.gradle.kts"
+grep -q 'versionName = "2.8.8"' "$ROOT/wear/build.gradle.kts"
+grep -q 'versionCode = 38' "$ROOT/wear/build.gradle.kts"
+grep -q 'codex-meter-android/2.8.8' "$ROOT/app/src/main/java/dev/bennett/codexmeter/AppConstants.java"
+grep -q 'VERSION_NAME="2.8.8"' "$ROOT/build.sh"
 WORKFLOW="$ROOT/../.github/workflows/build-apk.yml"
 grep -Fq 'contents: read' "$WORKFLOW"
 ! grep -Fq 'contents: write' "$WORKFLOW"
 ! grep -Fq 'pull_request_target' "$WORKFLOW"
 ! grep -Fq 'gh release' "$WORKFLOW"
 grep -Fq '"platforms;android-37.0"' "$WORKFLOW"
-grep -q 'BenItBuhner/Codex-Meter/releases?per_page=30' "$ROOT/app/build.gradle.kts" # pragma: allowlist secret
+grep -q 'ldjkorea/codex-meter-ko/releases?per_page=30' "$ROOT/app/build.gradle.kts" # pragma: allowlist secret
 ! grep -R -q 'thatjoshguy67/Codex-Meter' \
   "$ROOT/app/src" "$ROOT/app/build.gradle.kts"
 
@@ -854,3 +855,5 @@ echo "Parser, updater, OAuth, onboarding, reset-credit, alert, widget, and Wear 
 "$PYTHON" "$ROOT/tests/verify-matte-ui.py"
 
 "$PYTHON" "$ROOT/tests/verify-coach-value.py"
+
+"$PYTHON" "$ROOT/tests/verify-evolution.py"

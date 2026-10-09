@@ -32,11 +32,11 @@ public final class GitHubReleaseParser {
                 continue;
             }
             String tag = clean(release.optString("tag_name", ""), 100);
-            ReleaseVersion version = ReleaseVersion.parse(tag);
+            ReleaseVersion version = ReleaseVersion.parse(tag.replaceFirst("-beta(?:\\.\\d+)?$", ""));
             if (version == null || versions.contains(version.normalized())) {
                 continue;
             }
-            String expectedApk = "CodexMeter-" + version.normalized() + ".apk";
+            String expectedApk = "CodexMeter-" + version.normalized() + "-ko.apk";
             JSONObject apk = null;
             JSONObject checksum = null;
             JSONArray assets = release.optJSONArray("assets");
@@ -65,6 +65,9 @@ public final class GitHubReleaseParser {
                     || !isTrustedReleaseUrl(pageUrl, allowLocalDebugServer)) {
                 continue;
             }
+            if (!allowLocalDebugServer && (!apkUrl.equals(GitHubReleaseSource.REPOSITORY_URL+"/releases/download/"+tag+"/"+expectedApk)
+                    || !checksumUrl.equals(GitHubReleaseSource.REPOSITORY_URL+"/releases/download/"+tag+"/SHA256SUMS.txt")
+                    || !pageUrl.equals(GitHubReleaseSource.REPOSITORY_URL+"/releases/tag/"+tag)))continue;
             long apkSize = apk.optLong("size", -1L);
             if (apkSize <= 0L) {
                 continue;
@@ -75,7 +78,7 @@ public final class GitHubReleaseParser {
             }
             String notes = clean(release.optString("body", ""), MAX_NOTES);
             boolean prerelease = release.optBoolean("prerelease", false)
-                    || version.isPrerelease();
+                    || ReleaseVersion.parse(tag).isPrerelease();
             versions.add(version.normalized());
             parsed.add(new GitHubRelease(version.normalized(), tag, releaseName, notes,
                     clean(release.optString("published_at", ""), 80), pageUrl, expectedApk,
@@ -124,10 +127,7 @@ public final class GitHubReleaseParser {
         try {
             URI uri = URI.create(value);
             String host = uri.getHost();
-            boolean github = "https".equalsIgnoreCase(uri.getScheme())
-                    && host != null
-                    && ("github.com".equalsIgnoreCase(host)
-                    || host.toLowerCase(java.util.Locale.US).endsWith(".github.com"));
+            boolean github = KoreanUpdateTrust.official(value);
             return github || (allowLocalDebugServer
                     && "http".equalsIgnoreCase(uri.getScheme())
                     && "10.0.2.2".equals(host)

@@ -34,6 +34,7 @@ final class RecordSettings {
         action(a,account,dark,R.string.matte_account_manage,()->MatteNav.homeAction(a,"account"));
 
         LinearLayout fun=card(a,parent,dark,R.string.ux_value_coach);
+        toggle(a,fun,dark,R.string.evo_effects,TierTheme.effects(a),on->a.getSharedPreferences("codex_tier_effects",0).edit().putBoolean("enabled",on).apply());
         action(a,fun,dark,R.string.fun_tone,()->tone(a));
         fun.addView(LedgerUi.caption(a,a.getString(toneLabel(FunStore.tone(a))),dark));
         action(a,fun,dark,R.string.fun_why,()->new AlertDialog.Builder(a).setTitle(R.string.fun_why).setMessage(R.string.fun_tier_help).setPositiveButton(R.string.ui_done_e9b450,null).show());

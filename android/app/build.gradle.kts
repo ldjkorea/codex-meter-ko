@@ -10,8 +10,8 @@ android {
         applicationId = "dev.bennett.codexmeter"
         minSdk = 26
         targetSdk = 36
-        versionCode = 37
-        versionName = "2.8.7"
+        versionCode = 38
+        versionName = "2.8.8"
         providers.gradleProperty("demoVersionCode").orNull?.toIntOrNull()?.let {
             versionCode = it
         }
@@ -19,13 +19,13 @@ android {
             versionName = it
         }
         val updateApiUrl = providers.gradleProperty("demoUpdateUrl").orNull
-            ?: "https://api.github.com/repos/BenItBuhner/Codex-Meter/releases?per_page=30" // pragma: allowlist secret
+            ?: "https://api.github.com/repos/ldjkorea/codex-meter-ko/releases?per_page=30" // pragma: allowlist secret
         buildConfigField("String", "UPDATE_API_URL",
             "\"${updateApiUrl.replace("\\", "\\\\").replace("\"", "\\\"")}\"")
     }
 
     defaultConfig {
-        buildConfigField("boolean", "KOREAN_UPDATES_ENABLED", "false")
+        buildConfigField("boolean", "KOREAN_UPDATES_ENABLED", "true")
     }
 
     buildFeatures {

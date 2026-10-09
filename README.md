@@ -4,9 +4,9 @@ Codex 사용량을 확인하는 **비공식 Android 앱**입니다. 한국어 �
 
 원작은 [BenItBuhner/Codex-Meter](https://github.com/BenItBuhner/Codex-Meter)이며, Bennett의 MIT 라이선스와 저작권 고지를 유지합니다. 이 수정본은 OpenAI·Samsung·원작자가 제공하거나 보증하는 공식 앱이 아닙니다. 한국어 수정·배포 준비: [ldjkorea](https://github.com/ldjkorea).
 
-**최초 공개 버전: 2.8.7 / versionCode 37, `v2.8.7-beta`.** 실제 Android 기기 검증은 아직 수행하지 않은 베타입니다.
+**현재 베타: 2.8.8 / versionCode 38, `v2.8.8-beta`.** 최초 공개 2.8.7도 보존합니다. 실제 Android 기기 검증은 아직 수행하지 않은 베타입니다.
 
-[릴리스와 한국어 설치 안내](https://github.com/ldjkorea/codex-meter-ko/releases/tag/v2.8.7-beta) · [휴대폰 APK 다운로드](https://github.com/ldjkorea/codex-meter-ko/releases/download/v2.8.7-beta/CodexMeter-2.8.7-ko.apk)
+[릴리스와 한국어 설치 안내](https://github.com/ldjkorea/codex-meter-ko/releases/tag/v2.8.8-beta) · [휴대폰 APK 다운로드](https://github.com/ldjkorea/codex-meter-ko/releases/download/v2.8.8-beta/CodexMeter-2.8.8-ko.apk)
 
 ## Android 설치
 
@@ -27,17 +27,19 @@ Codex 사용량을 확인하는 **비공식 Android 앱**입니다. 한국어 �
 - 직접 등록한 결제금액과 기간을 기반으로 구독 활용도 참고값을 표시합니다. API 비용·절약액·생산성 측정값이 아닙니다. 코치 문구에 별도 AI 호출을 사용하지 않습니다.
 - 위젯·알림·선택적 사용량 모니터·Wear 연동을 포함합니다. 삼성 전용 화면 동작은 기기와 펌웨어에 따라 달라질 수 있습니다.
 
+새 기능의 [티어 디자인 미리보기](docs/tier-previews/index.html)와 [개발·검증 보고서](docs/TIER_EVOLUTION_2.8.8_REPORT.ko.md)를 제공합니다. 미리보기는 디자인 자산 렌더링이며 실제 앱 화면이 아닙니다.
+
 ## 로그인·개인정보·보안
 
 로그인은 브라우저의 OpenAI 인증 화면을 사용합니다. 인증 토큰은 Android Keystore를 사용하는 AES-GCM 방식으로 기기에 저장됩니다. 사용 기록·결제정보·설정은 기기 내부에 보관됩니다. 내보낸 기록이나 진단 파일은 공유 전에 직접 확인하세요. 공개 이슈에 토큰·계정 식별자·결제정보·원본 로그를 올리지 마세요.
 
-공용 백엔드나 광고·분석 서버는 없습니다. 인증·사용량 및 사용자가 선택한 작업을 위해 OpenAI/ChatGPT에 직접 요청하며 Wear 연동은 Google Play Services를 사용합니다. GitHub 릴리스 조회 코드는 남아 있지만 **한국어판 업데이트 확인·설치는 현재 비활성화**되어 있습니다.
+공용 백엔드나 광고·분석 서버는 없습니다. 인증·사용량 및 사용자가 선택한 작업을 위해 OpenAI/ChatGPT에 직접 요청하며 Wear 연동은 Google Play Services를 사용합니다. 2.8.8부터 공개 한국어 저장소의 GitHub 릴리스를 확인합니다. 업데이트 조회·다운로드에는 계정 토큰을 전송하지 않으며 자동 설치하지 않습니다.
 
 ChatGPT 내부 사용량 경로와 삼성 전용 메타데이터는 안정된 제3자 API 계약이 아닙니다. 서비스 변경으로 로그인/조회가 중단될 수 있습니다. 이 저장소는 정식 보안 감사를 통과한 제품이나 상시 지원 서비스를 주장하지 않습니다.
 
 ## 업데이트
 
-첫 공개 버전은 2.8.7 / 37 베타입니다. 당분간 Releases에서 수동 업데이트합니다. 원본 영문 APK 자동 업데이트를 켜지 않습니다. 앱 내 업데이트를 제공하려면 한국어 저장소 주소, APK 선택, 체크섬, 서명 검사 및 실제 기기 업데이트를 별도로 검증합니다.
+2.8.7 사용자는 Releases에서 2.8.8을 한 번 수동 설치합니다. 이후 앱 설정의 업데이트 화면에서 한국어 저장소만 조회합니다. 베타 포함 채널과 하루 한 번 확인을 기본으로 하며, 저장한 기존 채널·확인 설정은 유지합니다. 알림은 사용자가 켜야 합니다. 다운로드 크기·SHA-256·패키지·한국어 인증서·증가한 versionCode를 검사한 뒤 Android 설치 확인을 요청합니다. 다운로드 중 화면을 닫으면 작업을 취소합니다. 기기 내 설치·취소·업데이트 알림은 아직 실기기 검증 전입니다.
 
 정식 versionCode를 증가시키며 기존 한국어 서명 키를 유지합니다. 동일 버전의 공개 APK를 조용히 교체하지 않습니다. [버전·배포 정책](docs/RELEASE_POLICY.ko.md)을 참고하세요.
 

@@ -1652,10 +1652,10 @@ public final class ParserSelfTest {
     }
 
     private static void testGitHubReleases() throws Exception {
-        check("https://github.com/BenItBuhner/Codex-Meter".equals( // pragma: allowlist secret
+        check("https://github.com/ldjkorea/codex-meter-ko".equals( // pragma: allowlist secret
                         GitHubReleaseSource.REPOSITORY_URL),
                 "canonical release repository");
-        check("https://api.github.com/repos/BenItBuhner/Codex-Meter/releases?per_page=30" // pragma: allowlist secret
+        check("https://api.github.com/repos/ldjkorea/codex-meter-ko/releases?per_page=30" // pragma: allowlist secret
                         .equals(GitHubReleaseSource.RELEASES_API_URL),
                 "canonical release API endpoint");
         String json = "["
@@ -1666,7 +1666,7 @@ public final class ParserSelfTest {
                 + "]";
         java.util.List<GitHubRelease> releases = GitHubReleaseParser.parse(json);
         check(releases.size() == 2, "only complete published releases accepted");
-        check("3.0.0-beta.1".equals(releases.get(0).version),
+        check("3.0.0".equals(releases.get(0).version),
                 "release history sorted semantically");
         GitHubRelease latest = GitHubReleaseParser.latestStable(releases);
         check(latest != null && "2.2.0".equals(latest.version),
@@ -1749,14 +1749,14 @@ public final class ParserSelfTest {
 
     private static String releaseJson(String tag, boolean draft, boolean prerelease,
             boolean apk, boolean checksum) {
-        String normalized = tag.startsWith("v") ? tag.substring(1) : tag;
+        String normalized = ReleaseVersion.parse(tag.replaceFirst("-beta(?:\\.\\d+)?$", "")).normalized();
         StringBuilder assets = new StringBuilder();
         if (apk) {
             assets.append("{\"name\":\"CodexMeter-").append(normalized)
-                    .append(".apk\",\"size\":123,\"browser_download_url\":")
+                    .append("-ko.apk\",\"size\":123,\"browser_download_url\":")
                     .append("\"").append(GitHubReleaseSource.REPOSITORY_URL)
                     .append("/releases/download/")
-                    .append(tag).append("/CodexMeter-").append(normalized).append(".apk\"}");
+                    .append(tag).append("/CodexMeter-").append(normalized).append("-ko.apk\"}");
         }
         if (checksum) {
             if (assets.length() > 0) assets.append(',');

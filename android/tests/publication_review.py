@@ -9,3 +9,20 @@ def reviewed_widget_reset(path, raw):
         assert text.count(before)==1, 'Publication patch no longer matches historical source'
         text=text.replace(before,after)
     return text.encode('utf-8')
+
+def reviewed_evolution(path,raw):
+    import json
+    from pathlib import Path
+    patches=json.loads(Path(__file__).with_name('evolution-reviewed-patches.json').read_text(encoding='utf-8'))
+    if path not in patches:return raw
+    text=raw.decode('utf-8').replace('\r\n','\n')
+    for before,after in patches.get(path,[]):
+        assert text.count(before)==1,(path,'Reviewed evolution patch mismatch',before[:90])
+        text=text.replace(before,after)
+    return text.encode('utf-8')
+
+def strip_evolution_manifest(text):
+    import re
+    pattern=r'<activity android:name="dev.bennett.codexmeter.EvolutionWidgetConfigActivity"[\s\S]*?</receiver>\n    '
+    assert len(re.findall(pattern,text))==1,'Additive evolution manifest registration missing'
+    return re.sub(pattern,'',text)

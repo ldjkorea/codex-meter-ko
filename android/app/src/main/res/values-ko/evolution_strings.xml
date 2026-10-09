@@ -1,0 +1,28 @@
+<resources>
+<string name="evo_resize">위젯 높이를 늘리거나(약 %1$d dp) 표시할 항목 수를 줄여주세요.</string>
+<string name="evo_history">최근 주간 티어 평가</string>
+<string name="evo_legacy_history">보관된 결산 · 이전 평가 기준</string>
+<string name="evo_placing">배치 중 · 완료된 주간 기록을 기다려요</string>
+<string name="evo_stable">주간 평가 완료</string>
+<string name="evo_result">이전: %1$s · %2$s</string>
+<string name="evo_promoted">승급</string>
+<string name="evo_demoted">등급 조정</string>
+<string name="evo_held">티어 유지</string>
+<string name="evo_next">다음 평가 · %1$s 종료 후</string>
+<string name="evo_effects">짧은 승급 효과</string>
+<string name="evo_widget">Codex Meter · 진화형</string>
+<string name="evo_widget_help">1~5개를 선택하고 ↑로 순서를 바꾸세요. 숨긴 한도는 다시 켜면 복원돼요. 4~5개는 위젯 높이를 늘려주세요. 기존 위젯의 고급 설정은 유지됩니다.</string>
+<string name="evo_select_one">최소 한 항목을 선택하세요</string>
+<string name="evo_theme">티어 테마 적용</string>
+<string name="evo_opacity">배경 불투명도</string>
+<string name="evo_five_usage">5시간 잔여율</string>
+<string name="evo_week_usage">주간 잔여율</string>
+<string name="evo_five_reset">5시간 초기화 시간</string>
+<string name="evo_week_reset">주간 초기화 시간</string>
+<string name="evo_reset">초기화</string>
+<string name="evo_stale">오래된 관측</string>
+<string name="evo_unknown_reset">초기화 시각 없음</string>
+<string name="evo_refresh_needed">조회 필요</string>
+<string name="evo_edit">편집</string>
+<string name="evo_empty">표시할 항목이 없어요. 한도를 켜거나 위젯을 편집하세요.</string>
+</resources>

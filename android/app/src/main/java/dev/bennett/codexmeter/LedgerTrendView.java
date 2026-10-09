@@ -48,10 +48,11 @@ final class LedgerTrendView extends View {
             float center=plotLeft+(i+.5f)*slot,width=Math.min(slot*.65f,Ui.dp(getContext(),34));
             if(start.plusDays(i).equals(selected)){paint.setColor(LedgerUi.tint(dark));canvas.drawRect(center-slot/2,top,center+slot/2,bottom,paint);}
             paint.setColor(!LedgerPresentation.measured(day)?LedgerUi.muted(dark):Ui.accent(getContext(),dark));
+            if(LedgerPresentation.measured(day)&&selected!=null&&!start.plusDays(i).equals(selected))paint.setAlpha(105);else paint.setAlpha(255);
             if(!LedgerPresentation.measured(day))canvas.drawLine(center-width/2,bottom-Ui.dp(getContext(),3),center+width/2,bottom-Ui.dp(getContext(),3),paint);
             else canvas.drawRoundRect(center-width/2,bottom-Math.max(Ui.dp(getContext(),2),(float)(day.points/maximum)*(bottom-top)),center+width/2,bottom,Ui.dp(getContext(),3),Ui.dp(getContext(),3),paint);
         }
-        paint.setColor(LedgerUi.muted(dark));
+        paint.setAlpha(255);paint.setColor(LedgerUi.muted(dark));
         java.time.format.DateTimeFormatter format=java.time.format.DateTimeFormatter.ofPattern("MM.dd",java.util.Locale.getDefault());
         canvas.drawText(start.format(format),plotLeft,getHeight()-font*.4f,paint);
         if(days.size()>1){String end=start.plusDays(days.size()-1).format(format);canvas.drawText(end,plotRight-paint.measureText(end),getHeight()-font*.4f,paint);}

@@ -21,7 +21,7 @@
   <string name="fun_provisional">Provisional · current window</string>
   <string name="fun_recorded">Recorded windows: %1$d · %2$s%% average</string>
   <string name="fun_challenge">This window utilization: %1$s%%</string>
-  <string name="fun_tier_help">Game rules v1. Iron 0–&lt;10, Bronze 10–&lt;20, Silver 20–&lt;30, Gold 30–&lt;45, Platinum 45–&lt;60, Emerald 60–&lt;75, Diamond 75–&lt;85, Master 85–&lt;92, Grandmaster 92–&lt;97, Challenger 97–100. Up to four comparable completed weekly windows, with observations near both boundaries and no gaps/corrections. Missing records are not zero. Tier is utilization, not skill or productivity.</string>
+  <string name="fun_tier_help">Your tier reflects completed weekly observations. Incomplete records hold the evaluation; a reset alone does not change your tier.</string>
   <string name="fun_coach">Coach says</string>
   <string name="fun_why">Why this assessment?</string>
   <string name="fun_coach_help">Local rules and written phrases, not live AI advice. Tier, current usage, reset time and measurement quality select the situation. The daily variant is stable across refreshes. No projects, work quality or spending benefits are inferred.</string>

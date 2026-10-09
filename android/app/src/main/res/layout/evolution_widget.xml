@@ -1,0 +1,7 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android" android:id="@+id/evolution_background" android:layout_width="match_parent" android:layout_height="match_parent">
+ <ImageView android:id="@+id/evolution_frame" android:layout_width="match_parent" android:layout_height="match_parent" android:scaleType="fitXY" android:importantForAccessibility="no"/>
+ <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:padding="12dp">
+ <TextView android:id="@+id/evolution_edit" android:layout_width="match_parent" android:layout_height="48dp" android:gravity="end|center_vertical" android:text="@string/evo_edit" android:textColor="#CDD2DA" android:textSize="12sp"/>
+ <TextView android:id="@+id/evolution_empty" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/evo_empty" android:textColor="#EEEEEE" android:visibility="gone"/>
+ <LinearLayout android:id="@+id/evolution_rows" android:layout_width="match_parent" android:layout_height="match_parent" android:gravity="center" android:orientation="vertical"/>
+</LinearLayout></FrameLayout>

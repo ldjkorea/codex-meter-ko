@@ -48,6 +48,7 @@ final class LedgerDashboard {
             policy=meter+"|"+LedgerRecord.cleanPlan(snapshot.planType)+"|"+window.windowSeconds;
             card=Ui.card(activity,dark);
             card.setBackground(LedgerUi.shape(activity,LedgerUi.tint(dark),24));
+            TierTheme.frame(card,TierTheme.tier(activity),dark);
             card.addView(LedgerUi.heading(activity,activity.getString(R.string.ui_ledger_home),dark));
             Ui.addSpacer(card,12);
             quality=LedgerUi.badge(activity,activity.getString(R.string.ui_ledger_last_value),dark,false);

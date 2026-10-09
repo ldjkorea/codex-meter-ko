@@ -33,6 +33,7 @@ public final class WidgetRenderer {
     }
 
     public static void updateAll(Context context) {
+        if(context!=null){EvolutionWidget.updateAll(context);TierEvaluationScheduler.afterRefresh(context);}
         if (context != null) {
             if (context.getApplicationContext() != null) {
                 context = context.getApplicationContext();

@@ -45,7 +45,7 @@ public final class UpdatePreferences {
 
     public static String channel(Context context) {
         return UpdateChannel.normalize(
-                prefs(context).getString(KEY_CHANNEL, UpdateChannel.STABLE));
+                prefs(context).getString(KEY_CHANNEL, UpdateChannel.ALPHA));
     }
 
     public static void setChannel(Context context, String channel) {

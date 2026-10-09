@@ -228,7 +228,7 @@ public final class Ui {
     }
 
     public static int accent(Context context, boolean z) {
-        if(phoneSurface(context))return z?Color.rgb(245,245,245):Color.rgb(25,27,30);
+        if(phoneSurface(context))return TierTheme.accent(context,z);
         int oneUi = oneUiAccent(z);
         if (AppPreferences.isMaterialYouEnabled(context)) {
             // Material You system accents; fall back to One UI blues when unavailable.
@@ -267,6 +267,7 @@ public final class Ui {
     }
 
     public static int onAccent(Context context, boolean z) {
+        if(phoneSurface(context))return Color.luminance(accent(context,z)) > 0.179f ? Color.BLACK : Color.WHITE;
         if (isOneUi(context)) {
             return Color.luminance(accent(context, z)) > 0.55f ? Color.BLACK : Color.WHITE;
         }

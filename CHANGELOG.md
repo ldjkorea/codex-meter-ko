@@ -1,3 +1,9 @@
+## 2.8.8
+
+- 장기 주간 티어 평가와 10단계 Meter Scout, 앱 티어 포인트, 별도 1~5요소 홈 위젯.
+- 한국어 GitHub 업데이트 저장소·서명 인증서 고정과 높은 versionCode 확인.
+- 기존 원장/결제/코치 기록·Pretendard·5시간 숨김·2.8.7 초기화 표시 보존.
+
 ## 2.8.7 Korean public beta
 
 - Replace redistributed proprietary font entries with unmodified Pretendard 1.3.9 under SIL OFL 1.1, with verified provenance and complete notices.

@@ -1,4 +1,4 @@
-from publication_review import reviewed_widget_reset
+from publication_review import reviewed_widget_reset, reviewed_evolution
 """Matte phone UI contracts and WCAG contrast. Does not simulate native rendering."""
 from pathlib import Path
 import json,re,xml.etree.ElementTree as ET
@@ -33,7 +33,7 @@ assert 'previousLabel.length()>0' in main # no clipped spinner text in compact i
 assert main.index('LedgerDashboard.addOverview')<main.index('FunHome.add')
 assert home.index('target.addView(tier)')<home.index('target.addView(quotation)')<home.index('target.addView(value)')
 assert 'if(!tone.equals("off"))target.addView(quotation)' in home
-assert 'FunStore.rating(doc,policy,completed,current)' in home
+assert 'TierStore.rating(activity,policy)' in home and 'TierStore.evaluate(' in home
 assert 'SubscriptionValueUi.card' in home and 'FunStore.rule(' not in home
 assert 'FunInsights.safeCurrent(records,policy,span)' in home
 assert 'screenWidthDp<420' in home and 'figures.setOrientation(LinearLayout.VERTICAL)' in src('SubscriptionValueUi')
@@ -82,7 +82,7 @@ paths=[prefix+name+'.java' for name in ['FunStore','TestNotesStore','Subscriptio
 paths+=subprocess.check_output(['git','ls-tree','-r','--name-only','e86c69c','android/shared/src','android/wear/src'],cwd=repo,text=True).splitlines()
 for path in paths:
     old=subprocess.check_output(['git','show','e86c69c:'+path],cwd=repo).replace(b'\r\n',b'\n')
-    old=reviewed_widget_reset(path,old)
+    old=reviewed_evolution(path,reviewed_widget_reset(path,old))
     assert (repo/path).read_bytes().replace(b'\r\n',b'\n')==old,path
 result={'type':'source/resource/contrast checks, not native UI','protected_files':len(paths),'dark_secondary_contrast':ratios,'native_device_render':'not performed'}
 (root/'build/matte-ui-verification').mkdir(parents=True,exist_ok=True)

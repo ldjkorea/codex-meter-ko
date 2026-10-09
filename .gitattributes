@@ -8,3 +8,9 @@ android/gradlew text eol=lf
 *.jar binary
 *.otf binary
 *.ttf binary
+
+# Preserve official license bytes and provenance hashes on Windows checkouts.
+LICENSE -text
+licenses/** -text
+android/app/src/main/assets/licenses/** -text
+android/wear/src/main/assets/licenses/** -text

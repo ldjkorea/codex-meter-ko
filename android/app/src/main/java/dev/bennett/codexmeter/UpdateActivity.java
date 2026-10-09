@@ -31,6 +31,7 @@ public final class UpdateActivity extends AppCompatActivity {
     private boolean operationRunning;
     private boolean startInstallPending;
     private boolean dark;
+    private volatile boolean cancelled;
 
     @Override
     protected void onCreate(Bundle bundle) {
@@ -85,6 +86,7 @@ public final class UpdateActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
+        cancelled=true;
         executor.shutdownNow();
         super.onDestroy();
     }
@@ -302,13 +304,20 @@ public final class UpdateActivity extends AppCompatActivity {
         executor.execute(() -> {
             try {
                 UpdateInstaller.PreparedUpdate prepared = UpdateInstaller.prepare(
-                        getApplicationContext(), release, (downloaded, total) ->
-                                postUi(() -> {
-                                    if (progress != null && total > 0L) {
-                                        progress.setProgress((int) Math.min(1000L,
-                                                downloaded * 1000L / total));
-                                    }
-                                }));
+                        getApplicationContext(), release, (downloaded, total) -> {
+                            if (cancelled || Thread.currentThread().isInterrupted()) {
+                                throw new java.util.concurrent.CancellationException("Update cancelled");
+                            }
+                            postUi(() -> {
+                                if (progress != null && total > 0L) {
+                                    progress.setProgress((int) Math.min(1000L,
+                                            downloaded * 1000L / total));
+                                }
+                            });
+                        });
+                if (cancelled || Thread.currentThread().isInterrupted()) {
+                    throw new java.util.concurrent.CancellationException("Update cancelled");
+                }
                 postUi(() -> setStatus(getString(R.string.update_opening_installer),
                         Ui.secondaryText(dark)));
                 UpdateInstaller.commit(getApplicationContext(), prepared);
@@ -377,7 +386,7 @@ public final class UpdateActivity extends AppCompatActivity {
 
     private void postUi(Runnable action) {
         runOnUiThread(() -> {
-            if (!isFinishing() && !isDestroyed()) {
+            if (!cancelled && !isFinishing() && !isDestroyed()) {
                 action.run();
             }
         });

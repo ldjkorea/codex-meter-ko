@@ -1,4 +1,4 @@
-from publication_review import reviewed_widget_reset
+from publication_review import reviewed_widget_reset, reviewed_evolution
 """Wiring and asset checks. These are source checks, not Android screen rendering."""
 from pathlib import Path
 import baseline_subprocess as subprocess
@@ -23,7 +23,7 @@ assert 'TestNotesActivity.class' not in source('RecordSettings.java')
 assert 'fun_test_mode' not in source('FunSettingsActivity.java')
 assert 'MAIN.postDelayed(debounce,250)' in source('NotesUi.java')
 assert 'WORKER.execute(' in source('NotesUi.java')
-assert 'FunStore.rating(doc,policy,completed,current)' in source('FunActivity.java')
+assert 'TierStore.rating(this,policy)' in source('FunActivity.java')
 assert 'getIdentifier' not in source('FunCoach.java')
 new=['FunActivity.java','FunSettingsActivity.java','FunCoach.java','FunStore.java','NotesUi.java','TestNotesActivity.java','TestNotesStore.java']
 for name in new:
@@ -34,7 +34,7 @@ paths=['android/app/src/main/java/dev/bennett/codexmeter/'+name for name in ['Us
 paths+=subprocess.check_output(['git','ls-tree','-r','--name-only','e775fd9','android/wear/src'],cwd=repo,text=True).splitlines()
 for path in paths:
     old=subprocess.check_output(['git','show','e775fd9:'+path],cwd=repo)
-    old=reviewed_widget_reset(path,old)
+    old=reviewed_evolution(path,reviewed_widget_reset(path,old))
     assert (repo/path).read_bytes()==old or (repo/path).read_bytes().replace(b'\r\n',b'\n')==old.replace(b'\r\n',b'\n'),path
 names=['iron','bronze','silver','gold','platinum','emerald','diamond','master','grandmaster','challenger']
 geometry=set()
