@@ -1,0 +1,5 @@
+fa58268c06dc4ab808e9cbb1918750fafb9b16c1c9bcf3200471d2fe5f4c7e98  CodexMeter-2.8.7-ko.apk
+022828c92e8c8ffa7813971e4f1b7e13bdfe496e71d58c902ccf981d59e4d32e  CodexMeter-Wear-2.8.7-ko.apk
+21dd1f13e50df8aed9fdff2cbffc9e25969cbbfbe179d8d3277fc1cb79373563  CodexMeter-2.8.7-licenses.zip
+4ee9b8ceaff8512e1a47319f360e59ee689bb5857768a9bffda131627ce10432  INSTALL.ko.md
+9f21d73f8264a11028ab18926e3397ffc49ec165590646fec10625d77b37fc03  RELEASE_NOTES.ko.md
