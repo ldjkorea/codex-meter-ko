@@ -56,7 +56,7 @@ public final class EvolutionWidget extends AppWidgetProvider {
                 item.setTextViewText(R.id.evolution_label,c.getString(isFive?R.string.matte_five_hour:R.string.ux_weekly)+(reset?" · "+c.getString(R.string.evo_reset):""));
                 if(reset&&fresh&&at>now){item.setViewVisibility(R.id.evolution_value,View.GONE);item.setViewVisibility(R.id.evolution_clock,View.VISIBLE);
                     item.setChronometerCountDown(R.id.evolution_clock,true);item.setChronometer(R.id.evolution_clock,SystemClock.elapsedRealtime()+at-now,"%s",true);
-                }else item.setTextViewText(R.id.evolution_value,!fresh?c.getString(R.string.evo_stale):reset?c.getString(at<=0?R.string.evo_unknown_reset:R.string.evo_refresh_needed):Integer.toString(100-w.usedPercent)+"%");
+                }else item.setTextViewText(R.id.evolution_value,!fresh?c.getString(AppPreferences.getLastError(c).isEmpty()?R.string.evo_stale:R.string.pub_five_error_short):reset?c.getString(at<=0?R.string.evo_unknown_reset:R.string.evo_refresh_needed):Integer.toString(100-w.usedPercent)+"%");
             }
             row.addView(R.id.evolution_columns,item);
             if(i%columns==columns-1||i==elements.size()-1)root.addView(R.id.evolution_rows,row);

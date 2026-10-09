@@ -28,7 +28,7 @@
     </string-array>
     <string-array name="settings_update_channel_entries">
         <item>Stable</item>
-        <item>Alpha (early builds)</item>
+        <item>Beta (early builds)</item>
     </string-array>
     <string-array name="settings_update_channel_values">
         <item>stable</item>

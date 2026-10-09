@@ -3,14 +3,9 @@ package dev.bennett.codexmeter;
 import java.util.List;
 
 /**
- * Release-channel policy for the in-app updater.
- *
- * <p>Stable tracks the newest non-prerelease GitHub release. Alpha additionally tracks
- * prerelease builds tagged from the alpha branch. Alpha builds are signed with the same
- * release certificate as stable builds and keep the versionCode of the stable release they
- * branched from, so switching between channels is always an ordinary in-place install:
- * upgrading onto an alpha and returning to the newest stable both pass Android's signature
- * and versionCode checks without uninstalling.
+ * Stable tracks non-prerelease releases; the retained "alpha" preference includes betas.
+ * Korean APKs always advance versionCode. Channel selection never permits a downgrade or
+ * equal-code reinstall; UpdateInstaller enforces the package and signing identity as well.
  */
 public final class UpdateChannel {
     public static final String STABLE = "stable";
@@ -54,11 +49,7 @@ public final class UpdateChannel {
         return null;
     }
 
-    /**
-     * True when installing {@code release} leaves a prerelease build for the newest stable
-     * release. Alpha builds reuse the versionCode of the stable release they branched from,
-     * so this install is an in-place update even though SemVer orders it as older.
-     */
+    /** Legacy SemVer channel hint. This does not override the monotonic installer checks. */
     public static boolean isReturnToStable(GitHubRelease release, String installedVersion) {
         if (release == null || release.prerelease) {
             return false;

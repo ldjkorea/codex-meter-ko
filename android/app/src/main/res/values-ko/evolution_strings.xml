@@ -25,4 +25,5 @@
 <string name="evo_refresh_needed">조회 필요</string>
 <string name="evo_edit">편집</string>
 <string name="evo_empty">표시할 항목이 없어요. 한도를 켜거나 위젯을 편집하세요.</string>
+<string name="evo_update_policy">한국어판 2.8.8부터 앱 내 업데이트를 지원합니다. 새 버전의 크기·체크섬·서명·패키지를 확인한 후 Android에서 승인하세요. 같은 버전이나 이전 버전은 설치하지 않으며 앱을 삭제할 필요가 없습니다.</string>
 </resources>

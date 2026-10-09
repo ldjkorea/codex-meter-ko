@@ -18,7 +18,7 @@
   </string-array>
   <string-array name="settings_update_channel_entries">
     <item>안정 버전</item>
-    <item>알파(사전 버전)</item>
+    <item>베타 포함(사전 버전)</item>
   </string-array>
   <string-array name="settings_update_interval_entries">
     <item>1시간마다</item>

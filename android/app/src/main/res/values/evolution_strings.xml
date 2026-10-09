@@ -25,4 +25,5 @@
 <string name="evo_refresh_needed">Refresh needed</string>
 <string name="evo_edit">Edit</string>
 <string name="evo_empty">No visible elements. Enable a limit or edit this widget.</string>
+<string name="evo_update_policy">Korean in-app updates start with 2.8.8. Approve the Android installer after size, checksum, signature and package checks. Equal or older versions cannot be installed here. Keep the existing app and its data.</string>
 </resources>

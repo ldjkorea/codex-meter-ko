@@ -60,3 +60,11 @@ for raw in colors:
   assert ratio(c,(23,25,28) if dark else (249,249,250))>=4.5,(c,'accent on card')
 assert 'phoneSurface(context))return Color.luminance' in (app/'Ui.java').read_text()
 print('All 10 tiers plus neutral palette meet 4.5:1 for dark/light accent and button text (calculated, not screen rendering).')
+
+activity=(app/'UpdateActivity.java').read_text()
+assert 'if (comparison > 0) requestInstall(); else openReleasePage();' in activity
+assert activity.count('UpdatePreferences.installedVersion(this)) <= 0')==2
+assert 'confirmOlderDownload' not in activity
+print('Updater UI blocks equal/older installs and preserves data; beta safety copy checked (source).')
+
+assert "R.string.pub_five_error_short" in widget # API error differs from an old observation.

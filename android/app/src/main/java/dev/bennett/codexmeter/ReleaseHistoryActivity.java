@@ -77,7 +77,7 @@ public final class ReleaseHistoryActivity extends AppCompatActivity {
                 Ui.mainText(dark));
         current.setTypeface(Ui.mediumTypeface(this));
         notice.addView(current);
-        String note = this.getString(R.string.ui_newer_and_matching_releases_from_codex_meter_1_s_onward_59f0d8, ReleaseUpdatePolicy.FIRST_IN_APP_UPDATE_VERSION, ReleaseUpdatePolicy.FIRST_IN_APP_UPDATE_VERSION);
+        String note = this.getString(R.string.evo_update_policy);
         TextView detail = Ui.text(this, note, 13, Ui.secondaryText(dark));
         LinearLayout.LayoutParams detailParams = new LinearLayout.LayoutParams(-1, -2);
         detailParams.setMargins(0, Ui.dp(this, 8), 0, 0);

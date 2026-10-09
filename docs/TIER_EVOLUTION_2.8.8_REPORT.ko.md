@@ -100,7 +100,7 @@ bash gradlew :app:assembleRelease :app:lintRelease :wear:assembleRelease :wear:l
 
 새 테스트는 100% 단일 주·꾸준한 저사용·꾸준한 고사용·성장/하락·한 번의 휴식·여러 휴식·관측 누락·정책 격리·중복 평가·등급 이동 한 단계 제한·옛 결산 이관·재개방·계정 변경·로그아웃·쓰기 실패·파손 상태와 31개 위젯 조합·OFF/ON·신뢰하지 않는 URL/패키지/서명/versionCode를 포함한다.
 
-실제 생산 TierStore를 파일 기반 Android preference fixture에서 실행한다. SQLite 검사도 기존 실제 DAO를 JVM fixture에서 실행한다. **Android 프로세스 종료/기기 재부팅 증거는 아니다.** 124개 기존 계산/저장/표면 파일의 guard, 별도 37개 현지화 보호 파일과 새 2.8.7 보호 핵심도 검사한다. 휴대폰 EN/KO 1326문자열, Wear 116문자열, 형식 지정자 검사와 10종 형상 차별성을 확인한다.
+실제 생산 TierStore를 파일 기반 Android preference fixture에서 실행한다. SQLite 검사도 기존 실제 DAO를 JVM fixture에서 실행한다. **Android 프로세스 종료/기기 재부팅 증거는 아니다.** 124개 기존 계산/저장/표면 파일의 guard, 별도 37개 현지화 보호 파일과 새 2.8.7 보호 핵심도 검사한다. 휴대폰 EN/KO 1327문자열, Wear 116문자열, 형식 지정자 검사와 10종 형상 차별성을 확인한다.
 
 티어 10종+배치 중의 dark/light 강조색 및 버튼 글자 조합은 계산상 대비 4.5:1 이상을 확인한다. 원래 dark 보조 글자의 카드 대비는 7.06~8.56:1이다. 실제 화면 밝기·OEM 색상·TalkBack의 동작은 별도 기기 확인이 필요하다.
 
@@ -116,12 +116,14 @@ ADB 연결 목록이 비어 있고 사용 가능한 AVD도 없어 설치하거�
 
 ## 최종 산출물 검증
 
-휴대폰 APK 25,088,972 bytes, SHA-256 `a66dac3961aff615e97c0d16319375a25152f449cffaf66bc8a5fc361912c0b2`.
+휴대폰 APK 25,089,720 bytes, SHA-256 `1ef653bf7d250907da74447bd57644b34697c38010d34d83524bdf9e8602320e`.
 
 Wear APK 15,861,641 bytes, SHA-256 `ddb8870c32f4ae23841b3d482ac8b2e7b2d738c0c0e794c1a811c31d26428753`.
 
 둘 다 versionName 2.8.8 / versionCode 38 / 동일 패키지이며 APK Signature v2 검증에 통과했다. 인증서 SHA-256은 `6abd39b13e561cd67fa0d76ab79f9f22500cf5378dc60b176bfe18bf0d2f8be3`이다. 공개 2.8.7 APK를 비로그인 다운로드해 기존 SHA-256과 인증서를 확인했으며 새 파일과 같은 인증서다. 실제 기기에 설치된 앱의 서명 확인은 하지 못했다.
 
-최종 lint의 unfiltered Error는 0개. 휴대폰 Warning 128개/Hint 2개, Wear Warning 9개다. 2.8.7의 126/2에서 휴대폰은 UI 교체로 사용하지 않게 된 `fun_last_recaps`, `fun_recorded` 문자열 2개가 추가 경고다. 기존 문자열은 삭제하지 않았다. Wear의 기존 2개에 의존성 새 버전 안내 7개가 더해졌으며 기능 소스나 의존성 버전은 바꾸지 않았다. 기존 phone baseline의 Error 53개/Warning 111개는 그대로 필터링된다. baseline을 수정하거나 새 오류를 숨기지 않았다. Gradle 10 호환성 경고도 남는다.
+최종 lint의 unfiltered Error는 0개. 휴대폰 Warning 136개/Hint 2개, Wear Warning 9개다. 2.8.7의 126/2에서 휴대폰은 티어/업데이트 UI 교체로 사용하지 않게 된 문자열 10개가 추가 경고다. 기존 문자열은 삭제하지 않았다. Wear의 기존 2개에 의존성 새 버전 안내 7개가 더해졌으며 기능 소스나 의존성 버전은 바꾸지 않았다. 기존 phone baseline의 Error 53개/Warning 111개는 그대로 필터링된다. baseline을 수정하거나 새 오류를 숨기지 않았다. Gradle 10 호환성 경고도 남는다.
 
 공식 Pretendard 4개 weight, OFL 원문, 두 패치 AAR, 금지 폰트 부재 및 최종 두 APK의 MIT/OFL assets를 검사했다. 52개 archive를 검사했다. Windows checkout에서 라이선스 텍스트 줄바꿈이 변환되는 문제를 발견해 공개 소스의 원문 바이트를 복원하고 `.gitattributes`로 라이선스 자동 변환을 막았다. 137개 라이선스/고지 파일의 원본 내용은 바꾸지 않았다.
+
+업데이트 화면의 기존 알파/동일 versionCode/재설치/앱 삭제 안내를 교정했다. 동일·이전 버전은 GitHub 이력 보기만 제공하며 설치 버튼·설치 권한 요청·자동 설치 진입을 차단한다. 베타 채널의 내부 저장 값은 호환성을 위해 `alpha`를 유지한다. 조회 실패는 새 위젯에서도 오래된 관측과 별도 문구로 표시한다.

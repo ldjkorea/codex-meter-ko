@@ -179,17 +179,11 @@ public final class UpdateActivity extends AppCompatActivity {
             progress = null;
             status = null;
         } else {
-            Button action = Ui.nativePrimaryButton(this,
-                    returnToStable ? UpdateActivity.this.getString(R.string.ui_return_to_stable_dcc5d1)
-                            : comparison < 0 ? UpdateActivity.this.getString(R.string.ui_download_older_apk_df5510)
-                            : comparison == 0 ? UpdateActivity.this.getString(R.string.ui_verify_and_reinstall_7aefcf)
-                            : UpdateActivity.this.getString(R.string.ui_download_and_install_0388ee));
+            Button action = Ui.nativePrimaryButton(this, comparison > 0
+                    ? getString(R.string.ui_download_and_install_0388ee)
+                    : getString(R.string.ui_open_on_github_8b81ad));
             action.setOnClickListener(view -> {
-                if (comparison < 0 && !returnToStable) {
-                    confirmOlderDownload();
-                } else {
-                    requestInstall();
-                }
+                if (comparison > 0) requestInstall(); else openReleasePage();
             });
             card.addView(action, new LinearLayout.LayoutParams(-1, Ui.dp(this, 60)));
 
@@ -227,7 +221,7 @@ public final class UpdateActivity extends AppCompatActivity {
         historyParams.setMargins(0, Ui.dp(this, 20), 0, 0);
         content.addView(history, historyParams);
 
-        if (startInstallPending && (comparison > 0 || returnToStable) && !irreversible) {
+        if (startInstallPending && comparison > 0 && !irreversible) {
             startInstallPending = false;
             content.post(this::requestInstall);
         } else {
@@ -261,6 +255,7 @@ public final class UpdateActivity extends AppCompatActivity {
 
     private void requestInstall() {
         if (operationRunning || release == null
+                || ReleaseVersion.compare(release.version, UpdatePreferences.installedVersion(this)) <= 0
                 || ReleaseUpdatePolicy.isIrreversible(release.version)) {
             return;
         }
@@ -294,6 +289,7 @@ public final class UpdateActivity extends AppCompatActivity {
 
     private void beginInstall() {
         if (operationRunning || release == null
+                || ReleaseVersion.compare(release.version, UpdatePreferences.installedVersion(this)) <= 0
                 || ReleaseUpdatePolicy.isIrreversible(release.version)) {
             return;
         }
@@ -345,22 +341,6 @@ public final class UpdateActivity extends AppCompatActivity {
         status.setTextColor(color);
         status.setText(message);
         status.setVisibility(message == null || message.isEmpty() ? View.GONE : View.VISIBLE);
-    }
-
-    private void confirmOlderDownload() {
-        new AlertDialog.Builder(this)
-                .setTitle(UpdateActivity.this.getString(R.string.ui_downgrade_requires_uninstalling_c79718))
-                .setMessage(UpdateActivity.this.getString(R.string.ui_android_blocks_in_place_downgrades_for_ordinary_apps_un_2c884d))
-                .setNegativeButton(UpdateActivity.this.getString(R.string.ui_cancel_77dfd2), null)
-                .setPositiveButton(UpdateActivity.this.getString(R.string.ui_open_apk_download_3d4355), (dialog, which) -> {
-                    try {
-                        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(release.apkUrl)));
-                    } catch (RuntimeException exception) {
-                        Toast.makeText(this, DisplayMessages.localize(this, UpdateActivity.this.getString(R.string.ui_no_browser_can_open_the_apk_download_75d830)),
-                                Toast.LENGTH_LONG).show();
-                    }
-                })
-                .show();
     }
 
     private void openReleasePage() {
