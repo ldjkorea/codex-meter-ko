@@ -34,7 +34,9 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          sdkmanager "platforms;android-36" "platforms;android-37.0" "build-tools;36.0.0"
+          sdk_manager="${ANDROID_HOME}/cmdline-tools/latest/bin/sdkmanager"
+          test -x "$sdk_manager"
+          "$sdk_manager" "platforms;android-36" "platforms;android-37.0" "build-tools;36.0.0"
       - name: Verify wrapper integrity
         shell: bash
         run: sha256sum -c android/gradle/wrapper/SHA256SUMS.txt
