@@ -1,0 +1,10 @@
+# Shell entry points must run on Linux and Git Bash on Windows.
+*.sh text eol=lf
+android/gradlew text eol=lf
+*.bat text eol=crlf
+# Historical fixtures are hash checked as raw bytes.
+*.source -text
+*.aar binary
+*.jar binary
+*.otf binary
+*.ttf binary
