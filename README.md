@@ -4,9 +4,9 @@ Codex 사용량을 확인하는 **비공식 Android 앱**입니다. 한국어 �
 
 원작은 [BenItBuhner/Codex-Meter](https://github.com/BenItBuhner/Codex-Meter)이며, Bennett의 MIT 라이선스와 저작권 고지를 유지합니다. 이 수정본은 OpenAI·Samsung·원작자가 제공하거나 보증하는 공식 앱이 아닙니다. 한국어 수정·배포 준비: [ldjkorea](https://github.com/ldjkorea).
 
-**현재 베타: 2.8.8 / versionCode 38, `v2.8.8-beta`.** 최초 공개 2.8.7도 보존합니다. 실제 Android 기기 검증은 아직 수행하지 않은 베타입니다.
+**현재 베타: 2.8.9 / versionCode 39, `v2.8.9-beta`.** 이전 공개 APK는 보존합니다. 실제 Android 기기 검증은 아직 수행하지 않은 베타입니다.
 
-[릴리스와 한국어 설치 안내](https://github.com/ldjkorea/codex-meter-ko/releases/tag/v2.8.8-beta) · [휴대폰 APK 다운로드](https://github.com/ldjkorea/codex-meter-ko/releases/download/v2.8.8-beta/CodexMeter-2.8.8-ko.apk)
+[릴리스와 한국어 설치 안내](https://github.com/ldjkorea/codex-meter-ko/releases/tag/v2.8.9-beta) · [휴대폰 APK 다운로드](https://github.com/ldjkorea/codex-meter-ko/releases/download/v2.8.9-beta/CodexMeter-2.8.9-ko.apk)
 
 ## Android 설치
 
@@ -27,7 +27,7 @@ Codex 사용량을 확인하는 **비공식 Android 앱**입니다. 한국어 �
 - 직접 등록한 결제금액과 기간을 기반으로 구독 활용도 참고값을 표시합니다. API 비용·절약액·생산성 측정값이 아닙니다. 코치 문구에 별도 AI 호출을 사용하지 않습니다.
 - 위젯·알림·선택적 사용량 모니터·Wear 연동을 포함합니다. 삼성 전용 화면 동작은 기기와 펌웨어에 따라 달라질 수 있습니다.
 
-새 기능의 [티어 디자인 미리보기](docs/tier-previews/index.html)와 [개발·검증 보고서](docs/TIER_EVOLUTION_2.8.8_REPORT.ko.md)를 제공합니다. 미리보기는 디자인 자산 렌더링이며 실제 앱 화면이 아닙니다.
+새 [Precision Crests 티어 디자인](docs/precision-crests/tier-gallery.png)과 [2.8.9 변경·검증 보고서](docs/PRECISION_CRESTS_2.8.9_REPORT.ko.md)를 제공합니다. 입체 금속·연산 코어 엠블럼 10종을 홈·분석·진화형 위젯에 공통 적용합니다. 미리보기는 실제 배포 자산을 렌더링한 것으로 Android 화면 캡처는 아닙니다. [이전 티어 평가 설계](docs/TIER_EVOLUTION_2.8.8_REPORT.ko.md)는 보존합니다.
 
 ## 로그인·개인정보·보안
 
@@ -39,7 +39,7 @@ ChatGPT 내부 사용량 경로와 삼성 전용 메타데이터는 안정된 �
 
 ## 업데이트
 
-2.8.7 사용자는 Releases에서 2.8.8을 한 번 수동 설치합니다. 이후 앱 설정의 업데이트 화면에서 한국어 저장소만 조회합니다. 베타 포함 채널과 하루 한 번 확인을 기본으로 하며, 저장한 기존 채널·확인 설정은 유지합니다. 알림은 사용자가 켜야 합니다. 다운로드 크기·SHA-256·패키지·한국어 인증서·증가한 versionCode를 검사한 뒤 Android 설치 확인을 요청합니다. 다운로드 중 화면을 닫으면 작업을 취소합니다. 기기 내 설치·취소·업데이트 알림은 아직 실기기 검증 전입니다.
+2.8.7 이하 사용자는 Releases에서 최신 APK를 한 번 수동 설치합니다. 2.8.8 이상은 앱의 **기록 → 설정 → 앱 정보 및 라이선스 → 업데이트**에서 확인할 수 있습니다. 베타 포함 채널과 하루 한 번 자동 확인을 기본으로 하며, 저장한 기존 채널·확인 설정은 유지합니다. 2.8.9부터 확인된 새 버전은 홈의 업데이트 카드에도 표시합니다. 알림은 사용자가 켜야 합니다. 다운로드 크기·SHA-256·패키지·한국어 인증서·증가한 versionCode를 검사한 뒤 Android 설치 확인을 요청합니다. 자동 확인은 OS의 백그라운드 정책에 따라 늦어질 수 있습니다. 다운로드 중 화면을 닫으면 작업을 취소합니다. 기기 내 설치·취소·업데이트 알림은 아직 실기기 검증 전입니다.
 
 정식 versionCode를 증가시키며 기존 한국어 서명 키를 유지합니다. 동일 버전의 공개 APK를 조용히 교체하지 않습니다. [버전·배포 정책](docs/RELEASE_POLICY.ko.md)을 참고하세요.
 

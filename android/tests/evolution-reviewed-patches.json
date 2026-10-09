@@ -31,6 +31,10 @@
     [
       "if(!tone.equals(\"off\"))target.addView(quotation);target.addView(value);",
       "TierTheme.frame(quotation,rating.tier,dark);\n        if(!tone.equals(\"off\"))target.addView(quotation);target.addView(value);"
+    ],
+    [
+      "Ui.dp(activity,128),Ui.dp(activity,128)",
+      "Ui.dp(activity,160),Ui.dp(activity,160)"
     ]
   ],
   "android/app/src/main/java/dev/bennett/codexmeter/FunActivity.java": [
@@ -61,6 +65,10 @@
     [
       "if(fresh&&completed.size()>1&&completed.get(completed.size()-1).span.end>=now-86400000L&&rating.tier>FunInsights.rating(completed.subList(0,completed.size()-1),null).tier)situation=FunInsights.Situation.PROMOTED;",
       "TierEvolution.State evaluated=TierStore.read(this,policy);\n        if(fresh&&evaluated.previous>=0&&evaluated.tier>evaluated.previous&&now-evaluated.end<86400000L){situation=FunInsights.Situation.PROMOTED;badge.post(badge::promote);}"
+    ],
+    [
+      "Ui.dp(this,112),Ui.dp(this,112)",
+      "Ui.dp(this,144),Ui.dp(this,144)"
     ]
   ],
   "android/app/src/main/java/dev/bennett/codexmeter/Ui.java": [
@@ -131,6 +139,16 @@
     [
       "prefs(context).getString(KEY_CHANNEL, UpdateChannel.STABLE)",
       "prefs(context).getString(KEY_CHANNEL, UpdateChannel.ALPHA)"
+    ]
+  ],
+  "android/app/src/main/java/dev/bennett/codexmeter/MainActivity.java": [
+    [
+      "+\":\"+getSharedPreferences(\"codex_tier_evolution_v2\",0).getString(\"revision\",\"\");",
+      "+\":\"+getSharedPreferences(\"codex_tier_evolution_v2\",0).getString(\"revision\",\"\")+\":\"+getSharedPreferences(\"codex_meter_updates_v1\",0).getAll().hashCode();"
+    ],
+    [
+      "UsageSnapshot snapshot=AppPreferences.loadSnapshot(this);\n        if(!SecureTokenStore.isSignedIn(this)){",
+      "UsageSnapshot snapshot=AppPreferences.loadSnapshot(this);\n        GitHubRelease available=UpdatePreferences.availableUpdate(this);\n        if(available!=null){content.addView(buildUpdateCard(available));Ui.addSpacer(content,16);}\n        if(!SecureTokenStore.isSignedIn(this)){"
     ]
   ]
 }

@@ -51,7 +51,7 @@ final class FunHome {
         LinearLayout tier=Ui.card(activity,dark);TierTheme.frame(tier,rating.tier,dark);tier.addView(LedgerUi.heading(activity,getString(R.string.fun_tier),dark));Ui.addSpacer(tier,12);
         LinearLayout row=new LinearLayout(activity);row.setOrientation(stacked()?LinearLayout.VERTICAL:LinearLayout.HORIZONTAL);row.setGravity(Gravity.CENTER_VERTICAL);
         TierCompanionView badge=new TierCompanionView(activity,rating.tier);badge.setAlpha(rating.tier<0?.45f:1f);badge.setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO);
-        LinearLayout.LayoutParams bp=new LinearLayout.LayoutParams(Ui.dp(activity,128),Ui.dp(activity,128));if(stacked())bp.gravity=Gravity.CENTER_HORIZONTAL;else bp.setMarginEnd(Ui.dp(activity,16));row.addView(TierTheme.companion(badge,rating.tier),bp);
+        LinearLayout.LayoutParams bp=new LinearLayout.LayoutParams(Ui.dp(activity,160),Ui.dp(activity,160));if(stacked())bp.gravity=Gravity.CENTER_HORIZONTAL;else bp.setMarginEnd(Ui.dp(activity,16));row.addView(TierTheme.companion(badge,rating.tier),bp);
         LinearLayout copy=new LinearLayout(activity);copy.setOrientation(LinearLayout.VERTICAL);copy.addView(LedgerUi.amount(activity,rating.tier<0?getString(R.string.fun_placing):getString(TIERS[rating.tier]),dark,27));
         copy.addView(LedgerUi.caption(activity,rating.tier<0?getString(R.string.fun_placing):rating.provisional?getString(R.string.fun_provisional):TierPresentation.note(activity,policy),dark));
         if(current!=null)copy.addView(LedgerUi.caption(activity,getString(R.string.fun_challenge,num(current.doubleValue())),dark));

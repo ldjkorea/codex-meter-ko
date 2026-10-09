@@ -65,7 +65,7 @@ public final class FunActivity extends AppCompatActivity {
         LinearLayout tier=Ui.card(this,dark);TierTheme.frame(tier,rating.tier,dark);tier.addView(LedgerUi.heading(this,getString(R.string.fun_tier),dark));Ui.addSpacer(tier,12);
         LinearLayout row=new LinearLayout(this);row.setOrientation(LedgerUi.stacked(this)?LinearLayout.VERTICAL:LinearLayout.HORIZONTAL);row.setGravity(Gravity.CENTER_VERTICAL);
         TierCompanionView badge=new TierCompanionView(this,rating.tier);badge.setAlpha(rating.tier<0?.45f:1f);badge.setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO);
-        LinearLayout.LayoutParams bp=new LinearLayout.LayoutParams(Ui.dp(this,112),Ui.dp(this,112));if(LedgerUi.stacked(this))bp.gravity=Gravity.CENTER_HORIZONTAL;else bp.setMarginEnd(Ui.dp(this,16));row.addView(TierTheme.companion(badge,rating.tier),bp);
+        LinearLayout.LayoutParams bp=new LinearLayout.LayoutParams(Ui.dp(this,144),Ui.dp(this,144));if(LedgerUi.stacked(this))bp.gravity=Gravity.CENTER_HORIZONTAL;else bp.setMarginEnd(Ui.dp(this,16));row.addView(TierTheme.companion(badge,rating.tier),bp);
         LinearLayout copy=new LinearLayout(this);copy.setOrientation(LinearLayout.VERTICAL);copy.addView(LedgerUi.amount(this,rating.tier<0?getString(R.string.fun_placing):getString(TIERS[rating.tier]),dark,27));
         copy.addView(LedgerUi.caption(this,rating.tier<0?getString(R.string.fun_placing):rating.provisional?getString(R.string.fun_provisional):TierPresentation.note(this,policy),dark));
         if(current!=null)copy.addView(LedgerUi.caption(this,getString(R.string.fun_challenge,num(current.doubleValue())),dark));

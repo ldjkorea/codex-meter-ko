@@ -83,14 +83,14 @@ javac -encoding UTF-8 -cp "$JSON_JAR" -d "$OUT" \
 java -ea -cp "$OUT:$JSON_JAR" dev.bennett.codexmeter.ParserSelfTest
 
 # Source-level release checks.
-grep -q 'VERSION_NAME = "2.8.8"' "$ROOT/app/src/main/java/dev/bennett/codexmeter/AppConstants.java"
-grep -q 'VERSION_CODE = 38' "$ROOT/app/src/main/java/dev/bennett/codexmeter/AppConstants.java"
-grep -q 'versionName = "2.8.8"' "$ROOT/app/build.gradle.kts"
-grep -q 'versionCode = 38' "$ROOT/app/build.gradle.kts"
-grep -q 'versionName = "2.8.8"' "$ROOT/wear/build.gradle.kts"
-grep -q 'versionCode = 38' "$ROOT/wear/build.gradle.kts"
-grep -q 'codex-meter-android/2.8.8' "$ROOT/app/src/main/java/dev/bennett/codexmeter/AppConstants.java"
-grep -q 'VERSION_NAME="2.8.8"' "$ROOT/build.sh"
+grep -q 'VERSION_NAME = "2.8.9"' "$ROOT/app/src/main/java/dev/bennett/codexmeter/AppConstants.java"
+grep -q 'VERSION_CODE = 39' "$ROOT/app/src/main/java/dev/bennett/codexmeter/AppConstants.java"
+grep -q 'versionName = "2.8.9"' "$ROOT/app/build.gradle.kts"
+grep -q 'versionCode = 39' "$ROOT/app/build.gradle.kts"
+grep -q 'versionName = "2.8.9"' "$ROOT/wear/build.gradle.kts"
+grep -q 'versionCode = 39' "$ROOT/wear/build.gradle.kts"
+grep -q 'codex-meter-android/2.8.9' "$ROOT/app/src/main/java/dev/bennett/codexmeter/AppConstants.java"
+grep -q 'VERSION_NAME="2.8.9"' "$ROOT/build.sh"
 WORKFLOW="$ROOT/../.github/workflows/build-apk.yml"
 grep -Fq 'contents: read' "$WORKFLOW"
 ! grep -Fq 'contents: write' "$WORKFLOW"
@@ -857,3 +857,5 @@ echo "Parser, updater, OAuth, onboarding, reset-credit, alert, widget, and Wear 
 "$PYTHON" "$ROOT/tests/verify-coach-value.py"
 
 "$PYTHON" "$ROOT/tests/verify-evolution.py"
+
+"$PYTHON" "$ROOT/tests/verify-precision-crests.py"

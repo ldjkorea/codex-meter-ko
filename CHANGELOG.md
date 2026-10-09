@@ -1,3 +1,10 @@
+## 2.8.9 — Precision Crests
+
+- Replace the active robot/corner-badge presentation with ten bundled transparent, dimensional metal and compute-core emblems on home, analysis and the evolution widget.
+- Use 512px WebP assets with verified alpha and bounded decode size; preserve English tier names, evaluation rules, history, account and widget preferences.
+- Restore the cached new-release card on home and include updater state in its render signature; retain automatic checks, explicit download/install approval and existing security gates.
+- Phone/Wear 2.8.9 / versionCode 39, existing Korean signer. Device/OEM execution remains unverified; distributed as beta.
+
 ## 2.8.8
 
 - 장기 주간 티어 평가와 10단계 Meter Scout, 앱 티어 포인트, 별도 1~5요소 홈 위젯.

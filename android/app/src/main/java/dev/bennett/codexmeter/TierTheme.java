@@ -4,11 +4,10 @@ import android.content.Context;
 import android.graphics.*;
 import android.graphics.drawable.Drawable;
 
-/** Local original metal/crystal frames. No downloaded images or observation writes. */
+/** Bundled original precision crests and local frames. No runtime artwork downloads or data writes. */
 final class TierTheme {
     static final int[] COLORS={0xffa9b3bd,0xffdfa778,0xffd5e1eb,0xffe8ce91,0xffaee4ee,0xff68e1b1,0xff9bdcfa,0xffc7a7f4,0xfff1a0ac,0xffffdfa1};
-    static final int[] MASCOTS={R.drawable.evo_0,R.drawable.evo_1,R.drawable.evo_2,R.drawable.evo_3,R.drawable.evo_4,R.drawable.evo_5,R.drawable.evo_6,R.drawable.evo_7,R.drawable.evo_8,R.drawable.evo_9};
-    static final int[] EMBLEMS={R.drawable.badge_iron,R.drawable.badge_bronze,R.drawable.badge_silver,R.drawable.badge_gold,R.drawable.badge_platinum,R.drawable.badge_emerald,R.drawable.badge_diamond,R.drawable.badge_master,R.drawable.badge_grandmaster,R.drawable.badge_challenger};
+    static final int[] EMBLEMS={R.drawable.prestige_0,R.drawable.prestige_1,R.drawable.prestige_2,R.drawable.prestige_3,R.drawable.prestige_4,R.drawable.prestige_5,R.drawable.prestige_6,R.drawable.prestige_7,R.drawable.prestige_8,R.drawable.prestige_9};
     private static String cachedBlob="",cachedPolicy="",cachedRevision="";
     private static int cachedTier=-1;
     static synchronized int tier(Context c){
@@ -48,8 +47,7 @@ final class TierTheme {
         }
         public void setAlpha(int a){}public void setColorFilter(ColorFilter f){p.setColorFilter(f);}public int getOpacity(){return PixelFormat.TRANSLUCENT;}
     }
-    static android.widget.FrameLayout companion(android.widget.ImageView mascot,int tier){Context c=mascot.getContext();android.widget.FrameLayout frame=new android.widget.FrameLayout(c);
-        frame.addView(mascot,new android.widget.FrameLayout.LayoutParams(-1,-1));
-        android.widget.ImageView badge=new android.widget.ImageView(c);badge.setImageResource(EMBLEMS[Math.max(0,tier)]);badge.setAlpha(tier<0?.35f:1);badge.setImportantForAccessibility(android.view.View.IMPORTANT_FOR_ACCESSIBILITY_NO);
-        android.widget.FrameLayout.LayoutParams p=new android.widget.FrameLayout.LayoutParams(Ui.dp(c,44),Ui.dp(c,44),android.view.Gravity.BOTTOM|android.view.Gravity.END);frame.addView(badge,p);return frame;}
+    static android.widget.FrameLayout companion(android.widget.ImageView emblem,int tier){Context c=emblem.getContext();android.widget.FrameLayout frame=new android.widget.FrameLayout(c);
+        emblem.setScaleType(android.widget.ImageView.ScaleType.FIT_CENTER);
+        frame.addView(emblem,new android.widget.FrameLayout.LayoutParams(-1,-1));return frame;}
 }

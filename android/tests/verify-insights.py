@@ -107,7 +107,7 @@ for name, needle in [
     assert needle in (app / f'{name}.java').read_text(encoding='utf-8'), name
 build = (root / 'app/build.gradle.kts').read_text(encoding='utf-8')
 assert 'applicationId = "dev.bennett.codexmeter"' in build
-assert 'versionCode = 38' in build and 'versionName = "2.8.8"' in build
+assert 'versionCode = 39' in build and 'versionName = "2.8.9"' in build
 assert 'buildConfigField("boolean", "KOREAN_UPDATES_ENABLED", "true")' in build
 key_file = root / '.local-signing/codex-meter-local.p12'
 if os.environ.get('CODEX_METER_REQUIRE_SIGNED_RELEASE') == '1':
