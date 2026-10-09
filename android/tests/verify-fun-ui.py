@@ -1,3 +1,4 @@
+from lan_review import strip_lan
 from publication_review import reviewed_widget_reset, reviewed_evolution
 """Wiring and asset checks. These are source checks, not Android screen rendering."""
 from pathlib import Path
@@ -35,7 +36,7 @@ paths+=subprocess.check_output(['git','ls-tree','-r','--name-only','e775fd9','an
 for path in paths:
     old=subprocess.check_output(['git','show','e775fd9:'+path],cwd=repo)
     old=reviewed_evolution(path,reviewed_widget_reset(path,old))
-    assert (repo/path).read_bytes()==old or (repo/path).read_bytes().replace(b'\r\n',b'\n')==old.replace(b'\r\n',b'\n'),path
+    assert (repo/path).read_bytes()==old or strip_lan(path,(repo/path).read_text(encoding='utf-8')).encode()==old.replace(b'\r\n',b'\n'),path
 names=['iron','bronze','silver','gold','platinum','emerald','diamond','master','grandmaster','challenger']
 geometry=set()
 a='{http://schemas.android.com/apk/res/android}'

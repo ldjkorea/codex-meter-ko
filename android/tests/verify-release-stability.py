@@ -1,3 +1,4 @@
+from lan_review import strip_lan
 #!/usr/bin/env python3
 """Run production account/job concurrency logic on JVM platform fixtures."""
 from pathlib import Path
@@ -18,7 +19,7 @@ for name in PATCHES:
         baseline + ':android/app/src/main/java/dev/bennett/codexmeter/' + name]).decode('utf-8').replace('\r\n', '\n')
     expected=reviewed_release_patch(name, original)
     if name == 'MainActivity.java': expected=dashboard_patch(expected)
-    actual=(app / name).read_text(encoding='utf-8')
+    actual=strip_lan(name,(app / name).read_text(encoding='utf-8'))
     if name=='SettingsActivity.java':
         link='            findPreference("settings_fun").setOnPreferenceClickListener(preference -> {\n                Ui.startSecondaryActivity(requireActivity(), FunSettingsActivity.class);\n                return true;\n            });\n'
         assert actual.count(link)==1

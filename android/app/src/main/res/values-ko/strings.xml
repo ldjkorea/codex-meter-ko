@@ -840,4 +840,16 @@
     <string name="insight_budget_until_reset">초기화 전 사용 가능량: %1$s%%</string>
     <string name="widget_show_tier_crest">티어 휘장 표시</string>
     <string name="widget_crest_save_failed">위젯 설정을 저장하지 못했습니다. 다시 시도해 주세요.</string>
+    <string name="lan_sync_title">PC·휴대폰 자동 공유</string>
+    <string name="lan_sync_help">PC 위젯 메뉴의 ‘휴대폰 연결 코드’를 한 번 등록하세요. 같은 ChatGPT 계정으로 로그인한 두 기기가 같은 Wi-Fi에 있고 PC 위젯이 실행 중이면 앱 실행·정상 조회 때 최근 90일 관측 기록을 합칩니다. 휴대폰의 과거 일별 기록과 티어도 PC에 전달합니다. 연결이 안 되면 다음 실행·조회 때 다시 시도합니다. 방화벽은 개인 네트워크만 허용하세요.</string>
+    <string name="lan_sync_code">PC 연결 코드 붙여넣기</string>
+    <string name="lan_sync_connect">연결·저장</string>
+    <string name="lan_sync_disconnect">연결 해제</string>
+    <string name="lan_sync_disconnected">자동 공유를 해제했습니다. 기록은 유지합니다.</string>
+    <string name="lan_sync_now">지금 동기화</string>
+    <string name="lan_sync_invalid">로그인 상태와 PC 연결 코드를 확인해 주세요.</string>
+    <string name="lan_sync_working">PC와 기록을 동기화하고 있습니다.</string>
+    <string name="lan_sync_done">기록과 티어를 공유했습니다.</string>
+    <string name="lan_sync_wait">아직 연결하지 못했습니다. PC 실행·같은 Wi-Fi·방화벽을 확인해 주세요. 기록은 유지됩니다.</string>
+    <string name="lan_sync_last">마지막 공유 · %1$s</string>
 </resources>

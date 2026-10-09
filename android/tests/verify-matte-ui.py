@@ -1,3 +1,4 @@
+from lan_review import strip_lan_bytes
 from publication_review import reviewed_widget_reset, reviewed_evolution
 """Matte phone UI contracts and WCAG contrast. Does not simulate native rendering."""
 from pathlib import Path
@@ -84,7 +85,7 @@ paths+=subprocess.check_output(['git','ls-tree','-r','--name-only','e86c69c','an
 for path in paths:
     old=subprocess.check_output(['git','show','e86c69c:'+path],cwd=repo).replace(b'\r\n',b'\n')
     old=reviewed_evolution(path,reviewed_widget_reset(path,old))
-    assert (repo/path).read_bytes().replace(b'\r\n',b'\n')==old,path
+    assert strip_lan_bytes(path,(repo/path).read_bytes()).replace(b'\r\n',b'\n')==old,path
 result={'type':'source/resource/contrast checks, not native UI','protected_files':len(paths),'dark_secondary_contrast':ratios,'native_device_render':'not performed'}
 (root/'build/matte-ui-verification').mkdir(parents=True,exist_ok=True)
 (root/'build/matte-ui-verification/result.json').write_text(json.dumps(result,indent=2),encoding='utf-8')

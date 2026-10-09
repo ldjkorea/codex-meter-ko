@@ -1,3 +1,4 @@
+from lan_review import strip_lan
 from publication_review import reviewed_widget_reset, reviewed_evolution
 """Production money/coach tests with only resource/context fixtures, plus navigation safety checks."""
 from pathlib import Path

@@ -1,3 +1,4 @@
+from lan_review import strip_lan_bytes
 """Production artwork wiring, bounded resources, update discovery and unchanged data contracts.
 
 Optional APK arguments verify the exact ten approved resource payloads after packaging.
@@ -53,9 +54,9 @@ protected = ['UsageApi','UsageParser','UsageLedgerDatabase','AccountSession','Se
 for name in protected:
     relative = f'android/app/src/main/java/dev/bennett/codexmeter/{name}.java'
     old = subprocess.check_output(['git','show','567ee1a:'+relative],cwd=root).replace(b'\r\n',b'\n')
-    assert (root/relative).read_bytes().replace(b'\r\n',b'\n') == old, name
+    assert strip_lan_bytes(relative,(root/relative).read_bytes()).replace(b'\r\n',b'\n') == old, name
 relative = 'android/shared/src/main/java/dev/bennett/codexmeter/TierEvolution.java'
-assert (root/relative).read_bytes().replace(b'\r\n',b'\n') == subprocess.check_output(['git','show','567ee1a:'+relative],cwd=root).replace(b'\r\n',b'\n')
+assert strip_lan_bytes(relative,(root/relative).read_bytes()).replace(b'\r\n',b'\n') == subprocess.check_output(['git','show','567ee1a:'+relative],cwd=root).replace(b'\r\n',b'\n')
 for argument in sys.argv[1:]:
     sdk = Path(os.environ.get('ANDROID_HOME') or os.environ['ANDROID_SDK_ROOT'])
     aapt = sdk/'build-tools/36.0.0'/('aapt2.exe' if os.name == 'nt' else 'aapt2')

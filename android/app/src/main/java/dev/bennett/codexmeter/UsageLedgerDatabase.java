@@ -147,6 +147,7 @@ public final class UsageLedgerDatabase extends SQLiteOpenHelper {
                 db.delete(table, null, null);
             meta(db, "legacy_imported", "cleared");
             meta(db, "credits_cleared_through", Long.toString(System.currentTimeMillis()));
+            meta(db, "sync_cleared_through", Long.toString(System.currentTimeMillis()));
             db.setTransactionSuccessful();
         } finally { db.endTransaction(); }
         if (!state.edit().remove("clear_pending").commit()) throw new IllegalStateException("Cannot finish pending clear");
@@ -155,6 +156,21 @@ public final class UsageLedgerDatabase extends SQLiteOpenHelper {
 
     private void migrate(SQLiteDatabase db) {
         migrate(db, 0L);
+    }
+
+    static long lanFloor(Context context) throws Exception {
+        synchronized(LOCK){UsageLedgerDatabase owner=helper(context);SQLiteDatabase db=owner.getWritableDatabase();owner.finishPendingClear(db);
+            try(Cursor c=db.rawQuery("SELECT value FROM metadata WHERE key='sync_cleared_through'",null)){return c.moveToFirst()?Long.parseLong(c.getString(0)):0;}}
+    }
+    /** Caller holds the existing account lock. Out-of-order peer observations are real observations,
+        not new API samples. Rebuild only the existing raw horizon and preserve sealed daily history. */
+    static void mergeLan(Context context,List<LedgerRecord> rows,long expectedFloor) throws Exception {
+        synchronized(LOCK){UsageLedgerDatabase owner=helper(context);SQLiteDatabase db=owner.getWritableDatabase();owner.finishPendingClear(db);
+            if(lanFloor(context)!=expectedFloor)throw new IllegalStateException("History changed during sync");
+            long now=System.currentTimeMillis(),cutoff=LedgerAggregation.day(now).minusDays(RAW_DAYS).atStartOfDay(LedgerAggregation.ZONE).toInstant().toEpochMilli();
+            db.beginTransaction();try{owner.migrate(db);for(LedgerRecord row:rows)if(row.at>expectedFloor&&row.at>=cutoff&&row.at<=now+300000)insert(db,row);
+                owner.importCredits(db);owner.rollup(db,now);db.setTransactionSuccessful();}finally{db.endTransaction();}
+        }
     }
     private void migrate(SQLiteDatabase db, long currentObservation) {
         if (scalar(db, "SELECT COUNT(*) FROM metadata WHERE key=?", "legacy_imported") > 0) return;

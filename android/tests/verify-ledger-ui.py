@@ -1,3 +1,4 @@
+from lan_review import strip_lan
 #!/usr/bin/env python3
 """Display-only scope and measurement presentation checks. No device/rendering claim."""
 from pathlib import Path
@@ -35,7 +36,7 @@ assert 'AccountSession.clearHistory(getApplicationContext())' in analytics
 for name in ['UsageApi.java','UsageLedgerDatabase.java','AccountSession.java','SettingsActivity.java',
              'OAuthService.java','SettingsTransferStore.java','RefreshScheduler.java',
              'UsageHistoryRecorder.java','SecureTokenStore.java','UsageParser.java']:
-    actual=(app/name).read_text(encoding='utf-8')
+    actual=strip_lan(name,(app/name).read_text(encoding='utf-8'))
     if name=='SettingsActivity.java':
         link='            findPreference("settings_fun").setOnPreferenceClickListener(preference -> {\n                Ui.startSecondaryActivity(requireActivity(), FunSettingsActivity.class);\n                return true;\n            });\n'
         assert actual.count(link)==1

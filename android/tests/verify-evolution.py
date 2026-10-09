@@ -1,3 +1,4 @@
+from lan_review import strip_lan
 from pathlib import Path
 import os,subprocess,json,xml.etree.ElementTree as ET
 root=Path(__file__).resolve().parents[1];repo=root.parent
@@ -25,7 +26,7 @@ assert any(x.get(ns+'name')=='dev.bennett.codexmeter.EvolutionWidget' for x in a
 assert any(x.get(ns+'name')=='dev.bennett.codexmeter.EvolutionWidgetConfigActivity' for x in a.findall('activity'))
 for name in ['UsageApi','UsageParser','UsageLedgerDatabase','AccountSession','SecureTokenStore','AppPreferences','SubscriptionStore','FunStore','NowBarManager','FiveHourResetState','FiveHourResetDisplay','PretendardFont']:
  old=subprocess.check_output(['git','show','f720a05:android/app/src/main/java/dev/bennett/codexmeter/'+name+'.java'],cwd=repo).replace(b'\r\n',b'\n')
- assert (app/(name+'.java')).read_bytes().replace(b'\r\n',b'\n')==old,name
+ assert strip_lan(name+'.java',(app/(name+'.java')).read_text(encoding='utf-8')).encode()==old,name
 store=(app/'TierStore.java').read_text();widget=(app/'EvolutionWidget.java').read_text();installer=(app/'UpdateInstaller.java').read_text()
 assert 'schema",2' in store and 'legacy_imported' in store and 'commit()' in store and 'NETWORK_LOCK' in store
 assert 'EvolutionElements.visible' in widget and 'setChronometerCountDown' in widget and 'effectiveResetAtMillis' in widget

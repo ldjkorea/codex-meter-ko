@@ -1,3 +1,8 @@
+## 2.8.14 — Local PC/phone sharing
+
+- Optional pinned-TLS sharing on the same LAN. Merge recent observations and mirror mobile daily archives/tier to the Windows widget.
+- Existing OAuth, quota API, widgets and data retained. No cloud service.
+
 # 2.8.13 — 중앙 대형 휘장 · 티어 위젯 배경
 
 - 사용량·초기화 게이지 사이에 티어 휘장을 크게 배치합니다. 모서리 20dp 장식에서 가운데의 주 요소로 바꿉니다.

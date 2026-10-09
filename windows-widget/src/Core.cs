@@ -72,7 +72,7 @@ namespace CodexMeterWidget {
         public Snapshot LoadSnapshot(string account) {string p=Path.Combine(DirectoryPath,"accounts",AccountKey(account),"latest.json");return File.Exists(p)?new JavaScriptSerializer().Deserialize<Snapshot>(File.ReadAllText(p)):null;}
         public List<Observation> LoadRows(string account) {string dir=Path.Combine(DirectoryPath,"accounts",AccountKey(account));var rows=new List<Observation>();if(!Directory.Exists(dir))return rows;string earliest=Clock.Day(Clock.Now-90L*86400000);foreach(string p in Directory.GetFiles(dir,"records-????-??-??.json")){string date=Path.GetFileName(p).Substring(8,10);if(string.CompareOrdinal(date,earliest)>=0)rows.AddRange(new JavaScriptSerializer().Deserialize<List<Observation>>(File.ReadAllText(p)));}return rows;}
     }
-    public sealed class Observation {public long At,Reset,Seconds;public string Plan,Meter;public double Used;public string Policy {get{return Meter+"|"+Plan+"|"+Seconds;}}}
+    public sealed class Observation {public long At,Reset,Seconds;public string Plan,Meter,Decimal,Source;public bool Manual;public double Used;public string Policy {get{return Meter+"|"+Plan+"|"+Seconds;}}}
     public static class DailyUsage {
         public static double? Observed(List<Observation> rows,string policy,string date) {
             Observation before=null;double total=0;bool measured=false;string meter=policy.Split('|')[0];
@@ -83,7 +83,7 @@ namespace CodexMeterWidget {
     }
     public sealed class MeterApi:IDisposable {
         private readonly HttpClient client;public const string ClientId="app_EMoamEEZ73f0CkXaXp7hrann";
-        public MeterApi(HttpMessageHandler handler=null) {client=new HttpClient(handler??new HttpClientHandler {AllowAutoRedirect=false});client.Timeout=TimeSpan.FromSeconds(30);client.DefaultRequestHeaders.UserAgent.ParseAdd("codex-meter-windows/0.1.0");}
+        public MeterApi(HttpMessageHandler handler=null) {client=new HttpClient(handler??new HttpClientHandler {AllowAutoRedirect=false});client.Timeout=TimeSpan.FromSeconds(30);client.DefaultRequestHeaders.UserAgent.ParseAdd("codex-meter-windows/0.1.1");}
         private async Task<string> Send(HttpRequestMessage request,CancellationToken cancel) {
             using(var timeout=CancellationTokenSource.CreateLinkedTokenSource(cancel)){timeout.CancelAfter(30000);cancel=timeout.Token;
             using(request)using(var response=await client.SendAsync(request,HttpCompletionOption.ResponseHeadersRead,cancel).ConfigureAwait(false)) {

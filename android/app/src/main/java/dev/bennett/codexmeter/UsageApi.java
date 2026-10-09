@@ -93,6 +93,7 @@ public final class UsageApi {
                 "weekly", usageSnapshot.weekly != null,
                 "monthly", usageSnapshot.monthly != null,
                 "additional_limits", usageSnapshot.additionalLimits.size());
+        LanSync.schedule(context);
         return usageSnapshot;
     }
 

@@ -53,6 +53,7 @@ final class RecordSettings {
         action(a,display,dark,R.string.matte_limits,()->a.startActivity(new Intent(a,DashboardReorderActivity.class)));
 
         LinearLayout data=card(a,parent,dark,R.string.matte_data);
+        action(a,data,dark,R.string.lan_sync_title,()->LanSyncUi.show(a,dark));
         action(a,data,dark,R.string.next_export_csv,()->export.accept(false));
         action(a,data,dark,R.string.next_export_json,()->export.accept(true));
         action(a,data,dark,R.string.ux_data_details,details);

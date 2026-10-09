@@ -187,6 +187,7 @@ public final class MainActivity extends AppCompatActivity {
     @Override // android.app.Activity
     protected void onResume() {
         super.onResume();
+        LanSync.schedule(this);
         insightHandler.removeCallbacks(insightTicker);
         insightHandler.postDelayed(insightTicker, 60_000L);
         String appTheme = AppPreferences.getAppTheme(this);

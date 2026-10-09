@@ -1,0 +1,18 @@
+{
+  "UsageApi.java": [
+    [
+      "        return usageSnapshot;",
+      "        LanSync.schedule(context);\n        return usageSnapshot;"
+    ]
+  ],
+  "UsageLedgerDatabase.java": [
+    [
+      "            meta(db, \"credits_cleared_through\", Long.toString(System.currentTimeMillis()));",
+      "            meta(db, \"credits_cleared_through\", Long.toString(System.currentTimeMillis()));\n            meta(db, \"sync_cleared_through\", Long.toString(System.currentTimeMillis()));"
+    ],
+    [
+      "    private void migrate(SQLiteDatabase db, long currentObservation)",
+      "\n    static long lanFloor(Context context) throws Exception {\n        synchronized(LOCK){UsageLedgerDatabase owner=helper(context);SQLiteDatabase db=owner.getWritableDatabase();owner.finishPendingClear(db);\n            try(Cursor c=db.rawQuery(\"SELECT value FROM metadata WHERE key='sync_cleared_through'\",null)){return c.moveToFirst()?Long.parseLong(c.getString(0)):0;}}\n    }\n    /** Caller holds the existing account lock. Out-of-order peer observations are real observations,\n        not new API samples. Rebuild only the existing raw horizon and preserve sealed daily history. */\n    static void mergeLan(Context context,List<LedgerRecord> rows,long expectedFloor) throws Exception {\n        synchronized(LOCK){UsageLedgerDatabase owner=helper(context);SQLiteDatabase db=owner.getWritableDatabase();owner.finishPendingClear(db);\n            if(lanFloor(context)!=expectedFloor)throw new IllegalStateException(\"History changed during sync\");\n            long now=System.currentTimeMillis(),cutoff=LedgerAggregation.day(now).minusDays(RAW_DAYS).atStartOfDay(LedgerAggregation.ZONE).toInstant().toEpochMilli();\n            db.beginTransaction();try{owner.migrate(db);for(LedgerRecord row:rows)if(row.at>expectedFloor&&row.at>=cutoff&&row.at<=now+300000)insert(db,row);\n                owner.importCredits(db);owner.rollup(db,now);db.setTransactionSuccessful();}finally{db.endTransaction();}\n        }\n    }\n    private void migrate(SQLiteDatabase db, long currentObservation)"
+    ]
+  ]
+}

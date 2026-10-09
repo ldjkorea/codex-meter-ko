@@ -840,4 +840,16 @@
     <string name="insight_budget_until_reset">Available until reset: %1$s%%</string>
     <string name="widget_show_tier_crest">Show tier crest</string>
     <string name="widget_crest_save_failed">Could not save widget settings. Please try again.</string>
+    <string name="lan_sync_title">PC and phone sync</string>
+    <string name="lan_sync_help">Register the PC widget pairing code once. Both devices must use the same ChatGPT account and local network, with the PC widget running. App launch or a successful refresh merges the last 90 days of observations and shares mobile daily archives and tier with the PC. A failed connection retries on the next launch or refresh. Allow only private networks in Windows Firewall.</string>
+    <string name="lan_sync_code">Paste PC pairing code</string>
+    <string name="lan_sync_connect">Connect and save</string>
+    <string name="lan_sync_disconnect">Disconnect</string>
+    <string name="lan_sync_disconnected">Automatic sharing disabled. History is preserved.</string>
+    <string name="lan_sync_now">Sync now</string>
+    <string name="lan_sync_invalid">Check your login and PC pairing code.</string>
+    <string name="lan_sync_working">Syncing history with the PC.</string>
+    <string name="lan_sync_done">History and tier shared.</string>
+    <string name="lan_sync_wait">Not connected yet. Check the running PC widget, local network and firewall. History is preserved.</string>
+    <string name="lan_sync_last">Last sync · %1$s</string>
 </resources>
