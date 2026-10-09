@@ -145,7 +145,7 @@ shared = root / 'shared/src/main/java/dev/bennett/codexmeter'
 app = root / 'app/src/main/java/dev/bennett/codexmeter'
 files += [str(shared / f'{name}.java') for name in ['UsageWindow', 'UsageSample', 'UsageHistory',
           'UsageSnapshot', 'UsageLimit', 'UsageCredits', 'UsageInsights', 'UsageEventDetector',
-          'UsageLedger', 'UsageLedgerInsights', 'LedgerRecord', 'LedgerAggregation']]
+          'UsageLedger', 'UsageLedgerInsights', 'LedgerRecord', 'LedgerAggregation', 'LedgerPresentation', 'LedgerCalendar']]
 files += [str(app / f'{name}.java') for name in ['RateLimitResetCredit', 'ResetCreditsSnapshot',
           'UsageEventStore', 'UsageLedgerStore', 'UsageHistoryRecorder', 'LedgerCapture', 'UsageLedgerDatabase']]
 files.append(str(Path(__file__).with_name('LedgerDatabaseSelfTest.java')))
@@ -158,3 +158,9 @@ dbdir = tempfile.mkdtemp(prefix='ledger-fixture-', dir=str(out))
 subprocess.run([java, '-ea', '-Dledger.python=' + sys.executable, '-Dledger.bridge=' + str(bridge),
                 '-Dledger.dbdir=' + dbdir, '-cp', str(classes) + os.pathsep + str(jar),
                 'dev.bennett.codexmeter.LedgerDatabaseSelfTest'], check=True)
+
+# Independent data fixtures prove that the displayed calendar reads persisted daily rows.
+for test in ['CalendarSelfTest','CalendarDatabaseSelfTest']:
+    subprocess.run([javac,'-encoding','UTF-8','-cp',str(classes)+os.pathsep+str(jar),'-d',str(classes),str(Path(__file__).with_name(test+'.java'))],check=True)
+    calendar_dir=tempfile.mkdtemp(prefix='calendar-fixture-',dir=str(out))
+    subprocess.run([java,'-ea','-Dledger.python='+sys.executable,'-Dledger.bridge='+str(bridge),'-Dledger.dbdir='+calendar_dir,'-cp',str(classes)+os.pathsep+str(jar),'dev.bennett.codexmeter.'+test],check=True)

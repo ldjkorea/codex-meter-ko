@@ -1,3 +1,12 @@
+# 2.8.10 — 기록 캘린더와 구독료 검증
+
+- 기록 캘린더에서 활동이 두드러진 날짜를 에메랄드빛으로 강조합니다.
+- 날짜 선택·오늘 표시·상세 관측 기록·측정 공백 구분을 유지합니다.
+- 등록 구독료의 저장·수정·재실행 후 복원과 가성비 계산 반영을 추가 회귀 검사로 확인했습니다.
+- 실제 결제액을 한도 기간에 배분한 참고 금액이며, 실제 절약액이나 API 비용을 뜻하지 않습니다.
+- 기존 데이터·로그인·서명과 자동 업데이트 경로를 유지합니다.
+- Android 실기기 화면 및 설치 검증은 미완료입니다.
+
 ## 2.8.9 — Precision Crests
 
 - Replace the active robot/corner-badge presentation with ten bundled transparent, dimensional metal and compute-core emblems on home, analysis and the evolution widget.

@@ -37,6 +37,17 @@ public final class SubscriptionStoreSelfTest {
         SubscriptionCost saved=SubscriptionStore.load(new Context(context.directory),pro);
         check(saved.amount.toPlainString().equals("129.99")&&saved.currency.equals("USD")&&saved.start.equals(revised.start)&&saved.end.equals(revised.end),"Tax-inclusive amount, currency and edited dates survive restart without added tax or FX");
         check(SubscriptionStore.history(restarted,pro).length()==2,"Previous payment preserved when new amount and currency are entered");
+        long start=LocalDate.of(2026,10,9).atStartOfDay(LedgerAggregation.ZONE).toInstant().toEpochMilli();
+        LedgerPeriods.Span span=LedgerPeriods.span(start+7*86400000L,604800,start+3600000L);
+        SubscriptionValue.Result value=SubscriptionValue.calculate(saved,span,new java.math.BigDecimal("50"),true,true);
+        check(value.state==SubscriptionValue.State.READY&&value.used.signum()>0,"Persisted registered payment feeds production value calculation");
+        SubscriptionCost doubled=new SubscriptionCost("259.98","USD",revised.start,revised.end);
+        check(SubscriptionStore.save(context,pro,key,doubled),"Edit registered amount");
+        SubscriptionCost reloaded=SubscriptionStore.load(new Context(context.directory),pro);
+        SubscriptionValue.Result updated=SubscriptionValue.calculate(reloaded,span,new java.math.BigDecimal("50"),true,true);
+        check(updated.used.compareTo(value.used.multiply(new java.math.BigDecimal("2")))==0,"Editing persisted payment doubles calculated allocation immediately, not a decorative field");
+        check(SubscriptionStore.save(context,pro,key,doubled)&&SubscriptionStore.history(context,pro).length()==3,"Repeated identical save does not duplicate payment history");
+        check(SubscriptionValue.calculate(reloaded,span,new java.math.BigDecimal("50"),false,true).used==null,"Stored payment cannot turn stale quota into an asserted value");
         Context.failWrites=true;
         check(!SubscriptionStore.save(context,pro,key,cost),"Disk write failure cannot claim successful save");
         Context.failWrites=false;

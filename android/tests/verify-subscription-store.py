@@ -36,6 +36,7 @@ files=[]
 for name,text in fixtures.items():
     path=out/'fixtures'/name;path.parent.mkdir(parents=True,exist_ok=True);path.write_text(text,encoding='utf-8');files.append(str(path))
 files += [str(app/'SubscriptionStore.java'),str(app/'AuthTokens.java'),str(root/'shared/src/main/java/dev/bennett/codexmeter/SubscriptionCost.java'),str(Path(__file__).with_name('SubscriptionStoreSelfTest.java'))]
+files += [str(root/'shared/src/main/java/dev/bennett/codexmeter/SubscriptionValue.java')]
 files += [str(app/name) for name in ['FunStore.java','TestNotesStore.java']]
 files += [str(root/'shared/src/main/java/dev/bennett/codexmeter'/name) for name in ['FunInsights.java','TestNote.java']]
 files += [str(Path(__file__).with_name(name)) for name in ['FunInsightsSelfTest.java','FunPersistenceSelfTest.java']]

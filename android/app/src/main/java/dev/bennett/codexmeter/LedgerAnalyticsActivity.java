@@ -319,12 +319,20 @@ public class LedgerAnalyticsActivity extends AppCompatActivity {
             TextView text=Ui.text(this,YearMonth.from(date).equals(month)?Integer.toString(date.getDayOfMonth()):"",13,Ui.mainText(dark));text.setGravity(Gravity.CENTER);
             if(YearMonth.from(date).equals(month)){
                 text.setContentDescription(getString(R.string.next_calendar_cell,date.toString(),dayText(date,"")));
-                if(LedgerPresentation.measured(day)){double intensity=Math.min(1,day.points/20d);int accent=Ui.accent(this,dark);
-                    text.setBackgroundColor(Color.argb((int)(35+90*intensity),Color.red(accent),Color.green(accent),Color.blue(accent)));}
-                android.graphics.drawable.GradientDrawable background=new android.graphics.drawable.GradientDrawable();background.setCornerRadius(Ui.dp(this,8));
-                int accent=Ui.accent(this,dark);int fill=LedgerPresentation.measured(day)?Color.argb((int)(35+90*Math.min(1,day.points/20d)),Color.red(accent),Color.green(accent),Color.blue(accent)):Ui.cardColor(this,dark);
-                background.setColor(fill);if(date.equals(selectedDate))background.setStroke(Ui.dp(this,2),accent);else if(date.equals(today))background.setStroke(Ui.dp(this,1),LedgerUi.muted(dark));
-                text.setBackground(background);text.setSelected(date.equals(selectedDate));if(date.equals(today))text.setTypeface(Ui.mediumTypeface(this));
+                boolean emerald=LedgerCalendar.emerald(day);
+                int accent=Ui.accent(this,dark);
+                if(emerald){
+                    text.setBackground(new CalendarGlowDrawable(getResources().getDisplayMetrics().density,date.equals(selectedDate),date.equals(today),dark));
+                    text.setTextColor(0xFFD1FAE5);
+                    text.setTypeface(Ui.mediumTypeface(this));
+                    text.setContentDescription(text.getContentDescription()+" · "+getString(R.string.calendar_activity_highlight));
+                }else{
+                    android.graphics.drawable.GradientDrawable background=new android.graphics.drawable.GradientDrawable();background.setCornerRadius(Ui.dp(this,8));
+                    int fill=LedgerCalendar.intensity(day)>0?Color.argb(LedgerCalendar.intensity(day),Color.red(accent),Color.green(accent),Color.blue(accent)):Ui.cardColor(this,dark);
+                    background.setColor(fill);if(date.equals(selectedDate))background.setStroke(Ui.dp(this,2),accent);else if(date.equals(today))background.setStroke(Ui.dp(this,1),LedgerUi.muted(dark));
+                    text.setBackground(background);
+                }
+                text.setSelected(date.equals(selectedDate));if(date.equals(today))text.setTypeface(Ui.mediumTypeface(this));
                 text.setOnClickListener(v->{selectedDate=date;render();});
             }
             cell(grid,text);

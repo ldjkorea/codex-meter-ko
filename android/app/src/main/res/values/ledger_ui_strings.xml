@@ -29,7 +29,7 @@
     <string name="ui_ledger_per_day">%1$s %%p/day</string>
     <string name="ui_ledger_warmup">An estimate will appear after enough recent observations are collected.</string>
     <string name="ui_ledger_chart_note">Bars: observed increase · dash: no comparable observations</string>
-    <string name="ui_ledger_calendar_note">Darker cells mean more observed usage. Tap a date for details.</string>
+    <string name="ui_ledger_calendar_note">Date colors show observed usage. Tap a date for detailed records.</string>
     <string name="ui_ledger_date_list">Daily records</string>
     <string name="ui_ledger_export">Export records</string>
     <string name="ui_ledger_no_events">No recent allowance changes</string>

@@ -1,3 +1,5 @@
+> 최신 한국어 베타: **2.8.10 / versionCode 40**. 기록 캘린더 강조와 실제 구독료 계산 연결 검증을 포함합니다. [다운로드](https://github.com/ldjkorea/codex-meter-ko/releases/tag/v2.8.10-beta). 기존 앱을 삭제하지 않고 업데이트하세요.
+
 # Codex Meter 한국어판
 
 Codex 사용량을 확인하는 **비공식 Android 앱**입니다. 한국어 화면, 사용 기록, 티어 배지, 코치 말투, 직접 입력한 구독료에 따른 활용도 참고값을 제공합니다. 매트 블랙 디자인과 삼성 위젯을 유지한 무료 Android APK입니다.
