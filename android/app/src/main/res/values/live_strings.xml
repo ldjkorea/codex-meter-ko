@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+  <string name="live_ai_title">A word from AI</string>
+  <string name="live_display">Rank and display</string>
+  <string name="live_utilization">Cumulative utilization %1$s%%</string>
+  <string name="live_partial">Partial coverage · confirmed consumption only</string>
+  <string name="live_current">Current observation applied immediately</string>
+  <string name="live_bonus">Extra allowance consumption confirmed</string>
+  <string name="live_value_ratio">Utilization allocation · %1$s%%</string>
+  <string name="live_value_reference">Subscription fee × observed utilization · not savings</string>
+  <string name="live_ai_missing_0">No fresh data, no roast. Refresh before we put your usage on trial.</string>
+  <string name="live_ai_missing_1">My crystal ball is offline. Refresh and bring the receipts.</string>
+  <string name="live_ai_missing_2">A stale counter is not evidence. Refresh first; spicy verdict later.</string>
+  <string name="live_ai_bonus_0">You used the refill too. The quota came back and chose violence.</string>
+  <string name="live_ai_bonus_1">One allowance was apparently a warm-up. Bonus consumption confirmed.</string>
+  <string name="live_ai_bonus_2">Reset, reload, repeat. The second allowance has actual receipts.</string>
+  <string name="live_ai_empty_0">The quota is on life support. Save the next big boss fight for reset.</string>
+  <string name="live_ai_empty_1">You speedran the allowance. Now the loading screen is called reset.</string>
+  <string name="live_ai_empty_2">The gauge says stop. Your backlog has not received that memo.</string>
+  <string name="live_ai_sprint_0">Today the quota went brrr. Your keyboard owes it an apology.</string>
+  <string name="live_ai_sprint_1">That was not a work session. That was a quota demolition derby.</string>
+  <string name="live_ai_sprint_2">Main character energy, final boss consumption. Keep one eye on reset.</string>
+  <string name="live_ai_active_0">Your subscription finally clocked in. Keep giving it real work.</string>
+  <string name="live_ai_active_1">Today the meter has receipts. The backlog is looking nervous.</string>
+  <string name="live_ai_active_2">You brought work, not just a fancy subscription screenshot. Respect.</string>
+  <string name="live_ai_idle_0">Reset is close and the quota is still sightseeing. Give it a job.</string>
+  <string name="live_ai_idle_1">The allowance is about to retire with unused vacation days.</string>
+  <string name="live_ai_idle_2">Your subscription is cosplaying a screensaver. Reset is nearly here.</string>
+  <string name="live_ai_zero_0">No measured change today. Is the backlog on paid leave?</string>
+  <string name="live_ai_zero_1">Today the meter is chilling. Your tasks are still staring at you.</string>
+  <string name="live_ai_zero_2">Quiet meter today. Even the progress bar wants something to do.</string>
+  <string name="live_ai_partial_0">The week has a counter; today still needs receipts. No fake score.</string>
+  <string name="live_ai_partial_1">I can roast your quota, but missing daily observations get a pass.</string>
+  <string name="live_ai_partial_2">Daily evidence is thin. Refresh first, dramatic verdict second.</string>
+  <string name="live_ai_steady_0">One task at a time. The subscription is not going to use itself.</string>
+  <string name="live_ai_steady_1">Steady work beats screenshot collecting. Your next task is waiting.</string>
+  <string name="live_ai_steady_2">The meter is moving. Keep the backlog, not the quota, in charge.</string>
+  <string name="live_need_coverage">Not enough observations within this billing period</string>
+  <string name="live_window_total">Server window cumulative usage · confirmed refills included</string>
+  <string name="live_window_delta">Observed changes only · %1$s percentage points</string>
+</resources>

@@ -13,9 +13,12 @@ final class TierTheme {
     static synchronized int tier(Context c){
         // Read only encrypted identity change markers here; never decrypt tokens per chart/bar/color.
         String blob=c.getSharedPreferences("secure_auth_v1",0).getString("blob","");
-        String policy=TierStore.policy(c),revision=c.getSharedPreferences("codex_tier_evolution_v2",0).getString("revision","");
+        UsageSnapshot snapshot=AppPreferences.loadSnapshot(c);long now=System.currentTimeMillis();
+        boolean fresh=snapshot!=null&&snapshot.longWindow()!=null&&now<snapshot.longWindow().effectiveResetAtMillis(snapshot.fetchedAtMillis)&&UsageInsights.freshness(snapshot.fetchedAtMillis,now,RefreshScheduler.effectiveRefreshMinutes(c))==UsageInsights.Freshness.FRESH;
+        String policy=TierStore.policy(c),revision=c.getSharedPreferences("codex_tier_evolution_v2",0).getString("revision","")+":"+LiveUsageStore.revision()+":"+LiveUsageStore.signature(c,snapshot)+":"+fresh;
         if(!blob.equals(cachedBlob)||!policy.equals(cachedPolicy)||!revision.equals(cachedRevision)){
-            int tier=blob.isEmpty()?-1:TierStore.read(c,policy).tier;
+            LiveUtilization.Result live=LiveUsageStore.current(c);
+            int tier=blob.isEmpty()||!fresh?-1:live.tier;
             if(!blob.equals(c.getSharedPreferences("secure_auth_v1",0).getString("blob","")))return -1;
             cachedTier=tier;cachedBlob=blob;cachedPolicy=policy;cachedRevision=revision;
         }return cachedTier;

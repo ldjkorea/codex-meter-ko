@@ -36,8 +36,7 @@ final class SubscriptionUi {
         LedgerUi.section(parent,activity.getString(R.string.v3_value_basis),dark);
         LinearLayout basis=Ui.card(activity,dark);basis.addView(LedgerUi.amount(activity,activity.getString(R.string.v3_value_unknown),dark,23));Ui.addSpacer(basis,12);
         basis.addView(LedgerUi.caption(activity,activity.getString(R.string.v3_value_explanation),dark));Ui.addSpacer(basis,16);
-        basis.addView(LedgerUi.action(activity,activity.getString(R.string.v3_pricing_method),false,dark,()->new AlertDialog.Builder(activity)
-            .setTitle(R.string.v3_pricing_method).setMessage(R.string.v3_pricing_explanation).setPositiveButton(R.string.ui_done_e9b450,null).show()));parent.addView(basis);
+        parent.addView(basis);
     }
     private static String money(SubscriptionCost cost){return cost.currency+" "+cost.amount.stripTrailingZeros().toPlainString();}
     static void edit(AppCompatActivity activity,UsageSnapshot snapshot,boolean dark,Runnable refresh){

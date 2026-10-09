@@ -46,7 +46,7 @@ public final class EvolutionWidget extends AppWidgetProvider {
             item.setTextViewTextSize(R.id.evolution_value,android.util.TypedValue.COMPLEX_UNIT_SP,elements.size()==1?36:elements.size()==2?28:22);
             boolean fresh=s!=null&&AppPreferences.getLastError(c).isEmpty()&&UsageInsights.freshness(s.fetchedAtMillis,now,RefreshScheduler.effectiveRefreshMinutes(c))==UsageInsights.Freshness.FRESH;
             if(key.equals("tier")){
-                int tier=TierTheme.tier(c);item.setTextViewText(R.id.evolution_label,c.getString(tier<0?R.string.fun_placing:R.string.fun_tier));
+                int tier=TierTheme.tier(c);item.setTextViewText(R.id.evolution_label,c.getString(tier<0?R.string.fun_placing:TierPresentation.NAMES[tier]));
                 item.setViewVisibility(R.id.evolution_emblem,View.VISIBLE);item.setViewVisibility(R.id.evolution_value,View.GONE);
                 android.graphics.drawable.Drawable d=androidx.appcompat.content.res.AppCompatResources.getDrawable(c,TierTheme.EMBLEMS[Math.max(0,tier)]);Bitmap b=Bitmap.createBitmap(144,144,Bitmap.Config.ARGB_8888);d.setBounds(0,0,144,144);d.draw(new Canvas(b));item.setImageViewBitmap(R.id.evolution_emblem,b);item.setInt(R.id.evolution_emblem,"setImageAlpha",tier<0?100:255);
                 item.setContentDescription(R.id.evolution_emblem,c.getString(tier<0?R.string.fun_placing:TierPresentation.NAMES[tier]));

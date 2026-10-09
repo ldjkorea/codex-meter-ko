@@ -1,0 +1,68 @@
+{
+  "tool": "image_gen.imagegen",
+  "mode": "text-to-image",
+  "originalSize": [
+    1254,
+    1254
+  ],
+  "transparent_background": true,
+  "packaging": "Sharp 256px contain, transparent, WebP quality 85; original generated images preserved on local host",
+  "prompt": "Single premium miniature 3D product illustration for an unofficial Codex usage app; coherent matte black machined titanium, readable at 72px, isolated transparent, full object centered at 75%; no tier crest, logos, text, crowns, wings, medals, or faces. Subjects: Free graphite cube/silver core; Plus platinum tower/emerald core; Pro titanium AI core/gold rails/violet center; Business interlocking titanium/cyan cores; Enterprise architectural compute fortress/platinum/sapphire.",
+  "assets": [
+    {
+      "plan": "free",
+      "path": "android/app/src/main/res/drawable-nodpi/plan_free.webp",
+      "resource": "plan_free",
+      "sha256": "f0da09ab2ee10f68a02bc593dad57f15727f8544e59b231842a02d80f2301341",
+      "bytes": 12392,
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "generatedOriginal": "exec-d030938b-fa77-41f7-a53f-c5edcbe7fcd7.png"
+    },
+    {
+      "plan": "plus",
+      "path": "android/app/src/main/res/drawable-nodpi/plan_plus.webp",
+      "resource": "plan_plus",
+      "sha256": "287b46b1becee2a035f553e8d791de449c50200f6bbab712b9b7cffad412b5a2",
+      "bytes": 12468,
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "generatedOriginal": "exec-b6f22649-1b4f-4bdb-895e-1a5b664788bf.png"
+    },
+    {
+      "plan": "pro",
+      "path": "android/app/src/main/res/drawable-nodpi/plan_pro.webp",
+      "resource": "plan_pro",
+      "sha256": "38ac8dbd78fd85c111fc801be7966984978a5f2b31535d3884937734052c6a5d",
+      "bytes": 29690,
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "generatedOriginal": "exec-8bb2e090-2dfa-4783-b8cc-3c1ad6a1e231.png"
+    },
+    {
+      "plan": "business",
+      "path": "android/app/src/main/res/drawable-nodpi/plan_business.webp",
+      "resource": "plan_business",
+      "sha256": "daac73d6b1a558b0a625efddc2a1697edecb7b851b318c75895e713c3a90e028",
+      "bytes": 18328,
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "generatedOriginal": "exec-9abbe30a-b718-488a-834e-005cb378b269.png"
+    },
+    {
+      "plan": "enterprise",
+      "path": "android/app/src/main/res/drawable-nodpi/plan_enterprise.webp",
+      "resource": "plan_enterprise",
+      "sha256": "ebb02bd2b00d4f069b0e383d00ca1f245a56ff3141c955ee157330524ae36e89",
+      "bytes": 22320,
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "generatedOriginal": "exec-879af27b-1b92-450d-9c6d-cd40ceb53c01.png"
+    }
+  ]
+}

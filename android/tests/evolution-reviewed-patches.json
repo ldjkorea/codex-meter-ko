@@ -93,6 +93,10 @@
     [
       "        if(slots.isEmpty()){remoteViews.setTextViewText(R.id.widget_title,context.getString(R.string.v3_hidden));remoteViews.setViewVisibility(R.id.widget_title,View.VISIBLE);}\n",
       "        if(slots.isEmpty()){remoteViews.setTextViewText(R.id.widget_title,context.getString(R.string.v3_hidden));remoteViews.setViewVisibility(R.id.widget_title,View.VISIBLE);}\n        WidgetCrest.bind(context,remoteViews,i);\n"
+    ],
+    [
+      "if(context!=null){EvolutionWidget.updateAll(context);TierEvaluationScheduler.afterRefresh(context);}",
+      "if(context!=null){LiveUsageStore.schedule(context);EvolutionWidget.updateAll(context);TierEvaluationScheduler.afterRefresh(context);}"
     ]
   ],
   "android/app/src/main/java/dev/bennett/codexmeter/RecordSettings.java": [

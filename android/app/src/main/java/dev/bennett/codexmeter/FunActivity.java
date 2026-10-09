@@ -38,6 +38,7 @@ public final class FunActivity extends AppCompatActivity {
     @Override public boolean onOptionsItemSelected(MenuItem item){if(NotesUi.select(this,item,"value"))return true;if(item.getItemId()==8600){startActivity(new Intent(this,FunSettingsActivity.class));return true;}return super.onOptionsItemSelected(item);}
     private void reload(){
         long request=++generation;UsageSnapshot snapshot=AppPreferences.loadSnapshot(this);String key=SubscriptionStore.key(this,snapshot);
+        String stamp=LiveUsageStore.signature(this,snapshot);
         if(key==null){content.removeAllViews();content.addView(LedgerUi.tile(this,getString(R.string.fun_placing),"—",getString(R.string.v3_signin_note),dark));return;}
         WORKER.execute(()->{try{
             UsageLedgerDatabase.Data data=UsageLedgerDatabase.load(getApplicationContext());
@@ -48,37 +49,23 @@ public final class FunActivity extends AppCompatActivity {
             if(!FunStore.settle(getApplicationContext(),key,completed,(tier,tone,variant)->FunCoach.text(getApplicationContext(),tone,tier,FunInsights.Situation.TIER,variant)))throw new IllegalStateException("Save failed");
             TierStore.evaluate(getApplicationContext(),key,policy,completed);
             JSONObject doc=FunStore.load(getApplicationContext(),key);
-            runOnUiThread(()->{if(isDestroyed()||isFinishing()||request!=generation)return;if(!key.equals(SubscriptionStore.key(this,AppPreferences.loadSnapshot(this)))){reload();return;}
-                try{render(snapshot,window,policy,data.records,completed,doc);}catch(Exception ignored){error();}});
+            LiveUtilization.Result live=LiveUsageStore.calculate(getApplicationContext(),snapshot,data);
+            double daily=LiveCards.daily(data,policy,System.currentTimeMillis());
+            runOnUiThread(()->{if(isDestroyed()||isFinishing()||request!=generation)return;if(!key.equals(SubscriptionStore.key(this,AppPreferences.loadSnapshot(this)))||!stamp.equals(LiveUsageStore.signature(this,AppPreferences.loadSnapshot(this)))){reload();return;}
+                try{render(snapshot,window,policy,data.records,completed,doc,live,daily);}catch(Exception ignored){error();}});
         }catch(Exception ignored){runOnUiThread(()->{if(!isDestroyed()&&request==generation)error();});}});
     }
     private void error(){content.removeAllViews();content.addView(LedgerUi.caption(this,getString(R.string.fun_load_failed),dark));content.addView(LedgerUi.action(this,getString(R.string.ui_ledger_recovery),true,dark,this::reload));}
-    private void render(UsageSnapshot snapshot,UsageWindow window,String policy,List<LedgerRecord> records,List<FunInsights.Window> completed,JSONObject doc)throws Exception{
+    private void render(UsageSnapshot snapshot,UsageWindow window,String policy,List<LedgerRecord> records,List<FunInsights.Window> completed,JSONObject doc,LiveUtilization.Result live,double daily)throws Exception{
         content.removeAllViews();long now=System.currentTimeMillis();
         BigDecimal current=window==null?null:BigDecimal.valueOf(window.usedPercent);
         LedgerRecord precise=LedgerPeriods.latest(records,policy);
         if(precise!=null&&precise.at==snapshot.fetchedAtMillis&&window!=null&&precise.reset==window.effectiveResetAtMillis(snapshot.fetchedAtMillis))current=new BigDecimal(precise.decimal);
         LedgerPeriods.Span span=window==null?null:LedgerPeriods.span(window.effectiveResetAtMillis(snapshot.fetchedAtMillis),window.windowSeconds,snapshot.fetchedAtMillis);
         boolean fresh=span!=null&&now<span.end&&UsageInsights.freshness(snapshot.fetchedAtMillis,now,RefreshScheduler.effectiveRefreshMinutes(this))==UsageInsights.Freshness.FRESH;
-        content.addView(SubscriptionValueUi.card(this,dark,snapshot,current,span,fresh,FunInsights.safeCurrent(records,policy,span)));Ui.addSpacer(content,16);
-        FunInsights.Rating rating=TierStore.rating(this,policy);
-        LinearLayout tier=Ui.card(this,dark);TierTheme.frame(tier,rating.tier,dark);tier.addView(LedgerUi.heading(this,getString(R.string.fun_tier),dark));Ui.addSpacer(tier,12);
-        LinearLayout row=new LinearLayout(this);row.setOrientation(LedgerUi.stacked(this)?LinearLayout.VERTICAL:LinearLayout.HORIZONTAL);row.setGravity(Gravity.CENTER_VERTICAL);
-        TierCompanionView badge=new TierCompanionView(this,rating.tier);badge.setAlpha(rating.tier<0?.45f:1f);badge.setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO);
-        LinearLayout.LayoutParams bp=new LinearLayout.LayoutParams(Ui.dp(this,144),Ui.dp(this,144));if(LedgerUi.stacked(this))bp.gravity=Gravity.CENTER_HORIZONTAL;else bp.setMarginEnd(Ui.dp(this,16));row.addView(TierTheme.companion(badge,rating.tier),bp);
-        LinearLayout copy=new LinearLayout(this);copy.setOrientation(LinearLayout.VERTICAL);copy.addView(LedgerUi.amount(this,rating.tier<0?getString(R.string.fun_placing):getString(TIERS[rating.tier]),dark,27));
-        copy.addView(LedgerUi.caption(this,rating.tier<0?getString(R.string.fun_placing):rating.provisional?getString(R.string.fun_provisional):TierPresentation.note(this,policy),dark));
-        if(current!=null)copy.addView(LedgerUi.caption(this,getString(R.string.fun_challenge,num(current.doubleValue())),dark));
-        if(!completed.isEmpty()){FunInsights.Window last=completed.get(completed.size()-1);FunInsights.Style style=FunInsights.style(records,policy,last.span,last.span.end);if(style!=FunInsights.Style.UNKNOWN)copy.addView(LedgerUi.caption(this,getString(R.string.fun_style_period,getString(styleId(style))),dark));}
-        TierPresentation.details(this,copy,policy,span,dark);
-        row.addView(copy,new LinearLayout.LayoutParams(LedgerUi.stacked(this)?-1:0,-2,LedgerUi.stacked(this)?0:1));tier.addView(row);
-        String tone=FunStore.tone(this);boolean rapid=false;
-        if(precise!=null){LedgerForecast.Result forecast=LedgerForecast.analyze(records,policy,now,RefreshScheduler.effectiveRefreshMinutes(this));rapid=forecast.spike;}
-        FunInsights.Situation situation=FunInsights.situation(rating,current,span==null?0:span.end-now,fresh,rapid);
-        TierEvolution.State evaluated=TierStore.read(this,policy);
-        if(fresh&&evaluated.previous>=0&&evaluated.tier>evaluated.previous&&now-evaluated.end<86400000L){situation=FunInsights.Situation.PROMOTED;badge.post(badge::promote);}
-        if(!tone.equals("off")){Ui.addSpacer(tier,16);tier.addView(LedgerUi.caption(this,getString(R.string.fun_coach),dark));tier.addView(LedgerUi.heading(this,FunCoach.current(this,tone,rating.tier,situation,CoachMoment.choose(records,policy,span,current,fresh,now),span==null?policy:policy+span.end,now),dark));}
-        Ui.addSpacer(tier,12);tier.addView(LedgerUi.action(this,getString(R.string.fun_why),false,dark,()->new AlertDialog.Builder(this).setTitle(R.string.fun_why).setMessage(getString(R.string.fun_tier_help)+"\n\n"+getString(R.string.fun_coach_help)).setPositiveButton(R.string.ui_done_e9b450,null).show()));content.addView(tier);
+        content.addView(LiveCards.crest(this,dark,live,fresh));
+        content.addView(LiveCards.ai(this,dark,live,snapshot,fresh,daily,now));
+        content.addView(SubscriptionValueUi.card(this,dark,snapshot,live,fresh));Ui.addSpacer(content,16);
         if(span!=null){LedgerPeriods.Measurement[] match=LedgerPeriods.matched(records,policy,span,now);
             LinearLayout compare=Ui.card(this,dark);compare.addView(LedgerUi.caption(this,match[0].comparable&&match[1].comparable?getString(R.string.v3_matched,num(match[0].points),num(match[1].points)):getString(R.string.v3_compare_missing),dark));Ui.addSpacer(content,16);content.addView(compare);}
         Ui.addSpacer(content,16);SubscriptionCost bill=SubscriptionStore.load(this,snapshot);

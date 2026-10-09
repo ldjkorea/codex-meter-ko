@@ -23,7 +23,7 @@ assert 'TestNotesActivity.class' not in source('RecordSettings.java')
 assert 'fun_test_mode' not in source('FunSettingsActivity.java')
 assert 'MAIN.postDelayed(debounce,250)' in source('NotesUi.java')
 assert 'WORKER.execute(' in source('NotesUi.java')
-assert 'TierStore.rating(this,policy)' in source('FunActivity.java')
+assert 'LiveCards.crest(' in source('FunActivity.java') and 'TierStore.evaluate(' in source('FunActivity.java')
 assert 'getIdentifier' not in source('FunCoach.java')
 new=['FunActivity.java','FunSettingsActivity.java','FunCoach.java','FunStore.java','NotesUi.java','TestNotesActivity.java','TestNotesStore.java']
 for name in new:

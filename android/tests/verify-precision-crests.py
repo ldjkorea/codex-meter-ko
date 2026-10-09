@@ -33,7 +33,9 @@ assert 'setImageResource(TierTheme.EMBLEMS' in companion
 assert 'ANIMATOR_DURATION_SCALE' in companion and 'onDetachedFromWindow' in companion
 for name in ['FunHome','FunActivity']:
     source = (app/(name+'.java')).read_text(encoding='utf-8')
-    assert 'new TierCompanionView(' in source and 'TierTheme.companion(' in source
+    assert 'LiveCards.crest(' in source
+    live=(app/'LiveCards.java').read_text(encoding='utf-8')
+    assert 'new TierCompanionView(' in live and 'TierTheme.companion(' in live
 widget = (app/'EvolutionWidget.java').read_text(encoding='utf-8')
 assert 'TierTheme.EMBLEMS' in widget and 'Bitmap.createBitmap(144,144' in widget
 main = (app/'MainActivity.java').read_text(encoding='utf-8')

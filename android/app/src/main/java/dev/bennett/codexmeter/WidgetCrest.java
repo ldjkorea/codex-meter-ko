@@ -40,7 +40,7 @@ final class WidgetCrest {
     }
     static synchronized void updateExistingIfChanged(Context c) {
         String current=c.getSharedPreferences("codex_tier_evolution_v2",0).getString("revision","")+"|"
-                +c.getSharedPreferences("secure_auth_v1",0).getString("blob","");
+                +c.getSharedPreferences("secure_auth_v1",0).getString("blob","")+"|"+LiveUsageStore.revision();
         if(current.equals(marker))return;
         try {
             AppWidgetManager m=AppWidgetManager.getInstance(c);

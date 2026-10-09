@@ -1,6 +1,5 @@
 package dev.bennett.codexmeter;
 
-import android.app.AlertDialog;
 import android.widget.LinearLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import java.math.BigDecimal;
@@ -30,7 +29,22 @@ final class SubscriptionValueUi {
             android.widget.Button edit=LedgerUi.action(a,a.getString(bill==null?R.string.ux_register:R.string.v3_payment_edit),true,dark,()->SubscriptionUi.edit(a,AppPreferences.loadSnapshot(a),dark,a::recreate));
             edit.setEnabled(SubscriptionStore.key(a,snapshot)!=null);card.addView(edit);
         }
-        card.addView(LedgerUi.action(a,a.getString(R.string.ux_value_method),false,dark,()->help(a)));return card;
+        return card;
     }
-    static void help(AppCompatActivity a){new AlertDialog.Builder(a).setTitle(R.string.ux_value_method).setMessage(R.string.ux_value_help).setPositiveButton(R.string.ui_done_e9b450,null).show();}
+    static LinearLayout card(AppCompatActivity a,boolean dark,UsageSnapshot snapshot,LiveUtilization.Result live,boolean fresh){
+        SubscriptionCost bill=SubscriptionStore.load(a,snapshot);
+        LinearLayout card=Ui.card(a,dark);card.addView(LedgerUi.heading(a,a.getString(R.string.ux_my_value),dark));Ui.addSpacer(card,12);
+        boolean active=bill!=null&&bill.active(LedgerAggregation.day(System.currentTimeMillis()));
+        if(active&&live.valid&&fresh){
+            LinearLayout figures=new LinearLayout(a);figures.setOrientation(LinearLayout.VERTICAL);
+            figures.addView(LedgerUi.amount(a,FunActivity.money(bill.currency,live.amount(bill.amount)),dark,32));
+            figures.addView(LedgerUi.caption(a,"/ "+FunActivity.money(bill.currency,bill.amount),dark));card.addView(figures);
+            card.addView(LedgerUi.caption(a,a.getString(R.string.live_value_ratio,LedgerUi.number(live.percent)),dark));
+            android.widget.ProgressBar progress=Ui.progress(a,dark);progress.setProgress((int)Math.max(0,Math.min(100,live.percent)));progress.setContentDescription(a.getString(R.string.live_utilization,LedgerUi.number(live.percent)));Ui.addSpacer(card,12);card.addView(progress);
+            card.addView(LedgerUi.caption(a,a.getString(R.string.live_value_reference),dark));
+            if(live.partial)card.addView(LedgerUi.caption(a,a.getString(R.string.live_partial),dark));
+        }else card.addView(LedgerUi.caption(a,a.getString(bill==null?R.string.v3_payment_missing:!active?R.string.ux_period_mismatch:fresh?R.string.live_need_coverage:R.string.ui_ledger_refresh),dark));
+        if(bill==null||!active){Ui.addSpacer(card,12);android.widget.Button edit=LedgerUi.action(a,a.getString(bill==null?R.string.ux_register:R.string.v3_payment_edit),true,dark,()->SubscriptionUi.edit(a,AppPreferences.loadSnapshot(a),dark,a::recreate));edit.setEnabled(SubscriptionStore.key(a,snapshot)!=null);card.addView(edit);}
+        return card;
+    }
 }

@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+  <string name="live_ai_title">AI의 한마디</string>
+  <string name="live_display">티어와 화면</string>
+  <string name="live_utilization">누적 활용 %1$s%%</string>
+  <string name="live_partial">일부 관측 · 확인된 사용량만 반영</string>
+  <string name="live_current">현재 관측 즉시 반영</string>
+  <string name="live_bonus">추가 한도 소비 확인</string>
+  <string name="live_value_ratio">활용 비율 환산 · %1$s%%</string>
+  <string name="live_value_reference">구독료 × 관측 활용률 · 실제 절약액 아님</string>
+  <string name="live_ai_missing_0">데이터가 묵었는데 팩폭부터 할 순 없지. 새로고침하고 증거 가져와.</string>
+  <string name="live_ai_missing_1">오늘의 점술 휴업. 새로고침하면 팩폭 영업 재개.</string>
+  <string name="live_ai_missing_2">오래된 숫자로 억까는 안 한다. 새로고침부터 눌러.</string>
+  <string name="live_ai_bonus_0">리필까지 진짜로 태웠네. 한도야 미안하다, 주인이 보스였다.</string>
+  <string name="live_ai_bonus_1">한 번으로는 성에 안 찼나 봐. 추가 소비 확인, 이 정도면 한도 학살자.</string>
+  <string name="live_ai_bonus_2">초기화하고 또 일했네. 리필 한도에도 영수증이 찍혔다.</string>
+  <string name="live_ai_empty_0">한도가 산소호흡기 달았다. 다음 대형 퀘스트는 초기화 뒤에 가자.</string>
+  <string name="live_ai_empty_1">한도 스피드런 완료. 다음 로딩 화면 이름은 초기화입니다.</string>
+  <string name="live_ai_empty_2">게이지는 퇴근했는데 할 일 목록은 야근 중이네. 잠깐 브레이크.</string>
+  <string name="live_ai_sprint_0">오늘 한도 삭제 속도 실화냐. 키보드에서 불맛 난다.</string>
+  <string name="live_ai_sprint_1">이건 작업이 아니라 한도 철거 현장이네. 초기화 시간은 보고 달려.</string>
+  <string name="live_ai_sprint_2">개발은 네가 했는데 한도가 대신 갈렸네. 오늘 MVP는 너다.</string>
+  <string name="live_ai_active_0">구독료가 드디어 출근했네. 계속 제대로 부려먹자.</string>
+  <string name="live_ai_active_1">오늘은 영수증이 있다. 할 일 목록이 슬슬 쫄겠는데?</string>
+  <string name="live_ai_active_2">구독 인증샷 대신 결과물 뽑는 중이네. 이건 인정.</string>
+  <string name="live_ai_idle_0">초기화가 코앞인데 한도가 관광 중이네. 작은 퀘스트라도 맡겨.</string>
+  <string name="live_ai_idle_1">한도가 연차 하나 못 쓰고 퇴사하게 생겼다. 일감 있으면 지금이다.</string>
+  <string name="live_ai_idle_2">구독이 화면보호기 코스프레 중. 초기화 전에 할 일부터 찾아봐.</string>
+  <string name="live_ai_zero_0">오늘 관측된 변화는 0. 할 일 목록도 유급휴가 갔냐?</string>
+  <string name="live_ai_zero_1">오늘 게이지는 평온하네. 미뤄 둔 작업은 너만 보고 있다.</string>
+  <string name="live_ai_zero_2">진행 막대도 심심하겠다. 오늘은 조용히 가는 날이네.</string>
+  <string name="live_ai_partial_0">이번 주 카운터는 있는데 오늘 영수증은 부족해. 없는 점수는 안 만든다.</string>
+  <string name="live_ai_partial_1">한도에는 팩폭 가능. 오늘 기록은 증거 부족으로 무죄.</string>
+  <string name="live_ai_partial_2">일간 기록이 듬성듬성하네. 새로고침하고 팩폭 재판 열자.</string>
+  <string name="live_ai_steady_0">구독이 알아서 일하진 않는다. 다음 할 일 하나만 던져봐.</string>
+  <string name="live_ai_steady_1">인증샷 수집보다 결과물 한 개. 할 일 목록이 기다린다.</string>
+  <string name="live_ai_steady_2">게이지는 움직이는 중. 한도 눈치보다 작업 주도권부터 잡자.</string>
+  <string name="live_need_coverage">결제 기간 안의 관측값 부족</string>
+  <string name="live_window_total">서버 구간 누적 소비 · 확인된 리필 포함</string>
+  <string name="live_window_delta">관측한 변화만 · %1$s%%p</string>
+</resources>

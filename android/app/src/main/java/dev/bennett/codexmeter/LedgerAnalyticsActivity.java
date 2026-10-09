@@ -120,7 +120,7 @@ public class LedgerAnalyticsActivity extends AppCompatActivity {
         new AlertDialog.Builder(this).setTitle(R.string.ui_clear_usage_history_03c461)
                 .setMessage(R.string.ui_this_removes_every_locally_stored_usage_sample_your_lat_e3f515)
                 .setNegativeButton(R.string.ui_cancel_77dfd2,null).setPositiveButton(R.string.ui_clear_719ea3,(dialog,which)->{
-                    worker.execute(()->{AccountSession.clearHistory(getApplicationContext());runOnUiThread(()->{if(!isDestroyed())reload();});});
+                    worker.execute(()->{AccountSession.clearHistory(getApplicationContext());LiveUsageStore.invalidate();WidgetRenderer.updateAll(getApplicationContext());runOnUiThread(()->{if(!isDestroyed())reload();});});
                 }).show();
     }
     private void controls(){
@@ -234,7 +234,17 @@ public class LedgerAnalyticsActivity extends AppCompatActivity {
         long now=System.currentTimeMillis();LedgerPeriods.Measurement result=LedgerPeriods.measure(data.records,policy,chosen,now);
         LinearLayout card=Ui.card(this,dark);card.addView(LedgerUi.heading(this,getString(period==-1?R.string.v3_this_window:R.string.v3_previous_window),dark));
         Ui.addSpacer(card,8);card.addView(LedgerUi.caption(this,chosen==null?getString(R.string.v3_window_missing):V3Display.range(chosen),dark));Ui.addSpacer(card,16);
-        card.addView(LedgerUi.amount(this,result.covered==0?"—":getString(R.string.ui_ledger_points,number(result.points)),dark,32));
+        LedgerRecord observed=null;
+        if(chosen!=null)for(LedgerRecord row:data.records)if(row.policy().equals(policy)&&row.at>=chosen.start&&row.at<chosen.end
+                &&UsageWindow.sameResetWindow(row.reset,row.seconds,chosen.end,row.seconds)&&(observed==null||row.at>observed.at))observed=row;
+        LiveUtilization.Result cumulative=null;
+        if(observed!=null){List<Long> credits=new ArrayList<>();for(UsageLedgerDatabase.Event event:data.events)
+            if(event.type.equals("credit_used")&&event.origin.equals("confirmed"))credits.add(event.at);
+            cumulative=LiveUtilization.calculate(data.records,credits,policy,chosen,chosen.start,chosen.end,observed.at);}
+        card.addView(LedgerUi.amount(this,cumulative==null||!cumulative.valid?"—":number(cumulative.windowPoints)+"%",dark,32));
+        card.addView(LedgerUi.caption(this,getString(R.string.live_window_total),dark));
+        if(observed!=null)card.addView(LedgerUi.caption(this,getString(R.string.next_observed_at,time(observed.at)),dark));
+        if(result.covered>0)card.addView(LedgerUi.caption(this,getString(R.string.live_window_delta,number(result.points)),dark));
         card.addView(LedgerUi.caption(this,getString(R.string.v3_window_measured,result.observations,UsageInsightDisplay.duration(this,result.covered)),dark));
         LedgerPeriods.Measurement[] comparison=LedgerPeriods.matched(data.records,policy,current,now);
         Ui.addSpacer(card,16);card.addView(LedgerUi.caption(this,comparison[0].comparable&&comparison[1].comparable

@@ -322,7 +322,7 @@ public final class MainActivity extends AppCompatActivity {
 
     public void rebuild() {
         if(content==null)return;
-        invalidateOptionsMenu();UsageSnapshot current=AppPreferences.loadSnapshot(this);String signature=SubscriptionStore.key(this,current)+":"+(current==null?0:current.fetchedAtMillis)+":"+AppPreferences.getLastError(this).hashCode()+":"+getSharedPreferences("codex_subscription_cost",0).getAll().hashCode()+":"+(current==null?"":UsageInsights.freshness(current.fetchedAtMillis,System.currentTimeMillis(),RefreshScheduler.effectiveRefreshMinutes(this)))+":"+LedgerAggregation.day(System.currentTimeMillis())+":"+getSharedPreferences("codex_meter_settings_v1",0).getAll().hashCode()+":"+getSharedPreferences("codex_fun_v1",0).getAll().hashCode()+":"+getSharedPreferences("codex_fun_settings",0).getAll().hashCode()+":"+getSharedPreferences("codex_tier_evolution_v2",0).getString("revision","")+":"+getSharedPreferences("codex_meter_updates_v1",0).getAll().hashCode();
+        invalidateOptionsMenu();UsageSnapshot current=AppPreferences.loadSnapshot(this);String signature=SubscriptionStore.key(this,current)+":"+(current==null?0:current.fetchedAtMillis)+":"+AppPreferences.getLastError(this).hashCode()+":"+getSharedPreferences("codex_subscription_cost",0).getAll().hashCode()+":"+(current==null?"":UsageInsights.freshness(current.fetchedAtMillis,System.currentTimeMillis(),RefreshScheduler.effectiveRefreshMinutes(this)))+":"+LedgerAggregation.day(System.currentTimeMillis())+":"+getSharedPreferences("codex_meter_settings_v1",0).getAll().hashCode()+":"+getSharedPreferences("codex_fun_v1",0).getAll().hashCode()+":"+getSharedPreferences("codex_fun_settings",0).getAll().hashCode()+":"+getSharedPreferences("codex_tier_evolution_v2",0).getString("revision","")+":"+getSharedPreferences("codex_meter_updates_v1",0).getAll().hashCode()+":"+LiveUsageStore.revision();
         if(signature.equals(renderedSignature)&&content.getChildCount()>0){if(ledgerOverview!=null)ledgerOverview.updateClock();for(Runnable update:quotaClockUpdates)update.run();return;}
         android.view.View scroll=findViewById(R.id.dashboard_scroll);if(scroll!=null&&content.getChildCount()>0)homeScroll=scroll.getScrollY();restoreHomePending=homeScroll>0;renderedSignature=signature;
         freshnessView=null;ledgerOverview=null;weeklyInsightRows=null;quotaClockUpdates.clear();content.removeAllViews();
@@ -335,6 +335,7 @@ public final class MainActivity extends AppCompatActivity {
             Button signIn=Ui.nativePrimaryButton(this,AppPreferences.isOAuthPending(this)?getString(R.string.ui_continue_sign_in_cd1418):getString(R.string.ui_sign_in_with_chatgpt_fe0b3b));
             signIn.setOnClickListener(v->startOrContinueSignIn());content.addView(signIn);return;
         }
+        LinearLayout crestSlot=new LinearLayout(this);crestSlot.setOrientation(LinearLayout.VERTICAL);content.addView(crestSlot);
         ledgerOverview=LedgerDashboard.addOverview(this,content,executor,snapshot,dark);
         if(snapshot!=null&&ledgerOverview==null&&AppPreferences.showUsageOverview(this)){
             LinearLayout hidden=Ui.card(this,dark);hidden.addView(LedgerUi.caption(this,getString(R.string.v3_hidden),dark));content.addView(hidden);Ui.addSpacer(content,16);
@@ -344,7 +345,7 @@ public final class MainActivity extends AppCompatActivity {
             String error=AppPreferences.getLastError(this);empty.addView(LedgerUi.caption(this,error.isEmpty()?getString(R.string.v3_first_refresh):error,dark));
             Button refresh=LedgerUi.action(this,getString(R.string.ui_refresh_56e3ba),true,dark,()->{});refresh.setOnClickListener(v->refreshNow(refresh));refresh.setEnabled(!refreshing.get());empty.addView(refresh);content.addView(empty);Ui.addSpacer(content,16);
         }
-        FunHome.add(this,content,dark,this::restoreHomeScroll);
+        FunHome.add(this,content,dark,this::restoreHomeScroll,crestSlot);
         restoreHomeScroll();
     }
 

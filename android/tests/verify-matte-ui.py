@@ -31,14 +31,15 @@ assert 'codex_subscription_cost' in main and 'codex_fun_settings' in main
 assert 'button.setEnabled(true);button.setText(previousLabel)' in main
 assert 'previousLabel.length()>0' in main # no clipped spinner text in compact icon control
 assert main.index('LedgerDashboard.addOverview')<main.index('FunHome.add')
-assert home.index('target.addView(tier)')<home.index('target.addView(quotation)')<home.index('target.addView(value)')
-assert 'if(!tone.equals("off"))target.addView(quotation)' in home
-assert 'TierStore.rating(activity,policy)' in home and 'TierStore.evaluate(' in home
+assert main.index('content.addView(crestSlot)')<main.index('LedgerDashboard.addOverview')
+assert home.index('crestTarget.addView(tier)')<home.index('target.addView(quotation)')<home.index('target.addView(value)')
+assert 'LiveCards.ai(' in home and 'FunStore.tone(' not in home
+assert 'LiveCards.crest(' in home and 'TierStore.evaluate(' in home
 assert 'SubscriptionValueUi.card' in home and 'FunStore.rule(' not in home
-assert 'FunInsights.safeCurrent(records,policy,span)' in home
+assert 'LiveUsageStore.calculate(' in home
 assert 'screenWidthDp<420' in home and 'figures.setOrientation(LinearLayout.VERTICAL)' in src('SubscriptionValueUi')
 assert 'setMaxLines' not in home and 'setEllipsize' not in home
-assert '"“"+FunCoach.current(' in home and 'CoachMoment.choose(records,policy,span,current,fresh,now)' in home
+assert 'SpicyAi.key(' in src('LiveCards') and 'R.string.live_ai_title' in src('LiveCards')
 records=settings.split('static void add(',1)[1].split('static void hub(',1)[0]
 assert records.count('toggle(a,')==3
 assert 'MeterSettingsActivity.class' in records and '=group(' not in settings
