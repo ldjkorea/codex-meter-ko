@@ -1,0 +1,86 @@
+{
+  "license": "Project MIT license",
+  "assets": [
+    {
+      "tier": 0,
+      "path": "windows-widget/assets/prestige_0.png",
+      "sha256": "92ad472efa48bff0fd4954fcc1747a385bb3659547ec1a438cdcef558cb4e47b",
+      "sourcePath": "android/app/src/main/res/drawable-nodpi/prestige_0.webp",
+      "sourceSha256": "6ab029fd8a857763a529ad505f2a53cc4be9096f1599436522aba4713e1c3ee0",
+      "conversion": "Existing approved 512px WebP decoded to RGBA PNG for System.Drawing; artwork unchanged"
+    },
+    {
+      "tier": 1,
+      "path": "windows-widget/assets/prestige_1.png",
+      "sha256": "cc44da273a7bc41d5972a61a5f322cc1f1d1967f69644f3af9f96c98a2832e64",
+      "sourcePath": "android/app/src/main/res/drawable-nodpi/prestige_1.webp",
+      "sourceSha256": "28d69dbd9819f27aa1e84a502bef1d428607aecf27e9c69b44f6ee030c9a09e2",
+      "conversion": "Existing approved 512px WebP decoded to RGBA PNG for System.Drawing; artwork unchanged"
+    },
+    {
+      "tier": 2,
+      "path": "windows-widget/assets/prestige_2.png",
+      "sha256": "daa8fd9f865be5b9325c973c4a31a008bf2189538a1ad5b4bcafe613a2f000d3",
+      "sourcePath": "android/app/src/main/res/drawable-nodpi/prestige_2.webp",
+      "sourceSha256": "8a91d92ca4a5ca477c25e931806638e4a1b141644c02990c0d311f8f70404799",
+      "conversion": "Existing approved 512px WebP decoded to RGBA PNG for System.Drawing; artwork unchanged"
+    },
+    {
+      "tier": 3,
+      "path": "windows-widget/assets/prestige_3.png",
+      "sha256": "e20bbda1c9dc4a0e6690c03275d78af4e906df07ac6d1fdf373e0d4dd635c68f",
+      "sourcePath": "android/app/src/main/res/drawable-nodpi/prestige_3.webp",
+      "sourceSha256": "811f9a4ccee88a111f25a800093d3c7ad6d1b58e8d15276b3aaac43f4478b408",
+      "conversion": "Existing approved 512px WebP decoded to RGBA PNG for System.Drawing; artwork unchanged"
+    },
+    {
+      "tier": 4,
+      "path": "windows-widget/assets/prestige_4.png",
+      "sha256": "be1c4243b51b9f27cb90b68319b668ab47d6365cde8f4109da876b56782a2695",
+      "sourcePath": "android/app/src/main/res/drawable-nodpi/prestige_4.webp",
+      "sourceSha256": "5663e945f9984ae4d99b7d38e4e4dde6fdda00a3fb3fa215f66e5bdb4d3db3ee",
+      "conversion": "Existing approved 512px WebP decoded to RGBA PNG for System.Drawing; artwork unchanged"
+    },
+    {
+      "tier": 5,
+      "path": "windows-widget/assets/prestige_5.png",
+      "sha256": "b179f2b57fd9a3b40404f38b017a03374523236b7293de60bfd505fd2cebf51d",
+      "sourcePath": "android/app/src/main/res/drawable-nodpi/prestige_5.webp",
+      "sourceSha256": "146e4dd327c856dae6eb05b83d61d7c762733d722de8734a319b1f35690a2812",
+      "conversion": "Existing approved 512px WebP decoded to RGBA PNG for System.Drawing; artwork unchanged"
+    },
+    {
+      "tier": 6,
+      "path": "windows-widget/assets/prestige_6.png",
+      "sha256": "ba65b0e05b9527919252c28c4d29638ef0bffd4de031c6c653fce82dbe68bbe7",
+      "sourcePath": "android/app/src/main/res/drawable-nodpi/prestige_6.webp",
+      "sourceSha256": "ac7597d14bdc1b534396ae038100b53a004763c77ed8fa49e11ed72b67c2207b",
+      "conversion": "Existing approved 512px WebP decoded to RGBA PNG for System.Drawing; artwork unchanged"
+    },
+    {
+      "tier": 7,
+      "path": "windows-widget/assets/prestige_7.png",
+      "sha256": "4dcefe1dc7f4e18368b6d0910c3608f748677e367f68a7f9ce4ddbf518cd9af2",
+      "sourcePath": "android/app/src/main/res/drawable-nodpi/prestige_7.webp",
+      "sourceSha256": "c84e448203ba9c474d6f4f8264ad019399e795fc4730a14601204c81b476f5d7",
+      "conversion": "Existing approved 512px WebP decoded to RGBA PNG for System.Drawing; artwork unchanged"
+    },
+    {
+      "tier": 8,
+      "path": "windows-widget/assets/prestige_8.png",
+      "sha256": "b408d3fbb6ff9d1ec9903aee531dc85d4c83597303c2470e3ba2744a00f9d4ee",
+      "sourcePath": "android/app/src/main/res/drawable-nodpi/prestige_8.webp",
+      "sourceSha256": "b31da35660d4da3d3542178a4398924add58fdd6999536ec3be372708d9ca0d7",
+      "conversion": "Existing approved 512px WebP decoded to RGBA PNG for System.Drawing; artwork unchanged"
+    },
+    {
+      "tier": 9,
+      "path": "windows-widget/assets/prestige_9.png",
+      "sha256": "982ae20b38f39ceb2f0666d18bef039050afbb97fd4421ac0a61ecaf66be33e6",
+      "sourcePath": "android/app/src/main/res/drawable-nodpi/prestige_9.webp",
+      "sourceSha256": "4601eb66221a1086ac32c9fa8308ebf3ebfca67db9265936a3b535e15dfa0e16",
+      "conversion": "Existing approved 512px WebP decoded to RGBA PNG for System.Drawing; artwork unchanged"
+    }
+  ],
+  "icon": "widget.ico is a 256px conversion of prestige_0, not a new emblem"
+}

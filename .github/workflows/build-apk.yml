@@ -58,3 +58,16 @@ jobs:
           test -f wear/build/outputs/apk/release/wear-release-unsigned.apk
       # No signing secrets, artifacts, tags, or release publishing.
       # Patched dependencies and official Pretendard hashes are verified before compilation.
+
+  windows-widget:
+    runs-on: windows-2025
+    timeout-minutes: 10
+    steps:
+      - name: Checkout without persisted credentials
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - name: Compile portable widget and run isolated fixtures
+        shell: pwsh
+        run: ./windows-widget/build.ps1 -Test
+      # No live login, signing secrets, registry changes or public artifacts.

@@ -71,3 +71,5 @@ __pycache__/
 **/exports/
 __pycache__/
 *.pyc
+
+/windows-widget/build/

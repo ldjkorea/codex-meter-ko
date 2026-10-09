@@ -38,6 +38,7 @@ public final class CodexUsageWidget extends AppWidgetProvider {
     public void onDeleted(Context context, int[] iArr) {
         if (iArr != null) {
             for (int i : iArr) {
+                WidgetCrest.deleted(context,i);
                 AppPreferences.deleteWidgetOptions(context, i);
             }
         }
@@ -54,6 +55,7 @@ public final class CodexUsageWidget extends AppWidgetProvider {
                         AppPreferences.loadWidgetOptions(context, oldId));
                 AppPreferences.saveWidgetTapAction(context, newId,
                         AppPreferences.getWidgetTapAction(context, oldId));
+                WidgetCrest.restored(context,oldId,newId);
                 AppPreferences.deleteWidgetOptions(context, oldId);
             }
         }

@@ -16,7 +16,7 @@ public final class EvolutionWidget extends AppWidgetProvider {
     public void onUpdate(Context c,AppWidgetManager m,int[] ids){for(int id:ids)m.updateAppWidget(id,render(c,id,m.getAppWidgetOptions(id)));schedule(c);}
     public void onAppWidgetOptionsChanged(Context c,AppWidgetManager m,int id,Bundle options){m.updateAppWidget(id,render(c,id,options));schedule(c);}
     public void onReceive(Context c,Intent i){super.onReceive(c,i);if("dev.bennett.codexmeter.EVOLUTION_TICK".equals(i.getAction()))updateAll(c);}
-    static void updateAll(Context c){try{AppWidgetManager m=AppWidgetManager.getInstance(c);int[] ids=m.getAppWidgetIds(new ComponentName(c,EvolutionWidget.class));
+    static void updateAll(Context c){WidgetCrest.updateExistingIfChanged(c);try{AppWidgetManager m=AppWidgetManager.getInstance(c);int[] ids=m.getAppWidgetIds(new ComponentName(c,EvolutionWidget.class));
         for(int id:ids)m.updateAppWidget(id,render(c,id,m.getAppWidgetOptions(id)));if(ids.length>0)schedule(c);}catch(RuntimeException e){DiagnosticLog.error(c,"widget","evolution_update_failed",e);}}
     static RemoteViews render(Context c,int id,Bundle options){
         return render(c,id,options,selected(c,id),prefs(c).getBoolean(id+".theme",true),prefs(c).getInt(id+".opacity",88));

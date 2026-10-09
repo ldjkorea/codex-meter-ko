@@ -118,6 +118,12 @@ public final class WidgetRenderer {
         return preview;
     }
 
+    static RemoteViews buildPreview(Context context,int id,WidgetOptions options,Bundle size,boolean crest) {
+        RemoteViews view=buildPreview(context,id,options,size);
+        WidgetCrest.bind(context,view,crest);
+        return view;
+    }
+
     private static String styleForSize(Context context, Bundle bundle, WidgetOptions options) {
         int rows = option(bundle, "semAppWidgetRowSpan");
         int columns = option(bundle, "semAppWidgetColumnSpan");
@@ -181,6 +187,7 @@ public final class WidgetRenderer {
         boolean stale=observed!=null&&UsageInsights.freshness(observed.fetchedAtMillis,System.currentTimeMillis(),RefreshScheduler.effectiveRefreshMinutes(context))!=UsageInsights.Freshness.FRESH;
         if(stale){remoteViews.setTextViewText(R.id.updated_label,context.getString(R.string.ui_ledger_refresh)+" · "+widgetStateFrom.updated);remoteViews.setViewVisibility(R.id.updated_label,View.VISIBLE);}
         if(slots.isEmpty()){remoteViews.setTextViewText(R.id.widget_title,context.getString(R.string.v3_hidden));remoteViews.setViewVisibility(R.id.widget_title,View.VISIBLE);}
+        WidgetCrest.bind(context,remoteViews,i);
         return remoteViews;
     }
 

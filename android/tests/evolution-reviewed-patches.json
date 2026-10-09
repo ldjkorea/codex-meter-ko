@@ -85,6 +85,14 @@
     [
       "if(context!=null)EvolutionWidget.updateAll(context);",
       "if(context!=null){EvolutionWidget.updateAll(context);TierEvaluationScheduler.afterRefresh(context);}"
+    ],
+    [
+      "        return preview;\n    }\n",
+      "        return preview;\n    }\n\n    static RemoteViews buildPreview(Context context,int id,WidgetOptions options,Bundle size,boolean crest) {\n        RemoteViews view=buildPreview(context,id,options,size);\n        WidgetCrest.bind(context,view,crest);\n        return view;\n    }\n"
+    ],
+    [
+      "        if(slots.isEmpty()){remoteViews.setTextViewText(R.id.widget_title,context.getString(R.string.v3_hidden));remoteViews.setViewVisibility(R.id.widget_title,View.VISIBLE);}\n",
+      "        if(slots.isEmpty()){remoteViews.setTextViewText(R.id.widget_title,context.getString(R.string.v3_hidden));remoteViews.setViewVisibility(R.id.widget_title,View.VISIBLE);}\n        WidgetCrest.bind(context,remoteViews,i);\n"
     ]
   ],
   "android/app/src/main/java/dev/bennett/codexmeter/RecordSettings.java": [
@@ -155,6 +163,38 @@
     [
       "                if(LedgerPresentation.measured(day)){double intensity=Math.min(1,day.points/20d);int accent=Ui.accent(this,dark);\n                    text.setBackgroundColor(Color.argb((int)(35+90*intensity),Color.red(accent),Color.green(accent),Color.blue(accent)));}\n                android.graphics.drawable.GradientDrawable background=new android.graphics.drawable.GradientDrawable();background.setCornerRadius(Ui.dp(this,8));\n                int accent=Ui.accent(this,dark);int fill=LedgerPresentation.measured(day)?Color.argb((int)(35+90*Math.min(1,day.points/20d)),Color.red(accent),Color.green(accent),Color.blue(accent)):Ui.cardColor(this,dark);\n                background.setColor(fill);if(date.equals(selectedDate))background.setStroke(Ui.dp(this,2),accent);else if(date.equals(today))background.setStroke(Ui.dp(this,1),LedgerUi.muted(dark));\n                text.setBackground(background);text.setSelected(date.equals(selectedDate));if(date.equals(today))text.setTypeface(Ui.mediumTypeface(this));\n",
       "                boolean emerald=LedgerCalendar.emerald(day);\n                int accent=Ui.accent(this,dark);\n                if(emerald){\n                    text.setBackground(new CalendarGlowDrawable(getResources().getDisplayMetrics().density,date.equals(selectedDate),date.equals(today),dark));\n                    text.setTextColor(0xFFD1FAE5);\n                    text.setTypeface(Ui.mediumTypeface(this));\n                    text.setContentDescription(text.getContentDescription()+\" · \"+getString(R.string.calendar_activity_highlight));\n                }else{\n                    android.graphics.drawable.GradientDrawable background=new android.graphics.drawable.GradientDrawable();background.setCornerRadius(Ui.dp(this,8));\n                    int fill=LedgerCalendar.intensity(day)>0?Color.argb(LedgerCalendar.intensity(day),Color.red(accent),Color.green(accent),Color.blue(accent)):Ui.cardColor(this,dark);\n                    background.setColor(fill);if(date.equals(selectedDate))background.setStroke(Ui.dp(this,2),accent);else if(date.equals(today))background.setStroke(Ui.dp(this,1),LedgerUi.muted(dark));\n                    text.setBackground(background);\n                }\n                text.setSelected(date.equals(selectedDate));if(date.equals(today))text.setTypeface(Ui.mediumTypeface(this));\n"
+    ]
+  ],
+  "android/app/src/main/java/dev/bennett/codexmeter/WidgetConfigActivity.java": [
+    [
+      "    private SwitchCompat percentSymbolSwitch;",
+      "    private SwitchCompat percentSymbolSwitch;\n    private SwitchCompat crestSwitch;\n    private Boolean crestDraft;"
+    ],
+    [
+      "        build();\n    }",
+      "        crestDraft=state!=null&&state.containsKey(\"crestDraft\")?state.getBoolean(\"crestDraft\"):null;\n        build();\n    }\n\n    @Override protected void onSaveInstanceState(Bundle state) {\n        if(crestSwitch!=null)state.putBoolean(\"crestDraft\",crestSwitch.isChecked());\n        super.onSaveInstanceState(state);\n    }"
+    ],
+    [
+      "        content.addView(appearanceCard);",
+      "        crestSwitch=new SwitchCompat(this);\n        crestSwitch.setChecked(crestDraft!=null?crestDraft:WidgetCrest.enabled(this,appWidgetId));\n        appearanceCard.addView(buildSwitchRow(getString(R.string.widget_show_tier_crest),crestSwitch,true));\n        crestSwitch.setOnCheckedChangeListener((button,checked)->renderPreview());\n        content.addView(appearanceCard);"
+    ],
+    [
+      "                        this.widgetSize);",
+      "                        this.widgetSize,crestSwitch.isChecked());"
+    ],
+    [
+      "    private void save() {\n",
+      "    private void save() {\n        if(!WidgetCrest.save(this,appWidgetId,crestSwitch.isChecked())) {\n            Toast.makeText(this,R.string.widget_crest_save_failed,Toast.LENGTH_LONG).show();return;\n        }\n"
+    ]
+  ],
+  "android/app/src/main/java/dev/bennett/codexmeter/CodexUsageWidget.java": [
+    [
+      "                AppPreferences.deleteWidgetOptions(context, i);",
+      "                WidgetCrest.deleted(context,i);\n                AppPreferences.deleteWidgetOptions(context, i);"
+    ],
+    [
+      "                AppPreferences.deleteWidgetOptions(context, oldId);",
+      "                WidgetCrest.restored(context,oldId,newId);\n                AppPreferences.deleteWidgetOptions(context, oldId);"
     ]
   ]
 }

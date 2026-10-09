@@ -838,4 +838,6 @@
     <string name="insight_duration_minutes">%1$dm</string>
     <string name="insight_exhausted">Weekly allowance exhausted</string>
     <string name="insight_budget_until_reset">Available until reset: %1$s%%</string>
+    <string name="widget_show_tier_crest">Show tier crest</string>
+    <string name="widget_crest_save_failed">Could not save widget settings. Please try again.</string>
 </resources>

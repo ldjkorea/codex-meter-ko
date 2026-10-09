@@ -48,6 +48,8 @@ public final class WidgetConfigActivity extends AppCompatActivity {
     private SeslSeekBar opacitySlider;
     private SwitchCompat backgroundSwitch;
     private SwitchCompat percentSymbolSwitch;
+    private SwitchCompat crestSwitch;
+    private Boolean crestDraft;
     private View opacityControl;
     private View backgroundRow;
     private FrameLayout previewContainer;
@@ -85,7 +87,13 @@ public final class WidgetConfigActivity extends AppCompatActivity {
             }
         } catch (RuntimeException ignored) {
         }
+        crestDraft=state!=null&&state.containsKey("crestDraft")?state.getBoolean("crestDraft"):null;
         build();
+    }
+
+    @Override protected void onSaveInstanceState(Bundle state) {
+        if(crestSwitch!=null)state.putBoolean("crestDraft",crestSwitch.isChecked());
+        super.onSaveInstanceState(state);
     }
 
     @Override
@@ -144,6 +152,10 @@ public final class WidgetConfigActivity extends AppCompatActivity {
                 WidgetOptionCatalog.THEME_LABELS(WidgetConfigActivity.this), true);
         this.accentRow = addOptionRow(appearanceCard, WidgetConfigActivity.this.getString(R.string.ui_accent_233064), this.accentSpinner,
                 WidgetOptionCatalog.ACCENT_LABELS(WidgetConfigActivity.this), true);
+        crestSwitch=new SwitchCompat(this);
+        crestSwitch.setChecked(crestDraft!=null?crestDraft:WidgetCrest.enabled(this,appWidgetId));
+        appearanceCard.addView(buildSwitchRow(getString(R.string.widget_show_tier_crest),crestSwitch,true));
+        crestSwitch.setOnCheckedChangeListener((button,checked)->renderPreview());
         content.addView(appearanceCard);
 
         content.addView(Ui.separator(this, WidgetConfigActivity.this.getString(R.string.ui_meters_6ad427)));
@@ -605,7 +617,7 @@ public final class WidgetConfigActivity extends AppCompatActivity {
                 }
                 WidgetOptions options = currentOptions();
                 RemoteViews remote = WidgetRenderer.buildPreview(this, this.appWidgetId, options,
-                        this.widgetSize);
+                        this.widgetSize,crestSwitch.isChecked());
                 FrameLayout surface = new FrameLayout(this);
                 surface.setClipToOutline(true);
                 GradientDrawable background = new GradientDrawable();
@@ -700,6 +712,9 @@ public final class WidgetConfigActivity extends AppCompatActivity {
     }
 
     private void save() {
+        if(!WidgetCrest.save(this,appWidgetId,crestSwitch.isChecked())) {
+            Toast.makeText(this,R.string.widget_crest_save_failed,Toast.LENGTH_LONG).show();return;
+        }
         AppPreferences.saveWidgetOptions(this, this.appWidgetId, currentOptions());
         AppPreferences.saveWidgetTapAction(this, this.appWidgetId, this.tapAction);
         WidgetRenderer.update(this, AppWidgetManager.getInstance(this), this.appWidgetId);
