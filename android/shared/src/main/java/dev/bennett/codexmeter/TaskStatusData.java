@@ -21,7 +21,16 @@ public final class TaskStatusData {
         return new JSONObject().put("epoch",epoch).put("device",device).put("checked",checked).put("verified",data.getBoolean("verified")).put("rows",rows);
     }
     public static boolean newer(JSONObject prior,JSONObject next){
-        if(prior==null||!prior.optString("epoch").equals(next.optString("epoch")))return true;
-        return next.optLong("checked")>=prior.optLong("checked");
+        if(prior==null)return true;
+        if(next.optLong("checked")<prior.optLong("checked"))return false;
+        if(!prior.optString("epoch").equals(next.optString("epoch")))return true;
+        JSONArray left=prior.optJSONArray("rows"),right=next.optJSONArray("rows");
+        long previous=left==null||left.length()==0?0:left.optJSONObject(0).optLong("seq");
+        long incoming=right==null||right.length()==0?0:right.optJSONObject(0).optLong("seq");
+        return incoming>=previous;
+    }
+    public static boolean connected(JSONObject data,long received,long now){
+        long checked=data==null?0:data.optLong("checked");
+        return received>0&&received<=now&&now-received<=120000&&checked>0&&checked<=now+300000&&Math.abs(now-checked)<=120000;
     }
 }

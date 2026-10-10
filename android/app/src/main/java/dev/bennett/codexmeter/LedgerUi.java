@@ -15,7 +15,7 @@ final class LedgerUi {
 
     static int muted(boolean dark) { return dark ? Color.rgb(168, 173, 181) : Color.rgb(88, 94, 104); }
     static int tint(boolean dark) { return dark ? Color.rgb(23, 25, 28) : Color.rgb(249, 249, 250); }
-    static String number(double value) { return String.format(Locale.getDefault(), "%.1f", value); }
+    static String number(double value) { return UsagePrecision.number(value); }
     static boolean stacked(Context context) {
         android.content.res.Configuration config = context.getResources().getConfiguration();
         return config.fontScale > 1.25f || config.screenWidthDp < 360;

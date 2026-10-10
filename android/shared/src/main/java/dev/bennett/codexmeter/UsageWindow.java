@@ -9,10 +9,18 @@ public final class UsageWindow {
     public final long resetAfterSeconds;
     public final long resetAtEpochSeconds;
     public final int usedPercent;
+    /** Original response precision; legacy int remains authoritative for existing evaluations. */
+    public final double preciseUsedPercent;
     public final long windowSeconds;
 
     public UsageWindow(int i, long j, long j2, long j3) {
-        this.usedPercent = clamp(i);
+        this((double) i, j, j2, j3);
+    }
+
+    public UsageWindow(double value, long j, long j2, long j3) {
+        if (!Double.isFinite(value)) throw new IllegalArgumentException("Invalid percentage");
+        this.preciseUsedPercent = Math.max(0, Math.min(100, value));
+        this.usedPercent = clamp((int) Math.round(value));
         this.windowSeconds = Math.max(0L, j);
         this.resetAfterSeconds = Math.max(0L, j2);
         this.resetAtEpochSeconds = Math.max(0L, j3);
@@ -83,6 +91,7 @@ public final class UsageWindow {
     public JSONObject toJson() throws JSONException {
         JSONObject jSONObject = new JSONObject();
         jSONObject.put("used_percent", this.usedPercent);
+        if (preciseUsedPercent != usedPercent) jSONObject.put("used_percent_precise", preciseUsedPercent);
         jSONObject.put("limit_window_seconds", this.windowSeconds);
         jSONObject.put("reset_after_seconds", this.resetAfterSeconds);
         jSONObject.put("reset_at", this.resetAtEpochSeconds);
@@ -98,7 +107,9 @@ public final class UsageWindow {
         if (Double.isNaN(dOptDouble) || Double.isInfinite(dOptDouble) || jOptLong <= 0) {
             return null;
         }
-        return new UsageWindow((int) Math.round(dOptDouble), jOptLong, jSONObject.optLong("reset_after_seconds", 0L), jSONObject.optLong("reset_at", 0L));
+        double precise = jSONObject.optDouble("used_percent_precise", dOptDouble);
+        if (!Double.isFinite(precise) || clamp((int) Math.round(precise)) != clamp((int) Math.round(dOptDouble))) precise = dOptDouble;
+        return new UsageWindow(precise, jOptLong, jSONObject.optLong("reset_after_seconds", 0L), jSONObject.optLong("reset_at", 0L));
     }
 
     private static int clamp(int i) {

@@ -25,7 +25,13 @@ final class LedgerDashboard {
             window = snapshot.monthly; meter = "monthly"; label = R.string.ui_monthly_d31edb;
         } else if (snapshot.fiveHour != null && AppPreferences.showDashboardFiveHour(activity)) {
             window = snapshot.fiveHour; meter = "five_hour"; label = R.string.ui_5_hour_bc4288;
-        } else return null;
+        } else {
+            window=null;meter="additional";label=R.string.ui_additional_limit_e91f10;
+            if(AppPreferences.showDashboardAdditionalLimits(activity))for(UsageLimit limit:snapshot.additionalLimits){
+                window=limit.primary!=null?limit.primary:limit.secondary;if(window!=null)break;
+            }
+            if(window==null)return null;
+        }
         State state = new State(activity, worker, snapshot, window, meter, label, dark);
         parent.addView(state.card); Ui.addSpacer(parent, 16);
         state.loadToday(); return state;
@@ -59,13 +65,16 @@ final class LedgerDashboard {
             Ui.addSpacer(card,8);
             card.addView(LedgerUi.caption(activity,activity.getString(R.string.ui_ledger_remaining,
                     activity.getString(label)),dark));
-            card.addView(LedgerUi.amount(activity,window.remainingPercent()+"%",dark,42));
+            card.addView(LedgerUi.amount(activity,UsagePrecision.remaining(window),dark,36));
+            card.addView(LedgerUi.caption(activity,activity.getString(R.string.hud_used,UsagePrecision.used(window)),dark));
             ProgressBar progress=new ProgressBar(activity,null,android.R.attr.progressBarStyleHorizontal);
-            progress.setMax(100);progress.setProgress(window.remainingPercent());
+            progress.setMax(100000);progress.setProgress((int)Math.round((100-window.preciseUsedPercent)*1000));
             progress.setProgressTintList(ColorStateList.valueOf(Ui.accent(activity,dark)));
             progress.setProgressBackgroundTintList(ColorStateList.valueOf(Ui.divider(dark)));
             card.addView(progress,new LinearLayout.LayoutParams(-1,Ui.dp(activity,8)));
             Ui.addSpacer(card,6);reset=LedgerUi.caption(activity,"",dark);card.addView(reset);
+            long absolute=window.effectiveResetAtMillis(snapshot.fetchedAtMillis);
+            card.addView(LedgerUi.caption(activity,absolute>0?V3Display.time(absolute):activity.getString(R.string.next_missing_timeline),dark));
             boolean separateFiveHour=window!=snapshot.fiveHour
                     &&snapshot.fiveHour!=null
                     &&AppPreferences.showDashboardFiveHour(activity);
@@ -110,6 +119,8 @@ final class LedgerDashboard {
             if(day!=null&&!day.equals(LedgerAggregation.day(now).toString()))loadToday();
         }
 
+        private int labelForPolicy(){return policy.startsWith("weekly|")?R.string.ui_weekly_158f3d:policy.startsWith("monthly|")?R.string.ui_monthly_d31edb:policy.startsWith("five_hour|")?R.string.ui_5_hour_bc4288:R.string.ui_additional_limit_e91f10;}
+
         private void loadToday() {
             day=LedgerAggregation.day(System.currentTimeMillis()).toString();
             final String requestedDay=day;
@@ -128,6 +139,7 @@ final class LedgerDashboard {
                             ?activity.getString(R.string.ui_ledger_comparison):activity.getString(R.string.ui_ledger_measured)
                             +" · "+activity.getString(result.uncertain>0?R.string.next_gap:R.string.next_partial)
                             +(result.legacy?" · "+activity.getString(R.string.next_legacy_tag):""));
+                    todayNote.append(" · "+activity.getString(R.string.hud_limit_basis,activity.getString(labelForPolicy())));
                 });
             });
         }

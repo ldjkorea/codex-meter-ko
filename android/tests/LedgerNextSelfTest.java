@@ -118,7 +118,8 @@ public final class LedgerNextSelfTest {
         check(rows.get(0).manual && rows.get(0).source.equals("api_precise"), "Manual provenance");
         check(rows.get(0).decimal.equals("12.345678901"), "Original numeric decimal preserved");
         check(snapshot.weekly.usedPercent == 12, "Original integer display preserved");
-        check(LedgerCapture.fromSnapshot(snapshot, "invalid body", false).get(0).source.equals("api_rounded"), "Safe rounded fallback");
+        check(LedgerCapture.fromSnapshot(snapshot, "invalid body", false).get(0).source.equals("api_precise"), "Snapshot-owned precision survives missing raw body");
+        close(LedgerCapture.fromSnapshot(snapshot, "invalid body", false).get(0).used,12.345678901,"No unrelated ledger precision lookup");
         root.getJSONObject("rate_limit").put("secondary_window", new JSONObject(window.toString()).put("limit_window_seconds", 7200));
         check(LedgerCapture.fromSnapshot(snapshot, root.toString(), false).size() == 2, "Unclassified main window kept as independent additional meter");
         root.getJSONObject("rate_limit").remove("secondary_window");

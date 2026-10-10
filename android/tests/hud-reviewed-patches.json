@@ -1,0 +1,42 @@
+{
+  "UsageWindow.java": [
+    [
+      "    public final long windowSeconds;\n",
+      "    /** Original response precision; legacy int remains authoritative for existing evaluations. */\n    public final double preciseUsedPercent;\n    public final long windowSeconds;\n"
+    ],
+    [
+      "        this.usedPercent = clamp(i);\n",
+      "        this((double) i, j, j2, j3);\n    }\n\n    public UsageWindow(double value, long j, long j2, long j3) {\n        if (!Double.isFinite(value)) throw new IllegalArgumentException(\"Invalid percentage\");\n        this.preciseUsedPercent = Math.max(0, Math.min(100, value));\n        this.usedPercent = clamp((int) Math.round(value));\n"
+    ],
+    [
+      "        jSONObject.put(\"limit_window_seconds\", this.windowSeconds);\n",
+      "        if (preciseUsedPercent != usedPercent) jSONObject.put(\"used_percent_precise\", preciseUsedPercent);\n        jSONObject.put(\"limit_window_seconds\", this.windowSeconds);\n"
+    ],
+    [
+      "        return new UsageWindow((int) Math.round(dOptDouble), jOptLong, jSONObject.optLong(\"reset_after_seconds\", 0L), jSONObject.optLong(\"reset_at\", 0L));\n",
+      "        double precise = jSONObject.optDouble(\"used_percent_precise\", dOptDouble);\n        if (!Double.isFinite(precise) || clamp((int) Math.round(precise)) != clamp((int) Math.round(dOptDouble))) precise = dOptDouble;\n        return new UsageWindow(precise, jOptLong, jSONObject.optLong(\"reset_after_seconds\", 0L), jSONObject.optLong(\"reset_at\", 0L));\n"
+    ]
+  ],
+  "BootReceiver.java": [
+    [
+      "            ResetAlertScheduler.scheduleFromSnapshot(context, AppPreferences.loadSnapshot(context));\n",
+      "            TaskStatusJobService.schedule(context);\n            ResetAlertScheduler.scheduleFromSnapshot(context, AppPreferences.loadSnapshot(context));\n"
+    ]
+  ],
+  "AndroidManifest.xml": [
+    [
+      "        <receiver android:name=\"dev.bennett.codexmeter.TaskStatusWidget\" android:exported=\"false\" android:label=\"@string/task_trial_widget\">\n",
+      "        <service android:name=\"dev.bennett.codexmeter.TaskStatusJobService\" android:permission=\"android.permission.BIND_JOB_SERVICE\" android:exported=\"false\"/>\n        <receiver android:name=\"dev.bennett.codexmeter.TaskStatusWidget\" android:exported=\"false\" android:label=\"@string/task_trial_widget\">\n"
+    ]
+  ],
+  "OAuthBrowserPage.java": [
+    [
+      "        String action = success ? \"Open Codex Meter\" : \"Back to Codex Meter\";\n",
+      "        String action = success ? \"Open GPT HUD\" : \"Back to GPT HUD\";\n"
+    ],
+    [
+      "                + \"<meta name=\\\"color-scheme\\\" content=\\\"light dark\\\"><title>Codex Meter</title>\"\n",
+      "                + \"<meta name=\\\"color-scheme\\\" content=\\\"light dark\\\"><title>GPT HUD</title>\"\n"
+    ]
+  ]
+}

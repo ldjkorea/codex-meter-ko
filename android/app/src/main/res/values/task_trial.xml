@@ -1,7 +1,7 @@
 <resources>
-    <string name="task_trial_title">Codex work status trial</string>
-    <string name="task_trial_widget">Codex work status · Trial</string>
-    <string name="task_trial_toggle">Enable status trial</string>
+    <string name="task_trial_title">Codex work status</string>
+    <string name="task_trial_widget">GPT HUD · Codex work status</string>
+    <string name="task_trial_toggle">Enable work status</string>
     <string name="task_trial_off">Trial is OFF. Enable it in settings on both PC and phone.</string>
     <string name="task_trial_unverified">Detection is not yet verified in this environment.</string>
     <string name="task_trial_connected">PC observer connection checked</string>
@@ -12,7 +12,7 @@
     <string name="task_trial_completed">Turn completed</string>
     <string name="task_trial_interrupted">Interrupted</string>
     <string name="task_trial_signin">Sign in first.</string>
-    <string name="task_trial_limits">Connect over the same Wi-Fi or Tailscale. For remote access, install Tailscale on both devices, connect with the same Tailscale account and register the pairing code for the PC 100.x address. Sign in to GPT HUD with the same ChatGPT account on both devices and enable the trial. This screen checks every 15 seconds while open; the interval does not continue with only a home widget or the screen off. Read-only logs detect new turn start, completion and interruption after observation starts. Approval/input waits and turn failures are not inferred. Turn completion is not project completion. Widgets show last contact and last known state. Losing contact does not imply task failure. Existing Wi-Fi history-sharing schedules remain unchanged.</string>
+    <string name="task_trial_limits">Connect over Wi-Fi or the existing paired Tailscale route. This screen checks every 15 seconds while open. With a status widget added and this feature ON, Android also schedules a best-effort 15-minute background check; Doze may defer it. PC observation starts with new turns after the collector starts. Only running, turn completed and interrupted are detected. Approval/input waits and task failure are not inferred. Turn completion is not project completion. Disconnection is separate from last known task state. No quota API calls are made. Existing history sync stays Wi-Fi-only.</string>
     <string name="task_trial_connection">PC connection setup</string>
     <string name="task_trial_connecting">Checking PC work status.</string>
     <string name="task_trial_remote_wait">Connection not confirmed. Check Tailscale on both devices, the running PC widget, firewall and enabled status trial.</string>

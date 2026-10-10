@@ -14,14 +14,14 @@ activities={item.get(a+'name'):item for item in manifest.find('application').fin
 for target in ['MainActivity','LedgerAnalyticsActivity','RecordsActivity','DashboardReorderActivity','SettingsActivity','FunSettingsActivity','FunActivity','TestNotesActivity','MeterSettingsActivity','AboutActivity']:
     assert 'dev.bennett.codexmeter.'+target in activities,('Navigation target is not registered',target)
 assert activities['dev.bennett.codexmeter.RecordsActivity'].get(a+'exported')=='false'
-assert nav.index('R.string.matte_analysis')<nav.index('R.string.matte_home')<nav.index('R.string.matte_records')
+assert 'R.string.matte_analysis' not in nav and nav.index('R.string.matte_home')<nav.index('R.string.matte_records')
 assert 'MatteNav.install(this,1)' in main
 assert 'FLAG_ACTIVITY_REORDER_TO_FRONT|Intent.FLAG_ACTIVITY_SINGLE_TOP' in nav
 assert 'moveTaskToBack(true)' in nav and 'else open(activity,1)' in nav
 assert 'matte_return' in nav and 'dialog.setOnDismissListener' in main
 assert '!(context instanceof WidgetConfigActivity)' in ui and '!(context instanceof LockWidgetConfigActivity)' in ui
 assert 'if(phoneSurface(context))return' in ui and 'if(phoneSurface(context)&&' in ui
-assert 'screen=recordsRoot()?2:Math.max(0,Math.min(1,screen))' in analytics
+assert 'screen=Math.max(0,Math.min(1,screen))' in analytics and 'addRecords(today);RecordSettings.add' in analytics
 assert 'protected boolean recordsRoot(){return true;}' in src('RecordsActivity')
 assert 'home_scroll' in main and 'restoreHomePending' in main and 'ACTION_DOWN' in main
 for state in ['selected_date','policy','period','screen','month','scroll','groups']:
@@ -42,7 +42,7 @@ assert 'screenWidthDp<420' in home and 'figures.setOrientation(LinearLayout.VERT
 assert 'setMaxLines' not in home and 'setEllipsize' not in home
 assert 'SpicyAi.key(' in src('LiveCards') and 'R.string.live_ai_title' in src('LiveCards')
 records=settings.split('static void add(',1)[1].split('static void hub(',1)[0]
-assert records.count('toggle(a,')==3
+assert records.count('toggle(a,')==0 and settings.count('toggle(a,')==4
 assert 'MeterSettingsActivity.class' in records and '=group(' not in settings
 assert 'TestNotesStore' not in settings and 'TestNotesActivity.class' not in settings
 for page in ['appearance','refresh_usage','notifications','now_bar','updates']:
@@ -50,10 +50,10 @@ for page in ['appearance','refresh_usage','notifications','now_bar','updates']:
 for setter in ['setShowDashboardFiveHour','setShowDashboardWeekly','setShowUsageOverview']:
     assert 'AppPreferences.'+setter+'(a,on)' in settings
 assert 'SubscriptionUi.edit' in settings and 'R.string.ux_payment_history' in settings
-for page in ['transfer','privacy','diagnostics']:
+for page in ['diagnostics']:
     assert '"'+page+'"' not in settings, page
-for hidden in ['R.string.next_export_csv','R.string.next_export_json','R.string.ui_clear_local_history_ab1b10','R.string.ux_data_details']:
-    assert hidden not in settings, hidden
+for restored in ['R.string.next_export_csv','R.string.next_export_json','R.string.ui_clear_local_history_ab1b10','R.string.ux_data_details']:
+    assert restored in settings, restored
 assert 'LanSyncUi.show' in settings and 'ReleaseHistoryActivity.class' in settings
 assert not any(x in home+settings+nav for x in ['HttpURLConnection','OkHttpClient','consumeBestAvailable(','new URL('])
 layout=ET.parse(root/'app/src/main/res/layout/activity_oneui_dashboard.xml').getroot()

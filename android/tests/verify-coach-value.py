@@ -28,7 +28,7 @@ subprocess.run([str(jdk/'javac'),'-encoding','UTF-8','-cp',cp,'-d',str(classes),
 subprocess.run([str(jdk/'java'),'-ea','-cp',cp,'dev.bennett.codexmeter.CoachValueSelfTest'],check=True)
 settings=(app/'RecordSettings.java').read_text(encoding='utf-8')
 records=settings.split('static void add(',1)[1].split('static void hub(',1)[0]
-assert records.count('toggle(a,')==3 and 'MeterSettingsActivity.class' in records
+assert records.count('toggle(a,')==0 and settings.count('toggle(a,')==4 and 'MeterSettingsActivity.class' in records
 assert not any(x in settings for x in ['TestNotes','fun_test_mode','fun_rule_amount','saveRule('])
 for n in ['FunHome','FunActivity']:
  s=(app/(n+'.java')).read_text(encoding='utf-8');assert 'FunStore.rule(' not in s and 'FunInsights.index(' not in s
@@ -37,7 +37,7 @@ assert 'menu.add(' not in notes and 'static boolean select' in notes and 'return
 assert 'TestNotesStore.save(context,note)' in notes # archives/draft writer preserved
 analytics=(app/'LedgerAnalyticsActivity.java').read_text(encoding='utf-8')
 record_body=analytics.split('private void addRecords(',1)[1].split('private void expandable(',1)[0]
-assert 'addEvents' in record_body and 'addUncertain' not in record_body and 'exportChoice' not in record_body
+assert 'addEvents' not in record_body and 'addEvents(rows)' in analytics and 'addUncertain' not in record_body and 'exportChoice' not in record_body
 assert 'if(settingsRoot())' in analytics and 'RecordSettings.hub' in analytics
 assert 'this::picker,this::confirmClear,this::advancedData' in analytics
 assert 'restorePosition();return;' in analytics

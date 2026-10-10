@@ -27,7 +27,7 @@ def reviewed_evolution(path,raw):
     if path==prefix+'drawable/ic_launcher_monochrome.xml':
         return b'<?xml version="1.0" encoding="utf-8"?>\n<bitmap xmlns:android="http://schemas.android.com/apk/res/android" android:gravity="fill" android:src="@drawable/gpt_hud_challenger_monochrome"/>\n'
     if path in [prefix+'values/strings.xml',prefix+'values-ko/strings.xml']:
-        return raw.replace(b'<string name="app_name">Codex Meter</string>',b'<string name="app_name">GPT HUD</string>').replace(b'<string name="app_name">"Codex Meter"</string>',b'<string name="app_name">"GPT HUD"</string>')
+        return raw.replace(b"Codex Meter",b"GPT HUD")
     return raw
 
 def strip_evolution_manifest(text):

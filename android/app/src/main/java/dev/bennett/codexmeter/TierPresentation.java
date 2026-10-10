@@ -2,6 +2,7 @@ package dev.bennett.codexmeter;
 import android.content.Context;
 import android.widget.LinearLayout;
 final class TierPresentation {
+    static final String[] ENGLISH={"IRON","BRONZE","SILVER","GOLD","PLATINUM","EMERALD","DIAMOND","MASTER","GRANDMASTER","CHALLENGER"};
     static final int[] NAMES={R.string.fun_tier_0,R.string.fun_tier_1,R.string.fun_tier_2,R.string.fun_tier_3,R.string.fun_tier_4,R.string.fun_tier_5,R.string.fun_tier_6,R.string.fun_tier_7,R.string.fun_tier_8,R.string.fun_tier_9};
     static String note(Context c,String policy){TierEvolution.State s=TierStore.read(c,policy);
         return c.getString(s.tier<0?R.string.evo_placing:s.provisional()?R.string.fun_provisional:R.string.evo_stable);}

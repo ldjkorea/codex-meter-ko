@@ -1621,7 +1621,7 @@ public final class ParserSelfTest {
         String success = OAuthBrowserPage.render(
                 "Connected <securely> & ready.", true, "codexmeter://auth/complete");
         check(success.contains("You’re connected"), "browser success title");
-        check(success.contains("Codex Meter</a>"), "browser app return action");
+        check(success.contains("GPT HUD</a>"), "browser app return action");
         check(success.contains("prefers-color-scheme:dark"), "browser One UI light and dark themes");
         check(success.contains("border-radius:28px"), "browser One UI rounded card");
         check(success.contains("Connected &lt;securely&gt; &amp; ready."),
@@ -1631,7 +1631,7 @@ public final class ParserSelfTest {
         String failure = OAuthBrowserPage.render(
                 "Denied", false, "codexmeter://auth/complete");
         check(failure.contains("Let’s try that again"), "browser failure title");
-        check(failure.contains("Back to Codex Meter"), "browser failure return action");
+        check(failure.contains("Back to GPT HUD"), "browser failure return action");
         check(!failure.contains("setTimeout"), "failure page waits for user");
 
         String escapedScript = OAuthBrowserPage.javascriptString("x'\\\n\u2028");

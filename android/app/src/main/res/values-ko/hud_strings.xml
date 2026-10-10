@@ -1,0 +1,17 @@
+<resources>
+    <string name="hud_used">사용 %1$s</string>
+    <string name="hud_used_remaining">사용 %1$s · 남음 %2$s</string>
+    <string name="hud_limit_basis">%1$s 한도 기준</string>
+    <string name="hud_month_pattern">yyyy년 M월</string>
+    <string name="hud_current_month">현재 월로 돌아가기</string>
+    <string name="hud_pc_settings">PC 연결 및 작업 현황</string>
+    <string name="hud_data_settings">기록 및 데이터</string>
+    <string name="hud_transfer">백업 및 이전</string>
+    <string name="hud_privacy">개인정보 안내</string>
+    <string name="hud_task_row">Codex 작업 현황 · %1$s ›</string>
+    <string name="hud_running_count">작업 중 %1$d</string>
+    <string name="hud_add_task_widget">작업 현황 위젯 추가</string>
+    <string name="hud_add_task_widget_help">홈 화면을 길게 누르기 → 위젯 → GPT HUD → Codex 작업 현황을 선택하세요.</string>
+    <string name="hud_status_help">감지·갱신 범위 안내</string>
+    <string name="hud_status_checked">PC의 최신 확인값을 받았습니다</string>
+</resources>

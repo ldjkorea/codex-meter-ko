@@ -15,6 +15,7 @@ public final class BootReceiver extends BroadcastReceiver {
             RefreshScheduler.schedulePeriodic(context);
             ReleaseUpdateScheduler.ensureScheduled(context);
             LanWifiScheduler.ensureScheduled(context);
+            TaskStatusJobService.schedule(context);
             ResetAlertScheduler.scheduleFromSnapshot(context, AppPreferences.loadSnapshot(context));
             ResetCreditExpiryScheduler.scheduleFromSnapshot(context,
                     AppPreferences.loadResetCredits(context));

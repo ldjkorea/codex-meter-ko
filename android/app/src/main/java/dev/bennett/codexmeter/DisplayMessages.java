@@ -113,6 +113,8 @@ final class DisplayMessages {
                     R.string.ui_important_this_file_contains_chatgpt_authentication_tok_5b29bb,
             }) {
                 values.put(english.getString(id), id);
+                // Stored errors and protected auth code may still use the original product name.
+                values.put(english.getString(id).replace("GPT HUD", "Codex Meter"), id);
             }
             englishMessages = values;
         }

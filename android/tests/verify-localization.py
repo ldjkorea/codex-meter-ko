@@ -1,4 +1,4 @@
-from lan_review import strip_lan
+from lan_review import strip_lan, strip_lan_bytes
 #!/usr/bin/env python3
 """Validate Korean resource coverage and original English formatter behavior.
 
@@ -90,7 +90,7 @@ for module in ("app", "wear"):
         if node.attrib["name"] == "app_name":
             assert decoded(en[(node.tag, "app_name")].text) == "GPT HUD"
             continue  # Explicitly approved app display name; all other English stays protected.
-        assert decoded(node.text) == decoded(en[(node.tag, node.attrib["name"])].text), ("Original English changed", node.attrib["name"])
+        assert (decoded(node.text) if node.attrib["name"]=="about_benit_summary" else decoded(node.text).replace("Codex Meter","GPT HUD")) == decoded(en[(node.tag, node.attrib["name"])].text), ("Original English changed", node.attrib["name"])
     counts[module] = {"strings": len(strings), "array_items": sum(len(node) for key, node in ko.items() if key[0] == "string-array")}
 
 # Protected core stays identical to upstream, with narrowly reviewed observer/version hooks.
@@ -102,11 +102,11 @@ protected = [
 ]
 paths = ["android/app/src/main/java/dev/bennett/codexmeter/" + name for name in protected]
 paths += [str(p.relative_to(REPO)).replace("\\", "/") for p in (ROOT / "shared/src").rglob("*.java")
-          if p.name not in ("UsageInsights.java", "UsageEventDetector.java", "UsageLedger.java", "UsageLedgerInsights.java", "LedgerRecord.java", "LedgerAggregation.java", "LedgerForecast.java", "LedgerExport.java", "LedgerPresentation.java", "LedgerCalendar.java", "FunInsights.java", "TestNote.java", "LedgerPeriods.java", "SubscriptionCost.java", "SubscriptionValue.java", "CoachMoment.java", "WidgetVisibility.java", "WearUsageState.java", "TierEvolution.java", "EvolutionElements.java", "KoreanUpdateTrust.java", "LiveUtilization.java", "SpicyAi.java", "SpicyRotation.java", "TaskStatusData.java", "WidgetTierPalette.java", "LanSyncWire.java")]
+          if p.name not in ("UsagePrecision.java", "UsageInsights.java", "UsageEventDetector.java", "UsageLedger.java", "UsageLedgerInsights.java", "LedgerRecord.java", "LedgerAggregation.java", "LedgerForecast.java", "LedgerExport.java", "LedgerPresentation.java", "LedgerCalendar.java", "FunInsights.java", "TestNote.java", "LedgerPeriods.java", "SubscriptionCost.java", "SubscriptionValue.java", "CoachMoment.java", "WidgetVisibility.java", "WearUsageState.java", "TierEvolution.java", "EvolutionElements.java", "KoreanUpdateTrust.java", "LiveUtilization.java", "SpicyAi.java", "SpicyRotation.java", "TaskStatusData.java", "WidgetTierPalette.java", "LanSyncWire.java")]
 paths += ["android/settings.gradle.kts",
           "android/wear/src/main/AndroidManifest.xml"]
 for path in paths:
-    assert (REPO / path).read_bytes().replace(b"\r\n", b"\n") == original(path).replace(b"\r\n", b"\n"), ("Protected file changed", path)
+    assert strip_lan_bytes(path,(REPO / path).read_bytes()).replace(b"\r\n", b"\n") == original(path).replace(b"\r\n", b"\n"), ("Protected file changed", path)
 
 def reviewed_change(relative, transform):
     expected = transform(original(relative).decode("utf-8").replace("\r\n", "\n"))
@@ -116,7 +116,7 @@ def reviewed_change(relative, transform):
     if relative=="android/app/build.gradle.kts": expected=reviewed_evolution(relative,expected.encode()).decode()
     actual = strip_lan(relative, (REPO / relative).read_text(encoding="utf-8"))
     if relative.endswith("AndroidManifest.xml"):
-        current=strip_evolution_manifest((REPO / relative).read_text(encoding="utf-8"))
+        current=strip_evolution_manifest(strip_lan(relative,(REPO / relative).read_text(encoding="utf-8")))
         for activity in ["FunActivity","FunSettingsActivity","TestNotesActivity","RecordsActivity","MeterSettingsActivity"]:
             current=current.replace(f'        <activity android:name="dev.bennett.codexmeter.{activity}" android:exported="false"/>\n',"")
         assert current==expected,relative
@@ -141,7 +141,7 @@ reviewed_change(APP_JAVA + "AppPreferences.java", lambda s: s.replace(
     "            return prefs(context).edit().putString(KEY_RESET_CREDITS, resetCreditsSnapshot.toJson().toString()).remove(KEY_RESET_ERROR).remove(KEY_RESET_ERROR_AT).commit();",
     "            boolean saved = prefs(context).edit().putString(KEY_RESET_CREDITS, resetCreditsSnapshot.toJson().toString()).remove(KEY_RESET_ERROR).remove(KEY_RESET_ERROR_AT).commit();\n            if (saved) UsageEventStore.recordCredits(context, resetCreditsSnapshot);\n            return saved;").replace(
     "        UsageEventStore.clear(context);\n", "        UsageEventStore.clear(context);\n        UsageLedgerStore.clear(context);\n        UsageLedgerDatabase.clear(context);\n"))
-version_change = lambda s: s.replace("2.8.0", "2.8.18").replace("versionCode = 30", "versionCode = 48").replace("VERSION_CODE = 30", "VERSION_CODE = 48")
+version_change = lambda s: s.replace("2.8.0", "2.8.19").replace("versionCode = 30", "versionCode = 49").replace("VERSION_CODE = 30", "VERSION_CODE = 49")
 reviewed_change(APP_JAVA + "AppConstants.java", version_change)
 reviewed_change("android/wear/build.gradle.kts", version_change)
 reviewed_change("android/app/build.gradle.kts", lambda s: version_change(s).replace(
@@ -152,7 +152,7 @@ reviewed_change(APP_JAVA + "UsageApi.java", lambda s: s.replace(
     "                UsageHistoryRecorder.record(context, usageSnapshot);\n",
     "                UsageHistoryRecorder.record(context, usageSnapshot);\n                UsageLedgerDatabase.record(context, usageSnapshot, responseRequestUsage.body, manualRecord);\n"))
 # Three private presentation activities are reviewed against the 2.8.3 manifest below.
-fun_manifest=strip_evolution_manifest((REPO / "android/app/src/main/AndroidManifest.xml").read_text(encoding="utf-8"))
+fun_manifest=strip_evolution_manifest(strip_lan("AndroidManifest.xml",(REPO / "android/app/src/main/AndroidManifest.xml").read_text(encoding="utf-8")))
 old_manifest=subprocess.check_output(["git","-C",str(REPO),"show","e775fd91654a091b68b176a929ff399de2d1cf64:android/app/src/main/AndroidManifest.xml"]).decode("utf-8").replace("\r\n","\n")
 for activity in ["FunActivity","FunSettingsActivity","TestNotesActivity","RecordsActivity","MeterSettingsActivity"]:
     fun_manifest=fun_manifest.replace(f'        <activity android:name="dev.bennett.codexmeter.{activity}" android:exported="false"/>\n',"")

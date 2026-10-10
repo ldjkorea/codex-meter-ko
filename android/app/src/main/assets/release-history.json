@@ -1,5 +1,39 @@
 [
   {
+    "version": "2.8.19",
+    "origin": "korean",
+    "ko": {
+      "title": "GPT HUD — 홈·기록·설정 정리와 Codex 작업 현황",
+      "changes": [
+        "중앙 삼족오 휘장 아래 영어 티어명을 표시합니다. 미확정 티어는 기록 수집 상태로 유지합니다.",
+        "주간 기간·사용률·잔여율·초기화 상대 시간과 실제 날짜·오늘 관측 증가량·마지막 조회를 유지합니다. 한도 상세보기와 새로고침도 그대로 사용할 수 있습니다.",
+        "원본 소수값을 보존하고 최대 소수점 셋째 자리까지 표시합니다. 정수 응답에 가짜 소수 자릿수를 붙이지 않습니다.",
+        "기존 티어·가성비·알림 기준과 작은 위젯의 정수 표시는 유지합니다.",
+        "하단을 홈·기록으로 정리하고 기록에 분석·캘린더·선택 날짜 요약을 모았습니다.",
+        "월 이동은 화살표로, 가운데 연월을 누르면 현재 월로 돌아갑니다.",
+        "표시 설정·관측 기록·변화 이벤트·내보내기를 설정에 모았습니다.",
+        "기능을 켠 경우 홈 주간 카드 아래에서 작업 현황으로 들어갑니다. 기존 PC 연결과 Tailscale을 재사용합니다.",
+        "별도 GPT HUD · Codex 작업 현황 위젯에 연결 상태와 마지막 확인값을 표시합니다.",
+        "화면이 열린 동안 15초 확인, 위젯은 Android의 최선 노력 백그라운드 확인입니다. 절전 중에는 지연될 수 있습니다.",
+        "현재 수집기는 작업 중·턴 완료·중단만 감지합니다. 승인·입력 대기와 실패는 추측하지 않습니다. Windows 0.1.5를 그대로 사용합니다.",
+        "기존 앱을 삭제하지 않고 업데이트하세요. 사용 기록·설정·로그인·기존 위젯을 보존합니다. 실제 갤럭시 화면과 새 위젯의 외부 네트워크 확인은 추가 검증이 필요합니다."
+      ]
+    },
+    "en": {
+      "title": "GPT HUD home, records, precision and Codex status",
+      "changes": [
+        "Center the existing three-legged crow crest with a real uppercase English tier label.",
+        "Keep the allowance period, used and remaining rates, reset countdown/date, daily observed delta, freshness and both actions.",
+        "Preserve raw percentage precision and show at most three decimal places. Integer responses stay integers.",
+        "Unify navigation into Home and Records; place analysis above the calendar and move advanced options into Settings.",
+        "Reuse the paired Tailscale status channel and independent widget with explicit last-known/connection labels.",
+        "Optional widget background checks follow Android scheduling; running/completed/interrupted are the only confirmed observed states. Windows 0.1.5 remains compatible.",
+        "Keep signing, stored data, authentication, usage widgets and evaluation rules."
+      ]
+    },
+    "source": "2.8.19 beta; real device update and new widget remain pending."
+  },
+  {
     "version": "2.8.18",
     "origin": "korean",
     "ko": {

@@ -74,11 +74,11 @@ public final class LedgerCapture {
             UsageWindow window, JSONObject raw, boolean manual) {
         if (window == null) return;
         try {
-            double used = raw == null ? window.usedPercent : raw.optDouble("used_percent", Double.NaN);
-            String decimal = raw == null ? Integer.toString(window.usedPercent) : raw.get("used_percent").toString();
+            double used = raw == null ? window.preciseUsedPercent : raw.optDouble("used_percent", Double.NaN);
+            String decimal = raw == null ? Double.toString(window.preciseUsedPercent) : raw.get("used_percent").toString();
             records.add(new LedgerRecord(meter, snapshot.planType, snapshot.fetchedAtMillis, used, decimal,
                     Math.max(0, window.effectiveResetAtMillis(snapshot.fetchedAtMillis)), window.windowSeconds,
-                    raw == null ? "api_rounded" : "api_precise", manual));
+                    raw == null && window.preciseUsedPercent == window.usedPercent ? "api_rounded" : "api_precise", manual));
         } catch (Exception ignored) { // Invalid optional ledger values cannot invalidate the original snapshot.
         }
     }

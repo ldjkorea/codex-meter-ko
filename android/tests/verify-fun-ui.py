@@ -9,7 +9,7 @@ repo=root.parent
 app=root/'app/src/main/java/dev/bennett/codexmeter'
 def source(name):return (app/name).read_text(encoding='utf-8')
 analytics=source('LedgerAnalyticsActivity.java')
-assert 'R.string.ui_ledger_trends)},screen' in analytics and 'screen=recordsRoot()?2:Math.max(0,Math.min(1,screen))' in analytics
+assert 'R.string.ui_ledger_trends)},screen' in analytics and 'screen=Math.max(0,Math.min(1,screen))' in analytics
 assert 'RecordsActivity' in source('MatteNav.java') and 'recordsRoot(){return true;}' in source('RecordsActivity.java')
 assert 'screen==3' in analytics and 'FunActivity.class' in analytics
 assert 'private void addValue' not in analytics

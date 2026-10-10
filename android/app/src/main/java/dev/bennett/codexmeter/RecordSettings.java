@@ -15,11 +15,7 @@ import org.json.JSONObject;
 final class RecordSettings {
     private RecordSettings() { }
     static void add(AppCompatActivity a,LinearLayout parent,boolean dark) {
-        LinearLayout display=card(a,parent,dark,R.string.ux_display);
-        toggle(a,display,dark,R.string.matte_five_hour,AppPreferences.showDashboardFiveHour(a),on->AppPreferences.setShowDashboardFiveHour(a,on));
-        toggle(a,display,dark,R.string.ux_weekly,AppPreferences.showDashboardWeekly(a),on->AppPreferences.setShowDashboardWeekly(a,on));
-        toggle(a,display,dark,R.string.ui_ledger_home,AppPreferences.showUsageOverview(a),on->AppPreferences.setShowUsageOverview(a,on));
-        action(a,parent,dark,R.string.matte_settings,()->a.startActivity(new Intent(a,MeterSettingsActivity.class)));
+        action(a,parent,dark,R.string.matte_settings,()->a.startActivity(new Intent(a,MeterSettingsActivity.class).putExtra("selected_date",a.getIntent().getStringExtra("selected_date"))));
     }
     static void hub(AppCompatActivity a,LinearLayout parent,boolean dark,Consumer<Boolean> export,Runnable clear,Runnable details) {
         UsageSnapshot snapshot=AppPreferences.loadSnapshot(a);
@@ -39,7 +35,14 @@ final class RecordSettings {
         action(a,account,dark,R.string.ux_payment_history,()->billingHistory(a,dark));
         action(a,account,dark,R.string.matte_account_manage,()->MatteNav.homeAction(a,"account"));
 
-        LinearLayout fun=card(a,parent,dark,R.string.live_display);
+        LinearLayout display=card(a,parent,dark,R.string.ux_widget_screen);
+        toggle(a,display,dark,R.string.matte_five_hour,AppPreferences.showDashboardFiveHour(a),on->AppPreferences.setShowDashboardFiveHour(a,on));
+        toggle(a,display,dark,R.string.ux_weekly,AppPreferences.showDashboardWeekly(a),on->AppPreferences.setShowDashboardWeekly(a,on));
+        toggle(a,display,dark,R.string.ui_ledger_home,AppPreferences.showUsageOverview(a),on->AppPreferences.setShowUsageOverview(a,on));
+        action(a,display,dark,R.string.matte_widgets,()->MatteNav.homeAction(a,"widgets"));
+        page(a,display,dark,R.string.ui_appearance_41def7,"appearance");
+        action(a,display,dark,R.string.matte_limits,()->a.startActivity(new Intent(a,DashboardReorderActivity.class)));
+        LinearLayout fun=display;
         toggle(a,fun,dark,R.string.evo_effects,TierTheme.effects(a),on->a.getSharedPreferences("codex_tier_effects",0).edit().putBoolean("enabled",on).apply());
         action(a,fun,dark,R.string.matte_recaps,()->a.startActivity(new Intent(a,FunActivity.class)));
 
@@ -48,22 +51,26 @@ final class RecordSettings {
         page(a,notify,dark,R.string.ui_notifications_753a22,"notifications");
         page(a,notify,dark,R.string.matte_now_bar,"now_bar");
 
-        LinearLayout display=card(a,parent,dark,R.string.ux_widget_screen);
-        action(a,display,dark,R.string.matte_widgets,()->MatteNav.homeAction(a,"widgets"));
-        page(a,display,dark,R.string.ui_appearance_41def7,"appearance");
-        action(a,display,dark,R.string.matte_limits,()->a.startActivity(new Intent(a,DashboardReorderActivity.class)));
 
-        LinearLayout data=card(a,parent,dark,R.string.lan_sync_title);
+
+        LinearLayout data=card(a,parent,dark,R.string.hud_pc_settings);
         action(a,data,dark,R.string.lan_sync_title,()->LanSyncUi.show(a,dark));
         action(a,data,dark,R.string.task_trial_title,()->a.startActivity(new Intent(a,TaskStatusActivity.class)));
         data.addView(LedgerUi.caption(a,a.getString(R.string.polish_local_only),dark));
 
+        LinearLayout records=card(a,parent,dark,R.string.hud_data_settings);
+        action(a,records,dark,R.string.ux_data_details,details);
+        action(a,records,dark,R.string.next_export_csv,()->export.accept(false));
+        action(a,records,dark,R.string.next_export_json,()->export.accept(true));
+        page(a,records,dark,R.string.hud_transfer,"transfer");
+        action(a,records,dark,R.string.ui_clear_local_history_ab1b10,clear);
         LinearLayout info=card(a,parent,dark,R.string.matte_about);
-        info.addView(LedgerUi.caption(a,"Codex Meter "+AppConstants.VERSION_NAME,dark));
+        info.addView(LedgerUi.caption(a,"GPT HUD "+AppConstants.VERSION_NAME,dark));
         action(a,info,dark,R.string.ui_what_s_new_369702,()->a.startActivity(new Intent(a,WhatsNewActivity.class)));
         page(a,info,dark,R.string.ui_updates_c76d18,"updates");
         action(a,info,dark,R.string.ui_release_history_5044ba,()->a.startActivity(new Intent(a,ReleaseHistoryActivity.class)));
         action(a,info,dark,R.string.ux_licenses,()->a.startActivity(new Intent(a,AboutActivity.class)));
+        page(a,info,dark,R.string.hud_privacy,"privacy");
     }
     private static void billingHistory(AppCompatActivity a,boolean dark) {
         try {

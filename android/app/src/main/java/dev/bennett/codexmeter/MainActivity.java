@@ -122,7 +122,7 @@ public final class MainActivity extends AppCompatActivity {
             return;
         }
         this.dark = Ui.isDark(this);
-        Ui.Page page = Ui.installPage(this, "Codex Meter", false);
+        Ui.Page page = Ui.installPage(this, getString(R.string.app_name), false);
         this.content = page.content;
         MatteNav.install(this,1);
         if(bundle!=null){homeScroll=bundle.getInt("home_scroll");restoreHomePending=homeScroll>0;}
@@ -323,12 +323,14 @@ public final class MainActivity extends AppCompatActivity {
                 && data.getPath().startsWith("/complete");
     }
 
+    private TextView taskStatusRow;
+
     public void rebuild() {
         if(content==null)return;
-        invalidateOptionsMenu();UsageSnapshot current=AppPreferences.loadSnapshot(this);String signature=SubscriptionStore.key(this,current)+":"+(current==null?0:current.fetchedAtMillis)+":"+AppPreferences.getLastError(this).hashCode()+":"+getSharedPreferences("codex_subscription_cost",0).getAll().hashCode()+":"+(current==null?"":UsageInsights.freshness(current.fetchedAtMillis,System.currentTimeMillis(),RefreshScheduler.effectiveRefreshMinutes(this)))+":"+LedgerAggregation.day(System.currentTimeMillis())+":"+getSharedPreferences("codex_meter_settings_v1",0).getAll().hashCode()+":"+getSharedPreferences("codex_fun_v1",0).getAll().hashCode()+":"+getSharedPreferences("codex_fun_settings",0).getAll().hashCode()+":"+getSharedPreferences("codex_tier_evolution_v2",0).getString("revision","")+":"+getSharedPreferences("codex_meter_updates_v1",0).getAll().hashCode()+":"+LiveUsageStore.revision();
-        if(signature.equals(renderedSignature)&&content.getChildCount()>0){if(ledgerOverview!=null)ledgerOverview.updateClock();for(Runnable update:quotaClockUpdates)update.run();return;}
+        invalidateOptionsMenu();UsageSnapshot current=AppPreferences.loadSnapshot(this);String signature=SubscriptionStore.key(this,current)+":"+(current==null?0:current.fetchedAtMillis)+":"+AppPreferences.getLastError(this).hashCode()+":"+getSharedPreferences("codex_subscription_cost",0).getAll().hashCode()+":"+(current==null?"":UsageInsights.freshness(current.fetchedAtMillis,System.currentTimeMillis(),RefreshScheduler.effectiveRefreshMinutes(this)))+":"+LedgerAggregation.day(System.currentTimeMillis())+":"+getSharedPreferences("codex_meter_settings_v1",0).getAll().hashCode()+":"+getSharedPreferences("codex_fun_v1",0).getAll().hashCode()+":"+getSharedPreferences("codex_fun_settings",0).getAll().hashCode()+":"+getSharedPreferences("codex_tier_evolution_v2",0).getString("revision","")+":"+getSharedPreferences("codex_meter_updates_v1",0).getAll().hashCode()+":"+LiveUsageStore.revision()+":"+TaskStatusStore.enabled(this);
+        if(signature.equals(renderedSignature)&&content.getChildCount()>0){if(taskStatusRow!=null){String taskText=TaskStatusStore.homeText(this);if(!taskText.contentEquals(taskStatusRow.getText()))taskStatusRow.setText(taskText);}if(ledgerOverview!=null)ledgerOverview.updateClock();for(Runnable update:quotaClockUpdates)update.run();return;}
         android.view.View scroll=findViewById(R.id.dashboard_scroll);if(scroll!=null&&content.getChildCount()>0)homeScroll=scroll.getScrollY();restoreHomePending=homeScroll>0;renderedSignature=signature;
-        freshnessView=null;ledgerOverview=null;weeklyInsightRows=null;quotaClockUpdates.clear();content.removeAllViews();
+        freshnessView=null;ledgerOverview=null;taskStatusRow=null;weeklyInsightRows=null;quotaClockUpdates.clear();content.removeAllViews();
         UsageSnapshot snapshot=AppPreferences.loadSnapshot(this);
         GitHubRelease available=UpdatePreferences.availableUpdate(this);
         if(available!=null){content.addView(buildUpdateCard(available));Ui.addSpacer(content,16);}
@@ -348,6 +350,13 @@ public final class MainActivity extends AppCompatActivity {
             String error=AppPreferences.getLastError(this);empty.addView(LedgerUi.caption(this,error.isEmpty()?getString(R.string.v3_first_refresh):error,dark));
             Button refresh=LedgerUi.action(this,getString(R.string.ui_refresh_56e3ba),true,dark,()->{});refresh.setOnClickListener(v->refreshNow(refresh));refresh.setEnabled(!refreshing.get());empty.addView(refresh);content.addView(empty);Ui.addSpacer(content,16);
         }
+        if(TaskStatusStore.enabled(this)){
+            taskStatusRow=LedgerUi.caption(this,TaskStatusStore.homeText(this),dark);
+            taskStatusRow.setMinHeight(Ui.dp(this,48));taskStatusRow.setGravity(android.view.Gravity.CENTER_VERTICAL);
+            taskStatusRow.setOnClickListener(v->startActivity(new Intent(this,TaskStatusActivity.class)));
+            content.addView(taskStatusRow);Ui.addSpacer(content,8);
+        }
+        TaskStatusJobService.schedule(this);
         FunHome.add(this,content,dark,this::restoreHomeScroll,crestSlot);
         restoreHomeScroll();
     }
@@ -526,6 +535,8 @@ public final class MainActivity extends AppCompatActivity {
                         ? R.drawable.ic_oui_calendar_week : R.drawable.ic_oui_time,
                 invertedWave, pace.accelerated);
         card.addView(wave, new LinearLayout.LayoutParams(-1, Ui.dp(this, 103.0f)));
+        TextView precision=LedgerUi.caption(this,getString(R.string.hud_used_remaining,UsagePrecision.used(window),UsagePrecision.remaining(window)),dark);
+        precision.setPadding(Ui.dp(this,16),Ui.dp(this,4),Ui.dp(this,16),Ui.dp(this,8));card.addView(precision);
         if (window == snapshot.fiveHour) {
             TextView countdown=LedgerUi.caption(this,"",dark);
             countdown.setPadding(Ui.dp(this,16),Ui.dp(this,8),Ui.dp(this,16),Ui.dp(this,14));

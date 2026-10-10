@@ -1,0 +1,17 @@
+<resources>
+    <string name="hud_used">Used %1$s</string>
+    <string name="hud_used_remaining">Used %1$s · Remaining %2$s</string>
+    <string name="hud_limit_basis">%1$s allowance basis</string>
+    <string name="hud_month_pattern">MMMM yyyy</string>
+    <string name="hud_current_month">Return to the current month</string>
+    <string name="hud_pc_settings">PC connection and work status</string>
+    <string name="hud_data_settings">Records and data</string>
+    <string name="hud_transfer">Backup and transfer</string>
+    <string name="hud_privacy">Privacy</string>
+    <string name="hud_task_row">Codex work status · %1$s ›</string>
+    <string name="hud_running_count">%1$d running</string>
+    <string name="hud_add_task_widget">Add work status widget</string>
+    <string name="hud_add_task_widget_help">Long-press your home screen → Widgets → GPT HUD → Codex work status.</string>
+    <string name="hud_status_help">Detection and refresh details</string>
+    <string name="hud_status_checked">Latest PC check received</string>
+</resources>

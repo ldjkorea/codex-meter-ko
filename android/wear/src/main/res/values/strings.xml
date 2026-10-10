@@ -42,7 +42,7 @@
     <string name="tile_monitor">Codex monitor</string>
     <string name="tile_category_primary">Productivity</string>
     <string name="tile_category_secondary">Usage</string>
-    <string name="tile_category_tertiary">Codex Meter</string>
+    <string name="tile_category_tertiary">GPT HUD</string>
     <string name="complication_five_hour">Codex 5-hour</string>
     <string name="complication_weekly">Codex weekly</string>
     <string name="complication_dual_usage">Codex dual usage</string>
@@ -60,7 +60,7 @@
     <string name="ui_codex_usage_67b866">" Codex usage"</string>
     <string name="ui_stale_phone_data_822576">"Stale phone data"</string>
     <string name="ui_five_hour_usage_a0f8ef">"Five hour usage, "</string>
-    <string name="ui_open_codex_meter_81cb4a">". Open Codex Meter."</string>
+    <string name="ui_open_codex_meter_81cb4a">". Open GPT HUD."</string>
     <string name="ui_monthly_d31edb">"Monthly"</string>
     <string name="ui_weekly_158f3d">"Weekly"</string>
     <string name="ui_next_reset_d8c7dd">"Next reset"</string>
@@ -70,7 +70,7 @@
     <string name="ui_off_e3de5a">"Off"</string>
     <string name="ui_live_monitor_c2e0a9">"Live monitor "</string>
     <string name="ui_off_da7a68">"off"</string>
-    <string name="ui_open_codex_meter_a55de8">"Open Codex Meter"</string>
+    <string name="ui_open_codex_meter_a55de8">"Open GPT HUD"</string>
     <string name="ui_reset_unavailable_27134e">"Reset unavailable"</string>
     <string name="ui_resets_soon_2c9d57">"Resets soon"</string>
     <string name="ui_m_3a9c4b">"M "</string>

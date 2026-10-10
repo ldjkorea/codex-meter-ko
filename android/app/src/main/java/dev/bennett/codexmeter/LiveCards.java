@@ -12,19 +12,16 @@ final class LiveCards {
     static LinearLayout crest(AppCompatActivity a,boolean dark,LiveUtilization.Result live,boolean fresh){
         int rank=live.valid&&fresh?live.tier:-1;
         LinearLayout card=Ui.card(a,dark);TierTheme.frame(card,rank,dark);
-        boolean stacked=LedgerUi.stacked(a);
-        LinearLayout row=new LinearLayout(a);row.setOrientation(stacked?LinearLayout.VERTICAL:LinearLayout.HORIZONTAL);row.setGravity(Gravity.CENTER_VERTICAL);
-        TierCompanionView badge=new TierCompanionView(a,rank);badge.setAlpha(rank<0?.45f:1f);badge.setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO);
-        int crestSize=stacked?120:112;
-        card.setPadding(Ui.dp(a,16),Ui.dp(a,14),Ui.dp(a,16),Ui.dp(a,14));
-        LinearLayout.LayoutParams bp=new LinearLayout.LayoutParams(Ui.dp(a,crestSize),Ui.dp(a,crestSize));
-        if(stacked)bp.gravity=Gravity.CENTER_HORIZONTAL;else bp.setMarginEnd(Ui.dp(a,16));row.addView(TierTheme.companion(badge,rank),bp);
-        LinearLayout copy=new LinearLayout(a);copy.setOrientation(LinearLayout.VERTICAL);
-        copy.addView(LedgerUi.amount(a,a.getString(rank<0?R.string.fun_placing:TierPresentation.NAMES[rank]),dark,27));
-        if(rank>=0){copy.addView(LedgerUi.caption(a,a.getString(R.string.live_utilization,LedgerUi.number(live.percent)),dark));
-            copy.addView(LedgerUi.caption(a,a.getString(live.bonus?R.string.live_bonus:live.partial?R.string.live_partial:R.string.live_current),dark));}
-        else copy.addView(LedgerUi.caption(a,a.getString(fresh?R.string.live_need_coverage:R.string.ui_ledger_refresh),dark));
-        row.addView(copy,new LinearLayout.LayoutParams(stacked?-1:0,-2,stacked?0:1));card.addView(row);return card;
+        card.setGravity(Gravity.CENTER_HORIZONTAL);
+        card.setPadding(Ui.dp(a,16),Ui.dp(a,10),Ui.dp(a,16),Ui.dp(a,10));
+        TierCompanionView badge=new TierCompanionView(a,rank);
+        int size=Ui.dp(a,132);
+        card.addView(TierTheme.companion(badge,rank),new LinearLayout.LayoutParams(size,size));
+        TextView title=LedgerUi.amount(a,rank<0?a.getString(R.string.fun_placing):TierPresentation.ENGLISH[rank],dark,24);
+        title.setGravity(Gravity.CENTER);title.setLetterSpacing(.06f);
+        card.addView(title,new LinearLayout.LayoutParams(-1,-2));
+        if(rank<0){TextView note=LedgerUi.caption(a,a.getString(fresh?R.string.live_need_coverage:R.string.ui_ledger_refresh),dark);note.setGravity(Gravity.CENTER);card.addView(note);}
+        return card;
     }
     static LinearLayout ai(AppCompatActivity a,boolean dark,LiveUtilization.Result live,UsageSnapshot snapshot,boolean fresh,double daily,long now){
         return ai(a,dark,live,snapshot,fresh,daily,now,null);

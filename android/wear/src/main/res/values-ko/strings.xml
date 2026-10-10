@@ -42,7 +42,7 @@
     <string name="tile_monitor">"Codex 모니터"</string>
     <string name="tile_category_primary">"생산성"</string>
     <string name="tile_category_secondary">"사용량"</string>
-    <string name="tile_category_tertiary">"Codex Meter"</string>
+    <string name="tile_category_tertiary">"GPT HUD"</string>
     <string name="complication_five_hour">"Codex 5시간"</string>
     <string name="complication_weekly">"Codex 주간"</string>
     <string name="complication_dual_usage">"Codex 사용량 2종"</string>
@@ -60,7 +60,7 @@
     <string name="ui_codex_usage_67b866">" Codex 사용량"</string>
     <string name="ui_stale_phone_data_822576">"휴대폰의 오래된 정보"</string>
     <string name="ui_five_hour_usage_a0f8ef">"5시간 사용량, "</string>
-    <string name="ui_open_codex_meter_81cb4a">". Codex Meter를 여세요."</string>
+    <string name="ui_open_codex_meter_81cb4a">". GPT HUD를 여세요."</string>
     <string name="ui_monthly_d31edb">"월간"</string>
     <string name="ui_weekly_158f3d">"주간"</string>
     <string name="ui_next_reset_d8c7dd">"다음 초기화"</string>
@@ -70,7 +70,7 @@
     <string name="ui_off_e3de5a">"끄기"</string>
     <string name="ui_live_monitor_c2e0a9">"실시간 모니터 "</string>
     <string name="ui_off_da7a68">"꺼짐"</string>
-    <string name="ui_open_codex_meter_a55de8">"Codex Meter 열기"</string>
+    <string name="ui_open_codex_meter_a55de8">"GPT HUD 열기"</string>
     <string name="ui_reset_unavailable_27134e">"초기화 시각 확인 불가"</string>
     <string name="ui_resets_soon_2c9d57">"곧 초기화"</string>
     <string name="ui_m_3a9c4b">"월간 "</string>

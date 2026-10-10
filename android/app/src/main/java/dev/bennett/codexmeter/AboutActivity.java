@@ -112,7 +112,7 @@ public final class AboutActivity extends AppCompatActivity {
         card.addView(icon, new LinearLayout.LayoutParams(Ui.dp(this, 44), Ui.dp(this, 44)));
         LinearLayout text = new LinearLayout(this);
         text.setOrientation(LinearLayout.VERTICAL);
-        text.addView(Ui.text(this, "Codex Meter", 18, Ui.mainText(dark)));
+        text.addView(Ui.text(this, "GPT HUD", 18, Ui.mainText(dark)));
         text.addView(Ui.text(this, getString(R.string.about_version, Ui.versionName(this)), 14, Ui.secondaryText(dark)));
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(0, -2, 1);
         params.setMargins(Ui.dp(this, 20), 0, 0, 0);

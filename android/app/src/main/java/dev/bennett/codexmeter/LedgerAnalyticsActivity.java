@@ -51,11 +51,13 @@ public class LedgerAnalyticsActivity extends AppCompatActivity {
         content=Ui.installPage(this,getString(settingsRoot()?R.string.matte_settings:recordsRoot()?R.string.matte_records:R.string.next_title),settingsRoot()).content;
         if(!settingsRoot())MatteNav.install(this,recordsRoot()?2:0);
         ((androidx.swiperefreshlayout.widget.SwipeRefreshLayout)findViewById(R.id.dashboard_refresh)).setEnabled(false);
+        if(!recordsRoot()&&!settingsRoot()){startActivity(new Intent(this,RecordsActivity.class).putExtra("screen",getIntent().getIntExtra("screen",0)).putExtra("manual_record",getIntent().getBooleanExtra("manual_record",false)));finish();return;}
         screen=getIntent().getIntExtra("screen",0);
+        if(state==null&&getIntent().getStringExtra("selected_date")!=null)try{selectedDate=LocalDate.parse(getIntent().getStringExtra("selected_date"));}catch(java.time.format.DateTimeParseException ignored){}
         if(state!=null){selectedDate=LocalDate.parse(state.getString("selected_date",selectedDate.toString()));policy=state.getString("policy","");period=state.getInt("period",7);screen=state.getInt("screen",0);month=YearMonth.parse(state.getString("month",month.toString()));}
         if(screen==3){startActivity(new Intent(this,FunActivity.class));finish();return;}
-        if(!recordsRoot()&&screen==2){MatteNav.open(this,2);finish();return;}
-        screen=recordsRoot()?2:Math.max(0,Math.min(1,screen));
+        if(!recordsRoot()&&!settingsRoot()&&screen==2){MatteNav.open(this,2);finish();return;}
+        screen=Math.max(0,Math.min(1,screen));
         if(state!=null){savedScroll=state.getInt("scroll");restoreScroll=true;java.util.ArrayList<String> groups=state.getStringArrayList("groups");if(groups!=null)expandedGroups.addAll(groups);}
         if(state==null&&getIntent().getBooleanExtra("manual_record",false))manual();else reload();
     }
@@ -133,7 +135,7 @@ public class LedgerAnalyticsActivity extends AppCompatActivity {
         for(LedgerAggregation.Day day:data.days)if(visiblePolicy(day.policy))options.put(day.policy,label(day.policy));
         for(LedgerRecord record:data.records)if(visiblePolicy(record.policy()))options.put(record.policy(),label(record.policy()));
         if(options.isEmpty()&&recordsRoot()){
-            policy="";navigation();body=new LinearLayout(this);body.setOrientation(LinearLayout.VERTICAL);content.addView(body);addRecords(LedgerAggregation.day(System.currentTimeMillis()));RecordSettings.add(this,body,dark);restorePosition();return;
+            policy="";body=new LinearLayout(this);body.setOrientation(LinearLayout.VERTICAL);content.addView(body);body.addView(LedgerUi.caption(this,getString(R.string.next_empty),dark));addRecords(LedgerAggregation.day(System.currentTimeMillis()));RecordSettings.add(this,body,dark);restorePosition();return;
         }
         if(options.isEmpty()){
             navigation();LinearLayout empty=Ui.card(this,dark);empty.addView(LedgerUi.heading(this,getString(R.string.ui_ledger_collecting),dark));
@@ -160,13 +162,15 @@ public class LedgerAnalyticsActivity extends AppCompatActivity {
         if(value.startsWith("monthly|"))return AppPreferences.showDashboardMonthly(this);
         return AppPreferences.showDashboardAdditionalLimits(this);
     }
-    private void navigation(){if(!recordsRoot()){content.addView(LedgerUi.tabs(this,new String[]{getString(R.string.ui_ledger_overview),getString(R.string.ui_ledger_trends)},screen,dark,index->{savedScroll=0;restoreScroll=true;screen=index;controls();}));Ui.addSpacer(content,18);}}
+    private void navigation(){if(!settingsRoot()){content.addView(LedgerUi.tabs(this,new String[]{getString(R.string.ui_ledger_overview),getString(R.string.ui_ledger_trends)},screen,dark,index->{savedScroll=0;restoreScroll=true;screen=index;controls();}));Ui.addSpacer(content,18);}}
 
     private boolean spikeEnabled(){return getSharedPreferences("codex_next_ui",MODE_PRIVATE).getBoolean("spike",false);}
     private void render(){
         if(body==null||data==null)return;body.removeAllViews();
         LocalDate today=LedgerAggregation.day(System.currentTimeMillis());
-        if(screen==0)addOverview(today);else if(screen==1)addTrends(today);else if(screen==2){addRecords(today);RecordSettings.add(this,body,dark);}
+        getIntent().putExtra("selected_date",selectedDate.toString());
+        if(screen==0)addOverview(today);else addTrends(today);
+        addRecords(today);RecordSettings.add(this,body,dark);
         restorePosition();
     }
     private void restorePosition(){
@@ -200,8 +204,12 @@ public class LedgerAnalyticsActivity extends AppCompatActivity {
     private String dayAmount(LedgerAggregation.Day day){return LedgerPresentation.measured(day)?getString(R.string.ui_ledger_points,number(day.points)):"—";}
     private void periodTabs(){
         int[] lengths={-1,-2,7,30};int selected=period==-1?0:period==-2?1:period==7?2:3;
-        body.addView(LedgerUi.tabs(this,new String[]{getString(R.string.v3_this_window),getString(R.string.v3_previous_window),getString(R.string.next_weekly),getString(R.string.next_monthly)},
-                selected,dark,index->{period=lengths[index];render();}));Ui.addSpacer(body,12);
+        String[] labels={getString(R.string.v3_this_window),getString(R.string.v3_previous_window),getString(R.string.next_weekly),getString(R.string.next_monthly)};
+        if(getResources().getConfiguration().screenWidthDp<420){
+            body.addView(LedgerUi.tabs(this,new String[]{labels[0],labels[1]},selected<2?selected:-1,dark,index->{period=lengths[index];render();}));Ui.addSpacer(body,6);
+            body.addView(LedgerUi.tabs(this,new String[]{labels[2],labels[3]},selected>=2?selected-2:-1,dark,index->{period=lengths[index+2];render();}));
+        }else body.addView(LedgerUi.tabs(this,labels,selected,dark,index->{period=lengths[index];render();}));
+        Ui.addSpacer(body,12);
     }
     private void addTrends(LocalDate today){
         periodTabs();
@@ -256,8 +264,7 @@ public class LedgerAnalyticsActivity extends AppCompatActivity {
         addCalendar(today);
         LinearLayout selected=Ui.card(this,dark);selected.addView(LedgerUi.heading(this,selectedDate.toString(),dark));Ui.addSpacer(selected,10);
         selected.addView(LedgerUi.amount(this,dayAmount(find(selectedDate)),dark,28));selected.addView(LedgerUi.caption(this,dayText(selectedDate,""),dark));Ui.addSpacer(selected,12);
-        selected.addView(LedgerUi.action(this,getString(R.string.v3_observations),false,dark,()->detail(selectedDate)));body.addView(selected);Ui.addSpacer(body,16);
-        expandable(getString(R.string.next_events),this::addEvents);
+        body.addView(selected);Ui.addSpacer(body,16);
     }
     private void expandable(String title,java.util.function.Consumer<LinearLayout> fill){
         LinearLayout detail=new LinearLayout(this);detail.setOrientation(LinearLayout.VERTICAL);detail.setVisibility(View.GONE);fill.accept(detail);
@@ -280,6 +287,7 @@ public class LedgerAnalyticsActivity extends AppCompatActivity {
                 public void onItemSelected(AdapterView<?> parent,View view,int position,long id){policy=keys.get(position);rows.removeAllViews();
                     rows.addView(LedgerUi.heading(LedgerAnalyticsActivity.this,getString(R.string.next_intervals),dark));addUncertain(rows);
                     rows.addView(LedgerUi.action(LedgerAnalyticsActivity.this,getString(R.string.v3_observations),false,dark,()->detail(selectedDate)));
+                    rows.addView(LedgerUi.heading(LedgerAnalyticsActivity.this,getString(R.string.next_events),dark));addEvents(rows);
                 }
                 public void onNothingSelected(AdapterView<?> parent) { }
             });
@@ -315,13 +323,16 @@ public class LedgerAnalyticsActivity extends AppCompatActivity {
         body.addView(card);Ui.addSpacer(body,12);
     }
     private void addCalendar(LocalDate today){
-        body.addView(LedgerUi.heading(this,getString(R.string.next_calendar)+" · "+month,dark));Ui.addSpacer(body,10);
+        LedgerUi.section(body,getString(R.string.next_calendar),dark);
         LinearLayout navigation=Ui.horizontal(this,0);
-        Button previous=LedgerUi.action(this,getString(R.string.next_previous_month),false,dark,()->{}),next=LedgerUi.action(this,getString(R.string.next_next_month),false,dark,()->{});
+        Button previous=LedgerUi.action(this,"‹",false,dark,()->{}),next=LedgerUi.action(this,"›",false,dark,()->{});
+        previous.setContentDescription(getString(R.string.next_previous_month));next.setContentDescription(getString(R.string.next_next_month));
+        Button caption=LedgerUi.action(this,month.atDay(1).format(DateTimeFormatter.ofPattern(getString(R.string.hud_month_pattern),Locale.getDefault())),false,dark,()->{month=YearMonth.from(today);selectedDate=today;render();});
+        caption.setContentDescription(getString(R.string.hud_current_month));
         previous.setEnabled(month.isAfter(YearMonth.from(today.minusDays(UsageLedgerDatabase.DAILY_DAYS))));
         next.setEnabled(month.isBefore(YearMonth.from(today)));
         previous.setOnClickListener(v->{month=month.minusMonths(1);selectedDate=month.atDay(1);render();});next.setOnClickListener(v->{month=month.plusMonths(1);selectedDate=month.atDay(1);render();});
-        navigation.addView(previous,new LinearLayout.LayoutParams(0,-2,1));navigation.addView(next,new LinearLayout.LayoutParams(0,-2,1));body.addView(navigation);
+        navigation.addView(previous,new LinearLayout.LayoutParams(Ui.dp(this,48),-2));navigation.addView(caption,new LinearLayout.LayoutParams(0,-2,1));navigation.addView(next,new LinearLayout.LayoutParams(Ui.dp(this,48),-2));body.addView(navigation);
         GridLayout grid=new GridLayout(this);grid.setColumnCount(7);
         LocalDate first=month.atDay(1),start=first.minusDays(first.getDayOfWeek().getValue()-1);
         for(int i=0;i<7;i++){TextView header=Ui.text(this,start.plusDays(i).format(DateTimeFormatter.ofPattern("E",Locale.getDefault())),11,Ui.secondaryText(dark));header.setGravity(Gravity.CENTER);cell(grid,header);}
@@ -434,6 +445,6 @@ public class LedgerAnalyticsActivity extends AppCompatActivity {
             default:name=getString(R.string.next_additional,meter.substring(11,Math.min(meter.length(),19))+" · "+(meter.endsWith("secondary")?"2":"1"));}
         return name+" · "+parts[1]+" · "+UsageInsightDisplay.duration(this,Long.parseLong(parts[2])*1000L);
     }
-    private static String number(double value){return String.format(Locale.getDefault(),"%.1f",value);}
+    private static String number(double value){return UsagePrecision.number(value);}
     private String time(long at){return at<=0?getString(R.string.next_missing_timeline):Instant.ofEpochMilli(at).atZone(LedgerAggregation.ZONE).format(DateTimeFormatter.ofPattern("MM-dd HH:mm",Locale.getDefault()));}
 }
