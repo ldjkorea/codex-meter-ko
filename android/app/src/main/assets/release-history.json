@@ -1,5 +1,30 @@
 [
   {
+    "version": "2.8.17",
+    "origin": "korean",
+    "ko": {
+      "title": "AI의 한마디 600 · 작업 상태 시험",
+      "changes": [
+        "AI의 한마디를 상황별 한국어 600개로 확장하고 최근 20개 반복을 줄였습니다.",
+        "직접 새로고침·다시 열 때 문구를 바꾸며 회전·분 단위 갱신 중에는 유지합니다.",
+        "별도 Codex 작업 현황 시험 위젯을 추가했습니다. 기본 OFF이며 같은 Wi-Fi에서만 사용합니다.",
+        "로컬 로그 관찰은 새 턴 시작·완료·중단만 제한적으로 지원합니다. 승인·입력 대기와 Remote 감지는 미검증입니다.",
+        "GPT HUD 이름·삼족오 아이콘·기존 위젯·티어 계산·사용 기록을 유지합니다."
+      ]
+    },
+    "en": {
+      "title": "600 Korean AI remarks · Work-status trial",
+      "changes": [
+        "Expand the active Korean home voice to 600 authored lines with recent-ID repeat suppression.",
+        "Keep remarks stable during rotation and countdown updates. English fallback is preserved.",
+        "Add a separate opt-in work-status trial widget over the existing pinned same-LAN connection.",
+        "Read-only log observation supports new turn start/completion/interruption only. Approval/input waits and Remote detection remain unverified.",
+        "Preserve the launcher, usage widgets, tier calculations and records."
+      ]
+    },
+    "source": "600 Korean local phrases; independent OFF-by-default task trial; Windows 0.1.4 beta."
+  },
+  {
     "version": "2.8.16",
     "origin": "korean",
     "ko": {

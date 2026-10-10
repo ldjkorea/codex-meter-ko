@@ -55,6 +55,7 @@ final class RecordSettings {
 
         LinearLayout data=card(a,parent,dark,R.string.lan_sync_title);
         action(a,data,dark,R.string.lan_sync_title,()->LanSyncUi.show(a,dark));
+        action(a,data,dark,R.string.task_trial_title,()->a.startActivity(new Intent(a,TaskStatusActivity.class)));
         data.addView(LedgerUi.caption(a,a.getString(R.string.polish_local_only),dark));
 
         LinearLayout info=card(a,parent,dark,R.string.matte_about);

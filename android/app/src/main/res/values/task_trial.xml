@@ -1,0 +1,16 @@
+<resources>
+    <string name="task_trial_title">Codex work status trial</string>
+    <string name="task_trial_widget">Codex work status · Trial</string>
+    <string name="task_trial_toggle">Enable status trial</string>
+    <string name="task_trial_off">Trial is OFF. Enable it in settings on both PC and phone.</string>
+    <string name="task_trial_unverified">Detection is not yet verified in this environment.</string>
+    <string name="task_trial_connected">PC observer connection checked</string>
+    <string name="task_trial_disconnected">PC connection / current status unconfirmed</string>
+    <string name="task_trial_last">Last contact · %1$s</string>
+    <string name="task_trial_last_state">Last known:</string>
+    <string name="task_trial_running">Running</string>
+    <string name="task_trial_completed">Turn completed</string>
+    <string name="task_trial_interrupted">Interrupted</string>
+    <string name="task_trial_signin">Sign in first.</string>
+    <string name="task_trial_limits">Same Wi-Fi pairing is required. Enable the trial in the Windows widget menu as well. Read-only local logs can detect new turn start, completion and interruption after observation begins. Approval/input waits, turn failure and mobile Remote detection remain unverified; they are not inferred. Turn completion is not project completion. This screen checks status every 15 seconds while open; background sharing follows the existing best-effort schedule. Widgets show the last contact time. Losing contact does not mean the work failed. Turn OFF on both devices to stop observation and transmission.</string>
+</resources>

@@ -340,5 +340,10 @@
             <intent-filter><action android:name="android.appwidget.action.APPWIDGET_UPDATE"/></intent-filter>
             <meta-data android:name="android.appwidget.provider" android:resource="@xml/evolution_widget_info"/>
         </receiver>
+        <activity android:name="dev.bennett.codexmeter.TaskStatusActivity" android:exported="false"/>
+        <receiver android:name="dev.bennett.codexmeter.TaskStatusWidget" android:exported="false" android:label="@string/task_trial_widget">
+            <intent-filter><action android:name="android.appwidget.action.APPWIDGET_UPDATE"/></intent-filter>
+            <meta-data android:name="android.appwidget.provider" android:resource="@xml/task_status_widget_info"/>
+        </receiver>
     </application>
 </manifest>

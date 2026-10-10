@@ -25,6 +25,23 @@ namespace CodexMeterWidget {
    if(args.Length>0&&args[0]=="--lan-probe")return Probe(args[1]);
    string dir=Path.Combine(Environment.GetEnvironmentVariable("CODEX_METER_TEST_ROOT")??Path.GetTempPath(),"lan-"+Guid.NewGuid().ToString("N").Substring(0,8));Directory.CreateDirectory(dir);
    try {
+    Check(!new Preferences().TaskObserveEnabled,"Task observation default OFF");
+    string taskDir=Path.Combine(dir,"task-fixture");Directory.CreateDirectory(taskDir);
+    using(var observer=new TaskObserve(taskDir)){
+     string thread=new string('a',32),turn=new string('b',32),next=new string('c',32);long at=Clock.Now-100;
+     Check(!((bool)observer.Snapshot()["verified"]),"Before-start state unknown");observer.Apply(thread,turn,"task_complete",at);Check(((TaskView[])observer.Snapshot()["rows"]).Length==0,"Old completion cannot create known work");
+     observer.Apply(thread,turn,"task_started",at);observer.Apply(thread,turn,"task_started",at);Check(((TaskView[])observer.Snapshot()["rows"])[0].Sequence==1,"Duplicate start ignored");
+     observer.Apply(thread,next,"task_started",at+1);observer.Apply(thread,turn,"task_complete",at+2);Check(((TaskView[])observer.Snapshot()["rows"])[0].State=="running","Old turn completion cannot overwrite new turn");
+     observer.Apply(thread,next,"tool_failed",at+3);Check(((TaskView[])observer.Snapshot()["rows"])[0].State=="running","Tool failure is not turn failure");
+     observer.Apply(thread,next,"turn_aborted",at+4);Check(((TaskView[])observer.Snapshot()["rows"])[0].State=="interrupted","Cancel distinct from failure");
+     observer.Apply(new string('d',32),turn,"task_started",at+5);Check(((TaskView[])observer.Snapshot()["rows"]).Length==2,"Concurrent threads");
+     observer.Apply(new string('d',32),turn,"task_complete",at+6);Check(((TaskView[])observer.Snapshot()["rows"])[0].State=="completed","Turn completion only");
+     observer.Apply(new string('d',32),turn,"task_started",at+7);Check(((TaskView[])observer.Snapshot()["rows"])[0].State=="completed","Delayed duplicate cannot reopen terminal turn");
+     observer.Dispose();Check(((TaskView[])observer.Snapshot()["rows"]).Length==0,"OFF clears and stops collector");
+    }
+    string logDir=Path.Combine(dir,"log-fixture");Directory.CreateDirectory(logDir);string log=Path.Combine(logDir,"rollout-2026-10-10T12-00-00-aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa.jsonl");
+    string startLine=Json.Write(new{type="event_msg",timestamp=DateTimeOffset.UtcNow.ToString("o"),payload=new{type="task_started",turn_id=new string('b',32),prompt="DO-NOT-TRANSFER"}});
+    File.WriteAllText(log,startLine+"\n");using(var tail=new TaskObserve(logDir)){Check(((TaskView[])tail.Snapshot()["rows"]).Length==0,"Collector restart skips historical tail");File.AppendAllText(log,startLine+"\n");Thread.Sleep(2300);var observed=tail.Snapshot();Check(((TaskView[])observed["rows"]).Length==1,"Actual parser tails new metadata event");Check(!Json.Write(observed).Contains("DO-NOT-TRANSFER"),"Raw prompt discarded at parser boundary");}
     long now=Clock.Now,end=now+TierRules.Week;var snap=Snapshot.Parse(Response(37.125,end),now);
     Check(snap.Main.Meter=="weekly"&&snap.Main.Used==37.125&&snap.Quotas.Count==1,"weekly-only precision");Check(snap.Fresh(now)&&!snap.Fresh(now+16*60000)&&!snap.Fresh(now-1),"freshness");
     Check(Snapshot.Parse("{}",now).Main==null,"absent limit");Reject(()=>Snapshot.Parse(Response(101,end),now),"invalid percentage");
@@ -116,6 +133,9 @@ namespace CodexMeterWidget {
      request=Push(tokens,code[4],snap);request["floor"]=Clock.Now+60000;store.Exchange(request,code[4]);
      var pull=new Dictionary<string,object>{{"v",1},{"id",Guid.NewGuid().ToString("N")},{"at",Clock.Now},{"account",LocalStore.AccountKey(tokens.Account)},{"secret",code[4]},{"op","pull"},{"floor",0L}};
      Check(((Observation[])store.Exchange(pull,code[4])["rows"]).Length==0,"clear boundary prevents resurrection without deleting original PC files");
+     pull["op"]="task-status";Check(store.Exchange(pull,code[4])["tasks"]==null,"OFF peer no task collection");
+     store.TaskStatus=()=>new Dictionary<string,object>{{"verified",false},{"rows",new TaskView[0]}};
+     Check(store.Exchange(pull,code[4])["tasks"]!=null,"Task transport behind existing authentication");pull["secret"]="wrong";Reject(()=>store.Exchange(pull,code[4]),"Task endpoint rejects unauthenticated peer");pull["secret"]=code[4];store.TaskStatus=null;
      store.SignOut();Reject(()=>store.Exchange(pull,code[4]),"logout rejects paired peer");
     }
     Check(LanSync.Private(IPAddress.Parse("192.168.1.2"))&&!LanSync.Private(IPAddress.Parse("8.8.8.8")),"LAN only");

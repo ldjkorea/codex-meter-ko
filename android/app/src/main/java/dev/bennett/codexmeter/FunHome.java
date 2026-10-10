@@ -38,18 +38,21 @@ final class FunHome {
             JSONObject doc=FunStore.load(activity.getApplicationContext(),key);
             LiveUtilization.Result live=LiveUsageStore.calculate(activity.getApplicationContext(),snapshot,data);
             double daily=LiveCards.daily(data,policy,System.currentTimeMillis());
+            long quoteAt=System.currentTimeMillis();boolean quoteFresh=window!=null&&quoteAt<window.effectiveResetAtMillis(snapshot.fetchedAtMillis)&&UsageInsights.freshness(snapshot.fetchedAtMillis,quoteAt,RefreshScheduler.effectiveRefreshMinutes(activity))==UsageInsights.Freshness.FRESH;
+            if(!stamp.equals(LiveUsageStore.signature(activity.getApplicationContext(),AppPreferences.loadSnapshot(activity.getApplicationContext()))))return;
+            String quote=SpicyQuotes.select(activity.getApplicationContext(),key,snapshot,quoteFresh,live.bonus,daily,quoteAt);
             activity.runOnUiThread(()->{if(activity.isDestroyed()||activity.isFinishing()||!target.isAttachedToWindow()||!key.equals(SubscriptionStore.key(activity,AppPreferences.loadSnapshot(activity)))||!stamp.equals(LiveUsageStore.signature(activity,AppPreferences.loadSnapshot(activity))))return;
-                try{home.render(snapshot,window,policy,data.records,completed,doc,live,daily);}catch(Exception ignored){home.error();}});
+                try{home.render(snapshot,window,policy,data.records,completed,doc,live,daily,quote);}catch(Exception ignored){home.error();}});
         }catch(Exception ignored){activity.runOnUiThread(()->{if(!activity.isDestroyed()&&target.isAttachedToWindow())home.error();});}});
     }
     private void error(){if(crestTarget!=null)crestTarget.removeAllViews();target.removeAllViews();target.addView(LedgerUi.caption(activity,getString(R.string.fun_load_failed),dark));finished.run();}
     private String getString(int id,Object... args){return activity.getString(id,args);}
-    private void render(UsageSnapshot snapshot,UsageWindow window,String policy,List<LedgerRecord> records,List<FunInsights.Window> completed,JSONObject doc,LiveUtilization.Result live,double daily)throws Exception{
+    private void render(UsageSnapshot snapshot,UsageWindow window,String policy,List<LedgerRecord> records,List<FunInsights.Window> completed,JSONObject doc,LiveUtilization.Result live,double daily,String quote)throws Exception{
         target.removeAllViews();if(crestTarget!=null)crestTarget.removeAllViews();long now=System.currentTimeMillis();
         boolean fresh=window!=null&&now<window.effectiveResetAtMillis(snapshot.fetchedAtMillis)&&UsageInsights.freshness(snapshot.fetchedAtMillis,now,RefreshScheduler.effectiveRefreshMinutes(activity))==UsageInsights.Freshness.FRESH;
         LinearLayout tier=LiveCards.crest(activity,dark,live,fresh);
         if(crestTarget!=null){crestTarget.addView(tier);Ui.addSpacer(crestTarget,10);}else target.addView(tier);
-        LinearLayout quotation=LiveCards.ai(activity,dark,live,snapshot,fresh,daily,now);
+        LinearLayout quotation=LiveCards.ai(activity,dark,live,snapshot,fresh,daily,now,quote);
         LinearLayout value=SubscriptionValueUi.card(activity,dark,snapshot,live,fresh);
         target.addView(quotation);target.addView(value);TiboQuote.add(activity,target,dark);Ui.addSpacer(target,16);finished.run();
     }

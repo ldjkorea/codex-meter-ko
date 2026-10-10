@@ -187,6 +187,7 @@ public final class MainActivity extends AppCompatActivity {
     @Override // android.app.Activity
     protected void onResume() {
         super.onResume();
+        SpicyQuotes.foreground();
         LanSync.schedule(this);
         insightHandler.removeCallbacks(insightTicker);
         insightHandler.postDelayed(insightTicker, 60_000L);
@@ -260,6 +261,7 @@ public final class MainActivity extends AppCompatActivity {
             }
             this.receiverRegistered = false;
         }
+        SpicyQuotes.background(isChangingConfigurations());
         super.onStop();
     }
 
@@ -977,6 +979,7 @@ public final class MainActivity extends AppCompatActivity {
     public void refreshNow(Button button) {
         if(!SecureTokenStore.isSignedIn(this)){if(swipeRefresh!=null)swipeRefresh.setRefreshing(false);Ui.startSecondaryActivity(this,SettingsActivity.class);return;}
         if(!refreshing.compareAndSet(false,true)){if(swipeRefresh!=null)swipeRefresh.setRefreshing(false);return;}
+        SpicyQuotes.manual();
         final CharSequence previousLabel=button==null?null:button.getText();
         if(swipeRefresh!=null)swipeRefresh.setRefreshing(true);
         if(button!=null){button.setEnabled(false);if(previousLabel.length()>0)button.setText(R.string.refreshing);button.setContentDescription(getString(R.string.refreshing));}

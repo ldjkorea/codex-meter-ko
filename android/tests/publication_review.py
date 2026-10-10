@@ -32,6 +32,9 @@ def reviewed_evolution(path,raw):
 
 def strip_evolution_manifest(text):
     import re
+    trial='        <activity android:name="dev.bennett.codexmeter.TaskStatusActivity" android:exported="false"/>\n        <receiver android:name="dev.bennett.codexmeter.TaskStatusWidget" android:exported="false" android:label="@string/task_trial_widget">\n            <intent-filter><action android:name="android.appwidget.action.APPWIDGET_UPDATE"/></intent-filter>\n            <meta-data android:name="android.appwidget.provider" android:resource="@xml/task_status_widget_info"/>\n        </receiver>\n'
+    assert text.count(trial)==1,'Trial activity/widget remain private, independent and read-only'
+    text=text.replace(trial,'')
     service='        <service android:name="dev.bennett.codexmeter.LanWifiJobService"\n            android:permission="android.permission.BIND_JOB_SERVICE" android:exported="false"/>\n'
     assert text.count(service)==1,'Wi-Fi job must remain private and require BIND_JOB_SERVICE'
     text=text.replace(service,'')
