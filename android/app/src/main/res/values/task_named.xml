@@ -1,0 +1,9 @@
+<resources>
+ <string name="task_named_completed">Turn complete · awaiting next request</string>
+ <string name="task_named_heading">Codex work</string>
+ <string name="task_named_empty">Start a new Codex turn on the connected PC.</string>
+ <string name="task_named_command_error">Command error · not a whole-task failure</string>
+ <string name="task_named_tool_error">Tool error · not a whole-task failure</string>
+ <string name="task_named_evo_compact">Settings · enlarge for all items</string>
+ <string name="task_named_limits">The registered PC shares short Codex thread titles and verified start, completion and interruption events. A completed turn is awaiting the next request, not proof that the project is finished. Approval waits, input waits and fatal errors require additional supported events; quiet logs and failed test commands are not treated as these states. Keep both Tailscale connections and the PC widget running. Open this screen for 15-second checks; Android may defer background widget updates.</string>
+</resources>

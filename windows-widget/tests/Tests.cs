@@ -27,12 +27,16 @@ namespace CodexMeterWidget {
    try {
     Check(!new Preferences().TaskObserveEnabled,"Task observation default OFF");
     string taskDir=Path.Combine(dir,"task-fixture");Directory.CreateDirectory(taskDir);
-    using(var observer=new TaskObserve(taskDir)){
+    using(var observer=new TaskObserve(taskDir,id=>"GPT HUD · 작업 이름")){
      string thread=new string('a',32),turn=new string('b',32),next=new string('c',32);long at=Clock.Now-100;
      Check(!((bool)observer.Snapshot()["verified"]),"Before-start state unknown");observer.Apply(thread,turn,"task_complete",at);Check(((TaskView[])observer.Snapshot()["rows"]).Length==0,"Old completion cannot create known work");
      observer.Apply(thread,turn,"task_started",at);observer.Apply(thread,turn,"task_started",at);Check(((TaskView[])observer.Snapshot()["rows"])[0].Sequence==1,"Duplicate start ignored");
+     Check(((TaskView[])observer.Snapshot()["rows"])[0].Name=="GPT HUD · 작업 이름","Actual title resolver, not prompt text");
      observer.Apply(thread,next,"task_started",at+1);observer.Apply(thread,turn,"task_complete",at+2);Check(((TaskView[])observer.Snapshot()["rows"])[0].State=="running","Old turn completion cannot overwrite new turn");
      observer.Apply(thread,next,"tool_failed",at+3);Check(((TaskView[])observer.Snapshot()["rows"])[0].State=="running","Tool failure is not turn failure");
+     observer.ToolResult(thread,next,"CommandExecution","failed",1,at+3);Check(((TaskView[])observer.Snapshot()["rows"])[0].Issue=="command_error"&&((TaskView[])observer.Snapshot()["rows"])[0].State=="running","Failed command is a warning, still running");
+     observer.ToolResult(thread,turn,"CommandExecution","completed",0,at+3);Check(((TaskView[])observer.Snapshot()["rows"])[0].Issue=="command_error","Other turn cannot clear a warning");
+     observer.ToolResult(thread,next,"CommandExecution","completed",0,at+4);Check(((TaskView[])observer.Snapshot()["rows"])[0].Issue=="","Subsequent success clears the tool warning");
      observer.Apply(thread,next,"turn_aborted",at+4);Check(((TaskView[])observer.Snapshot()["rows"])[0].State=="interrupted","Cancel distinct from failure");
      observer.Apply(new string('d',32),turn,"task_started",at+5);Check(((TaskView[])observer.Snapshot()["rows"]).Length==2,"Concurrent threads");
      observer.Apply(new string('d',32),turn,"task_complete",at+6);Check(((TaskView[])observer.Snapshot()["rows"])[0].State=="completed","Turn completion only");
@@ -41,7 +45,13 @@ namespace CodexMeterWidget {
     }
     string logDir=Path.Combine(dir,"log-fixture");Directory.CreateDirectory(logDir);string log=Path.Combine(logDir,"rollout-2026-10-10T12-00-00-aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa.jsonl");
     string startLine=Json.Write(new{type="event_msg",timestamp=DateTimeOffset.UtcNow.ToString("o"),payload=new{type="task_started",turn_id=new string('b',32),prompt="DO-NOT-TRANSFER"}});
-    File.WriteAllText(log,startLine+"\n");using(var tail=new TaskObserve(logDir)){Check(((TaskView[])tail.Snapshot()["rows"]).Length==0,"Collector restart skips historical tail");File.AppendAllText(log,startLine+"\n");Thread.Sleep(2300);var observed=tail.Snapshot();Check(((TaskView[])observed["rows"]).Length==1,"Actual parser tails new metadata event");Check(!Json.Write(observed).Contains("DO-NOT-TRANSFER"),"Raw prompt discarded at parser boundary");}
+    File.WriteAllText(log,startLine+"\n");using(var tail=new TaskObserve(logDir)){Check(((TaskView[])tail.Snapshot()["rows"]).Length==1,"Restart recovers bounded recent real start metadata");File.AppendAllText(log,startLine+"\n");Thread.Sleep(2300);var observed=tail.Snapshot();Check(((TaskView[])observed["rows"]).Length==1,"Actual parser tails new metadata event without duplication");Check(!Json.Write(observed).Contains("DO-NOT-TRANSFER"),"Raw prompt discarded at parser boundary");}
+    Check(TaskTitles.Clean("  앱\n작업\t이름 ")=="앱 작업 이름","Title normalizes controls");
+    File.WriteAllText(log,startLine+"\n"+string.Concat(Enumerable.Repeat("{}\n",400000)));
+    using(var tail=new TaskObserve(logDir)){Check(((TaskView[])tail.Snapshot()["rows"]).Length==1,"Restart recovers a recent task start beyond one MiB without reading the whole log");}
+    Check(TaskTitles.Clean(new string('가',100)).Length==81,"Title length bounded");
+    Check(!TaskTitles.Clean("Bearer SUPERSECRET0123456789").Contains("SUPERSECRET"),"Token-like title redacted");
+    Check(TaskTitles.Read(Path.Combine(dir,"missing.sqlite"),"a")=="","Missing title DB falls back without creating a DB");
     long now=Clock.Now,end=now+TierRules.Week;var snap=Snapshot.Parse(Response(37.125,end),now);
     Check(snap.Main.Meter=="weekly"&&snap.Main.Used==37.125&&snap.Quotas.Count==1,"weekly-only precision");Check(snap.Fresh(now)&&!snap.Fresh(now+16*60000)&&!snap.Fresh(now-1),"freshness");
     Check(Snapshot.Parse("{}",now).Main==null,"absent limit");Reject(()=>Snapshot.Parse(Response(101,end),now),"invalid percentage");

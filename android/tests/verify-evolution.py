@@ -34,7 +34,7 @@ assert 'HttpURLConnection' not in widget and 'UsageApi.refresh' not in widget
 assert 'archiveCode <= installedCode' in installer and 'KoreanUpdateTrust.compatible' in installer and 'sameSigners' in installer
 print('10 distinct local vector evolutions, bilingual new UI, manifest registration, protected 2.8.7 core, widget countdown and updater gates passed (source checks).')
 
-assert 'OPTION_APPWIDGET_MIN_HEIGHT' in widget and 'fontScale' in widget and 'setImageAlpha' in widget
+assert 'OPTION_APPWIDGET_MIN_HEIGHT' in widget and 'fontScale' in widget and 'd.setAlpha' in widget
 config=(app/'EvolutionWidgetConfigActivity.java').read_text()
 assert 'id+".elements"' in config and 'onSaveInstanceState' in config
 assert 'session.abandon' not in installer and 'installer.abandonSession(sessionId)' in installer

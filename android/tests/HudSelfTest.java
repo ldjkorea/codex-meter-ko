@@ -31,6 +31,14 @@ public final class HudSelfTest {
         check(UsagePrecision.number(Double.NaN).equals("—"),"Unknown is not zero");
         long now=System.currentTimeMillis();JSONObject snapshot=new JSONObject().put("epoch","a".repeat(32)).put("device","b".repeat(64)).put("source","local_log_trial").put("verified",true).put("checked",now).put("rows",new JSONArray().put(row("running",2,now)));
         JSONObject clean=TaskStatusData.clean(snapshot,now);
+        JSONObject named=row("running",2,now).put("Name","GPT HUD\n위젯 개선").put("Issue","command_error").put("IssueAt",now).put("prompt","PRIVATE_PROMPT").put("command","PRIVATE_COMMAND");
+        JSONObject namedClean=TaskStatusData.clean(new JSONObject(snapshot.toString()).put("rows",new JSONArray().put(named)),now).getJSONArray("rows").getJSONObject(0);
+        check(namedClean.getString("name").equals("GPT HUD 위젯 개선"),"Thread title is normalized");
+        check(namedClean.getString("issue").equals("command_error")&&namedClean.getString("state").equals("running"),"Command error is not turn failure");
+        check(!namedClean.toString().contains("PRIVATE_"),"No prompt or command leaves the metadata boundary");
+        check(TaskStatusData.name("Bearer SECRETTOKEN01234567890").equals("[redacted]"),"Token-like title redacted");
+        check(TaskStatusData.name("가".repeat(100)).codePointCount(0,TaskStatusData.name("가".repeat(100)).length())==81,"Title clipped by code points");
+        named.put("Issue","invented");check(TaskStatusData.clean(new JSONObject(snapshot.toString()).put("rows",new JSONArray().put(named)),now).getJSONArray("rows").getJSONObject(0).getString("issue").isEmpty(),"Unknown warning discarded");
         check(TaskStatusData.connected(clean,now,now),"Connected heartbeat");
         check(!TaskStatusData.connected(clean,now,now+120001),"Stale without fabricated failure");
         check(!TaskStatusData.connected(clean,now+1,now),"Future receive time rejected");

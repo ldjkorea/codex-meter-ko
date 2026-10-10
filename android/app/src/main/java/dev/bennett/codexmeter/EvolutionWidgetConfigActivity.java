@@ -26,7 +26,7 @@ public final class EvolutionWidgetConfigActivity extends AppCompatActivity {
         content.addView(LedgerUi.caption(this,getString(R.string.evo_opacity),dark));SeekBar opacityBar=new SeekBar(this);opacityBar.setMax(100);opacityBar.setProgress(opacity);opacityBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener(){public void onProgressChanged(SeekBar s,int v,boolean user){opacity=v;updatePreview();}public void onStartTrackingTouch(SeekBar s){}public void onStopTrackingTouch(SeekBar s){}});content.addView(opacityBar);
         updatePreview();
     }
-    private void updatePreview(){preview.removeAllViews();preview.addView(EvolutionWidget.render(this,id,AppWidgetManager.getInstance(this).getAppWidgetOptions(id),String.join(",",elements),theme,opacity).apply(this,preview));}
+    private void updatePreview(){preview.removeAllViews();android.os.Bundle size=AppWidgetManager.getInstance(this).getAppWidgetOptions(id);if(size.getInt(AppWidgetManager.OPTION_APPWIDGET_MIN_WIDTH,0)<=0)size.putInt(AppWidgetManager.OPTION_APPWIDGET_MIN_WIDTH,300);if(size.getInt(AppWidgetManager.OPTION_APPWIDGET_MIN_HEIGHT,0)<=0)size.putInt(AppWidgetManager.OPTION_APPWIDGET_MIN_HEIGHT,180);preview.addView(EvolutionWidget.render(this,id,size,String.join(",",elements),theme,opacity).apply(getApplicationContext(),preview));}
     private void save(){try{String csv=EvolutionElements.save(elements);
         if(!EvolutionWidget.prefs(this).edit().putString(id+".elements",csv).putBoolean(id+".theme",theme).putInt(id+".opacity",opacity).commit())throw new IllegalStateException();
         EvolutionWidget.updateAll(this);setResult(RESULT_OK,new Intent().putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID,id));finish();

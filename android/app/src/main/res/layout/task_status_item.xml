@@ -1,0 +1,4 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="6dp" android:background="@drawable/task_status_item_background">
+ <TextView android:id="@+id/task_status_name" android:layout_width="match_parent" android:layout_height="wrap_content" android:textColor="#F5F5F5" android:textSize="14sp" android:textStyle="bold" android:maxLines="2" android:ellipsize="end"/>
+ <TextView android:id="@+id/task_status_state" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="3dp" android:textColor="#D5D8DE" android:textSize="12sp" android:maxLines="3" android:ellipsize="end"/>
+</LinearLayout>

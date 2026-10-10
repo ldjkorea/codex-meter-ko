@@ -17,6 +17,11 @@ final class TaskStatusStore {
     }
     private static JSONObject read(Context c,String a){try{return new JSONObject(c.getSharedPreferences(PREFS,0).getString(a,""));}catch(Exception ignored){return null;}}
     static String widgetText(Context c,int maximum){return text(c,maximum);}
+    static JSONObject snapshot(Context c){try{String a=LanSync.account(c);return enabled(c,a)?read(c,a):null;}catch(Exception ignored){return null;}}
+    static long received(Context c){try{String a=LanSync.account(c);return a==null?0:c.getSharedPreferences(PREFS,0).getLong(a+"_received",0);}catch(Exception ignored){return 0;}}
+    static String title(JSONObject row){String name=TaskStatusData.name(row.optString("name","")),thread=row.optString("thread","------");return name.isEmpty()?"Codex · "+thread.substring(0,Math.min(6,thread.length())):name;}
+    static String state(Context c,String state){return c.getString(state.equals("running")?R.string.task_trial_running:state.equals("completed")?R.string.task_named_completed:R.string.task_trial_interrupted);}
+    static String issue(Context c,JSONObject row){String issue=row.optString("issue","");return issue.isEmpty()?"":c.getString(issue.equals("command_error")?R.string.task_named_command_error:R.string.task_named_tool_error);}
     static String homeText(Context c){
         try{String a=LanSync.account(c);JSONObject data=a==null?null:read(c,a);
             long received=a==null?0:c.getSharedPreferences(PREFS,0).getLong(a+"_received",0),now=System.currentTimeMillis();
@@ -32,8 +37,9 @@ final class TaskStatusStore {
         if(received>0)out.append("\n").append(c.getString(R.string.task_trial_last,android.text.format.DateFormat.getTimeFormat(c).format(new java.util.Date(received))));
         if(data==null||!data.optBoolean("verified"))out.append("\n\n").append(c.getString(R.string.task_trial_unverified));
         if(data!=null){org.json.JSONArray rows=data.optJSONArray("rows");if(rows!=null)for(int i=0;i<Math.min(maximum,rows.length());i++){JSONObject r=rows.getJSONObject(i);String state=r.getString("state");
-            out.append("\n\nCodex · ").append(r.getString("thread").substring(0,6)).append("\n");out.append(c.getString(R.string.task_trial_last_state)).append(" ");
-            out.append(c.getString(state.equals("running")?R.string.task_trial_running:state.equals("completed")?R.string.task_trial_completed:R.string.task_trial_interrupted));
-            out.append(" · ").append(android.text.format.DateFormat.getTimeFormat(c).format(new java.util.Date(r.getLong("at"))));}}
+            out.append("\n\n").append(title(r)).append("\n");out.append(c.getString(R.string.task_trial_last_state)).append(" ");
+            out.append(state(c,state));
+            out.append(" · ").append(android.text.format.DateFormat.getTimeFormat(c).format(new java.util.Date(r.getLong("at"))));
+            String issue=issue(c,r);if(!issue.isEmpty())out.append("\n").append(issue);}}
         return out.toString();}catch(Exception ignored){return c.getString(R.string.task_trial_unverified);}}
 }

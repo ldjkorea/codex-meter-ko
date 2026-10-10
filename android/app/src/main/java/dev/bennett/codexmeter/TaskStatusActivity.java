@@ -25,7 +25,7 @@ public final class TaskStatusActivity extends AppCompatActivity {
         refresh=LedgerUi.action(this,getString(R.string.ui_refresh_56e3ba),true,dark,this::check);card.addView(refresh);Ui.addSpacer(content,16);
         content.addView(LedgerUi.action(this,getString(R.string.task_trial_connection),false,dark,()->LanSyncUi.show(this,dark)));
         Ui.addSpacer(content,8);content.addView(LedgerUi.action(this,getString(R.string.hud_add_task_widget),false,dark,this::pinWidget));
-        Ui.addSpacer(content,16);content.addView(LedgerUi.action(this,getString(R.string.hud_status_help),false,dark,()->new android.app.AlertDialog.Builder(this).setTitle(R.string.hud_status_help).setMessage(R.string.task_trial_limits).setPositiveButton(R.string.ui_done_e9b450,null).show()));render();
+        Ui.addSpacer(content,16);content.addView(LedgerUi.action(this,getString(R.string.hud_status_help),false,dark,()->new android.app.AlertDialog.Builder(this).setTitle(R.string.hud_status_help).setMessage(R.string.task_named_limits).setPositiveButton(R.string.ui_done_e9b450,null).show()));render();
     }
     private void render(){if(status!=null){String text=TaskStatusStore.text(this,3);if(!text.contentEquals(status.getText()))status.setText(text);}if(refresh!=null)refresh.setEnabled(!busy&&TaskStatusStore.enabled(this));}
     private void check(){render();if(busy||!TaskStatusStore.enabled(this))return;busy=true;refresh.setEnabled(false);feedback.setText(R.string.task_trial_connecting);

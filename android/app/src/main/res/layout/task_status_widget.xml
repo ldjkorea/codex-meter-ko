@@ -1,5 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:id="@+id/task_status_root" android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:padding="16dp" android:background="@drawable/task_status_background">
-    <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/task_trial_widget" android:textColor="#F5F5F5" android:textSize="14sp" android:textStyle="bold"/>
-    <TextView android:id="@+id/task_status_copy" android:layout_width="match_parent" android:layout_height="match_parent" android:layout_marginTop="10dp" android:textColor="#D5D8DE" android:textSize="13sp"/>
-</LinearLayout>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android" android:id="@+id/task_status_root" android:layout_width="match_parent" android:layout_height="match_parent" android:background="@drawable/task_status_background">
+ <ImageView android:id="@+id/task_status_background" android:layout_width="match_parent" android:layout_height="match_parent" android:scaleType="fitXY" android:importantForAccessibility="no"/>
+ <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:padding="12dp">
+  <LinearLayout android:layout_width="match_parent" android:layout_height="48dp" android:orientation="horizontal" android:gravity="center_vertical">
+   <ImageView android:id="@+id/task_status_emblem" android:layout_width="44dp" android:layout_height="44dp" android:importantForAccessibility="no"/>
+   <LinearLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="match_parent" android:orientation="vertical" android:gravity="center_vertical" android:paddingStart="8dp">
+    <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/task_named_heading" android:textColor="#F5F5F5" android:textSize="14sp" android:textStyle="bold" android:maxLines="1" android:ellipsize="end"/>
+    <TextView android:id="@+id/task_status_tier" android:layout_width="match_parent" android:layout_height="wrap_content" android:textColor="#D5D8DE" android:textSize="10sp" android:maxLines="1" android:ellipsize="end"/>
+   </LinearLayout>
+  </LinearLayout>
+  <TextView android:id="@+id/task_status_connection" android:layout_width="match_parent" android:layout_height="wrap_content" android:textColor="#D5D8DE" android:textSize="10sp" android:maxLines="1" android:ellipsize="end"/>
+  <LinearLayout android:id="@+id/task_status_tasks" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:orientation="vertical" android:gravity="top" android:paddingTop="6dp"/>
+  <LinearLayout android:layout_width="match_parent" android:layout_height="40dp" android:gravity="center_vertical">
+   <TextView android:id="@+id/task_status_copy" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:textColor="#BFC7D2" android:textSize="10sp" android:maxLines="2" android:ellipsize="end"/>
+   <TextView android:id="@+id/task_status_refresh" android:layout_width="48dp" android:layout_height="40dp" android:gravity="center" android:text="↻" android:textColor="#F5F5F5" android:textSize="25sp" android:contentDescription="@string/ui_refresh_56e3ba"/>
+  </LinearLayout>
+ </LinearLayout>
+</FrameLayout>
