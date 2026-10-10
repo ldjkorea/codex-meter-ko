@@ -20,7 +20,7 @@ assert shell('getprop','ro.kernel.qemu').strip()=='1'
 reuse='--reuse-owned-fixture' in sys.argv[2:]
 if reuse:
     assert shell('getprop','ro.boot.qemu.avd_name').strip()=='codex-meter-polish-api35', 'Only this owned QA AVD may be reused'
-    assert 'versionName=2.8.15' in shell('dumpsys','package','dev.bennett.codexmeter'), 'Only this turn synthetic install may be updated'
+    assert 'versionName=2.8.16' in shell('dumpsys','package','dev.bennett.codexmeter'), 'Only this turn synthetic install may be updated'
     assert 'package:'+test_package in shell('pm','list','packages','--user','0',test_package).splitlines(), 'Own test marker required'
 else:
     assert 'package:dev.bennett.codexmeter' not in shell('pm','list','packages','--user','0','dev.bennett.codexmeter').splitlines(), 'Preserve an existing emulator installation'

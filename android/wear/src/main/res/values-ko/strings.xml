@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">"Codex Meter"</string>
+    <string name="app_name">"GPT HUD"</string>
     <string name="wear_settings">"설정"</string>
     <string name="wear_refresh">"새로고침"</string>
     <string name="wear_toggle_monitor">"모니터 켜기/끄기"</string>

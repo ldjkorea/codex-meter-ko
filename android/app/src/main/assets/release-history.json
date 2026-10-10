@@ -1,5 +1,26 @@
 [
   {
+    "version": "2.8.16",
+    "origin": "korean",
+    "ko": {
+      "title": "GPT HUD · 챌린저 삼족오 아이콘",
+      "changes": [
+        "앱 이름을 GPT HUD로 변경했습니다.",
+        "왕관·날개·푸른 보석을 갖춘 챌린저 삼족오 휘장을 앱 아이콘으로 적용했습니다.",
+        "내부 화면, 티어 색상, 로그인, 사용 기록과 위젯 기능은 유지합니다."
+      ]
+    },
+    "en": {
+      "title": "GPT HUD · Challenger Samjoko icon",
+      "changes": [
+        "Rename the app to GPT HUD.",
+        "Use the crowned Challenger Samjoko crest as the launcher icon.",
+        "Preserve existing screens, tier colors, login, records and widgets."
+      ]
+    },
+    "source": "- App display name: GPT HUD.\n- Challenger Samjoko launcher icon with graphite background; phone and Wear.\n- Existing functionality and signing key preserved."
+  },
+  {
     "version": "2.8.15",
     "origin": "korean",
     "ko": {

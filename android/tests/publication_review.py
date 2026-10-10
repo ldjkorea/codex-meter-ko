@@ -14,12 +14,21 @@ def reviewed_evolution(path,raw):
     import json
     from pathlib import Path
     patches=json.loads(Path(__file__).with_name('evolution-reviewed-patches.json').read_text(encoding='utf-8'))
-    if path not in patches:return raw
-    text=raw.decode('utf-8').replace('\r\n','\n')
-    for before,after in patches.get(path,[]):
-        assert text.count(before)==1,(path,'Reviewed evolution patch mismatch',before[:90])
-        text=text.replace(before,after)
-    return text.encode('utf-8')
+    if path in patches:
+        text=raw.decode('utf-8').replace('\r\n','\n')
+        for before,after in patches[path]:
+            assert text.count(before)==1,(path,'Reviewed evolution patch mismatch',before[:90])
+            text=text.replace(before,after)
+        raw=text.encode('utf-8')
+    # Explicitly approved 2.8.16 Wear launcher/name patch. Other bytes remain protected.
+    prefix='android/wear/src/main/res/'
+    if path in [prefix+'mipmap-anydpi/ic_launcher.xml',prefix+'mipmap-anydpi-v33/ic_launcher.xml']:
+        return raw.replace(b'@drawable/codex_meter_adaptive_bg',b'@drawable/gpt_hud_launcher_background').replace(b'@drawable/codex_meter_adaptive_fg',b'@drawable/gpt_hud_launcher_foreground')
+    if path==prefix+'drawable/ic_launcher_monochrome.xml':
+        return b'<?xml version="1.0" encoding="utf-8"?>\n<bitmap xmlns:android="http://schemas.android.com/apk/res/android" android:gravity="fill" android:src="@drawable/gpt_hud_challenger_monochrome"/>\n'
+    if path in [prefix+'values/strings.xml',prefix+'values-ko/strings.xml']:
+        return raw.replace(b'<string name="app_name">Codex Meter</string>',b'<string name="app_name">GPT HUD</string>').replace(b'<string name="app_name">"Codex Meter"</string>',b'<string name="app_name">"GPT HUD"</string>')
+    return raw
 
 def strip_evolution_manifest(text):
     import re

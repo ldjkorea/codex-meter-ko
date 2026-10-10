@@ -87,6 +87,9 @@ for module in ("app", "wear"):
             assert "other" in {item.attrib["quantity"] for item in translated}, key
     baseline = ET.fromstring(original(f"android/{module}/src/main/res/values/strings.xml"))
     for node in baseline:
+        if node.attrib["name"] == "app_name":
+            assert decoded(en[(node.tag, "app_name")].text) == "GPT HUD"
+            continue  # Explicitly approved app display name; all other English stays protected.
         assert decoded(node.text) == decoded(en[(node.tag, node.attrib["name"])].text), ("Original English changed", node.attrib["name"])
     counts[module] = {"strings": len(strings), "array_items": sum(len(node) for key, node in ko.items() if key[0] == "string-array")}
 
@@ -138,7 +141,7 @@ reviewed_change(APP_JAVA + "AppPreferences.java", lambda s: s.replace(
     "            return prefs(context).edit().putString(KEY_RESET_CREDITS, resetCreditsSnapshot.toJson().toString()).remove(KEY_RESET_ERROR).remove(KEY_RESET_ERROR_AT).commit();",
     "            boolean saved = prefs(context).edit().putString(KEY_RESET_CREDITS, resetCreditsSnapshot.toJson().toString()).remove(KEY_RESET_ERROR).remove(KEY_RESET_ERROR_AT).commit();\n            if (saved) UsageEventStore.recordCredits(context, resetCreditsSnapshot);\n            return saved;").replace(
     "        UsageEventStore.clear(context);\n", "        UsageEventStore.clear(context);\n        UsageLedgerStore.clear(context);\n        UsageLedgerDatabase.clear(context);\n"))
-version_change = lambda s: s.replace("2.8.0", "2.8.15").replace("versionCode = 30", "versionCode = 45").replace("VERSION_CODE = 30", "VERSION_CODE = 45")
+version_change = lambda s: s.replace("2.8.0", "2.8.16").replace("versionCode = 30", "versionCode = 46").replace("VERSION_CODE = 30", "VERSION_CODE = 46")
 reviewed_change(APP_JAVA + "AppConstants.java", version_change)
 reviewed_change("android/wear/build.gradle.kts", version_change)
 reviewed_change("android/app/build.gradle.kts", lambda s: version_change(s).replace(

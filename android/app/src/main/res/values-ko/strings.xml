@@ -8,7 +8,7 @@
     <string name="widget_reset_credits">"사용 가능한 Codex 초기화 크레딧"</string>
     <string name="widget_sample_reset_time">"2시간 14분"</string>
     <string name="widget_sample_reset_count">"2"</string>
-    <string name="app_name">"Codex Meter"</string>
+    <string name="app_name">"GPT HUD"</string>
     <string name="five_hour">"5시간"</string>
     <string name="lock_widget_bars_square_description">"지원되는 Samsung 잠금화면에 Codex 잔여량을 작은 가로 막대로 표시합니다"</string>
     <string name="lock_widget_bars_square_name">"Codex · 막대 · 정사각형"</string>
