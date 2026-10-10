@@ -21,6 +21,7 @@ public final class TaskStatusActivity extends AppCompatActivity {
         toggle.setOnCheckedChangeListener((button,on)->{try{TaskStatusStore.enable(this,on);render();handler.removeCallbacks(poll);if(on)handler.post(poll);}catch(Exception ignored){button.setChecked(false);Toast.makeText(this,R.string.task_trial_signin,Toast.LENGTH_LONG).show();}});
         Ui.addSpacer(content,16);status=LedgerUi.heading(this,"",dark);status.setTextSize(18);content.addView(status);Ui.addSpacer(content,24);
         content.addView(LedgerUi.caption(this,getString(R.string.task_trial_limits),dark));Ui.addSpacer(content,16);
+        content.addView(LedgerUi.action(this,getString(R.string.task_trial_connection),false,dark,()->LanSyncUi.show(this,dark)));
         content.addView(LedgerUi.action(this,getString(R.string.ui_refresh_56e3ba),false,dark,()->{if(TaskStatusStore.enabled(this))LanSync.taskStatus(this,ok->runOnUiThread(()->{if(visible)render();}));}));setContentView(scroll);render();
     }
     private void render(){if(status!=null)status.setText(TaskStatusStore.text(this,3));}

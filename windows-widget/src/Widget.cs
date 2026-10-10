@@ -24,7 +24,7 @@ namespace CodexMeterWidget {
         private bool busy,exiting,loggedOut;private long lastAttempt;private RectangleF action,menuButton;private ContextMenuStrip menu;
         private TaskObserve observer;private LanSync lan;private long mirrorReceived;private bool readingMirror;
         private Icon tierIcon;private int iconTier=int.MinValue;
-        public const string Version="0.1.4";
+        public const string Version="0.1.5";
         public static readonly string[] TierNames={"Iron","Bronze","Silver","Gold","Platinum","Emerald","Diamond","Master","Grandmaster","Challenger"};
         public WidgetForm(LocalStore storage,MeterApi client,bool testPreview=false) {
             store=storage;api=client;preview=testPreview;prefs=LoadPrefs();prefs.Validate();Text="Codex Meter Widget";FormBorderStyle=FormBorderStyle.None;ShowInTaskbar=false;DoubleBuffered=true;AutoScaleMode=AutoScaleMode.Dpi;
@@ -56,7 +56,7 @@ namespace CodexMeterWidget {
             bool startup=StartupEnabled();var auto=Add("Windows 시작 시 실행",()=>SetStartup(!StartupEnabled()));auto.Checked=startup;
             Add("휴대폰 연결 코드",()=>PairPhone(),tokens!=null);var share=Add("휴대폰 자동 공유",()=>{prefs.LanEnabled=!prefs.LanEnabled;if(prefs.LanEnabled)StartLan();else StopLan();SavePrefs();});share.Checked=prefs.LanEnabled;share.Enabled=tokens!=null;
             var observe=Add("Codex 작업 상태 시험",()=>{prefs.TaskObserveEnabled=!prefs.TaskObserveEnabled;ConfigureObserver();SavePrefs();MessageBox.Show(this,"제한적인 로컬 로그 관찰입니다. 관찰 이후 새로 시작한 턴만 확인하며 승인·입력 대기와 Remote 감지는 미검증입니다. 기존 Codex 설정은 수정하지 않습니다.");},tokens!=null&&prefs.LanEnabled);observe.Checked=prefs.TaskObserveEnabled;
-            Add("기록 폴더 열기",()=>Process.Start(new ProcessStartInfo(store.DirectoryPath){UseShellExecute=true}));Add("사용 안내",()=>MessageBox.Show(this,"상단을 끌어 위치를 바꾸고 가장자리를 끌어 크기를 조절하세요.\n\n5분 간격으로 계정 한도를 조회합니다. 실패하거나 오래된 값은 마지막 관측값으로 표시합니다.\n\n휴대폰 연결 코드를 앱 설정에 한 번 등록하면 같은 Wi-Fi에서 기록을 공유하고 휴대폰과 같은 티어를 표시합니다. PC 위젯이 실행 중이어야 하며, 휴대폰 Wi-Fi 연결·앱 실행·정상 조회 때 동기화를 시도하며, 백그라운드에서는 절전 정책에 따라 늦어질 수 있습니다. Windows 방화벽은 개인 네트워크만 허용해 주세요. 로그인은 기기별로 유지합니다.\n\n비공식 개인 도구 · Windows 0.1.4 beta","Codex Meter"));
+            Add("기록 폴더 열기",()=>Process.Start(new ProcessStartInfo(store.DirectoryPath){UseShellExecute=true}));Add("사용 안내",()=>MessageBox.Show(this,"상단을 끌어 위치를 바꾸고 가장자리를 끌어 크기를 조절하세요.\n\n5분 간격으로 계정 한도를 조회합니다. 실패하거나 오래된 값은 마지막 관측값으로 표시합니다.\n\n휴대폰 연결 코드를 앱 설정에 한 번 등록하면 같은 Wi-Fi에서 기록을 공유하고 휴대폰과 같은 티어를 표시합니다. PC 위젯이 실행 중이어야 하며, 휴대폰 Wi-Fi 연결·앱 실행·정상 조회 때 동기화를 시도하며, 백그라운드에서는 절전 정책에 따라 늦어질 수 있습니다. Windows 방화벽은 개인 네트워크만 허용해 주세요. 로그인은 기기별로 유지합니다.\n\n비공식 개인 도구 · Windows 0.1.5 beta","Codex Meter"));
             Add("로그아웃",()=>SignOut(),tokens!=null);Add("종료",()=>{SavePrefs();exiting=true;Close();});tray.ContextMenuStrip=menu;if(show)menu.Show(this,at);
         }
         private ToolStripMenuItem Add(string name,Action action,bool enabled=true){var item=new ToolStripMenuItem(name,null,(s,e)=>action()){Enabled=enabled};menu.Items.Add(item);return item;}
@@ -66,11 +66,13 @@ namespace CodexMeterWidget {
         private void PairPhone(){try{prefs.LanEnabled=true;StartLan();if(lan==null)throw new IOException();SavePrefs();
             var addresses=System.Net.NetworkInformation.NetworkInterface.GetAllNetworkInterfaces().Where(n=>n.OperationalStatus==System.Net.NetworkInformation.OperationalStatus.Up)
                 .SelectMany(n=>n.GetIPProperties().UnicastAddresses).Select(n=>n.Address).Where(a=>LanSync.Private(a)&&!System.Net.IPAddress.IsLoopback(a)).Select(a=>a.ToString()).Distinct().ToArray();
-            if(addresses.Length==0){MessageBox.Show(this,"PC를 휴대폰과 같은 Wi-Fi 또는 공유기에 연결해 주세요.");return;}
+            if(addresses.Length==0){MessageBox.Show(this,"PC를 같은 Wi-Fi에 연결하거나, Tailscale을 설치하고 연결을 켜 주세요.");return;}
             using(var form=new Form{Text="휴대폰 연결",Width=580,Height=260,StartPosition=FormStartPosition.CenterParent,FormBorderStyle=FormBorderStyle.FixedDialog,MaximizeBox=false,MinimizeBox=false}){
-                var label=new Label{Left=16,Top=15,Width=540,Height=48,Text="휴대폰 앱 → 설정 → PC·휴대폰 자동 공유에 연결 코드를 붙여넣으세요.\n같은 ChatGPT 계정으로 로그인하고 방화벽은 개인 네트워크만 허용하세요."};
+                var label=new Label{Left=16,Top=15,Width=540,Height=48};
                 var ips=new ComboBox{Left=16,Top=66,Width=530,DropDownStyle=ComboBoxStyle.DropDownList};ips.Items.AddRange(addresses);var code=new TextBox{Left=16,Top=102,Width=530,Height=54,Multiline=true,ReadOnly=true};
-                ips.SelectedIndexChanged+=(s,e)=>code.Text=lan.PairCode((string)ips.SelectedItem);ips.SelectedIndex=0;
+                ips.SelectedIndexChanged+=(s,e)=>{string ip=(string)ips.SelectedItem;code.Text=lan.PairCode(ip);label.Text=LanSync.Tailscale(System.Net.IPAddress.Parse(ip))
+                    ?"Tailscale 외부 연결 · PC와 폰에서 같은 Tailscale 계정으로 연결하세요.\n폰 → 작업 상태 시험 → PC 연결 설정에 붙여넣으세요. 방화벽은 설치 안내를 참고하세요."
+                    :"같은 Wi-Fi 연결 · 폰 → 설정 → PC·휴대폰 자동 공유에 붙여넣으세요.\n같은 ChatGPT 계정으로 로그인하고 방화벽은 개인 네트워크만 허용하세요.";};ips.SelectedIndex=0;
                 var copy=new Button{Left=350,Top=170,Width=196,Text="연결 코드 복사"};copy.Click+=(s,e)=>{Clipboard.SetText(code.Text);copy.Text="복사했습니다";};form.Controls.AddRange(new Control[]{label,ips,code,copy});form.ShowDialog(this);
             }}catch{MessageBox.Show(this,"연결 준비에 실패했습니다. 기존 기록은 그대로 보존됩니다.");}}
         private async void ReadPhoneTier(){if(readingMirror||!prefs.LanEnabled||tokens==null)return;readingMirror=true;long generation=store.Generation;string account=tokens.Account;

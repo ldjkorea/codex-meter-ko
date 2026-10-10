@@ -12,6 +12,13 @@ assert 'isChangingConfigurations()' in main and 'SpicyQuotes.manual()' in main a
 assert 'stamp.equals(LiveUsageStore.signature' in home and 'target.isAttachedToWindow()' in home
 assert '!TaskStatusStore.enabled(app)||!BUSY.compareAndSet' in lan and '"task-status"' in lan and 'paired.equals(code(app,a))' in lan
 assert 'UsageApi.refresh' not in (app/'TaskStatusActivity.java').read_text()
+task_request=lan.split('static void taskStatus(Context c,Done done)',1)[1].split('private static JSONObject payload',1)[0]
+assert 'target.taskNetworkAllowed' in task_request and 'NetworkCapabilities.TRANSPORT_VPN' in task_request
+assert 'LanSyncWire.exchange(target,a' in task_request
+history_request=lan.split('static void schedule(Context c,Done done)',1)[1].split('static void taskStatus',1)[0]
+assert 'TRANSPORT_WIFI' in history_request and 'TRANSPORT_ETHERNET' in history_request and 'TRANSPORT_VPN' not in history_request
+assert 'handler.postDelayed(this,15000)' in (app/'TaskStatusActivity.java').read_text()
+assert 'LanSyncUi.show(this,dark)' in (app/'TaskStatusActivity.java').read_text()
 assert 'new ComponentName(c,TaskStatusWidget.class)' in (app/'TaskStatusWidget.java').read_text()
 for filename in ['TaskStatusActivity.java','TaskStatusWidget.java','TaskStatusStore.java']:
  assert 'approve' not in (app/filename).read_text().lower() and 'ProcessBuilder' not in (app/filename).read_text()

@@ -1,5 +1,28 @@
 [
   {
+    "version": "2.8.18",
+    "origin": "korean",
+    "ko": {
+      "title": "밖에서도 작업 상태 · Tailscale 연결",
+      "changes": [
+        "PC·폰 Tailscale 연결에서 외부 작업 상태 확인을 지원합니다.",
+        "작업 상태 상세 화면의 15초 확인 주기를 유지합니다. 홈 위젯의 백그라운드 주기는 바꾸지 않습니다.",
+        "PC 연결 코드에서 Tailscale 주소를 선택하고 폰의 PC 연결 설정에 등록합니다.",
+        "기존 Wi-Fi 기록 공유·인증·계산·사용자 데이터·디자인을 유지합니다."
+      ]
+    },
+    "en": {
+      "title": "Remote work status · Tailscale connection",
+      "changes": [
+        "Support remote task status through paired PC and phone Tailscale connections.",
+        "Keep 15-second polling while the status screen is open; background widget scheduling is unchanged.",
+        "Choose a Tailscale address in the PC pairing dialog and register it in the phone connection setup.",
+        "Preserve existing Wi-Fi history sync, authentication, calculations, user data and design."
+      ]
+    },
+    "source": "Windows 0.1.5 beta; paired IPv4 overlay with active phone VPN; external network verification pending."
+  },
+  {
     "version": "2.8.17",
     "origin": "korean",
     "ko": {

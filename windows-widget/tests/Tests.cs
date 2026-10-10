@@ -123,6 +123,8 @@ namespace CodexMeterWidget {
     long generation=store.Generation;store.SaveTokens(tokens,generation);
     using(var server=new LanSync(store,IPAddress.Loopback)){
      var code=server.PairCode("127.0.0.1").Split('|');Check(code[3].Length==64&&code[4].Length==64,"pinned TLS plus random secret");
+     var remoteCode=server.PairCode("100.100.12.34").Split('|');Check(remoteCode[3]==code[3]&&remoteCode[4]==code[4],"remote pairing preserves existing pin and secret");
+     Reject(()=>server.PairCode("8.8.8.8"),"cannot pair a public endpoint");
      var request=Push(tokens,code[4],snap);int before=store.LoadRows(tokens.Account).Count;store.Exchange(request,code[4]);store.Exchange(request,code[4]);
      Check(store.LoadRows(tokens.Account).Count==before,"peer merge duplicate ignored");Check(store.LoadMirror(tokens.Account).Tier==7,"mobile canonical tier");
      var mirror=store.LoadMirror(tokens.Account);Check(mirror.Current(snap),"matching policy shows phone tier");mirror.Reset+=1000;Check(mirror.Current(snap),"API reset drift tolerance");mirror.Policy="weekly|plus|604800";Check(!mirror.Current(snap),"plan change hides old tier");mirror.Policy="weekly|pro|604800";mirror.At=Clock.Now-16*60000;Check(!mirror.Current(snap),"old phone tier not shown as current");
@@ -138,12 +140,15 @@ namespace CodexMeterWidget {
      Check(store.Exchange(pull,code[4])["tasks"]!=null,"Task transport behind existing authentication");pull["secret"]="wrong";Reject(()=>store.Exchange(pull,code[4]),"Task endpoint rejects unauthenticated peer");pull["secret"]=code[4];store.TaskStatus=null;
      store.SignOut();Reject(()=>store.Exchange(pull,code[4]),"logout rejects paired peer");
     }
-    Check(LanSync.Private(IPAddress.Parse("192.168.1.2"))&&!LanSync.Private(IPAddress.Parse("8.8.8.8")),"LAN only");
+    Check(LanSync.Private(IPAddress.Parse("192.168.1.2"))&&!LanSync.Private(IPAddress.Parse("8.8.8.8")),"LAN/public boundary retained");
+    foreach(string ip in new[]{"100.64.0.0","100.100.12.34","100.127.255.255"})Check(LanSync.Private(IPAddress.Parse(ip))&&LanSync.Tailscale(IPAddress.Parse(ip)),"paired Tailscale IPv4 accepted");
+    foreach(string ip in new[]{"100.63.255.255","100.128.0.0","100.255.1.1","8.8.8.8","::1"})Check(!LanSync.Private(IPAddress.Parse(ip))&&!LanSync.Tailscale(IPAddress.Parse(ip)),"public/non-Tailscale IP rejected");
     using(var stream=new MemoryStream()){LanSync.Write(stream,"한글 실제 관측 37.125");stream.Position=0;Check(LanSync.Read(stream)=="한글 실제 관측 37.125","bounded gzip UTF8 frame");}
     using(var stream=new MemoryStream(new byte[]{0,64,0,1}))Reject(()=>LanSync.Read(stream),"oversized frame");
   }
   static int Probe(string dir){try{Directory.CreateDirectory(dir);var store=new LocalStore(dir);var tokens=new Tokens{Account="lan-integration",Access="synthetic-access",Refresh="synthetic-refresh",Expires=Clock.Now+600000};store.SaveTokens(tokens,store.Generation);
     long at=Clock.Now;store.SaveSnapshot(tokens,Snapshot.Parse(Response(25,at+604800000),at),store.Generation);
+    store.TaskStatus=()=>new Dictionary<string,object>{{"epoch",new string('a',32)},{"device",LocalStore.AccountKey("fixture-pc")},{"checked",Clock.Now},{"verified",true},{"source","local_log_trial"},{"rows",new[]{new TaskView{Thread="aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa",Turn="bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb",State="running",At=at,Seen=at,Sequence=1}}}};
     using(var server=new LanSync(store,IPAddress.Loopback)){File.WriteAllText(Path.Combine(dir,"pair.txt"),server.PairCode("127.0.0.1"));while(!File.Exists(Path.Combine(dir,"stop")))Thread.Sleep(100);}
     return 0;}catch(Exception e){Console.Error.WriteLine(e);return 1;}}
  }

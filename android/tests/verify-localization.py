@@ -141,7 +141,7 @@ reviewed_change(APP_JAVA + "AppPreferences.java", lambda s: s.replace(
     "            return prefs(context).edit().putString(KEY_RESET_CREDITS, resetCreditsSnapshot.toJson().toString()).remove(KEY_RESET_ERROR).remove(KEY_RESET_ERROR_AT).commit();",
     "            boolean saved = prefs(context).edit().putString(KEY_RESET_CREDITS, resetCreditsSnapshot.toJson().toString()).remove(KEY_RESET_ERROR).remove(KEY_RESET_ERROR_AT).commit();\n            if (saved) UsageEventStore.recordCredits(context, resetCreditsSnapshot);\n            return saved;").replace(
     "        UsageEventStore.clear(context);\n", "        UsageEventStore.clear(context);\n        UsageLedgerStore.clear(context);\n        UsageLedgerDatabase.clear(context);\n"))
-version_change = lambda s: s.replace("2.8.0", "2.8.17").replace("versionCode = 30", "versionCode = 47").replace("VERSION_CODE = 30", "VERSION_CODE = 47")
+version_change = lambda s: s.replace("2.8.0", "2.8.18").replace("versionCode = 30", "versionCode = 48").replace("VERSION_CODE = 30", "VERSION_CODE = 48")
 reviewed_change(APP_JAVA + "AppConstants.java", version_change)
 reviewed_change("android/wear/build.gradle.kts", version_change)
 reviewed_change("android/app/build.gradle.kts", lambda s: version_change(s).replace(

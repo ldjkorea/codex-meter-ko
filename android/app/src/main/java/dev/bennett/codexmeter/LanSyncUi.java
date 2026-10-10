@@ -20,5 +20,9 @@ final class LanSyncUi {
         dialog.setOnShowListener(d->dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(v->{try{LanSync.pair(a,code.getText().toString());LanWifiScheduler.install(a);dialog.dismiss();sync(a);}catch(Exception ignored){code.setError(a.getString(R.string.lan_sync_invalid));}}));dialog.show();
     }
     private static void sync(AppCompatActivity a){
+        if(LanSync.taskRemote(a)){
+            Toast.makeText(a,R.string.task_trial_connecting,Toast.LENGTH_SHORT).show();
+            LanSync.taskStatus(a,ok->a.runOnUiThread(()->{if(!a.isDestroyed()&&!a.isFinishing())Toast.makeText(a,ok?R.string.task_trial_connected:R.string.task_trial_remote_wait,Toast.LENGTH_LONG).show();}));return;
+        }
         Toast.makeText(a,R.string.lan_sync_working,Toast.LENGTH_SHORT).show();LanSync.schedule(a,ok->a.runOnUiThread(()->{if(!a.isDestroyed()&&!a.isFinishing())Toast.makeText(a,ok?R.string.lan_sync_done:R.string.lan_sync_wait,Toast.LENGTH_LONG).show();}));}
 }

@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 using System.Web.Script.Serialization;
 
 namespace CodexMeterWidget {
-    // Private LAN only; certificate pin and random pairing secret. Never transfers OAuth credentials.
+    // Private LAN or Tailscale only; certificate pin and random pairing secret. Never transfers OAuth credentials.
     public sealed class PhoneMirror {
         public string Account,Policy; public long At,Received,Reset,Floor; public int Tier=-1; public double Percent; public double? Today;
         public bool Current(Snapshot snapshot) { return snapshot!=null && snapshot.Fresh(Clock.Now)
@@ -69,7 +69,8 @@ namespace CodexMeterWidget {
         internal static JavaScriptSerializer JsonCodec {get{return new JavaScriptSerializer{MaxJsonLength=32*1024*1024,RecursionLimit=64};}}
         private readonly LocalStore store;private TcpListener listener;private readonly X509Certificate2 cert;private readonly string secret;private bool stopped;
         public int Port {get;private set;}
-        public static bool Private(IPAddress address) {var b=address.GetAddressBytes();return b.Length==4&&(b[0]==10||b[0]==127||b[0]==192&&b[1]==168||b[0]==172&&b[1]>=16&&b[1]<=31);}
+        public static bool Tailscale(IPAddress address){var b=address.GetAddressBytes();return b.Length==4&&b[0]==100&&b[1]>=64&&b[1]<=127;}
+        public static bool Private(IPAddress address) {var b=address.GetAddressBytes();return b.Length==4&&(b[0]==10||b[0]==127||b[0]==192&&b[1]==168||b[0]==172&&b[1]>=16&&b[1]<=31||Tailscale(address));}
         internal static bool Equal(string a,string b){if(a==null||b==null||a.Length!=b.Length)return false;int diff=0;for(int i=0;i<a.Length;i++)diff|=a[i]^b[i];return diff==0;}
         public static string Fingerprint(X509Certificate certificate){using(var sha=SHA256.Create())return BitConverter.ToString(sha.ComputeHash(certificate.GetRawCertData())).Replace("-","").ToLowerInvariant();}
         public LanSync(LocalStore storage,IPAddress bind=null) {

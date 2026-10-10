@@ -12,7 +12,7 @@ import java.util.zip.GZIPOutputStream;
 import javax.net.ssl.*;
 import org.json.JSONObject;
 
-/** Pinned TLS on a private IPv4 LAN. No OAuth tokens, discovery broadcasts or public endpoints. */
+/** Pinned TLS on private IPv4 LANs or a paired Tailscale address. No public endpoints. */
 public final class LanSyncWire {
     public static final int MAX_COMPRESSED=4*1024*1024, MAX_EXPANDED=32*1024*1024;
     public static final class Pair {
@@ -24,12 +24,19 @@ public final class LanSyncWire {
             host=fields[1];port=Integer.parseInt(fields[2]);pin=fields[3];secret=fields[4];
             if(port<1||port>65535)throw new IllegalArgumentException("Invalid port");
         }
+        public boolean tailscale(){return tailscaleHost(host);}
+        // Remote task polling requires an active VPN, not merely cellular connectivity.
+        public boolean taskNetworkAllowed(boolean wifi,boolean ethernet,boolean vpn){
+            return tailscale()?vpn:wifi||ethernet;
+        }
     }
     public static boolean privateHost(String host) {
         if(host==null||!host.matches("[0-9]{1,3}(\\.[0-9]{1,3}){3}"))return false;
         String[] p=host.split("\\.");int[] b=new int[4];for(int i=0;i<4;i++){b[i]=Integer.parseInt(p[i]);if(b[i]>255||!p[i].equals(Integer.toString(b[i])))return false;}
-        return b[0]==10||b[0]==127||b[0]==192&&b[1]==168||b[0]==172&&b[1]>=16&&b[1]<=31;
+        return b[0]==10||b[0]==127||b[0]==192&&b[1]==168||b[0]==172&&b[1]>=16&&b[1]<=31
+            ||b[0]==100&&b[1]>=64&&b[1]<=127;
     }
+    public static boolean tailscaleHost(String host){return privateHost(host)&&host.startsWith("100.");}
     public static String hash(byte[] bytes)throws Exception {
         byte[] digest=MessageDigest.getInstance("SHA-256").digest(bytes);StringBuilder out=new StringBuilder();
         for(byte b:digest)out.append(String.format(Locale.ROOT,"%02x",b&255));return out.toString();

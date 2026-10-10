@@ -44,6 +44,7 @@ final class LanSync {
     }
     static void disconnect(Context c)throws Exception{synchronized(UsageApi.NETWORK_LOCK){String a=account(c);if(a!=null&&!c.getSharedPreferences(PREFS,0).edit().remove(a).remove(a+"_last").commit())throw new IllegalStateException("Disconnect save failed");}}
     static long last(Context c){try{String a=account(c);return a==null?0:c.getSharedPreferences(PREFS,0).getLong(a+"_last",0);}catch(Exception ignored){return 0;}}
+    static boolean taskRemote(Context c){try{String a=account(c);String paired=a==null?null:code(c,a);return paired!=null&&new LanSyncWire.Pair(paired).tailscale();}catch(Exception ignored){return false;}}
     static void schedule(Context c){schedule(c,null);}
     static void schedule(Context c,Done done){Context app=c.getApplicationContext();if(!BUSY.compareAndSet(false,true)){if(done!=null)done.finish(false);return;}
         WORKER.execute(()->{boolean success=false;try{
@@ -69,9 +70,10 @@ final class LanSync {
     }
     static void taskStatus(Context c,Done done){Context app=c.getApplicationContext();if(!TaskStatusStore.enabled(app)||!BUSY.compareAndSet(false,true)){if(done!=null)done.finish(false);return;}
         WORKER.execute(()->{boolean ok=false;try{ConnectivityManager cm=(ConnectivityManager)app.getSystemService(Context.CONNECTIVITY_SERVICE);NetworkCapabilities nc=cm==null?null:cm.getNetworkCapabilities(cm.getActiveNetwork());
-            if(nc==null||(!nc.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)&&!nc.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET)))return;
             String a,paired;synchronized(UsageApi.NETWORK_LOCK){a=account(app);if(!TaskStatusStore.enabled(app,a))return;paired=code(app,a);if(paired==null)return;}
-            JSONObject response=LanSyncWire.exchange(new LanSyncWire.Pair(paired),a,new JSONObject().put("op","task-status"));
+            LanSyncWire.Pair target=new LanSyncWire.Pair(paired);
+            if(nc==null||!target.taskNetworkAllowed(nc.hasTransport(NetworkCapabilities.TRANSPORT_WIFI),nc.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET),nc.hasTransport(NetworkCapabilities.TRANSPORT_VPN)))return;
+            JSONObject response=LanSyncWire.exchange(target,a,new JSONObject().put("op","task-status"));
             synchronized(UsageApi.NETWORK_LOCK){if(!a.equals(account(app))||!paired.equals(code(app,a))||!TaskStatusStore.enabled(app,a))return;TaskStatusStore.save(app,a,response.optJSONObject("tasks"));ok=true;}
         }catch(Exception ignored){}finally{BUSY.set(false);if(done!=null)done.finish(ok);}});
     }
