@@ -1,0 +1,16 @@
+{
+  "path": "windows-widget/assets/widget.ico",
+  "sha256": "5470bbf1e8220fcd50dec4324ceb93d4a2ff6583d0e64d87b49a74da6b2cff8b",
+  "sourcePath": "windows-widget/assets/prestige_2.png",
+  "sourceSha256": "9a571c74556f2445b401a9c79dbf7fef0858ba4f4fd553244cef78e883708fa3",
+  "sizes": [
+    16,
+    24,
+    32,
+    48,
+    64,
+    128,
+    256
+  ],
+  "conversion": "Existing Samjoko silver crest resized without artwork changes into PNG entries in a multi-size ICO; fixed Explorer identity, current tier uses runtime tray icon"
+}

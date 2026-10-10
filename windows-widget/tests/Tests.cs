@@ -58,9 +58,49 @@ namespace CodexMeterWidget {
     string previews=args.Length>0?args[0]:Path.Combine(dir,"previews");Directory.CreateDirectory(previews);var images=new Image[10];for(int i=0;i<10;i++)using(var stream=typeof(Tests).Assembly.GetManifestResourceStream("prestige_"+i))using(var img=Image.FromStream(stream))images[i]=new Bitmap(img);
     foreach(int width in new[]{340,400,640})foreach(double font in new[]{1,1.25,1.5})foreach(bool empty in new[]{false,true}){p=new Preferences{Width=width,Height=(int)(330*font),FontFactor=font,ShowFive=true};var size=new Size(p.Width,p.Height);using(var image=new Bitmap(size.Width,size.Height))using(var g=Graphics.FromImage(image)){RectangleF action,menu;WidgetForm.Draw(g,size,p,empty?null:snap,new TierState{Tier=empty?-1:7,Count=8},empty?null:(double?)13.2,empty?"ChatGPT 로그인으로 시작하세요.":"정상 조회 · 테스트 데이터",false,false,images,out action,out menu);Check(action.Bottom<=size.Height&&action.Right<=size.Width,"action in bounds");image.Save(Path.Combine(previews,"widget-"+width+"-"+font+"-"+(empty?"empty":"usage")+".png"));}}
     using(var api=new MeterApi(new Fake()))using(var form=new WidgetForm(store,api,true)){Check(form.TopMost&&form.Width>=340&&Math.Abs(form.Opacity-.94)<.001,"form settings, no visible window");Check(form.MinimumSize.Height>=330,"large-font safe minimum");}
-    foreach(var image in images)image.Dispose();Console.WriteLine("Windows widget: "+count+" assertions passed; 18 offscreen renders. No live OAuth/API/registry calls.");return 0;
+    int tierRenders=VisualChecks(previews,images,snap);
+    foreach(var image in images)image.Dispose();Console.WriteLine("Windows widget: "+count+" assertions passed; "+(18+tierRenders)+" offscreen renders. No live OAuth/API/registry calls.");return 0;
    }catch(Exception e){Console.Error.WriteLine(e);return 1;}finally{Console.WriteLine("Isolated synthetic test data: "+dir);}
   }
+  static int VisualChecks(string previews,Image[] images,Snapshot fresh){
+   Check(TierVisuals.TopRgb.Distinct().Count()==10&&TierVisuals.BottomRgb.Distinct().Count()==10&&TierVisuals.AccentRgb.Distinct().Count()==10,"ten distinct complete palettes");
+   Check(!TierVisuals.Active(-1)&&!TierVisuals.Active(10),"neutral outside rank bounds");
+   Check(typeof(WidgetForm).Assembly.GetName().Version.ToString()==WidgetForm.Version+".0","executable version matches visible Windows version");
+   int renders=0;var fingerprints=new HashSet<string>();var icons=new HashSet<string>();
+   for(int tier=0;tier<10;tier++){
+    Check(TierVisuals.VisibleTier(fresh,new TierState{Tier=tier},false)==tier,"fresh verified tier decoration");
+    using(var icon=TierVisuals.CreateIcon(images,tier)){
+     Check(icon!=null&&icon.Width==32&&icon.Height==32,"tier tray icon safely owned");
+     using(var pixels=icon.ToBitmap())using(var bytes=new MemoryStream()){
+      pixels.Save(bytes,System.Drawing.Imaging.ImageFormat.Png);using(var digest=System.Security.Cryptography.SHA256.Create())Check(icons.Add(Convert.ToBase64String(digest.ComputeHash(bytes.ToArray()))),"each native tray icon contains its distinct tier artwork");
+     }
+    }
+    Check(Contrast(TierVisuals.Accent(tier),TierVisuals.Top(tier))>=4.5,"tier caption contrast at brightest surface");
+    foreach(int width in new[]{340,400,640})foreach(double font in new[]{1,1.25,1.5}){
+     var prefs=new Preferences{Width=width,Height=(int)(330*font),FontFactor=font,ShowFive=false};
+     using(var image=new Bitmap(prefs.Width,prefs.Height))using(var graphics=Graphics.FromImage(image)){
+      RectangleF action,menu;WidgetForm.Draw(graphics,image.Size,prefs,fresh,new TierState{Tier=tier,Count=8},13.2,"티어 장식 검증 · 합성 데이터",false,false,images,out action,out menu);
+      Check(action.Left>=0&&action.Bottom<=image.Height&&menu.Right<=image.Width,"tier layout controls in bounds");
+      if(width==400&&font==1)Check(fingerprints.Add(image.GetPixel(8,90).ToArgb()+":"+image.GetPixel(8,270).ToArgb()),"rendered tier background differs");
+      image.Save(Path.Combine(previews,"tier-"+tier+"-"+width+"-"+font+".png"));renders++;
+     }
+    }
+   }
+   var old=Snapshot.Parse(Response(37,Clock.Now+604800000),Clock.Now-16*60000);
+   Check(TierVisuals.VisibleTier(old,new TierState{Tier=9},false)==-1,"old tier uses neutral colors");
+   Check(TierVisuals.VisibleTier(fresh,new TierState{Tier=9},true)==-1,"failed refresh does not decorate a current tier");
+   Check(TierVisuals.VisibleTier(null,new TierState{Tier=9},false)==-1,"logout does not decorate a current tier");
+   using(var icon=TierVisuals.CreateIcon(images,-1))Check(icon!=null&&icon.Width==32,"neutral tray icon safely owned");
+   foreach(var state in new[]{"stale","failed","unplaced","logout"}){
+    using(var image=new Bitmap(400,330))using(var graphics=Graphics.FromImage(image)){
+     RectangleF action,menu;WidgetForm.Draw(graphics,image.Size,new Preferences(),state=="logout"?null:state=="stale"?old:fresh,new TierState{Tier=state=="unplaced"?-1:9},null,"이전 데이터 보존 · 합성 검증",false,state=="failed",images,out action,out menu);
+     image.Save(Path.Combine(previews,"neutral-"+state+".png"));renders++;
+    }
+   }
+   return renders;
+  }
+  static double Channel(byte c){double s=c/255d;return s<=.04045?s/12.92:Math.Pow((s+.055)/1.055,2.4);}
+  static double Contrast(Color a,Color b){double x=.2126*Channel(a.R)+.7152*Channel(a.G)+.0722*Channel(a.B),y=.2126*Channel(b.R)+.7152*Channel(b.G)+.0722*Channel(b.B);return(Math.Max(x,y)+.05)/(Math.Min(x,y)+.05);}
   static Dictionary<string,object> Push(Tokens tokens,string secret,Snapshot snapshot){return new Dictionary<string,object>{{"v",1},{"id",Guid.NewGuid().ToString("N")},{"at",Clock.Now},{"account",LocalStore.AccountKey(tokens.Account)},{"secret",secret},{"op","push"},{"floor",0L},{"observed",snapshot.At},{"reset",snapshot.Main.Reset},{"tier",7},{"policy","weekly|pro|604800"},{"percent",87.5},{"rows",new[]{Row(snapshot.At,snapshot.Main.Reset,37.125)}},{"days",new object[]{new{day="2026-01-01",points=12.0}}},{"events",new object[0]}};}
   static void LanChecks(LocalStore store,Tokens tokens,Snapshot snap){
     long generation=store.Generation;store.SaveTokens(tokens,generation);
